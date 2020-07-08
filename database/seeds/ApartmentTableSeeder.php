@@ -2,6 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
+use App\User;
+use App\Apartment;
+use Faker\Generator as Faker;
+
 class ApartmentTableSeeder extends Seeder
 {
     /**
@@ -9,8 +13,29 @@ class ApartmentTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        //
+    public function run(Faker $faker)
+    {   
+        $apartment = 45;
+        $users = User::all();
+
+        for ($i=0 ; $i < $apartment  ; $i++ ) { 
+
+            $newApartament = new Apartment();
+            
+            $newApartament->user_id = $users->random()->id;
+            $newApartament->title = $faker->text(30);
+            $newApartament->description = $faker->text();
+            $newApartament->rooms_number = rand(1,5);
+            $newApartament->beds_number = rand(1,8);
+            $newApartament->bathrooms_number = rand(1,3);
+            $newApartament->square_meters = rand(50, 200);
+            $newApartament->address = $faker->address();
+            $newApartament->geo_lat = $faker->latitude();
+            $newApartament->geo_lon = $faker->longitude();
+            $newApartament->active = true;
+            $newApartament->featured_img = $faker->imageUrl();
+
+            $newApartament->save();
+        }
     }
 }
