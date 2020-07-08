@@ -16,11 +16,11 @@ class InfoRequestTableSeeder extends Seeder
     {
         $apartments = Apartment::all();
 
-        foreach( $apartments as $appartment ) {
+        foreach( $apartments as $apartment ) {
             for ( $i = 0; $i < 4; $i++ ) {
                 if ( $faker->boolean(30) ) {
                     $newInfoRequest = new InfoRequest();
-                    $newInfoRequest->apartment_id = $appartment->id;
+                    $newInfoRequest->apartment_id = $apartment->id;
                     $newInfoRequest->email = $faker->email();
                     $newInfoRequest->title = $faker->text(50);
                     $newInfoRequest->body = $faker->text(400);
