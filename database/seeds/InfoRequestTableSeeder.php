@@ -22,7 +22,7 @@ class InfoRequestTableSeeder extends Seeder
                     $newInfoRequest = new InfoRequest();
                     $newInfoRequest->apartment_id = $apartment->id;
                     $newInfoRequest->email = $faker->email();
-                    $newInfoRequest->title = $faker->text(50);
+                    $newInfoRequest->title = $faker->text(30);
                     $newInfoRequest->body = $faker->text(400);
                     $newInfoRequest->save();
                 }
