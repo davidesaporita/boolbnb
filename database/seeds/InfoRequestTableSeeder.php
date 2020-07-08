@@ -14,18 +14,19 @@ class InfoRequestTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $infoRequests = 75;
         $apartments = Apartment::all();
 
-        for ($i = 0; $i < $infoRequests; $i++) {
-
-            $newInfoRequest = new InfoRequest();
-            $newInfoRequest->apartment_id = $apartments->id;
-            $newInfoRequest->email = $faker->email();
-            $newInfoRequest->title = $faker->text(50);
-            $newInfoRequest->body = $faker->text(400);
-            $newInfoRequest->save();
-            
+        foreach( $apartments as $appartment ) {
+            for ( $i = 0; $i < 4; $i++ ) {
+                if ( $faker->boolean(30) ) {
+                    $newInfoRequest = new InfoRequest();
+                    $newInfoRequest->apartment_id = $appartment->id;
+                    $newInfoRequest->email = $faker->email();
+                    $newInfoRequest->title = $faker->text(50);
+                    $newInfoRequest->body = $faker->text(400);
+                    $newInfoRequest->save();
+                }
+            }
         }
     }
 }
