@@ -1,6 +1,11 @@
 <?php
 
+use App\Media;
+use App\Apartment;
+use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
+
+
 
 class MediaTableSeeder extends Seeder
 {
@@ -9,8 +14,17 @@ class MediaTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        //
+        $apartments = Apartment::all();
+
+        foreach ( $apartments as $apartment ) {
+            $newMedia = new Media();
+            $newMedia->apartment_id = $apartments->id;
+            $newMedia->path = $faker->imageUrl();
+            $newMedia->type = 'img';
+            $newMedia->caption = $faker->text(75);
+            $newMedia->save();
+        }
     }
 }
