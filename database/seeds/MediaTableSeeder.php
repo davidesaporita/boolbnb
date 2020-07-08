@@ -20,7 +20,7 @@ class MediaTableSeeder extends Seeder
 
         foreach ( $apartments as $apartment ) {
             $newMedia = new Media();
-            $newMedia->apartment_id = $apartments->id;
+            $newMedia->apartment_id = $apartment->id;
             $newMedia->path = $faker->imageUrl();
             $newMedia->type = 'img';
             $newMedia->caption = $faker->text(75);
