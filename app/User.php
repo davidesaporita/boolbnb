@@ -16,7 +16,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name',
+        'last_name',
+        'birth_date',
+        'email',
+        'password',
     ];
 
     /**
@@ -36,4 +40,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Relationships
+     */
+    
+    // Aprtments table | One to Many
+    public function apartments() {
+        return $this->hasMany('App\Apartment');
+    }
 }
