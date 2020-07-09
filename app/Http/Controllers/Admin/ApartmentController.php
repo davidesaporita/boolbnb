@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+
 use App\Apartment;
 
 class ApartmentController extends Controller
@@ -15,7 +17,8 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        //
+        $apartments = Apartment::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->paginate(10);
+        return view('admin.apartments.index', compact('apartments'));
     }
 
     /**
