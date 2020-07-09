@@ -33,6 +33,7 @@ class ApartmentTableSeeder extends Seeder
             $newApartament->geo_lat = $faker->latitude();
             $newApartament->geo_lon = $faker->longitude();
             $newApartament->active = true;
+            $newApartament->views = $faker->numberBetween(5, 50);
             $newApartament->featured_img = $faker->imageUrl();
 
             $newApartament->save();

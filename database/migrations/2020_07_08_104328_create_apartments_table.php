@@ -26,6 +26,7 @@ class CreateApartmentsTable extends Migration
             $table->float('geo_lat', 9, 6);
             $table->float('geo_lon', 9, 6);
             $table->boolean('active')->default(true);
+            $table->unsignedBigInteger('views');
             $table->string('featured_img');
             $table->timestamps();
 
