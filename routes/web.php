@@ -22,7 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 // guest
-
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 // ADMIN Controller
@@ -32,4 +32,5 @@ Route::prefix('admin')
     ->middleware('auth')
     ->group(function() {
         Route::get('/home', 'HomeController@index')->name('home');
+        Route::resource('/apartments', 'ApartmentController');
     });
