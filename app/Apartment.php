@@ -61,6 +61,5 @@ class Apartment extends Model
                     ->as('sponsorships')
                     ->withPivot('transaction_id', 'amount', 'start', 'deadline')
                     ->withTimestamps();
-    }
-    
+    }   
 }
