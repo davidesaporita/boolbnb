@@ -12,24 +12,30 @@ class SponsorPlanTableSeeder extends Seeder
      */
     public function run()
     {
-        // Basic Plan
-        $basicPlan = new  SponsorPlan();
-        $basicPlan->name = 'basic';
-        $basicPlan->hours = '24';
-        $basicPlan->price = 2.99;
-        $basicPlan->save();
-        // Medium Plan
-        $mediumPlan = new  SponsorPlan();
-        $mediumPlan->name = 'medium';
-        $mediumPlan->hours = '72';
-        $mediumPlan->price = 5.99;
-        $mediumPlan->save();
-        // Top Plan
-        $topPlan = new  SponsorPlan();
-        $topPlan->name = 'top';
-        $topPlan->hours = '144';
-        $topPlan->price = 9.99;
-        $topPlan->save();
-        
+        // Plans
+        $sponsorPlans = [
+            [
+                'name' => 'basic', 
+                'hours' => 24,
+                'price' => 2.99
+            ],
+            [
+                'name' => 'medium', 
+                'hours' => 72,
+                'price' => 5.99
+            ],
+            [
+                'name' => 'top', 
+                'hours' => 144,
+                'price' => 9.99
+            ]
+        ];
+        foreach ($sponsorPlans as $sponsorPlan) {
+            $plan = new SponsorPlan();
+            $plan->name = $sponsorPlan['name'];
+            $plan->hours = $sponsorPlan['hours'];
+            $plan->price = $sponsorPlan['price'];
+            $plan->save();    
+        }
     }
 }
