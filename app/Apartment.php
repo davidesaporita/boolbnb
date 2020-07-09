@@ -52,12 +52,15 @@ class Apartment extends Model
 
     // Services table | Many to Many
     public function services() {
-        return $this->belongsToMany('App\Service');
+        return $this->belongsToMany('App\Service', 'apartments_services');
     }
 
     // Sponsor_plans table | Many to Many
     public function sponsor_plans() {
-        return $this->belongsToMany('App\SponsorPlan');
+        return $this->belongsToMany('App\SponsorPlan', 'sponsorships')
+                    ->as('sponsorships')
+                    ->withPivot('transaction_id', 'amount', 'deadline')
+                    ->withTimestamps();
     }
     
 }

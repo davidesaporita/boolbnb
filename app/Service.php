@@ -21,6 +21,6 @@ class Service extends Model
     
     // Apartments table | Many to Many
     public function apartments() {
-        return $this->belongsToMany('App\Apartment');
+        return $this->belongsToMany('App\Apartment', 'apartments_services');
     }
 }
