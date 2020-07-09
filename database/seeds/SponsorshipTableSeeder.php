@@ -33,7 +33,7 @@ class SponsorshipTableSeeder extends Seeder
                         );
                 
                 if($faker->boolean(20) && $sponsorships_counter < $max_total_sponsorships) {
-                    if($active_sponsorships_counter < $max_active_sponsorships) {
+                    if($faker->boolean(60) && $active_sponsorships_counter < $max_active_sponsorships) {
                         $date = Carbon::instance($faker->dateTimeBetween('-20 hours', 'now', 'Europe/Rome'));
                         $active_sponsorships_counter++;
                     } else {
