@@ -19,7 +19,7 @@ class Review extends Model
         'body',
         'rating'
     ];
-  
+
     /**
      * Relationships
      */
