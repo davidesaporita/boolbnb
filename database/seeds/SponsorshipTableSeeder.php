@@ -16,19 +16,31 @@ class SponsorshipTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        foreach(Apartment::all() as $apartment) {
-            foreach(SponsorPlan::all() as $plan) {                
+        $active_sponsorships_counter = 0;
+        $max_active_sponsorships = 8; // Max for active sponsorships
+        
+        $sponsorships_counter = 0;
+        $max_total_sponsorships = 40; // Max for all sponsorships (including active and expired ones)
 
-                // Todo : improve query using many to many way 
-                $active_sponsorships = count(
+        foreach(Apartment::all() as $apartment) {
+            foreach(SponsorPlan::all() as $plan) {
+
+                // Todo : change query using eloquent syntax (maybe creating a specific model?)
+                $sponsorships = count(
                         DB::table('sponsorships')
                             ->where('apartment_id', $apartment->id)
                             ->get()
                         );
+                
+                if($faker->boolean(20) && $sponsorships_counter < $max_total_sponsorships) {
+                    if($active_sponsorships_counter < $max_active_sponsorships) {
+                        $date = Carbon::instance($faker->dateTimeBetween('-20 hours', 'now', 'Europe/Rome'));
+                        $active_sponsorships_counter++;
+                    } else {
+                        $date = Carbon::instance($faker->dateTimeBetween('-1 year', '-144 hours', 'Europe/Rome'));
+                    }
 
-                if($faker->boolean(20) && $active_sponsorships == 0) {
-
-                    $start = Carbon::now();
+                    $start = $date;
                     $deadline = $start->copy()->addHours($plan->hours);
 
                     $data = [
@@ -39,6 +51,7 @@ class SponsorshipTableSeeder extends Seeder
                     ];
 
                     $apartment->sponsor_plans()->attach($plan->id, $data);
+                    $sponsorships_counter++;
                 } 
             }
         }
