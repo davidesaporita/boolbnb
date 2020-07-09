@@ -16,7 +16,7 @@ class CreateSponsorPlansTable extends Migration
         Schema::create('sponsor_plans', function (Blueprint $table) {
             $table->id();
             $table->string('name', 30);
-            $table->time('hours');
+            $table->unsignedTinyInteger('hours');
             $table->float('price', 4, 2);
             $table->timestamps();
         });

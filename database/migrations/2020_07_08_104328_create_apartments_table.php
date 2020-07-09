@@ -23,9 +23,9 @@ class CreateApartmentsTable extends Migration
             $table->unsignedTinyInteger('bathrooms_number');
             $table->unsignedTinyInteger('square_meters');
             $table->string('address');
-            $table->float('geo_lat', 9, 6); // Verificare dettaglio cifre totali e decimali
-            $table->float('geo_lon', 9, 6); // Verificare dettaglio cifre totali e decimali
-            $table->boolean('active');
+            $table->float('geo_lat', 9, 6);
+            $table->float('geo_lon', 9, 6);
+            $table->boolean('active')->default(true);
             $table->string('featured_img');
             $table->timestamps();
 
