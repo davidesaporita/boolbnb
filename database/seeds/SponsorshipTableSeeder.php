@@ -20,7 +20,11 @@ class SponsorshipTableSeeder extends Seeder
             foreach(SponsorPlan::all() as $plan) {                
 
                 // Todo : improve query using many to many way 
-                $active_sponsorships = count(DB::table('sponsorships')->where('apartment_id', $apartment->id)->get());
+                $active_sponsorships = count(
+                        DB::table('sponsorships')
+                            ->where('apartment_id', $apartment->id)
+                            ->get()
+                        );
 
                 if($faker->boolean(20) && $active_sponsorships == 0) {
 

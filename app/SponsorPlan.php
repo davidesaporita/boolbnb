@@ -25,7 +25,7 @@ class SponsorPlan extends Model
     public function apartments() {
         return $this->belongsToMany('App\Apartment', 'sponsorships', 'apartment_id', 'sponsor_plan_id')
                     ->as('sponsorships')
-                    ->withPivot('transaction_id', 'amount', 'deadline')
+                    ->withPivot('transaction_id', 'amount', 'start', 'deadline')
                     ->withTimestamps();
     }    
 }
