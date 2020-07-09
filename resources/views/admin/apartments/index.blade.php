@@ -15,14 +15,15 @@
         @endif
 
         <div class="apartments-list" >
-            @foreach ( $apartments as $apartment )
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>NOME APPARTAMENTO</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>NOME APPARTAMENTO</th>
+                        <th colspan="3">Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ( $apartments as $apartment )
                         <tr>
                             <th>{{ $apartment->title }}</th>
                             <td><a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-dark">Mostra</a></td>
@@ -35,9 +36,9 @@
                                 </form>
                             </td>
                         </tr>
-                    </tbody>
-                </table>
-            @endforeach
+                    @endforeach
+                </tbody>
+            </table>
         </div>
 
         <div class="wrap-pagination mt-5 d-flex justify-content-center">
