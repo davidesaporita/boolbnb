@@ -23,6 +23,7 @@ class Apartment extends Model
         'geo_lat',
         'geo_lon',
         'active',
+        'views',
         'featured_img'
     ];
 
