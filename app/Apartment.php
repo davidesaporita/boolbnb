@@ -13,6 +13,7 @@ class Apartment extends Model
      */
     protected $fillable = [
         'user_id',
+        'category_id',
         'title',
         'description',
         'rooms_number',
@@ -34,6 +35,11 @@ class Apartment extends Model
     // Users table | Many to One
     public function user() {
         return $this->belongsTo('App\User');
+    }
+
+    // Users table | Many to One
+    public function category() {
+        return $this->belongsTo('App\Category');
     }
 
     // Info_request table | One to Many

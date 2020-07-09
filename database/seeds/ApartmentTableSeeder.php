@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use App\User;
+use App\Category;
 use App\Apartment;
 use Faker\Generator as Faker;
 
@@ -17,12 +18,14 @@ class ApartmentTableSeeder extends Seeder
     {   
         $apartment = 45;
         $users = User::all();
+        $categories = Category::all();
 
         for ($i=0 ; $i < $apartment  ; $i++ ) { 
 
             $newApartament = new Apartment();
             
             $newApartament->user_id = $users->random()->id;
+            $newApartament->category_id = $categories->random()->id;
             $newApartament->title = $faker->text(30);
             $newApartament->description = $faker->text();
             $newApartament->rooms_number = rand(1,5);
