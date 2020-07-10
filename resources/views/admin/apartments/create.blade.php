@@ -66,10 +66,9 @@
             {{-- File Immagine secondaria --}}
             <div class="form-group">
                 <label for="path">Immagini secondarie</label>
-                <input type="file" name="path" id="path" accept="image/*">
-                <input type="file" name="path" id="path" accept="image/*">
-                <input type="file" name="path" id="path" accept="image/*">
-                <input type="file" name="path" id="path" accept="image/*">
+                @for ( $i = 0; $i < 5; $i++ )
+                    <input type="file" name="path[]" id="path" accept="image/*">
+                @endfor
             </div>
 
             {{-- @foreach ($services as $service) 
@@ -78,6 +77,7 @@
                 <label for="service-{{ $loop->iteration }}">{{ $service->name }}</label>
             </div>
             @endforeach --}}
+            <input type="submit" value="Crea" class="btn btn-success">
         </form>
     </div>
 @endsection
