@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+use DB;
 
 use App\Apartment;
 use App\Service;
@@ -56,7 +58,14 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        return view('admin.apartments.show', compact('apartment'));
+        $now = Carbon::now();
+
+        $active_sponsorship = DB::table('sponsorships')
+            ->where('apartment_id', $apartment->id)
+            ->where('deadline', '>', $now)
+            ->get();
+
+        return view('admin.apartments.show', compact('apartment', 'active_sponsorship'));
     }
 
     /**
