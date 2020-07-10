@@ -17,14 +17,19 @@ class MediaTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         $apartments = Apartment::all();
+        $max_img_number = 6;
 
         foreach ( $apartments as $apartment ) {
-            $newMedia = new Media();
-            $newMedia->apartment_id = $apartment->id;
-            $newMedia->path = $faker->imageUrl();
-            $newMedia->type = 'img';
-            $newMedia->caption = $faker->text(75);
-            $newMedia->save();
+            for($i = 0; $i < $max_img_number; $i++) {
+                if($faker->boolean(60)) {
+                    $newMedia = new Media();
+                    $newMedia->apartment_id = $apartment->id;
+                    $newMedia->path = $faker->imageUrl(640, 480);
+                    $newMedia->type = 'img';
+                    $newMedia->caption = $faker->text(75);
+                    $newMedia->save();
+                }
+            }
         }
     }
 }
