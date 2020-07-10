@@ -28,7 +28,7 @@
             {{-- Descrizione --}}
             <div class="form-group">
                 <label for="description">Descrizione dell appartamento</label>
-                <textarea name="description" id="description" placeholder="Inserisci una descrizione">
+                <textarea name="description" id="description" class="form-control" placeholder="Inserisci una descrizione">
                     {{ old('description') }}
                 </textarea>
             </div>
@@ -61,7 +61,7 @@
             {{-- File Immagine principale --}}
             <div class="form-group">
                 <label for="featured_img">Immagine principale</label>
-                <input type="file" name="featured_img" id="featured_img" accept="image/*">
+                <input  class="form-control-file" type="file" name="featured_img" id="featured_img" accept="image/*">
             </div>
             {{-- File Immagine secondaria --}}
             <div class="form-group">
@@ -71,12 +71,12 @@
                 @endfor
             </div>
 
-            {{-- @foreach ($services as $service) 
-            <div class="form-group">
-                <input type="checkbox" name="services[]" id="service-{{ $loop->iteration }}" value="{{ $service->id }}">
-                <label for="service-{{ $loop->iteration }}">{{ $service->name }}</label>
-            </div>
-            @endforeach --}}
+            @foreach ($services as $service) 
+                <div class="form-group form-check">
+                    <input type="checkbox" name="services[]" id="service-{{ $loop->iteration }}"  class="form-check-input" value="{{ $service->id }}">
+                    <label for="service-{{ $loop->iteration }}">{{ $service->name }}</label>
+                </div>
+            @endforeach
             <input type="submit" value="Crea" class="btn btn-success">
         </form>
     </div>
