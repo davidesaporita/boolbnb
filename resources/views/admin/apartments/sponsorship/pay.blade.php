@@ -5,7 +5,7 @@
 <h3>Ciao {{ Auth::user()->first_name }}, rendi il tuo annuncio più accattivante e fai in modo che lo vedano più persone!</h3>
 
  
-<h4>Scegli il tuo piano di sponsorizzazione per il tuo {{}} in via/corso {{}}</h4>
+<h4>Scegli il tuo piano di sponsorizzazione per il tuo APPARTAMENTO in via/corso LENTISCO, 1000</h4>
 
     <div class="btn-group d-flex justify-content-center">
         <div class="form-check ">
