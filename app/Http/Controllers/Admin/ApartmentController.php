@@ -42,7 +42,10 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Todo: Add validations via validationRules() references
+
+        $data = $request->all();
+        dd($data);
     }
 
     /**
