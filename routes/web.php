@@ -32,5 +32,14 @@ Route::prefix('admin')
     ->middleware('auth')
     ->group(function() {
         Route::get('/home', 'HomeController@index')->name('home');
+        
+        Route::get('/apartments/sponsorship/pay', function () { 
+            return view('admin.apartments.sponsorship.pay');
+                })->name('apartments.sponsorship.pay');
+
+        Route::get('/apartments/sponsorship/transaction', function () { 
+            return view('admin.apartments.sponsorship.transaction');
+                })->name('apartments.sponsorship.transaction');
+
         Route::resource('/apartments', 'ApartmentController');
     });
