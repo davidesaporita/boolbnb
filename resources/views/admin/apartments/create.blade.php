@@ -76,15 +76,15 @@
             {{-- File Immagine principale --}}
             <div class="form-group">
                 <label for="featured_img">Immagine principale</label>
-                <input type="file" name="featured_img" id="featured_img" accept="image/*">
+                <input  class="form-control-file" type="file" name="featured_img" id="featured_img" accept="image/*">
             </div>
             {{-- File Immagine secondaria --}}
-            <div class="form-group">
-                <label for="path">Immagini secondarie</label>
-                @for ( $i = 0; $i < 5; $i++ )
+            <h3>Immagini secondarie</h3>
+            @for ( $i = 0; $i < 5; $i++ )
+                <div class="form-group">
                     <input type="file" name="path[]" id="path" accept="image/*">
-                @endfor
-            </div>
+                </div>
+            @endfor
 
             @foreach ($services as $service) 
                 <div class="form-group">
@@ -95,6 +95,7 @@
 
             <input type="hidden" name="geo_lat" id="geo_lat" value="">
             <input type="hidden" name="geo_lng" id="geo_lng" value="">
+
             <input type="submit" value="Crea" class="btn btn-success">
         </form>
     </div>
