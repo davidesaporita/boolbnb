@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
 use App\Apartment;
+use App\Service;
 
 class ApartmentController extends Controller
 {
@@ -28,7 +30,8 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+        $services = Service::all();
+        return view('admin.apartments.create', compact('services'));
     }
 
     /**
@@ -85,5 +88,24 @@ class ApartmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Validation rules.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    private function validationRules($id = null)
+    {
+        return [
+            'user_id'          => 'required|numeric',
+            'title'            => 'required|string|max:255',
+            'description'      => 'required|string|max:255',
+            'rooms_number'     => 'required|string|max:255',
+            'beds_number'      => 'required|max:200',
+            'bathrooms_number' => 'required|max:200',
+            'square_meters'    => 'required|max:200',
+        ];
     }
 }
