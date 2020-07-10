@@ -16,7 +16,7 @@ class ApartmentTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {   
-        $apartment = 45;
+        $apartment = 60;
         $users = User::all();
         $categories = Category::all();
 
@@ -24,7 +24,12 @@ class ApartmentTableSeeder extends Seeder
 
             $newApartament = new Apartment();
             
-            $newApartament->user_id = $users->random()->id;
+            if($i < 10) {
+                $newApartament->user_id = 1; // Default assigmnent to default user (1)
+            } else {
+                $newApartament->user_id = $users->random()->id;
+            }
+
             $newApartament->category_id = $categories->random()->id;
             $newApartament->title = $faker->text(30);
             $newApartament->description = $faker->text();
