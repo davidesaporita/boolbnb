@@ -28,7 +28,7 @@
             {{-- Descrizione --}}
             <div class="form-group">
                 <label for="description">Descrizione dell appartamento</label>
-                <textarea name="description" id="description" placeholder="Inserisci una descrizione">
+                <textarea class="form-control" name="description" id="description" placeholder="Inserisci una descrizione">
                     {{ old('description', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, asperiores odit! Totam optio pariatur eius, ducimus eaque praesentium magni adipisci similique.') }} 
                 </textarea>
             </div>
@@ -95,7 +95,6 @@
 
             <input type="hidden" name="geo_lat" id="geo_lat" value="">
             <input type="hidden" name="geo_lng" id="geo_lng" value="">
-
             <input type="submit" value="Crea" class="btn btn-success">
         </form>
     </div>
