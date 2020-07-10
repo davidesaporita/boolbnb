@@ -22,9 +22,14 @@ class CreateApartmentsTable extends Migration
             $table->unsignedTinyInteger('beds_number');
             $table->unsignedTinyInteger('bathrooms_number');
             $table->unsignedTinyInteger('square_meters');
+            $table->string('country');
+            $table->string('region');
+            $table->string('province');
+            $table->string('city');
             $table->string('address');
+            $table->string('zip_code', 20);
             $table->float('geo_lat', 9, 6);
-            $table->float('geo_lon', 9, 6);
+            $table->float('geo_lng', 9, 6);
             $table->boolean('active')->default(true);
             $table->unsignedBigInteger('views');
             $table->string('featured_img');

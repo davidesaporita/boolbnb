@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
-use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use DB;
 
 use App\Apartment;
+use App\Category;
+use App\Media;
 use App\Service;
 
 class ApartmentController extends Controller
@@ -33,7 +36,8 @@ class ApartmentController extends Controller
     public function create()
     {
         $services = Service::all();
-        return view('admin.apartments.create', compact('services'));
+        $categories = Category::all();
+        return view('admin.apartments.create', compact('services', 'categories'));
     }
 
     /**
@@ -47,7 +51,31 @@ class ApartmentController extends Controller
         // Todo: Add validations via validationRules() references
 
         $data = $request->all();
-        dd($data);
+
+        $data['user_id'] = Auth::id();
+        $data['views'] = 0;
+        $data['featured_img'] = Storage::disk('public')->put('images', $data['featured_img']);
+
+        $newApartment = new Apartment();
+        $newApartment->fill($data);
+        $saved = $newApartment->save();
+        
+        if($saved) {
+            if(!empty($data['services'])) {
+                $newApartment->services()->attach($data['services']);
+            }
+            if(!empty($data['media'])) {
+                $newMedia = new Media();
+                foreach($data['media'] as $path) {
+                    $path = Storage::disk('public')->put('images', $path);
+                    $newMedia->apartment_id = $newApartment->id;
+                    $newMedia->path = $path;
+                    $newMedia->type = 'img';
+                    $newMedia->save();
+                }
+            }
+            return redirect()->route('admin.apartments.show', $newApartment);
+        }
     }
 
     /**
@@ -74,9 +102,13 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Apartment $apartment)
     {
-        //
+        $services = Service::all();
+        $categories = Category::all();
+        $media = $apartment->media();
+        $active_services = $apartment->services();
+        return view('admin.apartments.edit', compact('services', 'categories', 'apartment', 'media'));
     }
 
     /**

@@ -37,9 +37,14 @@ class ApartmentTableSeeder extends Seeder
             $newApartament->beds_number = rand(1,8);
             $newApartament->bathrooms_number = rand(1,3);
             $newApartament->square_meters = rand(50, 200);
-            $newApartament->address = $faker->address();
+            $newApartament->country = $faker->country();
+            $newApartament->region = $faker->state();
+            $newApartament->province = $faker->state();
+            $newApartament->city = $faker->city();
+            $newApartament->address = $faker->streetAddress();
+            $newApartament->zip_code = $faker->postcode();
             $newApartament->geo_lat = $faker->latitude();
-            $newApartament->geo_lon = $faker->longitude();
+            $newApartament->geo_lng = $faker->longitude();
             $newApartament->active = true;
             $newApartament->views = $faker->numberBetween(5, 50);
             $newApartament->featured_img = $faker->imageUrl();

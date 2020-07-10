@@ -14,8 +14,15 @@ var placesAutocomplete = places({
     type: 'address'
 });
 
+
+
 placesAutocomplete.on('change', function resultSelected(e) {
-    document.querySelector('#address_2').value = e.suggestion.administrative || '';
+
+    console.log(e.suggestion);
+
+    document.querySelector('#region').value = e.suggestion.administrative || '';
+    document.querySelector('#country').value = e.suggestion.country || '';
+    document.querySelector('#province').value = e.suggestion.county || '';
     document.querySelector('#city').value = e.suggestion.city || '';
     document.querySelector('#zip_code').value = e.suggestion.postcode || '';
     document.querySelector('#geo_lat').value = e.suggestion.latlng['lat'] || '';
