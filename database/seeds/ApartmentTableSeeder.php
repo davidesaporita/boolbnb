@@ -44,7 +44,7 @@ class ApartmentTableSeeder extends Seeder
             $newApartament->address = $faker->streetAddress();
             $newApartament->zip_code = $faker->postcode();
             $newApartament->geo_lat = $faker->latitude();
-            $newApartament->geo_lon = $faker->longitude();
+            $newApartament->geo_lng = $faker->longitude();
             $newApartament->active = true;
             $newApartament->views = $faker->numberBetween(5, 50);
             $newApartament->featured_img = $faker->imageUrl();

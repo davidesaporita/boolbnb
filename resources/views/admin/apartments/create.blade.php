@@ -25,12 +25,19 @@
                 <label for="title">Nome appartamento</label>
                 <input id="title" class="form-control" type="text" name="title" placeholder="Inserisci il nome del appartamento" value="{{ old('title', 'Appartamento power') }}">
             </div>
+            {{-- Category --}}
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select name="category_id" id="category">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             {{-- Descrizione --}}
             <div class="form-group">
                 <label for="description">Descrizione dell appartamento</label>
-                <textarea class="form-control" name="description" id="description" placeholder="Inserisci una descrizione">
-                    {{ old('description', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, asperiores odit! Totam optio pariatur eius, ducimus eaque praesentium magni adipisci similique.') }} 
-                </textarea>
+                <textarea class="form-control" name="description" id="description" placeholder="Inserisci una descrizione">{{ old('description', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, asperiores odit! Totam optio pariatur eius, ducimus eaque praesentium magni adipisci similique.') }}</textarea>
             </div>
             {{-- Numero di stanze --}}
             <div class="form-group">
@@ -82,7 +89,7 @@
             <h3>Immagini secondarie</h3>
             @for ( $i = 0; $i < 5; $i++ )
                 <div class="form-group">
-                    <input type="file" name="path[]" id="path" accept="image/*">
+                    <input type="file" name="media[]" accept="image/*">
                 </div>
             @endfor
 

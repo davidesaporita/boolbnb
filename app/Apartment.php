@@ -27,7 +27,7 @@ class Apartment extends Model
         'address',
         'zip_code',
         'geo_lat',
-        'geo_lon',
+        'geo_lng',
         'active',
         'views',
         'featured_img'
