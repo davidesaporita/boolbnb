@@ -11,6 +11,7 @@ use DB;
 
 use App\Apartment;
 use App\Service;
+use App\Media;
 
 class ApartmentController extends Controller
 {
@@ -33,7 +34,8 @@ class ApartmentController extends Controller
     public function create()
     {
         $services = Service::all();
-        return view('admin.apartments.create', compact('services'));
+        $categories = Category::all();
+        return view('admin.apartments.create', compact('services', 'categories'));
     }
 
     /**
@@ -48,6 +50,29 @@ class ApartmentController extends Controller
 
         $data = $request->all();
         dd($data);
+
+        $data['user_id'] = Auth::id();
+        $data['category_id'] = 1;
+
+        $newApartament = new Apartment();
+        $newApartament->fill($data);
+        $saved = $newApartment->save();
+        
+        if($saved) {
+            if(!empty($data['services'])) {
+                $newApartament->services()->attach($data['services']);
+            }
+            if(!empty($data['path'])) {
+                $newMedia = new Media();
+                foreach($data['path'] as $path) {
+                    $path = Storage::disk('public')->put('images', $path);
+                    $newMedia->apartment_id = $newApartment->id();
+                    $newMedia->path = $path;
+                    $newMedia->type = 'img';
+                }
+            }
+            return redirect()->route('admin.apartments.show', $newApartment);
+        }
     }
 
     /**

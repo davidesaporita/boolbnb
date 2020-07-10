@@ -55,12 +55,12 @@
             {{-- Address----------------------------------------------------------------------------- --}}
             <div class="form-group">
                 <label for="search">Indirizzo</label>
-                <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="location" value="{{ old('address') }}" />
+                <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address', 'Piazza di Spagna, 1, Roma, Italia') }}" />
             </div>
             {{-- Address 2 (regione)----------------------------------------------------------------------------- --}}
             <div class="form-group">
-                <label for="address_2">Regione</label>
-                <input type="text" id="address_2" class="form-control" name="address_2" />
+                <label for="region">Regione</label>
+                <input type="text" id="region" class="form-control" name="region" />
             </div>
             {{-- Address----------------------------------------------------------------------------- --}}
             <div class="form-group">
@@ -93,6 +93,8 @@
                 </div>
             @endforeach
 
+            <input type="hidden" name="province" id="province" value="">
+            <input type="hidden" name="country" id="country" value="">
             <input type="hidden" name="geo_lat" id="geo_lat" value="">
             <input type="hidden" name="geo_lng" id="geo_lng" value="">
             <input type="submit" value="Crea" class="btn btn-success">
