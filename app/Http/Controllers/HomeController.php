@@ -4,25 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Apartment;
+use App\Service;
+
+
+
+use function GuzzleHttp\Promise\all;
+
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function index() 
     {
-        $this->middleware('auth');
+        $apartments = Apartment::paginate(9);
+        $services = Service::all();
+
+        return view('guest.welcome', compact('apartments', 'services'));
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function show(Apartment $apartment)
     {
-        return view('home');
+
+        return view('guest.apartments.show', compact('apartment'));
     }
 }
