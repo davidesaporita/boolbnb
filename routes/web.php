@@ -31,15 +31,19 @@ Route::prefix('admin')
     ->namespace('Admin')
     ->middleware('auth')
     ->group(function() {
+        // Home
         Route::get('/home', 'HomeController@index')->name('home');
-        
-        Route::get('/apartments/sponsorship/pay', function () { 
-            return view('admin.apartments.sponsorship.pay');
-                })->name('apartments.sponsorship.pay');
 
-        Route::get('/apartments/sponsorship/transaction', function () { 
-            return view('admin.apartments.sponsorship.transaction');
-                })->name('apartments.sponsorship.transaction');
-
+        // Apartments CRUD 
         Route::resource('/apartments', 'ApartmentController');
+
+        // Payment for sponsorships
+        Route::get('/apartments/{apartment}/sponsorship/pay', 'SponsorshipController@pay')
+            ->name('apartments.sponsorship.pay');
+
+        Route::post('/apartments/{apartment}/sponsorship/checkout', 'SponsorshipController@checkout')
+            ->name('apartments.sponsorship.checkout');
+
+        Route::get('/apartments/{apartment}/sponsorship/transaction/{transaction_id}', 'SponsorshipController@transaction')
+            ->name('apartments.sponsorship.transaction');      
     });

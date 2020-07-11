@@ -60,7 +60,7 @@
                 @empty
                 <p>Non ci sono sponsorizzazioni!</p>
             @endforelse
-            <a class="btn btn-sm btn-dark" href="{{ route('admin.apartments.sponsorship.pay') }}">Nuovo Sponsor</a>
+            <a class="btn btn-sm btn-dark" href="{{ route('admin.apartments.sponsorship.pay', ['apartment' => $apartment ]) }}">Nuovo Sponsor</a>
         </div>
         <div class="mt-4 comments">
             <h4>Commenti:</h4>
