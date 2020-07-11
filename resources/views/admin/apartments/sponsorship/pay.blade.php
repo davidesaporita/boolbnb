@@ -66,64 +66,68 @@
 
 <script src="https://js.braintreegateway.com/web/dropin/1.22.1/js/dropin.min.js"></script>
 <script>
-	var form = document.querySelector('#payment-form');
-	var client_token = "<?php echo($gateway->ClientToken()->generate()); ?>";
 
-	var option1 = document.querySelector('#exampleRadios1');
-	var option2 = document.querySelector('#exampleRadios2');
-	var option3 = document.querySelector('#exampleRadios3');
-	var amount  = document.querySelector('#amount');
-	var sponsor_plan  = document.querySelector('#sponsor_plan');
+	document.addEventListener("DOMContentLoaded", function() {
 
-	// Default values
-	amount_preview.innerHTML = '€' + option2.value;
-	amount.value = '€' + option2.value;
-	sponsor_plan.value = 2;
-	// End default values
+		var form = document.querySelector('#payment-form');
+		var client_token = "<?php echo($gateway->ClientToken()->generate()); ?>";
 
-	option1.onclick = function () {
-		amount.value = option1.value;
-		amount_preview.innerHTML = '€' + amount.value;
-		sponsor_plan.value = 1;
-	};
+		var option1 = document.querySelector('#exampleRadios1');
+		var option2 = document.querySelector('#exampleRadios2');
+		var option3 = document.querySelector('#exampleRadios3');
+		var amount  = document.querySelector('#amount');
+		var sponsor_plan  = document.querySelector('#sponsor_plan');
 
-	option2.onclick = function () {
+		// Default values
 		amount.value = option2.value;
 		amount_preview.innerHTML = '€' + amount.value;
 		sponsor_plan.value = 2;
-	};
+		// End default values
 
-	option3.onclick = function () {
-		amount.value = option3.value;
-		amount_preview.innerHTML = '€' + amount.value;
-		sponsor_plan.value = 3;
-	};
+		option1.onclick = function () {
+			amount.value = option1.value;
+			amount_preview.innerHTML = '€' + amount.value;
+			sponsor_plan.value = 1;
+		};
 
-  	braintree.dropin.create({
-		authorization: client_token,
-		selector: '#bt-dropin',
-		paypal: {
-			flow: 'vault'
-		}
-	}, function (createErr, instance) {
-		
-		if (createErr) {
-			console.log('Create Error', createErr);
-			return;
-		}
-		
-		form.addEventListener('submit', function (event) {
-			event.preventDefault();
+		option2.onclick = function () {
+			amount.value = option2.value;
+			amount_preview.innerHTML = '€' + amount.value;
+			sponsor_plan.value = 2;
+		};
 
-			instance.requestPaymentMethod(function (err, payload) {
-				if (err) {
-					console.log('Request Payment Method Error', err);
-					return;
-				}	
+		option3.onclick = function () {
+			amount.value = option3.value;
+			amount_preview.innerHTML = '€' + amount.value;
+			sponsor_plan.value = 3;
+		};
 
-				// Add the nonce to the form and submit
-				document.querySelector('#nonce').value = payload.nonce;
-				form.submit();
+		braintree.dropin.create({
+			authorization: client_token,
+			selector: '#bt-dropin',
+			paypal: {
+				flow: 'vault'
+			}
+		}, function (createErr, instance) {
+			
+			if (createErr) {
+				console.log('Create Error', createErr);
+				return;
+			}
+			
+			form.addEventListener('submit', function (event) {
+				event.preventDefault();
+
+				instance.requestPaymentMethod(function (err, payload) {
+					if (err) {
+						console.log('Request Payment Method Error', err);
+						return;
+					}	
+
+					// Add the nonce to the form and submit
+					document.querySelector('#nonce').value = payload.nonce;
+					form.submit();
+				});
 			});
 		});
 	});
