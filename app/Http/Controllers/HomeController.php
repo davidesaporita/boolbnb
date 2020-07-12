@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\support\Facades\Mail;
 
 use App\Apartment;
 use App\Service;
+use App\Mail\NewInfoRequest;
 use App\InfoRequest;
 
 use function GuzzleHttp\Promise\all;
@@ -28,7 +30,7 @@ class HomeController extends Controller
 
     public function send(Request $request)
     {
-        // to do validation
+        // todo validation
 
         $data = $request->all();
 
@@ -37,9 +39,15 @@ class HomeController extends Controller
 
         $newRequest = new InfoRequest();
         $newRequest->fill($data);
-        $newRequest->save();
+        $saved = $newRequest->save();
 
-        // to do redirect
+        
+
+        if($saved) {
+
+            Mail::to('user@test.com')->send(new NewInfoRequest($newRequest));
+            // todo redirect
+        }
 
     }
 }
