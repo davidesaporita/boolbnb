@@ -22,6 +22,9 @@
     <!-- FontAwesome -->
     <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+    <!-- Mappa -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1/leaflet.css" />
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
