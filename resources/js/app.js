@@ -2,9 +2,17 @@ require('./bootstrap');
 
 var places = require('places.js');
 import L from 'leaflet'
+import $ from 'jquery'
 
 (function() {
- 
+    let lat =  document.querySelector('#geo_lat').value
+    let lng =  document.querySelector('#geo_lng').value
+    let zipCode = document.querySelector('#zip_code').value 
+    let city = document.querySelector('#city').value
+    let province = document.querySelector('#province').value
+    let country = document.querySelector('#country').value
+    let region = document.querySelector('#region').value
+
     var placesAutocomplete = places({
         appId: 'plUKJGFB9TS3',
         apiKey: '8311a9eeb21c1dc5b519abf85c0854c6',
@@ -32,8 +40,6 @@ import L from 'leaflet'
 
     var markers = [];
     
-    let lat =  document.querySelector('#geo_lat').value
-    let lng =  document.querySelector('#geo_lng').value
     if ( (!lat  == " ") || (!lng  == " ")  ) {
         map.setView(new L.LatLng( lat, lng), 40);
         let marker = L.marker([lat, lng]).addTo(map);
@@ -74,13 +80,13 @@ import L from 'leaflet'
 
         console.log(e.suggestion);
 
-        document.querySelector('#region').value = e.suggestion.administrative || '';
-        document.querySelector('#country').value = e.suggestion.country || '';
-        document.querySelector('#province').value = e.suggestion.county || '';
-        document.querySelector('#city').value = e.suggestion.city || '';
-        document.querySelector('#zip_code').value = e.suggestion.postcode || '';
-        document.querySelector('#geo_lat').value = e.suggestion.latlng['lat'] || '';
-        document.querySelector('#geo_lng').value = e.suggestion.latlng['lng'] || '';
+        region = e.suggestion.administrative || '';
+        country = e.suggestion.country || '';
+        province = e.suggestion.county || '';
+        city = e.suggestion.city || '';
+        zipCode = e.suggestion.postcode || '';
+        lat = e.suggestion.latlng['lat'] || '';
+        lng = e.suggestion.latlng['lng'] || '';
 
         });
     }
@@ -118,3 +124,4 @@ import L from 'leaflet'
         map.fitBounds(featureGroup.getBounds().pad(0.5), {animate: false});
     }
 })();
+
