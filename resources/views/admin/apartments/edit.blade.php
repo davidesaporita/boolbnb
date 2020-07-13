@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mb-5">
 
         <header class="d-flex justify-center">
             <h1>Aggiungi una stanza</h1>
@@ -19,7 +19,7 @@
 
         <form action="{{ route('admin.apartments.update', $apartment->id)}}" method="post" enctype="multipart/form-data">
             @csrf
-            @method('POST')
+            @method('PATCH')
             {{-- Info Stanza : Titolo / Categorie --}}
             <section class="row mb-2">
                 {{-- Titolo --}}
@@ -40,9 +40,7 @@
             {{-- Descrizione --}}
             <div class="form-group">
                 <label for="description">Descrizione dell appartamento</label>
-                <textarea name="description" id="description" class="form-control" placeholder="Inserisci una descrizione">
-                    {{ old('description', $apartment->description) }}
-                </textarea>
+                <textarea name="description" id="description" class="form-control" placeholder="Inserisci una descrizione">{{ old('description', $apartment->description) }}</textarea>
             </div>
             {{-- Info stanza : Numero Stanze / Letti / Bagni / Mq --}}
             <section class="row mb-5">
@@ -78,17 +76,17 @@
                     {{-- Regione --}}
                     <div class="form-group">
                         <label for="region">Regione</label>
-                        <input type="text" id="region" class="form-control" name="region" />
+                        <input type="text" id="region" class="form-control" name="region" value="{{ old('region', $apartment->region) }}" disabled />
                     </div>
                     {{-- Città --}}
                     <div class="form-group">
                         <label for="city">Città</label>
-                        <input type="text" id="city" class="form-control" name="city" />
+                        <input type="text" id="city" class="form-control" name="city" value="{{ old('city', $apartment->city) }}" disabled/>
                     </div>
                     {{-- ZipCode --}}
                     <div class="form-group">
                         <label for="zip_code">CAP</label>
-                        <input type="text" id="zip_code" class="form-control" name="zip_code" />
+                        <input type="text" id="zip_code" class="form-control" name="zip_code" value="{{ old('zip_code', $apartment->zip_code) }}" disabled/>
                     </div>
                 </div>
 
@@ -97,29 +95,58 @@
 
             </section>
             {{-- Immagini --}}
-            <section class="mb-5">
-                {{-- File Immagine principale --}}
-                <div class="form-group">
-                    <h3>Immagine Principale</h3>
-                    @isset($apartment->featured_img)
-                        <img class="mb-5 mt-5" height="200px" width="200px" src="{{ asset($apartment->featured_img  ) }}" alt="{{ $apartment->title }}">
-                    @endisset
-                    <input  class="form-control-file" type="file" name="featured_img" id="featured_img" accept="image/*">
+            <section class="mb-5 d-flex flex-column ">
+
+                {{-- File Immagine principale --}}        
+                <div class="d-flex flex-column align-items-center mb-5">
+                    <h3 class="mb-5">IMMAGINE PRINCIPALE</h3>    
+                    <div class="card mb-4" style="width: 500px;">
+
+                        @isset($apartment->featured_img)
+                            <img class="card-img-top" 
+                                height="320px" 
+                                src="{{ strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img  ) }}" 
+                                alt="{{ $apartment->title }}">
+                        @endisset
+
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <h5 class="card-title">{{ $apartment->title }}</h5>
+                            <p class="card-text">{{ $apartment->description }}</p>
+                            <div class="form-group d-flex">
+                                <input type="checkbox" name="feat_img_to_delete" id="feat_img_to_delete" class="form-check-input" value="1"> 
+                                <label for="feat_img_to_delete" class="mr-4">Sostituisci</label>
+                                <input  class="form-control-file" type="file" name="featured_img" id="featured_img" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 {{-- File Immagine secondaria --}}
-                <h3>Immagini secondarie</h3>
-                <div class="row">
-                    @for ( $i = 0; $i < 5; $i++ )
-                        <div class="form-group">
-                            <input type="file" name="path[]" id="path" accept="image/*">
-                        </div>
-                    @endfor
+                <div class="d-flex justify-content-center mb-5">
+                    <h3>IMMAGINI SECONDARIE</h3>
                 </div>
+
+                <div class="d-flex justify-content-around flex-wrap">
+                    @foreach ($apartment->media as $item)
+                        <div class="card" style="width: 400px;">
+                            <img class="mb-5 mt-5" 
+                                 style="max-width:100%;" 
+                                 src="{{ strpos($item->path, '://') ? $item->path : asset("/storage/" . $item->path  ) }}" 
+                                 alt="{{ $item->caption }}">
+                            
+                            <div class="card-body d-flex ml-5">
+                                <label for="media-{{ $item->id }}" class="mr-3">Elimina</label>
+                                <input type="file" name="media[]" id="file-{{ $item->id }}" accept="image/*">
+                                <input type="checkbox" name="media_to_delete[]" id="media-{{ $item->id }}"  class="form-check-input" value="{{ $item->id }}" >
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            
             </section>
 
             <section class="d-flex justify-content-around mb-5">
                 @foreach ($services as $service) 
-                    <div class="form-group">
+                    <div class="form-check">
                         <input type="checkbox" name="services[]" id="service-{{ $loop->iteration }}"  class="form-check-input" value="{{ $service->id }}" 
                         @if( $apartment->services->contains($service->id) ) checked @endif>
                         <label for="service-{{ $loop->iteration }}">{{ $service->name }}</label>
@@ -127,8 +154,8 @@
                 @endforeach
             </section>
 
-            <input type="hidden" name="province" id="province" value="">
-            <input type="hidden" name="country" id="country" value="">
+            <input type="hidden" name="province" id="province" value="{{ old('province', $apartment->province) }}">
+            <input type="hidden" name="country" id="country" value="{{ old('country', $apartment->country) }}">
             <input type="hidden" name="geo_lat" id="geo_lat" value="{{ old('geo_lat', $apartment->geo_lat ) }}">
             <input type="hidden" name="geo_lng" id="geo_lng" value="{{ old('geo_lng', $apartment->geo_lng )}}">
             <div class="d-flex justify-content-end">
