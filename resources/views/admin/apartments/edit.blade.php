@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mb-5">
 
         <header class="d-flex justify-center">
             <h1>Aggiungi una stanza</h1>
@@ -95,48 +95,56 @@
 
             </section>
             {{-- Immagini --}}
-            <section class="mb-5">
-                {{-- File Immagine principale --}}
-                <div class="form-group">
-                    <h3>Immagine Principale</h3>
-                    @isset($apartment->featured_img)
-                        <img class="mb-5 mt-5" 
-                             height="320px" 
-                             src="{{ strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img  ) }}" 
-                             alt="{{ $apartment->title }}">
-                    @endisset
-                    
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" name="feat_img_to_delete" id="feat_img_to_delete" class="form-check-input" value="1"> 
-                    <label for="feat_img_to_delete">CANCELLAAAAAAAAA</label>
-                    <input  class="form-control-file" type="file" name="featured_img" id="featured_img" accept="image/*">
+            <section class="mb-5 d-flex flex-column ">
+
+                {{-- File Immagine principale --}}        
+                <div class="d-flex flex-column align-items-center mb-5">
+                    <h3 class="mb-5">IMMAGINE PRINCIPALE</h3>    
+                    <div class="card mb-4" style="width: 500px;">
+
+                        @isset($apartment->featured_img)
+                            <img class="card-img-top" 
+                                height="320px" 
+                                src="{{ strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img  ) }}" 
+                                alt="{{ $apartment->title }}">
+                        @endisset
+
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <h5 class="card-title">{{ $apartment->title }}</h5>
+                            <p class="card-text">{{ $apartment->description }}</p>
+                            <div class="form-group d-flex">
+                                <input type="checkbox" name="feat_img_to_delete" id="feat_img_to_delete" class="form-check-input" value="1"> 
+                                <label for="feat_img_to_delete" class="mr-4">Elimina</label>
+                                <input  class="form-control-file" type="file" name="featured_img" id="featured_img" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 {{-- File Immagine secondaria --}}
-                <h3>Immagini secondarie</h3>
-                {{-- @for ( $i = 0; $i < 5; $i++ )
-                    <div class="form-group">
-                        <input type="file" name="media[]" id="media-{{ isset($media[$i]) ?: $media[$i]->id }}" accept="image/*">
-                    </div>
-                @endfor --}}
-                <ul>
+                <div class="d-flex justify-content-center mb-5">
+                    <h3>IMMAGINI SECONDARIE</h3>
+                </div>
+
+                <div class="d-flex justify-content-around flex-wrap">
                     @foreach ($apartment->media as $item)
-                        <li class="list-group-item">
-                            <div class="form-group">
-                                <img class="mb-5 mt-5" 
-                                     height="200px" 
-                                     src="{{ strpos($item->path, '://') ? $item->path : asset("/storage/" . $item->path  ) }}" 
-                                     alt="{{ $item->caption }}">
+                        <div class="card" style="width: 400px;">
+                            <img class="mb-5 mt-5" 
+                                 height="200px" 
+                                 src="{{ strpos($item->path, '://') ? $item->path : asset("/storage/" . $item->path  ) }}" 
+                                 alt="{{ $item->caption }}">
+                            
+                            <div class="card-body d-flex ml-5">
+                                <label for="media-{{ $item->id }}" class="mr-3">Elimina</label>
                                 <input type="file" name="media[]" id="media-{{ $item->id }}" accept="image/*">
-                                <input type="checkbox" name="media_to_delete[]" id="media-{{ $item->id }}"  class="form-check-input" value="{{ $item->id }}" 
+                                <input type="checkbox" name="media_to_delete[]" id="media-{{ $item->id }}"  class="form-check-input" value="{{ $item->id }}" >
                             </div>
-                        </li>
+                        </div>
                     @endforeach
-                </ul>
+                </div>
             
             </section>
 
-            <section class="mb-5">
+            <section class="d-flex justify-content-around mb-5">
                 @foreach ($services as $service) 
                     <div class="form-check">
                         <input type="checkbox" name="services[]" id="service-{{ $loop->iteration }}"  class="form-check-input" value="{{ $service->id }}" 
