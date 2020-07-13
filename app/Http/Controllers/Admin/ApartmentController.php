@@ -17,6 +17,14 @@ use App\Service;
 
 class ApartmentController extends Controller
 {
+    // Variables
+    private $maxPathImg = 5;
+    
+    public function __construct()
+    {
+        $this->maxPathImg = 5;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -65,13 +73,19 @@ class ApartmentController extends Controller
                 $newApartment->services()->attach($data['services']);
             }
             if(!empty($data['media'])) {
-                $newMedia = new Media();
+                $counter = 0;
                 foreach($data['media'] as $path) {
-                    $path = Storage::disk('public')->put('images', $path);
-                    $newMedia->apartment_id = $newApartment->id;
-                    $newMedia->path = $path;
-                    $newMedia->type = 'img';
-                    $newMedia->save();
+                    if($counter < $this->maxPathImg) {
+                        $path = Storage::disk('public')->put('images', $path);
+                        $newMedia = new Media();
+                        $newMedia->apartment_id = $newApartment->id;
+                        $newMedia->path = $path;
+                        $newMedia->type = 'img';
+                        $newMedia->save();
+                        $counter++;
+                    } else {
+                        break;
+                    }
                 }
             }
             return redirect()->route('admin.apartments.show', $newApartment);
@@ -106,7 +120,7 @@ class ApartmentController extends Controller
     {
         $services = Service::all();
         $categories = Category::all();
-        $media = $apartment->media();
+        $media = $apartment->media;
         $active_services = $apartment->services();
         return view('admin.apartments.edit', compact('services', 'categories', 'apartment', 'media'));
     }
@@ -118,9 +132,44 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Apartment $apartment)
     {
-        //
+        // Todo: Add validations via validationRules() references
+
+        $data = $request->all();
+
+        dd($data);
+
+        $data['user_id'] = Auth::id();
+
+        // Delete stored img if any other featured img was uploaded
+        if(!empty($data['featured_img'])) {
+            Storage::disk('public')->delete($apartment->featured_img);
+            $data['featured_img'] = Storage::disk('public')->put('images', $data['featured_img']);
+        }
+
+        if(!empty($data['media'])) {
+            $mediaStored = Media::all()->where('id', $apartment->id);
+            if(!empty($mediaStored)) {
+
+            } else {
+                foreach($data['media'] as $path) {
+                    if($counter < $this->maxPathImg) {
+                        $path = Storage::disk('public')->put('images', $path);
+                        $newMedia = new Media();
+                        $newMedia->apartment_id = $newApartment->id;
+                        $newMedia->path = $path;
+                        $newMedia->type = 'img';
+                        $newMedia->save();
+                        $counter++;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+
+        $data['featured_img'] = Storage::disk('public')->put('images', $data['featured_img']);
     }
 
     /**

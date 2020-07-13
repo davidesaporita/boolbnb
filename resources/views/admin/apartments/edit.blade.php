@@ -19,7 +19,7 @@
 
         <form action="{{ route('admin.apartments.update', $apartment->id)}}" method="post" enctype="multipart/form-data">
             @csrf
-            @method('POST')
+            @method('PATCH')
             {{-- Info Stanza : Titolo / Categorie --}}
             <section class="row mb-2">
                 {{-- Titolo --}}
@@ -40,9 +40,7 @@
             {{-- Descrizione --}}
             <div class="form-group">
                 <label for="description">Descrizione dell appartamento</label>
-                <textarea name="description" id="description" class="form-control" placeholder="Inserisci una descrizione">
-                    {{ old('description', $apartment->description) }}
-                </textarea>
+                <textarea name="description" id="description" class="form-control" placeholder="Inserisci una descrizione">{{ old('description', $apartment->description) }}</textarea>
             </div>
             {{-- Info stanza : Numero Stanze / Letti / Bagni / Mq --}}
             <section class="row mb-5">
@@ -102,24 +100,45 @@
                 <div class="form-group">
                     <h3>Immagine Principale</h3>
                     @isset($apartment->featured_img)
-                        <img class="mb-5 mt-5" height="200px" width="200px" src="{{ asset($apartment->featured_img  ) }}" alt="{{ $apartment->title }}">
+                        <img class="mb-5 mt-5" 
+                             height="320px" 
+                             src="{{ strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img  ) }}" 
+                             alt="{{ $apartment->title }}">
                     @endisset
+                    
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="feat_img_to_delete" id="feat_img_to_delete" class="form-check-input" value="1"> 
+                    <label for="feat_img_to_delete">CANCELLAAAAAAAAA</label>
                     <input  class="form-control-file" type="file" name="featured_img" id="featured_img" accept="image/*">
                 </div>
                 {{-- File Immagine secondaria --}}
                 <h3>Immagini secondarie</h3>
-                <div class="row">
-                    @for ( $i = 0; $i < 5; $i++ )
-                        <div class="form-group">
-                            <input type="file" name="path[]" id="path" accept="image/*">
-                        </div>
-                    @endfor
-                </div>
+                {{-- @for ( $i = 0; $i < 5; $i++ )
+                    <div class="form-group">
+                        <input type="file" name="media[]" id="media-{{ isset($media[$i]) ?: $media[$i]->id }}" accept="image/*">
+                    </div>
+                @endfor --}}
+                <ul>
+                    @foreach ($apartment->media as $item)
+                        <li class="list-group-item">
+                            <div class="form-group">
+                                <img class="mb-5 mt-5" 
+                                     height="200px" 
+                                     src="{{ strpos($item->path, '://') ? $item->path : asset("/storage/" . $item->path  ) }}" 
+                                     alt="{{ $item->caption }}">
+                                <input type="file" name="media[]" id="media-{{ $item->id }}" accept="image/*">
+                                <input type="checkbox" name="media_to_delete[]" id="media-{{ $item->id }}"  class="form-check-input" value="{{ $item->id }}" 
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            
             </section>
 
-            <section class="d-flex justify-content-around mb-5">
+            <section class="mb-5">
                 @foreach ($services as $service) 
-                    <div class="form-group">
+                    <div class="form-check">
                         <input type="checkbox" name="services[]" id="service-{{ $loop->iteration }}"  class="form-check-input" value="{{ $service->id }}" 
                         @if( $apartment->services->contains($service->id) ) checked @endif>
                         <label for="service-{{ $loop->iteration }}">{{ $service->name }}</label>
