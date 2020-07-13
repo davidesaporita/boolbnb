@@ -13,7 +13,7 @@ class InfoRequest extends Model
      */
     protected $fillable = [
       'apartment_id',
-      'guest_email',
+      'email',
       'title',
       'body'
     ];
