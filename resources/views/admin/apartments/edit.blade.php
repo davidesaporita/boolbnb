@@ -76,17 +76,17 @@
                     {{-- Regione --}}
                     <div class="form-group">
                         <label for="region">Regione</label>
-                        <input type="text" id="region" class="form-control" name="region" />
+                        <input type="text" id="region" class="form-control" name="region" value="{{ old('region', $apartment->region) }}" disabled />
                     </div>
                     {{-- Città --}}
                     <div class="form-group">
                         <label for="city">Città</label>
-                        <input type="text" id="city" class="form-control" name="city" />
+                        <input type="text" id="city" class="form-control" name="city" value="{{ old('city', $apartment->city) }}" disabled/>
                     </div>
                     {{-- ZipCode --}}
                     <div class="form-group">
                         <label for="zip_code">CAP</label>
-                        <input type="text" id="zip_code" class="form-control" name="zip_code" />
+                        <input type="text" id="zip_code" class="form-control" name="zip_code" value="{{ old('zip_code', $apartment->zip_code) }}" disabled/>
                     </div>
                 </div>
 
@@ -114,7 +114,7 @@
                             <p class="card-text">{{ $apartment->description }}</p>
                             <div class="form-group d-flex">
                                 <input type="checkbox" name="feat_img_to_delete" id="feat_img_to_delete" class="form-check-input" value="1"> 
-                                <label for="feat_img_to_delete" class="mr-4">Elimina</label>
+                                <label for="feat_img_to_delete" class="mr-4">Sostituisci</label>
                                 <input  class="form-control-file" type="file" name="featured_img" id="featured_img" accept="image/*">
                             </div>
                         </div>
@@ -129,13 +129,13 @@
                     @foreach ($apartment->media as $item)
                         <div class="card" style="width: 400px;">
                             <img class="mb-5 mt-5" 
-                                 height="200px" 
+                                 style="max-width:100%;" 
                                  src="{{ strpos($item->path, '://') ? $item->path : asset("/storage/" . $item->path  ) }}" 
                                  alt="{{ $item->caption }}">
                             
                             <div class="card-body d-flex ml-5">
                                 <label for="media-{{ $item->id }}" class="mr-3">Elimina</label>
-                                <input type="file" name="media[]" id="media-{{ $item->id }}" accept="image/*">
+                                <input type="file" name="media[]" id="file-{{ $item->id }}" accept="image/*">
                                 <input type="checkbox" name="media_to_delete[]" id="media-{{ $item->id }}"  class="form-check-input" value="{{ $item->id }}" >
                             </div>
                         </div>
@@ -154,8 +154,8 @@
                 @endforeach
             </section>
 
-            <input type="hidden" name="province" id="province" value="">
-            <input type="hidden" name="country" id="country" value="">
+            <input type="hidden" name="province" id="province" value="{{ old('province', $apartment->province) }}">
+            <input type="hidden" name="country" id="country" value="{{ old('country', $apartment->country) }}">
             <input type="hidden" name="geo_lat" id="geo_lat" value="{{ old('geo_lat', $apartment->geo_lat ) }}">
             <input type="hidden" name="geo_lng" id="geo_lng" value="{{ old('geo_lng', $apartment->geo_lng )}}">
             <div class="d-flex justify-content-end">
