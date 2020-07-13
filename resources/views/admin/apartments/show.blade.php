@@ -62,6 +62,14 @@
             @endforelse
             <a class="btn btn-sm btn-dark" href="{{ route('admin.apartments.sponsorship.pay', ['apartment' => $apartment ]) }}">Nuovo Sponsor</a>
         </div>
+
+        <div class="mt-4 sponsor-plan">
+            <h2>Guarda le stat sull'appartamento</h2>
+            <a class="btn btn-sm btn-dark" href="{{ route('admin.apartments.stats.stat', ['apartment' => $apartment ]) }}">Statistiche</a>
+        </div>
+
+
+        
         <div class="mt-4 comments">
             <h4>Commenti:</h4>
             @forelse ($apartment->reviews as $review)

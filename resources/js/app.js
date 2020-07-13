@@ -110,4 +110,4 @@ import L from 'leaflet'
         var featureGroup = L.featureGroup(markers);
         map.fitBounds(featureGroup.getBounds().pad(0.5), {animate: false});
     }
-})();
+})();npm
