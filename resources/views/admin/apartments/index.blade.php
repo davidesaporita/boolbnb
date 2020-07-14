@@ -19,15 +19,26 @@
                 <thead>
                     <tr>
                         <th>NOME APPARTAMENTO</th>
-                        <th colspan="3">Azioni</th>
+                        <th colspan="4">Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ( $apartments as $apartment )
                         <tr>
                             <th>{{ $apartment->title }}</th>
-                            <td><a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-dark">Mostra</a></td>
-                            <td><a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-dark">Modifica</a></td>
+                            <td><a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-primary">Mostra</a></td>
+                            <td><a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary">Modifica</a></td>
+                                <td>
+                                <form action="{{ route('admin.apartments.toggle', $apartment->id) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    @if($apartment->active == 1)
+                                        <input type="submit" class="btn btn-dark" value="Disabilita">
+                                    @else 
+                                        <input type="submit" class="btn btn-success" value="Abilita">
+                                    @endif
+                                </form>
+                            </td>  
                             <td>
                                 <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST">
                                     @csrf

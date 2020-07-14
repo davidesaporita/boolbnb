@@ -39,6 +39,7 @@ Route::prefix('admin')
 
         // Apartments CRUD 
         Route::resource('/apartments', 'ApartmentController');
+        Route::patch('/apartments/{apartment}/toggle', 'ApartmentController@toggle')->name('apartments.toggle');
 
         // Payment for sponsorships
         Route::get('/apartments/{apartment}/sponsorship/pay', 'SponsorshipController@pay')
