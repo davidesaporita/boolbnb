@@ -59,7 +59,6 @@ class ApartmentController extends Controller
         // Todo: Add validations via validationRules() references
 
         $data = $request->all();
-
         $data['user_id'] = Auth::id();
         $data['views'] = 0;
         $data['featured_img'] = Storage::disk('public')->put('images', $data['featured_img']);
