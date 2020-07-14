@@ -1,3 +1,5 @@
+<?php
+/*
 return [
     [
     'title' => 'Yurta in Valchiusella'
@@ -234,3 +236,4 @@ Upstairs, each spacious bedroom announces a theme: the jungle room, the Romeo-Ju
         ],
     ]   
 ];
+*/
