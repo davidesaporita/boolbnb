@@ -5,11 +5,11 @@
         
         <h1 class="mb-5">Tutti gli appartamenti</h1>
 
-        @if (session('apartment-delete'))
+        @if (session('deleted_apartment'))
             <div class="card text-white bg-success mb-3" style="width: 100%;">
                 <div class="card-header">Elimanto !</div>
                 <div class="card-body">
-                <h5 class="card-title">{{ session('apartment-delete') }} è stato eliminato.</h5>
+                <h5 class="card-title">{{ session('deleted_apartment') }} è stato eliminato.</h5>
                 </div>
             </div>
         @endif

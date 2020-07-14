@@ -14,7 +14,7 @@
                 <li class="list-group-item">Numero stanze: {{$apartment->rooms_number}}</li>
                 <li class="list-group-item">Numero letti: {{$apartment->beds_number}}</li>
                 <li class="list-group-item">Numero bagni: {{$apartment->bathrooms_number}}</li>
-                <li class="list-group-item">Metri quadrati: {{$apartment->square_meters}}</li>
+                <li class="list-group-item">Metri quadrati: {{$apartment->square_meters}} m²</li>
                 <li class="list-group-item">Indirizzo: {{$apartment->address}}</li>
             </ul>
         </div>
@@ -54,23 +54,46 @@
                 <strong>Piano sponsorizzazione</strong>
             </div>
             @forelse ($apartment->sponsor_plans as $plan)
-                <span class="badge badge-pill badge-dark">{{$plan->name}}</span>
-                <p class="mt-4">Durata sponsorizzazione: {{$plan->hours}}</p>
-                <p>Termine della sponsorizzazione: {{$plan->sponsorships->deadline}}</p>
-                @empty
+                @if ($plan->sponsorships->deadline > $now)
+                    <span class="badge badge-pill badge-dark">{{$plan->name}}</span>
+                    <p class="mt-4">Durata sponsorizzazione: {{$plan->hours}} ore</p>
+                    <p>Termine della sponsorizzazione: {{$plan->sponsorships->deadline}}</p>
+                    @break
+                @elseif ($loop->last)
+                    <p>Non ci sono sponsorizzazioni!</p>
+                @endif
+            @empty
                 <p>Non ci sono sponsorizzazioni!</p>
             @endforelse
             <a class="btn btn-sm btn-dark" href="{{ route('admin.apartments.sponsorship.pay', ['apartment' => $apartment ]) }}">Nuovo Sponsor</a>
         </div>
-        <div class="mt-4 comments">
-            <h4>Commenti:</h4>
-            @forelse ($apartment->reviews as $review)
-            <h5>{{$review->first_name}} {{$review->last_name}}</h5>
-            <strong>{{$review->title}}</strong>
-            <p>{{$review->body}}</p>
+        <div class="mt-4 info-requests">
+            <h4>Richieste di informazioni:</h4>
+            @forelse ($apartment->info_requests as $request)
+                <h5>Ricevuta da: {{$request->email}}</h5>
+                <h6>{{$request->title}}</h6>
+                <p>{{$request->body}}</p>
+                <p>{{$request->created_at}}</p>
             @empty
                 <p>Non ci sono commenti!</p>
             @endforelse
         </div>
+        <div class="mt-4 comments">
+            <h4>Commenti:</h4>
+            @forelse ($apartment->reviews as $review)
+                <h5>{{$review->first_name}} {{$review->last_name}}</h5>
+                <strong>{{$review->title}}</strong>
+                <p>{{$review->body}}</p>
+                <p>{{$review->created_at}}</p>
+            @empty
+                <p>Non ci sono commenti!</p>
+            @endforelse
+        </div>
+
+        <div id="show-map" style="height: 300px"></div>
+
     </div>
+    <input type="hidden" id="lat" value="{{ $apartment->geo_lat}}">
+    <input type="hidden" id="lng" value="{{ $apartment->geo_lng}}">
+    <script src="{{ asset('js/map/map-show.js')}}"></script>
 @endsection
