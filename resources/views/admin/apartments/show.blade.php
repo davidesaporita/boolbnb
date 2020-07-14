@@ -7,7 +7,7 @@
             <h1 class="card-text">{{$apartment->title}}</h1>
             <h2 class="card-text">{{ $apartment->city . ', ' . $apartment->region . ', ' . $apartment->province }}</h2>
         </div>
-        <img class="w-100" src="{{$apartment->featured_img}}" alt="{{$apartment->title}}">
+        <img class="w-100" src="{{ strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img  ) }}" alt="{{$apartment->title}}">
         <div class="card-body">
             <p class="card-title">
                 Propietario: <strong>{{$apartment->user->first_name}} {{$apartment->user->last_name}}</strong>
@@ -49,7 +49,7 @@
                 <div class="carousel-inner">
                     @foreach ($apartment->media as $item)
                         <div class="carousel-item {{$loop->first ? 'active' : ''}}">
-                            <img src="{{$item->path}}" class="d-block w-100" alt="{{$item->type}}">
+                            <img src="{{ strpos($item->path, '://') ? $item->path : asset("/storage/" . $item->path ) }}" class="d-block w-100" alt="{{$item->caption}}">
                         </div>
                     @endforeach
                 </div>
