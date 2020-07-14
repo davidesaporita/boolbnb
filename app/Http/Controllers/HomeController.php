@@ -18,7 +18,7 @@ class HomeController extends Controller
 {
     public function index() 
     {
-        $apartments = Apartment::paginate(9);
+        $apartments = Apartment::where('active', 1)->paginate(9);
         $services = Service::all();
 
         return view('guest.welcome', compact('apartments', 'services'));
