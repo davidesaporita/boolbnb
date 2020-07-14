@@ -89,5 +89,11 @@
                 <p>Non ci sono commenti!</p>
             @endforelse
         </div>
+
+        <div id="show-map" style="height: 300px"></div>
+
     </div>
+    <input type="hidden" id="lat" value="{{ $apartment->geo_lat}}">
+    <input type="hidden" id="lng" value="{{ $apartment->geo_lng}}">
+    <script src="{{ asset('js/map/map-show.js')}}"></script>
 @endsection

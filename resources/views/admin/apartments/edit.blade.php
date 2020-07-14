@@ -163,4 +163,6 @@
             </div>
         </form>
     </div>
+
+    <script src="{{ asset('js/map/create-edit-map.js') }}"></script>
 @endsection
