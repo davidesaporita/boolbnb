@@ -44,7 +44,8 @@ class ApartmentController extends Controller
     public function create()
     {
         $services = Service::all();
-        return view('admin.apartments.create', compact('services'));
+        $categories = Category::all();
+        return view('admin.apartments.create', compact('services', 'categories'));
     }
 
     /**

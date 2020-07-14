@@ -5,11 +5,11 @@ import $ from 'jquery'
 (function() {
     let lat =  document.querySelector('#geo_lat').value
     let lng =  document.querySelector('#geo_lng').value
-    let zipCode = document.querySelector('#zip_code').value 
-    let city = document.querySelector('#city').value
-    let province = document.querySelector('#province').value
-    let country = document.querySelector('#country').value
-    let region = document.querySelector('#region').value
+    let zipCode = document.querySelector('#zip_code') 
+    let city = document.querySelector('#city')
+    let province = document.querySelector('#province')
+    let country = document.querySelector('#country')
+    let region = document.querySelector('#region')
 
     var placesAutocomplete = places({
         appId: 'plUKJGFB9TS3',
@@ -77,13 +77,13 @@ import $ from 'jquery'
             removeMarker(marker);
         }
 
-        region = e.suggestion.administrative || '';
-        country = e.suggestion.country || '';
-        province = e.suggestion.county || '';
-        city = e.suggestion.city || '';
-        zipCode = e.suggestion.postcode || '';
-        lat = e.suggestion.latlng['lat'] || '';
-        lng = e.suggestion.latlng['lng'] || '';
+        region.value = e.suggestion.administrative || '';
+        country.value = e.suggestion.country || '';
+        province.value = e.suggestion.county || '';
+        city.value = e.suggestion.city || '';
+        zipCode.value = e.suggestion.postcode || '';
+        document.querySelector('#geo_lat').value = e.suggestion.latlng['lat'] || '';
+        document.querySelector('#geo_lng').value = e.suggestion.latlng['lng'] || '';
 
         });
     }
