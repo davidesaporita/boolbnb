@@ -31,8 +31,15 @@ import L from 'leaflet'
     );
 
     var markers = [];
-
-    map.setView(new L.LatLng(0, 0), 1);
+    
+    let lat =  document.querySelector('#geo_lat').value
+    let lng =  document.querySelector('#geo_lng').value
+    if ( (!lat  == " ") || (!lng  == " ")  ) {
+        map.setView(new L.LatLng( lat, lng), 40);
+        let marker = L.marker([lat, lng]).addTo(map);
+        
+    } else {
+    }
     map.addLayer(osmLayer);
 
     

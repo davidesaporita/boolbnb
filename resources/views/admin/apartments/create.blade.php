@@ -125,7 +125,10 @@
             <input type="hidden" name="country" id="country" value="">
             <input type="hidden" name="geo_lat" id="geo_lat" value="">
             <input type="hidden" name="geo_lng" id="geo_lng" value="">
-            <input type="submit" value="Crea" class="btn btn-success">
+            
+            <div class="d-flex justify-content-end">
+                <input type="submit" value="Crea" class="btn btn-success">
+            </div>
         </form>
     </div>
 @endsection
