@@ -167,7 +167,7 @@ Completamente indipendente con accesso riservato, ha tutti i comfort per un sogg
     'category_id' => '3',
     'rooms_number' => '8',
     'beds_number' => '2',
-    'square_meters' => '900',
+    'square_meters' => '90',
     'country' => 'Italia',
     'region' => 'Basilicata',
     'province' => 'Matera',
