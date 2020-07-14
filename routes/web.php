@@ -21,7 +21,10 @@ Auth::routes();
 // guest
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/guest/{apartment}', 'HomeController@show')->name('apartments.show');
-Route::post('/guest', 'HomeController@send')->name('info.send');
+Route::post('/guest/{apartment}/send', 'HomeController@send')->name('info.send');
+Route::post('/guest/{apartment}/review', 'HomeController@reviews')->name('reviews');
+
+
 
 
 
