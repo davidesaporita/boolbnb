@@ -4,15 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
-use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 use DB;
 
 use App\Apartment;
-use App\Category;
-use App\Media;
 use App\Service;
 
 class ApartmentController extends Controller
@@ -44,8 +41,7 @@ class ApartmentController extends Controller
     public function create()
     {
         $services = Service::all();
-        $categories = Category::all();
-        return view('admin.apartments.create', compact('services', 'categories'));
+        return view('admin.apartments.create', compact('services'));
     }
 
     /**
@@ -102,12 +98,7 @@ class ApartmentController extends Controller
     {
         $now = Carbon::now();
 
-        $active_sponsorship = DB::table('sponsorships')
-            ->where('apartment_id', $apartment->id)
-            ->where('deadline', '>', $now)
-            ->get();
-
-        return view('admin.apartments.show', compact('apartment', 'active_sponsorship'));
+        return view('admin.apartments.show', compact('apartment', 'now'));
     }
 
     /**
@@ -116,7 +107,7 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Apartment $apartment)
+    public function edit($id)
     {
         $services = Service::all();
         $categories = Category::all();
