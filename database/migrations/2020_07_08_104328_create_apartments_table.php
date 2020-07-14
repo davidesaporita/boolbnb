@@ -21,7 +21,7 @@ class CreateApartmentsTable extends Migration
             $table->unsignedTinyInteger('rooms_number');
             $table->unsignedTinyInteger('beds_number');
             $table->unsignedTinyInteger('bathrooms_number');
-            $table->unsignedTinyInteger('square_meters');
+            $table->unsignedSmallInteger('square_meters');
             $table->string('country');
             $table->string('region');
             $table->string('province');
