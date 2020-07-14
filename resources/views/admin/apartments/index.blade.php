@@ -29,10 +29,14 @@
                             <td><a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-primary">Mostra</a></td>
                             <td><a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary">Modifica</a></td>
                                 <td>
-                                <form action="####" method="POST">
+                                <form action="{{ route('admin.apartments.toggle', $apartment->id) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <input type="submit" class="btn btn-dark" value="Disabilita">
+                                    @if($apartment->active == 1)
+                                        <input type="submit" class="btn btn-dark" value="Disabilita">
+                                    @else 
+                                        <input type="submit" class="btn btn-success" value="Abilita">
+                                    @endif
                                 </form>
                             </td>  
                             <td>

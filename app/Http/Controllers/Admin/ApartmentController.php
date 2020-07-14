@@ -235,6 +235,21 @@ class ApartmentController extends Controller
         }
     }
 
+    public function toggle(Apartment $apartment)
+    {
+        if($apartment->active == 0) {
+            $apartment->active = 1;
+        } else {
+            $apartment->active = 0;
+        }
+        
+        $updated = $apartment->update();
+
+        if($updated) {
+            return redirect()->route('admin.apartments.index');
+        }
+    }
+
     /**
      * Validation rules.
      *
