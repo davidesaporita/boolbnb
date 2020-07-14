@@ -81,12 +81,12 @@
                     {{-- Città --}}
                     <div class="form-group">
                         <label for="city">Città</label>
-                        <input type="text" id="city" class="form-control" name="city" value="{{ old('city', $apartment->city) }}" disabled/>
+                        <input type="text" id="city" class="form-control" name="city" value="{{ old('city', $apartment->city) }}" disabled />
                     </div>
                     {{-- ZipCode --}}
                     <div class="form-group">
                         <label for="zip_code">CAP</label>
-                        <input type="text" id="zip_code" class="form-control" name="zip_code" value="{{ old('zip_code', $apartment->zip_code) }}" disabled/>
+                        <input type="text" id="zip_code" class="form-control" name="zip_code" value="{{ old('zip_code', $apartment->zip_code) }}" disabled />
                     </div>
                 </div>
 
@@ -163,4 +163,6 @@
             </div>
         </form>
     </div>
+
+    <script src="{{ asset('js/map/edit-map.js') }}"></script>
 @endsection

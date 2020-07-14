@@ -44,7 +44,8 @@ class ApartmentController extends Controller
     public function create()
     {
         $services = Service::all();
-        return view('admin.apartments.create', compact('services'));
+        $categories = Category::all();
+        return view('admin.apartments.create', compact('services', 'categories'));
     }
 
     /**
@@ -58,7 +59,6 @@ class ApartmentController extends Controller
         // Todo: Add validations via validationRules() references
 
         $data = $request->all();
-
         $data['user_id'] = Auth::id();
         $data['views'] = 0;
         $data['featured_img'] = Storage::disk('public')->put('images', $data['featured_img']);

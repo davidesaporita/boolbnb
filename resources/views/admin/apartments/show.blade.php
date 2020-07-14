@@ -90,7 +90,11 @@
                 <a class="btn btn-sm btn-light" href="{{ route('admin.apartments.sponsorship.pay', ['apartment' => $apartment ]) }}">Nuovo Sponsor</a>
             @endforelse
         </div>
+
+        <div id="show-map" style="height: 300px"></div>
+
     </div>
+
     <div class="mt-4 info-requests">
         <h4>Richieste di informazioni:</h4>
         @forelse ($apartment->info_requests as $request)
@@ -103,6 +107,7 @@
             <p>Non ci sono commenti!</p>
         @endforelse
     </div>
+    
     <div class="comments">
         <h4>Commenti:</h4>
         @forelse ($apartment->reviews as $review)
@@ -115,4 +120,10 @@
         @endforelse
     </div>
 </div>
+
+<input type="hidden" id="lat" value="{{ $apartment->geo_lat}}">
+<input type="hidden" id="lng" value="{{ $apartment->geo_lng}}">
+
+<script src="{{ asset('js/map/map-show.js')}}"></script>
+
 @endsection
