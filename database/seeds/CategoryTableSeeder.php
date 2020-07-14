@@ -14,14 +14,17 @@ class CategoryTableSeeder extends Seeder
     public function run()
     {
         $categories = [
-            'Appartamento',
-            'Villa',
-            'Casa rustica',
-            'Casa di campagna',
-            'Cascina',
-            'Casa al mare',
-            'Cottage',
-            'Chalet'
+            'Appartamento', //1
+            'Villa', //2
+            'Casa rustica', //3
+            'Casa di campagna', //4
+            'Cascina', //5
+            'Casa al mare', //6
+            'Cottage', //7
+            'Chalet', //8
+            'Baita', //9
+            'Stanza privata', //10
+            'Castello' //11
         ];
 
         foreach($categories as $category) {
