@@ -73,29 +73,10 @@
             @endforelse
         </div>
 
-        <div id="show-map"></div>
+        <div id="show-map" style="height: 300px"></div>
 
     </div>
     <input type="hidden" id="lat" value="{{ $apartment->geo_lat}}">
     <input type="hidden" id="lng" value="{{ $apartment->geo_lng}}">
-
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-   crossorigin=""></script>
-    <script>
-        let lat = document.querySelector('#lat').value
-        let lng = document.querySelector('#lng').value
-
-        let showMap = L.map('show-map').setView([lat, lng], 13);
-        let marker = L.marker([lat, lng]).addTo(showMap);
-
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2FybWlsZW50aXNjbyIsImEiOiJja2NjNnRmYjcwMXMyMnlwdXg0ZDYxM3JwIn0.Zg-CS3Rc5Krle5GllL7reQ', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox/streets-v11',
-            tileSize: 512,
-            zoomOffset: -1,
-            accessToken: 'your.mapbox.access.token'
-        }).addTo(showMap);
-    </script>
+    <script src="{{ asset('js/map/map-show.js')}}"></script>
 @endsection
