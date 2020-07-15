@@ -21,7 +21,10 @@ Auth::routes();
 // guest
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/guest/{apartment}', 'HomeController@show')->name('apartments.show');
-Route::post('/guest', 'HomeController@send')->name('info.send');
+Route::post('/guest/{apartment}/send', 'HomeController@send')->name('info.send');
+Route::post('/guest/{apartment}/review', 'HomeController@reviews')->name('reviews');
+
+
 
 
 
@@ -36,6 +39,7 @@ Route::prefix('admin')
 
         // Apartments CRUD 
         Route::resource('/apartments', 'ApartmentController');
+        Route::patch('/apartments/{apartment}/toggle', 'ApartmentController@toggle')->name('apartments.toggle');
 
         // apartments stats
         Route::get('/apartments/{apartment}/stats/stat', 'StatsController@index')->name('apartments.stats.stat');

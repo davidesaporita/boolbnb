@@ -15,7 +15,7 @@
         <div class="apartments-list d-flex flex-wrap justify-content-between" >
             @foreach ( $apartments as $apartment )
                 <div class="card mb-5" style="width: 22rem;">
-                    <img class="card-img-top" src="{{ $apartment->featured_img }}" alt="Card image cap">
+                    <img class="card-img-top" src="{{ strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img  ) }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $apartment->title }}</h5>
                         <h6 class="card-title">{{ $apartment->city . ', ' . $apartment->region . ', ' . $apartment->province }}</h6>

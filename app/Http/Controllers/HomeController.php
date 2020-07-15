@@ -10,6 +10,7 @@ use App\Apartment;
 use App\Service;
 use App\Mail\NewInfoRequest;
 use App\InfoRequest;
+use App\Review;
 
 use function GuzzleHttp\Promise\all;
 
@@ -17,7 +18,7 @@ class HomeController extends Controller
 {
     public function index() 
     {
-        $apartments = Apartment::paginate(9);
+        $apartments = Apartment::where('active', 1)->paginate(9);
         $services = Service::all();
 
         return view('guest.welcome', compact('apartments', 'services'));
@@ -28,14 +29,14 @@ class HomeController extends Controller
         return view('guest.apartments.show', compact('apartment'));
     }
 
-    public function send(Request $request)
+    public function send(Request $request, Apartment $apartment)
     {
         // todo validation
 
         $data = $request->all();
 
         // get apartment id
-        $data['apartment_id'] = 1;
+        $data['apartment_id'] = $apartment->id;
 
         $newRequest = new InfoRequest();
         $newRequest->fill($data);
@@ -46,8 +47,29 @@ class HomeController extends Controller
         if($saved) {
 
             Mail::to('user@test.com')->send(new NewInfoRequest($newRequest));
+            
             // todo redirect
+            return view('guest.apartments.show', compact('apartment'));
         }
 
+    }
+    
+
+    public function reviews(Request $request, Apartment $apartment) {
+
+        $data = $request->all();
+
+        // get apartment id
+        $data['apartment_id'] = $apartment->id;
+
+        $newReview = new Review();
+        $newReview->fill($data);
+        $saved = $newReview->save();
+
+
+        if($saved) {
+
+            return view('guest.apartments.show', compact('apartment'));
+        }
     }
 }

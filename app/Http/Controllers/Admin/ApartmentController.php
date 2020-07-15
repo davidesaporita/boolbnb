@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
-use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 use DB;
 
 use App\Apartment;
@@ -17,6 +17,14 @@ use App\Service;
 
 class ApartmentController extends Controller
 {
+    // Variables
+    private $maxPathImg;
+    
+    public function __construct()
+    {
+        $this->maxPathImg = 5;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -51,7 +59,6 @@ class ApartmentController extends Controller
         // Todo: Add validations via validationRules() references
 
         $data = $request->all();
-
         $data['user_id'] = Auth::id();
         $data['views'] = 0;
         $data['featured_img'] = Storage::disk('public')->put('images', $data['featured_img']);
@@ -65,13 +72,19 @@ class ApartmentController extends Controller
                 $newApartment->services()->attach($data['services']);
             }
             if(!empty($data['media'])) {
-                $newMedia = new Media();
+                $counter = 0;
                 foreach($data['media'] as $path) {
-                    $path = Storage::disk('public')->put('images', $path);
-                    $newMedia->apartment_id = $newApartment->id;
-                    $newMedia->path = $path;
-                    $newMedia->type = 'img';
-                    $newMedia->save();
+                    if($counter < $this->maxPathImg) {
+                        $path = Storage::disk('public')->put('images', $path);
+                        $newMedia = new Media();
+                        $newMedia->apartment_id = $newApartment->id;
+                        $newMedia->path = $path;
+                        $newMedia->type = 'img';
+                        $newMedia->save();
+                        $counter++;
+                    } else {
+                        break;
+                    }
                 }
             }
             return redirect()->route('admin.apartments.show', $newApartment);
@@ -88,12 +101,7 @@ class ApartmentController extends Controller
     {
         $now = Carbon::now();
 
-        $active_sponsorship = DB::table('sponsorships')
-            ->where('apartment_id', $apartment->id)
-            ->where('deadline', '>', $now)
-            ->get();
-
-        return view('admin.apartments.show', compact('apartment', 'active_sponsorship'));
+        return view('admin.apartments.show', compact('apartment', 'now'));
     }
 
     /**
@@ -106,7 +114,7 @@ class ApartmentController extends Controller
     {
         $services = Service::all();
         $categories = Category::all();
-        $media = $apartment->media();
+        $media = $apartment->media;
         $active_services = $apartment->services();
         return view('admin.apartments.edit', compact('services', 'categories', 'apartment', 'media'));
     }
@@ -118,9 +126,80 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Apartment $apartment)
     {
-        //
+        // Todo: Add validations via validationRules() references
+
+        $data = $request->all();
+
+        $data['user_id'] = Auth::id();
+
+        // Delete stored img if any other featured img was uploaded
+        if(!empty($data['featured_img']) && $data['feat_img_to_delete']) {
+            Storage::disk('public')->delete($apartment->featured_img);
+            $data['featured_img'] = Storage::disk('public')->put('images', $data['featured_img']);
+        }
+
+        $updated = $apartment->update($data);
+
+        if($updated) {
+            if(empty($data['services'])) {
+                $apartment->services()->detach();
+            } else {
+                $apartment->services()->sync($data['services']);
+            }
+        }
+
+        
+        $mediaStored = Media::all()->where('apartment_id', $apartment->id);
+        
+        if(empty($mediaStored)) {
+
+            foreach($data['media'] as $path) {
+                if($counter < $this->maxPathImg) {
+                    $path = Storage::disk('public')->put('images', $path);
+                    $newMedia = new Media();
+                    $newMedia->apartment_id = $apartment->id;
+                    $newMedia->path = $path;
+                    $newMedia->type = 'img';
+                    $newMedia->save();
+                    $counter++;
+                } else {
+                    break;
+                }
+            }
+
+        } else {
+            
+            if(!empty($data['media_to_delete'])) {
+                foreach($data['media_to_delete'] as $media_id) {
+                    $media_to_delete = Media::find($media_id);
+                    Storage::disk('public')->delete($media_to_delete->featured_img);
+                    Media::find($media_id)->delete();
+                }
+            }
+
+            if(!empty($data['media'])) {
+
+                $counter = count($apartment->media);
+
+                foreach($data['media'] as $path) {
+                    if($counter < $this->maxPathImg) {
+                        $path = Storage::disk('public')->put('images', $path);
+                        $newMedia = new Media();
+                        $newMedia->apartment_id = $apartment->id;
+                        $newMedia->path = $path;
+                        $newMedia->type = 'img';
+                        $newMedia->save();
+                        $counter++;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+
+        return redirect()->route('admin.apartments.show', $apartment->id);
     }
 
     /**
@@ -129,9 +208,46 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Apartment $apartment)
     {
-        //
+        if(empty($apartment)) {
+            abort(404);
+        }
+
+        $deleted_apartment = $apartment->title;
+
+        $apartment->services()->detach();
+        $apartment->sponsor_plans()->detach();
+        $apartment->info_requests()->delete();
+        $apartment->reviews()->delete();
+
+        $media_to_delete = Media::where('apartment_id', $apartment->id)->get();
+
+        foreach($media_to_delete as $item) {
+            Storage::disk('public')->delete($item->path);
+            Media::find($item->id)->delete();
+        }
+
+        $deleted = $apartment->delete();
+
+        if($deleted) {
+            return redirect()->route('admin.apartments.index')->with('deleted_apartment', $deleted_apartment);
+        }
+    }
+
+    public function toggle(Apartment $apartment)
+    {
+        if($apartment->active == 0) {
+            $apartment->active = 1;
+        } else {
+            $apartment->active = 0;
+        }
+        
+        $updated = $apartment->update();
+
+        if($updated) {
+            return redirect()->route('admin.apartments.index');
+        }
     }
 
     /**

@@ -76,17 +76,17 @@
                     {{-- Regione --}}
                     <div class="form-group">
                         <label for="region">Regione</label>
-                        <input type="text" id="region" class="form-control" name="region" />
+                        <input type="text" id="region" class="form-control" name="region" readonly />
                     </div>
                     {{-- Città --}}
                     <div class="form-group">
                         <label for="city">Città</label>
-                        <input type="text" id="city" class="form-control" name="city" />
+                        <input type="text" id="city" class="form-control" name="city" readonly/>
                     </div>
                     {{-- Codice Postale --}}
                     <div class="form-group">
                         <label for="zip_code">CAP</label>
-                        <input type="text" id="zip_code" class="form-control" name="zip_code" />
+                        <input type="text" id="zip_code" class="form-control" name="zip_code" readonly/>
                     </div>
                 </div>
 
@@ -125,7 +125,12 @@
             <input type="hidden" name="country" id="country" value="">
             <input type="hidden" name="geo_lat" id="geo_lat" value="">
             <input type="hidden" name="geo_lng" id="geo_lng" value="">
-            <input type="submit" value="Crea" class="btn btn-success">
+            
+            <div class="d-flex justify-content-end">
+                <input type="submit" value="Crea" class="btn btn-success">
+            </div>
         </form>
     </div>
+
+    <script src="{{ asset('js/map/create-map.js') }}"></script>
 @endsection

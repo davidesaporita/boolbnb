@@ -11,8 +11,13 @@
             <h4 class="card-text">{{ $apartment->city . ', ' . $apartment->region . ', ' . $apartment->province }}</h4>
         </div>
 
+
+        <div class="card-body">
+            <img src="{{ strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img  ) }}" style="width: 100%;" alt="{{ $apartment->title }}">
+        </div>
+
         {{-- <!--Carousel--> --}}
-        <div class="bd-example">
+        <div class="card-body" style="width: 100%;">
             <div id="carousel" class="carousel slide" data-ride="carousel">
 
                 {{-- <!--indicators--> --}}
@@ -26,7 +31,7 @@
                 <div class="carousel-inner">
                     @foreach( $apartment->media as $item)
                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                        <img src="{{ $item->path }}" class="d-block w-100" alt="{{$item->type}}">
+                        <img src="{{ strpos($item->path, '://') ? $item->path : asset("/storage/" . $item->path ) }}" class="d-block w-100" alt="{{$item->caption}}">
                     </div>
                     @endforeach
                 </div>
@@ -87,7 +92,7 @@
         <h2 class="h1-responsive font-weight-bold text-center my-4">Richiedi Informazioni</h2>
     </div>
 
-    <form action="{{ route('info.send')}}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('info.send', $apartment->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('POST')
 
@@ -105,6 +110,53 @@
         <div class="form-group">
             <label for="body">Body</label>
             <textarea class="form-control" name="body" id="body" placeholder="Inserisci una descrizione"></textarea>
+        </div>
+        
+        <input type="submit" value="Invia" class="btn btn-success">
+        
+    </form>
+
+    {{-- reviws --}}
+    <div class="d-flex justify-content-center">
+        <h2 class="h1-responsive font-weight-bold text-center my-4">Invia una recensione</h2>
+    </div>
+
+    <form action="{{ route('reviews', $apartment->id)}}" method="post" enctype="multipart/form-data">
+        @csrf
+        @method('POST')
+
+        {{-- Name --}}
+        <div class="form-group">
+            <label for="first_name">Nome</label>
+            <input class="form-control" id="first_name" type="text" name="first_name" placeholder="Inserisci un nome">
+        </div>
+        {{-- Last_name --}}
+        <div class="form-group">
+            <label for="last_name">Nome</label>
+            <input class="form-control" id="last_name" type="text" name="last_name" placeholder="Inserisci un cognome">
+        </div>
+        
+        {{-- titolo --}}
+        <div class="form-group">
+            <label for="title">Titolo</label>
+            <input class="form-control" id="title" type="text" name="title" placeholder="Inserisci un titolo">
+        </div>
+        {{-- descrizione --}}
+        <div class="form-group">
+            <label for="body">Descrizione</label>
+            <textarea class="form-control" name="body" id="body" placeholder="Inserisci una descrizione"></textarea>
+        </div>
+
+        {{-- rating --}}
+        <div class="form-group">
+            <label for="rating">Dai un voto</label>
+            <select class="form-control" name="rating" id="rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
         </div>
         
         <input type="submit" value="Invia" class="btn btn-success">
