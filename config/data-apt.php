@@ -262,7 +262,7 @@ Upstairs, each spacious bedroom announces a theme: the jungle room, the Romeo-Ju
     'media' => [
         'https://pbs.twimg.com/media/DVzjt2qWAAEWH1J.jpg',
         'https://vignette.wikia.nocookie.net/milomurphyslaw/images/4/45/Agee_Ientee_Diogee_%2865%29.jpg/revision/latest?cb=20190208085512',
-        'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4465d29b-a2b3-496c-be11-86392ebe1b86/d7ylp4y-30161244-a69e-4dd5-9c94-39b7dea1cc1c.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvNDQ2NWQyOWItYTJiMy00OTZjLWJlMTEtODYzOTJlYmUxYjg2XC9kN3lscDR5LTMwMTYxMjQ0LWE2OWUtNGRkNS05Yzk0LTM5YjdkZWExY2MxYy5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.hlvA2axte9HonoorgW_jvDT_o_f6_fIjF_35pQcqNsc',
+        'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4465d29b-a2b3-496c-be11-86392ebe1b86/d7ylp4y-30161244-a69e-4dd5-9c94-39b7dea1cc1c.jpg',
         'https://66.media.tumblr.com/97fa8c0d51eb2731751e0bbeb7e554c1/tumblr_py0kaf0J8m1y7hyamo3_1280.png',
         ]
     ],  
