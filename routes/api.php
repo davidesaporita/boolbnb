@@ -20,6 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::namespace('Api')
     ->group(function() {
-        Route::get('search', 'SearchController@index');
+        // Route::post('search/rooms_number', 'SearchController@rooms_number');
+        // Route::post('search/apartment', 'SearchController@apartment');
+        Route::get('search/apitest', 'SearchController@apitest');
     }
 );
