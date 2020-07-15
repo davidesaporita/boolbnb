@@ -41,6 +41,9 @@ Route::prefix('admin')
         Route::resource('/apartments', 'ApartmentController');
         Route::patch('/apartments/{apartment}/toggle', 'ApartmentController@toggle')->name('apartments.toggle');
 
+        // apartments stats
+        Route::get('/apartments/{apartment}/stats/stat', 'StatsController@index')->name('apartments.stats.stat');
+
         // Payment for sponsorships
         Route::get('/apartments/{apartment}/sponsorship/pay', 'SponsorshipController@pay')
             ->name('apartments.sponsorship.pay');
@@ -49,5 +52,7 @@ Route::prefix('admin')
             ->name('apartments.sponsorship.checkout');
 
         Route::get('/apartments/{apartment}/sponsorship/transaction/{transaction_id}', 'SponsorshipController@transaction')
-            ->name('apartments.sponsorship.transaction');      
+            ->name('apartments.sponsorship.transaction'); 
+            
+        
     });
