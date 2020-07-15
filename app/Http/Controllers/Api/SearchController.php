@@ -31,6 +31,7 @@ class SearchController extends Controller
 
         $geo_lat          = $request->input('geo_lat')          ? $request->input('geo_lat')          : null;
         $geo_lng          = $request->input('geo_lng')          ? $request->input('geo_lng')          : null;
+        $radius           = $request->input('radius')            ? $request->input('radius')          : 20;
         $rooms_number_min = $request->input('rooms_number_min') ? $request->input('rooms_number_min') : 0;
         $beds_number_min  = $request->input('beds_number_min')  ? $request->input('beds_number_min')  : 0;
         $wifi             = $request->input('wifi')             ? 1 : null;  // Yes = id ---- No = null
@@ -42,9 +43,18 @@ class SearchController extends Controller
        
         $request_services = array($wifi, $posto_macchina, $piscina, $portineria, $sauna, $vista_mare);
 
+        $haversine = "(6371 * acos(cos(radians(" . $geo_lat . ")) 
+                    * cos(radians(`geo_lat`)) 
+                    * cos(radians(`geo_lng`) 
+                    - radians(" . $geo_lng . ")) 
+                    + sin(radians(" . $geo_lat . ")) 
+                    * sin(radians(`geo_lat`))))";
+
         $apartments = Apartment::where('active', 1)
-                               ->where('geo_lat', $geo_lat)
-                               ->where('geo_lng', $geo_lng)
+                            //    ->where('geo_lat', $geo_lat)
+                            //    ->where('geo_lng', $geo_lng)
+                               ->selectRaw("*, {$haversine} AS distance")
+                               ->whereRaw("{$haversine} < ?", [$radius])
                                ->where('rooms_number', '>=', $rooms_number_min)
                                ->where('beds_number', '>=', $beds_number_min)
                                ->whereHas('services', function($query) use($request_services) {
@@ -54,9 +64,16 @@ class SearchController extends Controller
                                        }
                                    }
                                })
+                               ->orderBy('distance', 'asc')
                                ->get();
 
         return response()->json($apartments);
+    }
+
+    private function haversine($geo_lat, $geo_lng, $radius) {
+        
+
+        return ;
     }
 
     // public function rooms_number(Request $request)
