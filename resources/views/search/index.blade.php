@@ -8,8 +8,12 @@
         </div>
     </div>
 
+    <div class="container mb-5">
+        <div id="search-map" class="rounded-lg" style="height: 300px"></div>
+    </div>
+
     <div class="container">
-        <div id="apartment-list"></div>
+        <div id="apartment-list" class="d-flex flex-wrap justify-content-around"></div>
     </div>
 
     @include('shared.handlebars.template-card-home')
