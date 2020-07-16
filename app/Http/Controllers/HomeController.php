@@ -72,4 +72,9 @@ class HomeController extends Controller
             return view('guest.apartments.show', compact('apartment'));
         }
     }
+
+    public function search()
+    {
+        return view('search.index');
+    }
 }

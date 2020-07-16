@@ -7,7 +7,7 @@
 
         @if (session('deleted_apartment'))
             <div class="card text-white bg-success mb-3" style="width: 100%;">
-                <div class="card-header">Elimanto !</div>
+                <div class="card-header">Eliminato!</div>
                 <div class="card-body">
                 <h5 class="card-title">{{ session('deleted_apartment') }} è stato eliminato.</h5>
                 </div>
