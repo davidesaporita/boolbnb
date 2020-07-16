@@ -65,6 +65,7 @@
             {{-- BUTTONS EDIT AND DELETE --}}
             <div class="mt-3 button-options">
                 <a class="btn btn-sm btn-primary" href="{{route('admin.apartments.edit', $apartment->id)}}">Modifica</a>
+                <a class="btn btn-sm btn-dark" href="{{ route('admin.apartments.stats.index', ['apartment' => $apartment ]) }}">Statistiche</a>
                 <form class="d-inline" action="{{route('admin.apartments.destroy', $apartment->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -102,7 +103,9 @@
         {{-- MAP --}}
         <div class="mt-4 col-12 col-lg-6">
                 <div id="show-map" class="rounded-lg" style="height: 300px"></div>
-        </div>
+        </div> 
+       
+
     </div>
     {{-- INFO REQUESTS --}}
     <div class="mt-4 info-requests">
