@@ -91,13 +91,14 @@
             @endforelse
         </div>
         
-        <div class="mt-4 sponsor-plan">
-            <h2>Guarda le stat sull'appartamento</h2>
-            <a class="btn btn-sm btn-dark" href="{{ route('admin.apartments.stats.index', ['apartment' => $apartment ]) }}">Statistiche</a>
-        </div>
-
+        
         <div id="show-map" style="height: 300px"></div>
-
+        
+    </div>
+    
+    <div class="mt-4 sponsor-plan">
+        <h2>Guarda le stat sull'appartamento</h2>
+        <a class="btn btn-sm btn-dark" href="{{ route('admin.apartments.stats.index', ['apartment' => $apartment ]) }}">Statistiche</a>
     </div>
 
     <div class="mt-4 info-requests">

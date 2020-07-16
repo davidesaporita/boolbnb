@@ -46,9 +46,23 @@
             datasets: [{
                 label: '# views',
                 backgroundColor: 'lightblue',
-                fill: true,
+                fill: false,
                 borderColor: '#000',
-                data: ['26', '8', '12', '24', '25', '18', '{{$apartment->views}}'],
+                data: ['{{$views['0']['views']}}', '{{$views['1']['views']}}', '{{$views['2']['views']}}', '{{$views['3']['views']}}', '{{$views['4']['views']}}', '{{$views['5']['views']}}', '{{$views['6']['views']}}'],
+			},
+			{
+                label: '# InfoRequest',
+                backgroundColor: 'orange',
+                fill: false,
+                borderColor: 'orange',
+                data: ['{{$info_requests['0']['info_requests']}}', '{{$info_requests['1']['info_requests']}}', '{{$info_requests['2']['info_requests']}}', '{{$info_requests['3']['info_requests']}}', '{{$info_requests['4']['info_requests']}}', '{{$info_requests['5']['info_requests']}}', '{{$apartment->views}}'],
+			},
+			{
+                label: '# Reviews',
+                backgroundColor: 'red',
+                fill: false,
+                borderColor: 'red',
+                data: ['{{$reviews['0']['reviews']}}', '{{$reviews['1']['reviews']}}', '{{$reviews['2']['reviews']}}', '{{$reviews['3']['reviews']}}', '{{$reviews['4']['reviews']}}', '{{$reviews['5']['reviews']}}', '{{$reviews['6']['reviews']}}'],
             }]
         },
         options: {
