@@ -62,6 +62,7 @@ function handleOnChange(e) {
     } else {
         removeMarker(marker);
     }
+
     document.querySelector('#region').value = e.suggestion.administrative || '';
     document.querySelector('#country').value = e.suggestion.country || '';
     document.querySelector('#province').value = e.suggestion.county || '';
@@ -69,6 +70,7 @@ function handleOnChange(e) {
     document.querySelector('#zip_code').value = e.suggestion.postcode || '';
     document.querySelector('#geo_lat').value = e.suggestion.latlng['lat'] || '';
     document.querySelector('#geo_lng').value = e.suggestion.latlng['lng'] || '';
+
     });
 }
 

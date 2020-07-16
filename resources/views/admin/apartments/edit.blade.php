@@ -86,7 +86,7 @@
                     {{-- ZipCode --}}
                     <div class="form-group">
                         <label for="zip_code">CAP</label>
-                        <input type="text" id="zip_code" class="form-control" name="zip_code" value="{{ old('zip_code', $apartment->zip_code) }}" + />
+                        <input type="text" id="zip_code" class="form-control" name="zip_code" value="{{ old('zip_code', $apartment->zip_code) }}" readonly />
                     </div>
                 </div>
 
