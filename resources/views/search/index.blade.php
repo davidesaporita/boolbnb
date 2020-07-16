@@ -4,7 +4,7 @@
     <div class="container">
         <div class="form-group mb-5">
             <label for="search">Indirizzo</label>
-            <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address', 'Piazza di Spagna, 1, Roma, Italia') }}" />
+            <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address') }}" />
         </div>
     </div>
 
