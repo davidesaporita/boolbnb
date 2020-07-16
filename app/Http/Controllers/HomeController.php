@@ -26,7 +26,12 @@ class HomeController extends Controller
 
     public function show(Apartment $apartment)
     {
+        
+
+
+
         return view('guest.apartments.show', compact('apartment'));
+
     }
 
     public function send(Request $request, Apartment $apartment)
