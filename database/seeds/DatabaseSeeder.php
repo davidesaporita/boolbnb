@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
             MediaTableSeeder::class,
             ReviewTableSeeder::class,
             ApartmentServiceTableSeeder::class,
-            SponsorshipTableSeeder::class
+            SponsorshipTableSeeder::class,
+            StatTypeTableSeeder::class,
+            StatTableSeeder::class
         ]);
     }
 }
