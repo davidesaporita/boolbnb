@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -10,8 +10,4 @@
 
 <script src="{{ asset('js/home.js') }}"></script>
 
-<div id="hits">
-    
-</div>
-
-@endsection
+@endsection --}}
