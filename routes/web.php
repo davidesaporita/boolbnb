@@ -25,8 +25,7 @@ Route::post('/guest/{apartment}/send', 'HomeController@send')->name('info.send')
 Route::post('/guest/{apartment}/review', 'HomeController@reviews')->name('reviews');
 
 // Search
-// Route::get('/search?{geo_lat}&{geo_lng}', 'SearchController@index')->name('search');
-Route::get('/search', 'HomeController@search')->name('search');
+Route::get('/search', 'SearchController@index')->name('home');
 
 
 // ADMIN Controller

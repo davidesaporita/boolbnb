@@ -68,13 +68,7 @@ class HomeController extends Controller
 
 
         if($saved) {
-
             return view('guest.apartments.show', compact('apartment'));
         }
-    }
-
-    public function search()
-    {
-        return view('search.index');
     }
 }
