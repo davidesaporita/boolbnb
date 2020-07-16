@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::namespace('Api')
     ->group(function() {
-        Route::get('search/services', 'SearchController@services');
+        Route::get('search/serviceQuery', 'SearchController@serviceQuery');
         Route::get('search/query', 'SearchController@query');
     }
 );

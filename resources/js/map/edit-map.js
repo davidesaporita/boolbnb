@@ -75,8 +75,8 @@ function handleOnChange(e) {
     province.value = e.suggestion.county || '';
     city.value = e.suggestion.city || '';
     zipCode.value = e.suggestion.postcode || '';
-    lat.value = e.suggestion.latlng['lat'] || '';
-    lat.value = e.suggestion.latlng['lng'] || '';
+    lat = e.suggestion.latlng['lat'] || '';
+    lng = e.suggestion.latlng['lng'] || '';
 
     });
 }
