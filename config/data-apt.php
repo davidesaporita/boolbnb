@@ -147,8 +147,8 @@ A circa 500 metri troverete bar, market e ristoranti, nonché dirigervi per le a
     'city' => 'Cecina',
     'address' => 'Viale della Vittoria',
     'zip_code' => '57023',
-    'geo_lat' => '36.888170',
-    'geo_lng' => '14.441067',
+    'geo_lat' => '43.296131',
+    'geo_lng' => '10.496084',
     'featured_img' => 'https://a0.muscache.com/im/pictures/515ef812-8a94-4b64-a2b0-0795bd123173.jpg?im_w=1680',
     'media' => [
         'https://a0.muscache.com/im/pictures/3ddb6aba-488a-40b0-8ad5-c761976d2346.jpg?im_w=1680',
