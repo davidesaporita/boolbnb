@@ -3,11 +3,6 @@ import L from 'leaflet'
 
 let lat =  document.querySelector('#geo_lat').value
 let lng =  document.querySelector('#geo_lng').value
-let zipCode = document.querySelector('#zip_code') 
-let city = document.querySelector('#city')
-let province = document.querySelector('#province')
-let country = document.querySelector('#country')
-let region = document.querySelector('#region')
 
 var placesAutocomplete = places({
     appId: 'plUKJGFB9TS3',
@@ -40,7 +35,6 @@ map.setView(new L.LatLng( lat, lng), 40);
 let marker = L.marker([lat, lng]).addTo(map)
 map.addLayer(osmLayer);
 
-
 placesAutocomplete.on('suggestions', handleOnSuggestions);
 placesAutocomplete.on('cursorchanged', handleOnCursorchanged);
 placesAutocomplete.on('change', handleOnChange);
@@ -60,8 +54,7 @@ function handleOnSuggestions(e) {
 }
 
 function handleOnChange(e) {
-    markers
-    .forEach(function(marker, markerIndex) {
+    markers.forEach(function(marker, markerIndex) {
     if (markerIndex === e.suggestionIndex) {
         markers = [marker];
         marker.setOpacity(1);
@@ -69,15 +62,13 @@ function handleOnChange(e) {
     } else {
         removeMarker(marker);
     }
-
-    region.value = e.suggestion.administrative || '';
-    country.value = e.suggestion.country || '';
-    province.value = e.suggestion.county || '';
-    city.value = e.suggestion.city || '';
-    zipCode.value = e.suggestion.postcode || '';
-    lat.value = e.suggestion.latlng['lat'] || '';
-    lat.value = e.suggestion.latlng['lng'] || '';
-
+    document.querySelector('#region').value = e.suggestion.administrative || '';
+    document.querySelector('#country').value = e.suggestion.country || '';
+    document.querySelector('#province').value = e.suggestion.county || '';
+    document.querySelector('#city').value = e.suggestion.city || '';
+    document.querySelector('#zip_code').value = e.suggestion.postcode || '';
+    document.querySelector('#geo_lat').value = e.suggestion.latlng['lat'] || '';
+    document.querySelector('#geo_lng').value = e.suggestion.latlng['lng'] || '';
     });
 }
 
