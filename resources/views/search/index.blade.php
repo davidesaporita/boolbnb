@@ -12,6 +12,6 @@
 
     @include('shared.handlebars.template-card-home')
 
-    <script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('js/search.js') }}"></script>
 
 @endsection
