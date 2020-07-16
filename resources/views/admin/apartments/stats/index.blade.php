@@ -2,6 +2,8 @@
 
 @section('content')
 
+@dd($info_requests)
+
 <div class="container">
     <div class="card">
         <div class="card-body w-50">
