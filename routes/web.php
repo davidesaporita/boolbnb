@@ -43,7 +43,7 @@ Route::prefix('admin')
         Route::patch('/apartments/{apartment}/toggle', 'ApartmentController@toggle')->name('apartments.toggle');
 
         // apartments stats
-        Route::get('/apartments/{apartment}/stats/stat', 'StatsController@index')->name('apartments.stats.stat');
+        Route::get('/apartments/{apartment}/stats/', 'StatsController@index')->name('apartments.stats.index');
 
         // Payment for sponsorships
         Route::get('/apartments/{apartment}/sponsorship/pay', 'SponsorshipController@pay')
