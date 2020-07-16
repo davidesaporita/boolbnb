@@ -10,6 +10,6 @@ use App\Apartment;
 class StatsController extends Controller
 {
     public function index(Apartment $apartment) {
-        return view('admin.apartments.stats.stat', compact('apartment'));
+        return view('admin.apartments.stats.index', compact('apartment'));
     }
 }
