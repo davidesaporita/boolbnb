@@ -18,6 +18,15 @@ class CreateStatsTable extends Migration
             $table->unsignedBigInteger('apartment_id');
             $table->unsignedBigInteger('stat_type_id');
             $table->timestamps();
+
+            $table->foreign('apartment_id')
+                  ->references('id')
+                  ->on('apartments');
+
+            $table->foreign('stat_type_id')
+                  ->references('id')
+                  ->on('stat_types');
+
         });
     }
 
