@@ -12,6 +12,10 @@ var placesAutocomplete = places({
     container: document.querySelector('#search'),
 })
 
+// Test Funzionamento Handlebars Template
+var container = $('#apartment-list')
+var source = $("#template-card-home").html();
+var template = Handlebars.compile(source);
 
 let url = window.location.protocol + '//' + window.location.host + '/' +'api/search/query';
 let radius = 20;
@@ -44,7 +48,46 @@ placesAutocomplete.on('change', (e) => {
     },
   }).done(function(result) {
 
+    if ( result.length === 0 ) {
+      console.log('Non vi sono appartamenti in zona');
+    }
+
     console.log(result)
+    
+    for ( let key in result ) {
+        
+      let res = result[key];
+      
+      let pathImg =                res['featured_img'];
+      let altImage =               res['title'];
+      let title =                  res['title'];
+      let apartmentID =            res['id'];
+      let apartmentCity =          res['city'];
+      let apartmentRegion =        res['region'];
+      let apartmentProvince =      res['province'];
+      let apartmentDescription =   res['description'];
+      let distance =               res['distance'];
+
+      
+      var apartment = {
+
+        image: pathImg = pathImg.includes("://") ? pathImg : "http://127.0.0.1:8000/storage/" + pathImg,
+        altImage,
+        title, 
+        apartmentID,
+        apartmentCity,
+        apartmentRegion,
+        apartmentProvince,
+        apartmentDescription,
+        distance
+      
+      };
+      
+      var html = template(apartment);
+      container.append(html)
+    }
+
+    
 
   }).fail(function() {
 
@@ -55,25 +98,21 @@ placesAutocomplete.on('change', (e) => {
 })
 
 
+function imgUrl(pathImg) {
+
+  
+
+  console.log(pathImg)
+
+  // if ( !pathImg.includes("http://") ) {
+    
+  //   return "http://127.0.0.1:8000/storage/" + pathImg;
+    
+  // } else {
+
+  //   return pathImg;
+
+  // }
 
 
-/*
-// Test Funzionamento Handlebars Template
-var container = $('#apartment-list')
-var source = $("#template-card-home").html();
-var template = Handlebars.compile(source);
-
-
-var context = {
-    image: "Immagine",
-    altImage : "Alt dell Immagine",
-    title: "Titolo", 
-    apartmentID: 1,
-    apartmentCity: "Città" ,
-    apartmentRegion: "regione",
-    apartmentProvince:"Provincia",
-    apartmentDescription:"Descrizione"
-};
-
-var html = template(context);
-container.append(html)*/
+}
