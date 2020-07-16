@@ -6,9 +6,15 @@
     <div class="container">
         <h1>Homepage</h1>
         {{-- Search bar --}}
-        <div class="form-group mb-5">
-            <label for="search">Indirizzo</label>
-            <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address') }}" />
+        <div class=" mb-5">
+            <div>
+                <label for="search">Indirizzo</label>
+                <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address') }}" />
+            </div>
+            {{-- <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="20" class="slider" id="slider">
+                <span id="slider-output"></span>
+            </div> --}}
         </div>
     </div>
 

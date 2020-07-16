@@ -5,10 +5,6 @@ var places = require('places.js');
 import L from 'leaflet'
 // jQuery
 import $ from 'jquery'
-// Variabilit
-let search = $('#search');
-// var url = window.location.protocol + '//' + window.location.host + 'api/search/query';
-
 //--- Inizializzazione Algolia search ---//
 var placesAutocomplete = places({
     appId: 'plUKJGFB9TS3',
@@ -17,17 +13,29 @@ var placesAutocomplete = places({
 })
 
 
+let url = window.location.protocol + '//' + window.location.host + '/' +'api/search/query';
+let radius = 20;
+
+// var slider = document.querySelector("#slider");
+// let radius = document.querySelector("#slider-output");
+// output.innerHTML = slider.value; 
+
+// slider.oninput = function() {
+//   output.innerHTML = this.value;
+// }
+
 
 placesAutocomplete.on('change', (e) => {
+
   let searchResult = e.suggestion;
   let lat = searchResult.latlng['lat'];
   let lng = searchResult.latlng['lng'];
   console.log(lat)
   console.log(lng)
-  let radius = 20;
+  
 
   $.ajax({
-    url: window.location.protocol + '//' + window.location.host + '/' + 'api/search/query',
+    url,
     method: "GET",
     data: {
         geo_lat : lat,
@@ -39,7 +47,9 @@ placesAutocomplete.on('change', (e) => {
     console.log(result)
 
   }).fail(function() {
-    console.log('Ajax Error')
+
+    console.log('Ajax Request Error')
+
   })
 
 })
