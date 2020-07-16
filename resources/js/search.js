@@ -5,6 +5,7 @@ var places = require('places.js');
 import L from 'leaflet'
 // jQuery
 import $ from 'jquery'
+
 //--- Inizializzazione Algolia search ---//
 var placesAutocomplete = places({
     appId: 'plUKJGFB9TS3',
@@ -13,30 +14,84 @@ var placesAutocomplete = places({
 })
 
 // Test Funzionamento Handlebars Template
-var container = $('#apartment-list')
+var apartmentContainer = $('#apartment-list')
 var source = $("#template-card-home").html();
 var template = Handlebars.compile(source);
 
 let url = window.location.protocol + '//' + window.location.host + '/' +'api/search/query';
 let radius = 20;
 
-// var slider = document.querySelector("#slider");
-// let radius = document.querySelector("#slider-output");
-// output.innerHTML = slider.value; 
+// Ricerca dalla home in search
+const urlParams = new URLSearchParams(window.location.search);
 
-// slider.oninput = function() {
-//   output.innerHTML = this.value;
-// }
+let latUrl = getParameterByName('geo_lat')
+let lngUrl = getParameterByName('geo_lng')
 
+$.ajax({
+  url,
+  method: "GET",
+  data: {
+      geo_lat : latUrl,
+      geo_lng : lngUrl, 
+      radius : radius
+  },
+}).done(function(result) {
 
+  if ( result.length === 0 ) {
+    console.log('Non vi sono appartamenti in zona');
+  }
+
+  console.log(result)
+  
+  for ( let key in result ) {
+      
+    let res = result[key];
+    
+    let pathImg =                res['featured_img'];
+    let altImage =               res['title'];
+    let title =                  res['title'];
+    let apartmentID =            res['id'];
+    let apartmentCity =          res['city'];
+    let apartmentRegion =        res['region'];
+    let apartmentProvince =      res['province'];
+    let apartmentDescription =   res['description'];
+    let distance =               res['distance'];
+
+    
+    var apartment = {
+
+      image: pathImg = pathImg.includes("://") ? pathImg : "http://127.0.0.1:8000/storage/" + pathImg,
+      altImage,
+      title, 
+      apartmentID,
+      apartmentCity,
+      apartmentRegion,
+      apartmentProvince,
+      apartmentDescription,
+      distance
+    
+    };
+    
+    var html = template(apartment);
+    apartmentContainer.append(html)
+  }
+
+  
+
+}).fail(function() {
+
+  console.log('Ajax Request Error')
+
+})
+
+// Ricerca nella pagina search
 placesAutocomplete.on('change', (e) => {
 
   let searchResult = e.suggestion;
   let lat = searchResult.latlng['lat'];
   let lng = searchResult.latlng['lng'];
-  console.log(lat)
-  console.log(lng)
-  
+
+  apartmentContainer.html(" ");
 
   $.ajax({
     url,
@@ -84,10 +139,8 @@ placesAutocomplete.on('change', (e) => {
       };
       
       var html = template(apartment);
-      container.append(html)
+      apartmentContainer.append(html)
     }
-
-    
 
   }).fail(function() {
 
@@ -97,22 +150,12 @@ placesAutocomplete.on('change', (e) => {
 
 })
 
-
-function imgUrl(pathImg) {
-
-  
-
-  console.log(pathImg)
-
-  // if ( !pathImg.includes("http://") ) {
-    
-  //   return "http://127.0.0.1:8000/storage/" + pathImg;
-    
-  // } else {
-
-  //   return pathImg;
-
-  // }
-
-
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }

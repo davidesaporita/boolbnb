@@ -8,7 +8,9 @@
         </div>
     </div>
 
-    <div id="apartment-list"></div>
+    <div class="container">
+        <div id="apartment-list"></div>
+    </div>
 
     @include('shared.handlebars.template-card-home')
 

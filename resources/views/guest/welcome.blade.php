@@ -14,8 +14,8 @@
                 <div class="form-group">
                     <label for="search">Indirizzo</label>        
                     <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address') }}" />
-                    <input type="hidden" name="geo_lat" value="30">
-                    <input type="hidden" name="geo_lng" value="20">
+                    <input type="hidden" id="geo_lat" name="geo_lat" value="">
+                    <input type="hidden" id="geo_lng" name="geo_lng" value="">
                 </div>
                 
                 <input type="submit" value="CERCA">
@@ -58,5 +58,5 @@
 
     @include('shared.handlebars.template-card-home')
 
-    {{-- <script src="{{ asset('js/home.js') }}"></script> --}}
+    <script src="{{ asset('js/home.js') }}"></script>
 @endsection
