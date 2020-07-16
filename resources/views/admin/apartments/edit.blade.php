@@ -76,17 +76,17 @@
                     {{-- Regione --}}
                     <div class="form-group">
                         <label for="region">Regione</label>
-                        <input type="text" id="region" class="form-control" name="region" value="{{ old('region', $apartment->region) }}" disabled />
+                        <input type="text" id="region" class="form-control" name="region" value="{{ old('region', $apartment->region) }}" readonly />
                     </div>
                     {{-- Città --}}
                     <div class="form-group">
                         <label for="city">Città</label>
-                        <input type="text" id="city" class="form-control" name="city" value="{{ old('city', $apartment->city) }}" disabled />
+                        <input type="text" id="city" class="form-control" name="city" value="{{ old('city', $apartment->city) }}" readonly />
                     </div>
                     {{-- ZipCode --}}
                     <div class="form-group">
                         <label for="zip_code">CAP</label>
-                        <input type="text" id="zip_code" class="form-control" name="zip_code" value="{{ old('zip_code', $apartment->zip_code) }}" disabled />
+                        <input type="text" id="zip_code" class="form-control" name="zip_code" value="{{ old('zip_code', $apartment->zip_code) }}" readonly />
                     </div>
                 </div>
 
