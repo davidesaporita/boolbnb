@@ -14,6 +14,8 @@
                 <div class="form-group">
                     <label for="search">Indirizzo</label>        
                     <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address') }}" />
+                    <input type="hidden" name="geo_lat" value="30">
+                    <input type="hidden" name="geo_lng" value="20">
                 </div>
                 
                 <input type="submit" value="CERCA">
