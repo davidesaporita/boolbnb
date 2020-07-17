@@ -22,5 +22,6 @@ Route::namespace('Api')
     ->group(function() {
         Route::get('search/serviceQuery', 'SearchController@serviceQuery');
         Route::get('search/query', 'SearchController@query');
+        Route::get('stats/query', 'StatsController@query');
     }
 );

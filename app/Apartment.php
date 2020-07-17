@@ -62,6 +62,11 @@ class Apartment extends Model
         return $this->hasMany('App\Review');
     }
 
+    // Stats table | One to Many
+    public function stats() {
+        return $this->hasMany('App\Stat');
+    }
+
     // Services table | Many to Many
     public function services() {
         return $this->belongsToMany('App\Service', 'apartments_services');
