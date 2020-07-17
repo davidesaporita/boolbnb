@@ -25,6 +25,13 @@ let search = L.map('search-map', {
                   scrollWheelZoom: false
               }).setView([latUrl, lngUrl], 14);
 
+
+////////////////////////////////////////////////////////////////
+
+let wifi = document.querySelector('#wifi');
+
+
+
 $.ajax({
   url,
   method: "GET",
@@ -79,7 +86,6 @@ $.ajax({
     apartmentContainer.append(html)
   }
 
-  let marker = L.marker([lat, lng]).addTo(showMap);
 
 }).fail(function() {
 
@@ -95,13 +101,22 @@ placesAutocomplete.on('change', (e) => {
   search.setView([ lat, lng], 14);
   apartmentContainer.html(" ");
 
+  console.log( checkedService(wifi))
+
+  if ( checkedService(wifi) ) {
+    wifi.value = 1;
+  } else {
+    wifi.value = 0;
+  }
+
   $.ajax({
     url,
     method: "GET",
     data: {
         geo_lat : lat,
         geo_lng : lng, 
-        radius : radius
+        radius : radius,
+        wifi
     },
   }).done(function(result) {
 
@@ -173,3 +188,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
       zoomOffset: -1,
       accessToken: 'your.mapbox.access.token'
 }).addTo(search);
+
+function checkedService( service ) {
+  return service.checked; 
+}
