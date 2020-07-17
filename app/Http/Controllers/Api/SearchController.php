@@ -55,7 +55,7 @@ class SearchController extends Controller
             !$service ?: $array[] = $service;
         }
 
-        var_dump($array, $geo_lat, $geo_lng, $radius);
+        // var_dump($array, $geo_lat, $geo_lng, $radius);
 
         $haversine = $this->haversine($geo_lat, $geo_lng, $radius);
 

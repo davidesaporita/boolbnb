@@ -9,36 +9,37 @@ var placesAutocomplete = places({
 })
 
 let apartmentContainer = $('#apartment-list')
-let source = $("#template-card-home").html();
-let template = Handlebars.compile(source);
-let url = window.location.protocol + '//' + window.location.host + '/' +'api/search/query';
-let radius = 20;
-let urlParams = new URLSearchParams(window.location.search);
-let latUrl = getParameterByName('geo_lat')
-let lngUrl = getParameterByName('geo_lng')
-let search = L.map('search-map', {
-                  zoomControl: false,
-                  boxZoom: false,
-                  doubleClickZoom: false,
-                  dragging: false,
-                  keyboard: false,
-                  scrollWheelZoom: false
-              }).setView([latUrl, lngUrl], 14);
-
-
-////////////////////////////////////////////////////////////////
-
+let source             = $("#template-card-home").html();
+let template           = Handlebars.compile(source);
+let url                = window.location.protocol + '//' + window.location.host + '/' +'api/search/query';
+let urlParams          = new URLSearchParams(window.location.search);
+let latUrl             = getParameterByName('geo_lat')
+let lngUrl             = getParameterByName('geo_lng')
+let search             = L.map('search-map', {
+                            zoomControl: false,
+                            boxZoom: false,
+                            doubleClickZoom: false,
+                            dragging: false,
+                            keyboard: false,
+                            scrollWheelZoom: false
+                          }).setView([latUrl, lngUrl], 14);
 let wifi           = document.querySelector('#wifi');
 let posto_macchina = document.querySelector('#posto_macchina');
 let piscina        = document.querySelector('#piscina');
 let portineria     = document.querySelector('#portineria');
 let sauna          = document.querySelector('#sauna');
 let vista_mare     = document.querySelector('#vista_mare');
+let radius;
+let slider = document.querySelector("#myRange");
+let output = document.querySelector("#show-km");
+output.innerHTML = slider.value;
+radius = slider.value;
 
-console.log(latUrl); 
-console.log(lngUrl); 
-console.log(radius); 
 
+slider.oninput = function() {
+  output.innerHTML = this.value;
+  radius = this.value;
+}
 
 $.ajax({
   url,
@@ -102,6 +103,7 @@ $.ajax({
 })
 
 placesAutocomplete.on('change', (e) => {
+  
   let searchResult = e.suggestion;
   let lat = searchResult.latlng['lat'];
   let lng = searchResult.latlng['lng'];
