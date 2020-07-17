@@ -21,7 +21,7 @@ let search             = L.map('search-map', {
                             doubleClickZoom: false,
                             dragging: false,
                             keyboard: false,
-                            scrollWheelZoom: false
+                            scrollWheelZoom: true
 }).setView([latUrl, lngUrl], 14);
 
 let wifi           = document.querySelector('#wifi');
@@ -58,7 +58,7 @@ placesAutocomplete.on('change', (e) => {
   let lat          = searchResult.latlng['lat'];
   let lng          = searchResult.latlng['lng'];
   
-  search.setView([ lat, lng], 14);
+  search.setView([ lat, lng], 10);
   apartmentContainer.html(" ");
 
   wifi.value           = checkedService(wifi)           ? 1 : 0;
@@ -121,6 +121,7 @@ function ajaxCall( urlRecived, methodRecived, dataRecived, template) {
     
     if ( result.length === 0 ) {
       console.log('Non vi sono appartamenti in zona');
+      apartmentContainer.append( '<h1> Non vi sono appartamenti in zona </h1>' )
     }
   
     console.log(result)
