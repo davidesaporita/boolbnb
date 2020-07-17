@@ -46,35 +46,30 @@ class SearchController extends Controller
         $sauna            = $request->input('sauna')            ? 5                                   : null;  
         $vista_mare       = $request->input('vista_mare')       ? 6                                   : null;  
        
+
         $request_services = array($wifi, $posto_macchina, $piscina, $portineria, $sauna, $vista_mare);
 
-        $service_filter = 0;
+        $array = [];
 
         foreach($request_services as $service) {
-            if($service) {
-                $service_filter = 1;
-                break;
-            }
+            !$service ?: $array[] = $service;
         }
+
+        var_dump($array, $geo_lat, $geo_lng, $radius);
 
         $haversine = $this->haversine($geo_lat, $geo_lng, $radius);
 
-        if($service_filter == 1) {
+        if(count($array) > 0) {
             $apartments = Apartment::where('active', 1)
                                    ->selectRaw("*, {$haversine} AS distance")
                                    ->whereRaw("{$haversine} < ?", [$radius])
                                    ->where('rooms_number', '>=', $rooms_number_min)
                                    ->where('beds_number',  '>=', $beds_number_min)
-                                   ->whereHas('services', function($query) use($request_services) {
-                                       foreach($request_services as $service) {
-                                           if($service) {
-                                               $query->where('service_id', $service);
-                                           }
-                                       }
+                                   ->whereHas('services', function($query) use($request_services, $array) {
+                                        $query->where('service_id', $array);
                                    })
                                    ->orderBy('distance', 'asc')
                                    ->get();
-
         } else {
             $apartments = Apartment::where('active', 1)
                                    ->selectRaw("*, {$haversine} AS distance")
@@ -84,7 +79,7 @@ class SearchController extends Controller
                                    ->orderBy('distance', 'asc')
                                    ->get();   
         }
-
+        
         return response()->json($apartments);
     }
 

@@ -28,8 +28,16 @@ let search = L.map('search-map', {
 
 ////////////////////////////////////////////////////////////////
 
-let wifi = document.querySelector('#wifi');
+let wifi           = document.querySelector('#wifi');
+let posto_macchina = document.querySelector('#posto_macchina');
+let piscina        = document.querySelector('#piscina');
+let portineria     = document.querySelector('#portineria');
+let sauna          = document.querySelector('#sauna');
+let vista_mare     = document.querySelector('#vista_mare');
 
+console.log(latUrl); 
+console.log(lngUrl); 
+console.log(radius); 
 
 
 $.ajax({
@@ -101,22 +109,26 @@ placesAutocomplete.on('change', (e) => {
   search.setView([ lat, lng], 14);
   apartmentContainer.html(" ");
 
-  console.log( checkedService(wifi))
-
-  if ( checkedService(wifi) ) {
-    wifi.value = 1;
-  } else {
-    wifi.value = 0;
-  }
+  wifi.value           = checkedService(wifi)           ? 1 : 0;
+  posto_macchina.value = checkedService(posto_macchina) ? 1 : 0;
+  piscina.value        = checkedService(piscina)        ? 1 : 0;
+  portineria.value     = checkedService(portineria)     ? 1 : 0;
+  sauna.value          = checkedService(sauna)          ? 1 : 0;
+  vista_mare.value     = checkedService(vista_mare)     ? 1 : 0;
 
   $.ajax({
     url,
     method: "GET",
     data: {
-        geo_lat : lat,
-        geo_lng : lng, 
-        radius : radius,
-        wifi
+        geo_lat        : lat,
+        geo_lng        : lng, 
+        radius         : radius,
+        wifi           : wifi.value,
+        posto_macchina : posto_macchina.value,
+        piscina        : piscina.value,
+        portineria     : portineria.value,
+        sauna          : sauna.value,
+        vista_mare     : vista_mare.value,
     },
   }).done(function(result) {
 

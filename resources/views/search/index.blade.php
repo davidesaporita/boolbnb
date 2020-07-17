@@ -6,9 +6,31 @@
             <label for="search">Indirizzo</label>
             <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address') }}" />
         </div>
-        <div>
-            <input type="checkbox" name="wifi" id="wifi">
-            <label for="wifi">Wi-fi</label>
+        <div class="d-flex">
+            <div class="mr-4">
+                <input type="checkbox" name="wifi" id="wifi" value="0">
+                <label for="wifi">Wi-fi</label>
+            </div>
+            <div class="mr-4">
+                <input type="checkbox" name="posto_macchina" id="posto_macchina" value="0">
+                <label for="posto_macchina">Posto macchina</label>
+            </div>
+            <div class="mr-4">
+                <input type="checkbox" name="piscina" id="piscina" value="0">
+                <label for="piscina">Piscina</label>
+            </div>
+            <div class="mr-4">
+                <input type="checkbox" name="portineria" id="portineria" value="0">
+                <label for="portineria">Portineria</label>
+            </div>
+            <div class="mr-4">
+                <input type="checkbox" name="sauna" id="sauna" value="0">
+                <label for="sauna">Sauna</label>
+            </div>
+            <div class="mr-4">
+                <input type="checkbox" name="vista_mare" id="vista_mare" value="0">
+                <label for="vista_mare">Vista mare</label>
+            </div>
         </div>
     </div>
 
