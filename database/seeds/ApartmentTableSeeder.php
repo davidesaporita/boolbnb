@@ -24,7 +24,7 @@ class ApartmentTableSeeder extends Seeder
         $data_apartments = config('data-apt');
         foreach($data_apartments as $item) {
             $newApartment = new Apartment();
-            $newApartment->user_id          = 1;
+            $newApartment->user_id          = $faker->numberBetween(1, 2);
             $newApartment->title            = $item['title'];
             $newApartment->description      = $item['description'];
             $newApartment->category_id      = $item['category_id'];

@@ -11,7 +11,6 @@ use App\Stat;
 class StatsController extends Controller
 {
     public function index(Apartment $apartment) {
-
         $views = Stat::selectRaw('count(*) as views, MONTH(created_at) as month')
             ->where('stat_type_id', 1)
             ->where('apartment_id', $apartment->id)

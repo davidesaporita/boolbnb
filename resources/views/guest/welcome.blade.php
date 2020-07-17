@@ -1,15 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
+    
+    {{-- Titolo pagina + Search Bar --}}
     <div class="container">
         <h1>Homepage</h1>
-
-        {{-- Address----------------------------------------------------------------------------- --}}
-        <div class="form-group mb-5">
-            <label for="search">Indirizzo</label>
-            <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address', 'Piazza di Spagna, 1, Roma, Italia') }}" />
+        {{-- Search bar --}}
+        <div class=" mb-5">
+            <form action="{{ route('search') }}" method="GET">
+                @csrf
+                @method('GET')
+                
+                <div class="form-group">
+                    <label for="search">Indirizzo</label>        
+                    <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address') }}" />
+                    <input type="hidden" id="geo_lat" name="geo_lat" value="">
+                    <input type="hidden" id="geo_lng" name="geo_lng" value="">
+                </div>
+                
+                <input type="submit" value="CERCA">
+            </form>
         </div>
+    </div>
 
+    {{-- Container Appartamenti--}}
+    <div class="container">
         {{-- apartments --}}
         <h2 class="mb-5">Lista appartamenti</h2>
         <div class="apartments-list d-flex flex-wrap justify-content-between" >
@@ -38,4 +53,10 @@
             {{ $apartments->links() }}
         </div>
     </div>
+
+    <div id="apartment-list"></div>
+
+    @include('shared.handlebars.template-card-home')
+
+    <script src="{{ asset('js/home.js') }}"></script>
 @endsection
