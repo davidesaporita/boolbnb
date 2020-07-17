@@ -22,91 +22,41 @@ let search             = L.map('search-map', {
                             dragging: false,
                             keyboard: false,
                             scrollWheelZoom: false
-                          }).setView([latUrl, lngUrl], 14);
+}).setView([latUrl, lngUrl], 14);
+
 let wifi           = document.querySelector('#wifi');
 let posto_macchina = document.querySelector('#posto_macchina');
 let piscina        = document.querySelector('#piscina');
 let portineria     = document.querySelector('#portineria');
 let sauna          = document.querySelector('#sauna');
 let vista_mare     = document.querySelector('#vista_mare');
-let radius;
-let slider = document.querySelector("#myRange");
-let output = document.querySelector("#show-km");
-output.innerHTML = slider.value;
-radius = slider.value;
+let slider         = document.querySelector("#myRange");
+let output         = document.querySelector("#show-km");
+let dataHome       =  {
+  geo_lat : latUrl,
+  geo_lng : lngUrl, 
+  radius : radius 
+};
 
+let radius;
+output.innerHTML = slider.value;
+
+radius = slider.value;
 
 slider.oninput = function() {
   output.innerHTML = this.value;
   radius = this.value;
 }
 
-$.ajax({
-  url,
-  method: "GET",
-  data: {
-    geo_lat : latUrl,
-    geo_lng : lngUrl, 
-    radius : radius
-  },
-}).done(function(result) {
-  
-  if ( result.length === 0 ) {
-    console.log('Non vi sono appartamenti in zona');
-  }
-
-  console.log(result)
-
- 
-
-  for ( let key in result ) {
-      
-    let res = result[key];
-    
-    let pathImg =                res['featured_img'];
-    let altImage =               res['title'];
-    let title =                  res['title'];
-    let apartmentID =            res['id'];
-    let apartmentCity =          res['city'];
-    let apartmentRegion =        res['region'];
-    let apartmentProvince =      res['province'];
-    let apartmentDescription =   res['description'];
-    let distance =               res['distance'];
-    let geoLat =                 res['geo_lat'];
-    let geoLng =                 res['geo_lng'];
-    
-    let marker = L.marker([geoLat, geoLng]).addTo(search);
-    
-    var apartment = {
-
-      image: pathImg = pathImg.includes("://") ? pathImg : "http://127.0.0.1:8000/storage/" + pathImg,
-      altImage,
-      title, 
-      apartmentID,
-      apartmentCity,
-      apartmentRegion,
-      apartmentProvince,
-      apartmentDescription,
-      distance
-    
-    };
-    
-    var html = template(apartment);
-    apartmentContainer.append(html)
-  }
 
 
-}).fail(function() {
-
-  console.log('Ajax Request Error')
-
-})
+ajaxCall( url, 'GET', dataHome, template) 
 
 placesAutocomplete.on('change', (e) => {
   
   let searchResult = e.suggestion;
-  let lat = searchResult.latlng['lat'];
-  let lng = searchResult.latlng['lng'];
+  let lat          = searchResult.latlng['lat'];
+  let lng          = searchResult.latlng['lng'];
   
   search.setView([ lat, lng], 14);
   apartmentContainer.html(" ");
@@ -118,29 +68,65 @@ placesAutocomplete.on('change', (e) => {
   sauna.value          = checkedService(sauna)          ? 1 : 0;
   vista_mare.value     = checkedService(vista_mare)     ? 1 : 0;
 
-  $.ajax({
-    url,
-    method: "GET",
-    data: {
-        geo_lat        : lat,
-        geo_lng        : lng, 
-        radius         : radius,
-        wifi           : wifi.value,
-        posto_macchina : posto_macchina.value,
-        piscina        : piscina.value,
-        portineria     : portineria.value,
-        sauna          : sauna.value,
-        vista_mare     : vista_mare.value,
-    },
-  }).done(function(result) {
+  let dataSearch =  {
+    geo_lat        : lat,
+    geo_lng        : lng, 
+    radius         : radius,
+    wifi           : wifi.value,
+    posto_macchina : posto_macchina.value,
+    piscina        : piscina.value,
+    portineria     : portineria.value,
+    sauna          : sauna.value,
+    vista_mare     : vista_mare.value,
+  } 
 
+  ajaxCall( url, 'GET', dataSearch, template) 
+
+
+})
+
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2FybWlsZW50aXNjbyIsImEiOiJja2NjNnRmYjcwMXMyMnlwdXg0ZDYxM3JwIn0.Zg-CS3Rc5Krle5GllL7reQ', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: 'your.mapbox.access.token'
+}).addTo(search);
+
+
+//---------- Function
+
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+function checkedService( service ) {
+  return service.checked; 
+}
+
+function ajaxCall( urlRecived, methodRecived, dataRecived, template) {
+
+  $.ajax({
+    url: urlRecived,
+    method: methodRecived,
+    data: dataRecived,
+  }).done(function(result) {
     
     if ( result.length === 0 ) {
       console.log('Non vi sono appartamenti in zona');
     }
-
+  
     console.log(result)
-    
+  
+   
+  
     for ( let key in result ) {
         
       let res = result[key];
@@ -156,11 +142,11 @@ placesAutocomplete.on('change', (e) => {
       let distance =               res['distance'];
       let geoLat =                 res['geo_lat'];
       let geoLng =                 res['geo_lng'];
-
+      
       let marker = L.marker([geoLat, geoLng]).addTo(search);
       
       var apartment = {
-
+  
         image: pathImg = pathImg.includes("://") ? pathImg : "http://127.0.0.1:8000/storage/" + pathImg,
         altImage,
         title, 
@@ -176,33 +162,13 @@ placesAutocomplete.on('change', (e) => {
       var html = template(apartment);
       apartmentContainer.append(html)
     }
+  
+  
   }).fail(function() {
-
+  
     console.log('Ajax Request Error')
-
+  
   })
+  
 
-})
-
-function getParameterByName(name, url) {
-  if (!url) url = window.location.href;
-  name = name.replace(/[\[\]]/g, '\\$&');
-  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-      results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2FybWlsZW50aXNjbyIsImEiOiJja2NjNnRmYjcwMXMyMnlwdXg0ZDYxM3JwIn0.Zg-CS3Rc5Krle5GllL7reQ', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 18,
-      id: 'mapbox/streets-v11',
-      tileSize: 512,
-      zoomOffset: -1,
-      accessToken: 'your.mapbox.access.token'
-}).addTo(search);
-
-function checkedService( service ) {
-  return service.checked; 
 }
