@@ -32,6 +32,9 @@ let sauna          = document.querySelector('#sauna');
 let vista_mare     = document.querySelector('#vista_mare');
 let slider         = document.querySelector("#myRange");
 let output         = document.querySelector("#show-km");
+let minRooms       = document.querySelector('#rooms_number_min');
+let minBeds        = document.querySelector('#beds_number_min');
+let searchButton   = document.querySelector('#button-search');
 let dataHome       =  {
   geo_lat : latUrl,
   geo_lng : lngUrl, 
@@ -40,15 +43,12 @@ let dataHome       =  {
 
 let radius;
 output.innerHTML = slider.value;
-
 radius = slider.value;
 
 slider.oninput = function() {
   output.innerHTML = this.value;
   radius = this.value;
 }
-
-
 
 ajaxCall( url, 'GET', dataHome, template) 
 
@@ -57,6 +57,8 @@ placesAutocomplete.on('change', (e) => {
   let searchResult = e.suggestion;
   let lat          = searchResult.latlng['lat'];
   let lng          = searchResult.latlng['lng'];
+  
+  
   
   search.setView([ lat, lng], 10);
   apartmentContainer.html(" ");
@@ -70,19 +72,49 @@ placesAutocomplete.on('change', (e) => {
 
   let dataSearch =  {
     geo_lat        : lat,
-    geo_lng        : lng, 
-    radius         : radius,
-    wifi           : wifi.value,
-    posto_macchina : posto_macchina.value,
-    piscina        : piscina.value,
-    portineria     : portineria.value,
-    sauna          : sauna.value,
-    vista_mare     : vista_mare.value,
+    geo_lat          : lat,
+    geo_lng          : lng, 
+    radius           : radius,
+    wifi             : wifi.value,
+    posto_macchina   : posto_macchina.value,
+    piscina          : piscina.value,
+    portineria       : portineria.value,
+    sauna            : sauna.value,
+    vista_mare       : vista_mare.value,
+    rooms_number_min : minRooms.value,
+    beds_number_min  : minBeds.value
   } 
 
   ajaxCall( url, 'GET', dataSearch, template) 
 
+  searchButton.addEventListener('click', () => {
+    
+    apartmentContainer.html(" ");
 
+    wifi.value           = checkedService(wifi)           ? 1 : 0;
+    posto_macchina.value = checkedService(posto_macchina) ? 1 : 0;
+    piscina.value        = checkedService(piscina)        ? 1 : 0;
+    portineria.value     = checkedService(portineria)     ? 1 : 0;
+    sauna.value          = checkedService(sauna)          ? 1 : 0;
+    vista_mare.value     = checkedService(vista_mare)     ? 1 : 0;
+    
+    let dataFilter = {
+      geo_lat        : lat,
+      geo_lng        : lng, 
+      radius         : radius,
+      wifi           : wifi.value,
+      posto_macchina : posto_macchina.value,
+      piscina        : piscina.value,
+      portineria     : portineria.value,
+      sauna          : sauna.value,
+      vista_mare     : vista_mare.value,
+      rooms_number_min : minRooms.value,
+      beds_number_min : minBeds.value
+    }
+
+    ajaxCall( url, 'GET', dataFilter, template) 
+ 
+  })
 })
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2FybWlsZW50aXNjbyIsImEiOiJja2NjNnRmYjcwMXMyMnlwdXg0ZDYxM3JwIn0.Zg-CS3Rc5Krle5GllL7reQ', {
@@ -123,10 +155,6 @@ function ajaxCall( urlRecived, methodRecived, dataRecived, template) {
       console.log('Non vi sono appartamenti in zona');
       apartmentContainer.append( '<h1> Non vi sono appartamenti in zona </h1>' )
     }
-  
-    console.log(result)
-  
-   
   
     for ( let key in result ) {
         
@@ -173,3 +201,5 @@ function ajaxCall( urlRecived, methodRecived, dataRecived, template) {
   
 
 }
+
+

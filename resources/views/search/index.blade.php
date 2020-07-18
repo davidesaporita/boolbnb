@@ -6,6 +6,9 @@
             <label for="search">Indirizzo</label>
             <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address') }}" />
         </div>
+    </div>
+
+    <div class="container d-flex flex-column align-items-center">
         <div class="d-flex">
             <div class="mr-2">
                 <input type="range" min="1" max="100" value="20" class="slider" id="myRange">
@@ -40,6 +43,19 @@
                 </div>
             </div>
         </div>
+
+
+        <div class=" container row mb-5">
+            <div class="form-group col-6">
+                <label for="rooms_number_min">Numero di stanze [ min ]</label>
+                <input id="rooms_number_min" class="form-control" type="number"  name="rooms_number_min">
+            </div>
+            <div class="form-group col-6">
+                <label for="beds_number_min">Numero di letti  [ min ]</label>
+                <input id="beds_number_min" class="form-control" type="number"  name="beds_number_min">
+            </div>
+        </div>
+        <span id="button-search" class="btn btn-success mb-5">Cerca</span>
     </div>
 
     <div class="container mb-5">
