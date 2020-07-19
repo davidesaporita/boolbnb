@@ -28,7 +28,7 @@ class StatTableSeeder extends Seeder
                 }
 
                 for($i = 0; $i < $num; $i++) {
-                    $datetime = $faker->dateTimeBetween('2020-01-01', 'now');
+                    $datetime = $faker->dateTimeBetween('2019-01-01', 'now');
 
                     $newStat = new Stat();
                     $data = [

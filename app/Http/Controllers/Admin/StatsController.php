@@ -11,23 +11,32 @@ use App\Stat;
 class StatsController extends Controller
 {
     public function index(Apartment $apartment) {
-        $views = Stat::selectRaw('count(*) as views, MONTH(created_at) as month')
-            ->where('stat_type_id', 1)
-            ->where('apartment_id', $apartment->id)
-            ->groupBy('month')
-            ->get();
+        // $views = Stat::selectRaw('count(*) as views, MONTH(created_at) as month')
+        //     ->where('stat_type_id', 1)
+        //     ->where('apartment_id', $apartment->id)
+        //     ->groupBy('month')
+        //     ->get();
 
-        $info_requests = Stat::selectRaw('count(*) as info_requests, MONTH(created_at) as month')
-            ->where('stat_type_id', 2)
-            ->where('apartment_id', $apartment->id)
-            ->groupBy('month')
-            ->get();
+        // $info_requests = Stat::selectRaw('count(*) as info_requests, MONTH(created_at) as month')
+        //     ->where('stat_type_id', 2)
+        //     ->where('apartment_id', $apartment->id)
+        //     ->groupBy('month')
+        //     ->get();
 
-        $reviews = Stat::selectRaw('count(*) as reviews, MONTH(created_at) as month')
-            ->where('stat_type_id', 3)
-            ->where('apartment_id', $apartment->id)
-            ->groupBy('month')
-            ->get();
+        // $reviews = Stat::selectRaw('count(*) as reviews, MONTH(created_at) as month')
+        //     ->where('stat_type_id', 3)
+        //     ->where('apartment_id', $apartment->id)
+        //     ->groupBy('month')
+        //     ->get();
+
+        $views = Stat::select('apartment_id', 'created_at as date')
+                     ->whereApartmentId($apartment->id)
+                     ->orderBy('created_at', 'ASC')
+                     ->get();
+
+        dd($views);
+
+        // dd(0);
 
         return view('admin.apartments.stats.index', compact('apartment', 'views', 'info_requests', 'reviews'));
     }
