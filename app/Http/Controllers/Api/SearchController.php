@@ -33,14 +33,11 @@ class SearchController extends Controller
 
     public function query(Request $request)
     {
-        
-        $hidden_fields = ['created_at', 'updated_at'];
-        // $relations_loaded = ['services', 'category', 'sponsor_plans'];
-
-        // Todo: improve
-
+        // Geolocation data
         $geo_lat          = $request->input('geo_lat')          ? $request->input('geo_lat')          : null;
         $geo_lng          = $request->input('geo_lng')          ? $request->input('geo_lng')          : null;
+        
+        // Numeric filters
         $radius           = $request->input('radius')           ? $request->input('radius')           : 20;
         $rooms_number_min = $request->input('rooms_number_min') ? $request->input('rooms_number_min') : 0;
         $beds_number_min  = $request->input('beds_number_min')  ? $request->input('beds_number_min')  : 0;
@@ -51,16 +48,22 @@ class SearchController extends Controller
         $piscina          = $request->input('piscina')          ? 3 : null;  
         $portineria       = $request->input('portineria')       ? 4 : null;  
         $sauna            = $request->input('sauna')            ? 5 : null;  
-        $vista_mare       = $request->input('vista_mare')       ? 6 : null;  
+        $vista_mare       = $request->input('vista_mare')       ? 6 : null;
        
+        // Checking active service filters
         $request_services = array($wifi, $posto_macchina, $piscina, $portineria, $sauna, $vista_mare);
 
         foreach($request_services as $service) {
             !$service ?: $service_filters[] = $service;
         }
 
+        // Fields doesn't have to show
+        $hidden_fields = ['created_at', 'updated_at'];
+
+        // Retrieving Haversine formula for geolocation
         $haversine = $this->haversine($geo_lat, $geo_lng, $radius);
 
+        // Prepare DB query with numeric & geolocation filters applied
         $apartments = Apartment::where('active', 1)
                                ->with('category')
                                ->with('services:name')
@@ -70,6 +73,7 @@ class SearchController extends Controller
                                ->where('rooms_number', '>=', $rooms_number_min)
                                ->where('beds_number',  '>=', $beds_number_min);
 
+        // Add service filters (if requested) to query
         if(isset($service_filters) && count($service_filters) > 0) {
             foreach($service_filters as $filter) {
                 $apartments = $apartments->whereHas('services', function (Builder $query) use ($filter) {
@@ -78,6 +82,7 @@ class SearchController extends Controller
             }
         }
 
+        // Execute query
         $apartments = $apartments->orderBy('distance', 'asc')
                                  ->get()
                                  ->makeHidden($hidden_fields);
