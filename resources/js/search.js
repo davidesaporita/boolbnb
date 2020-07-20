@@ -42,7 +42,7 @@ let dataHome       =  {
 };
 
 var myIcon = L.icon({
-  iconUrl: window.location.protocol + '//' + window.location.host + '/storage/images/mymarker.png',
+  iconUrl: 'img/mymarker.png',
   iconSize: [38, 50],
   iconAnchor: [22, 49],
   popupAnchor: [-3, -75],
