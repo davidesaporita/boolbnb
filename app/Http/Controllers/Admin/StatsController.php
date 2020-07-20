@@ -11,24 +11,33 @@ use App\Stat;
 class StatsController extends Controller
 {
     public function index(Apartment $apartment) {
-        $views = Stat::selectRaw('count(*) as views, MONTH(created_at) as month')
-            ->where('stat_type_id', 1)
-            ->where('apartment_id', $apartment->id)
-            ->groupBy('month')
-            ->get();
+        $stats_by_day = Stat::whereApartmentId($apartment->id)
+                            ->select( array(
+                                \DB::raw('DATE(created_at) as date'),
+                                \DB::raw('sum(stat_type_id = "1") as views'),
+                                \DB::raw('sum(stat_type_id = "2") as info_requests'),
+                                \DB::raw('sum(stat_type_id = "3") as reviews')
+                            ))
+                            ->groupBy('date')
+                            ->orderBy('date')
+                            ->get();
 
-        $info_requests = Stat::selectRaw('count(*) as info_requests, MONTH(created_at) as month')
-            ->where('stat_type_id', 2)
-            ->where('apartment_id', $apartment->id)
-            ->groupBy('month')
-            ->get();
+        $stats_by_month = Stat::whereApartmentId($apartment->id)
+                            ->select( array(
+                                \DB::raw("DATE_FORMAT(created_at, '%Y-%m') as date"),
+                                \DB::raw('sum(stat_type_id = "1") as views'),
+                                \DB::raw('sum(stat_type_id = "2") as info_requests'),
+                                \DB::raw('sum(stat_type_id = "3") as reviews')
+                            ))
+                            ->where('created_at', '>=', '2019-07-01')
+                            ->groupBy('date')
+                            ->orderBy('date', 'asc')
+                            ->get();
 
-        $reviews = Stat::selectRaw('count(*) as reviews, MONTH(created_at) as month')
-            ->where('stat_type_id', 3)
-            ->where('apartment_id', $apartment->id)
-            ->groupBy('month')
-            ->get();
-
-        return view('admin.apartments.stats.index', compact('apartment', 'views', 'info_requests', 'reviews'));
+        return view('admin.apartments.stats.index', [ 
+            'apartment' => $apartment, 
+            'complete_stats' => $stats_by_day,
+            'monthly_stats' => $stats_by_month
+        ]);
     }
 }
