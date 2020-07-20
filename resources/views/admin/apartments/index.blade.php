@@ -9,31 +9,44 @@
         @else    
             <h3><i class="fas fa-star"></i>{{$average}}/5 ({{$numvotes}} {{$numvotes == 1 ? 'recensione' : 'recensioni'}})</h3>
         @endif
-        <a class="btn btn-lg btn-danger" href="{{route('admin.apartments.create')}}">Add a new apartment</a>
+        <a class="btn btn-lg btn-danger" href="{{route('admin.apartments.create')}}">Aggiungi un appartamento</a>
     </div>
     @foreach ($apartments as $apartment) 
         <div class="card mb-4 mr-3" style="width: 22rem;">
-            @foreach ($apartment->sponsor_plans as $plan)
+            @forelse ($apartment->sponsor_plans as $plan)
                 @if ($plan->sponsorships->deadline > $now)
-                <h4 class="position-absolute">
-                    <span class="badge badge-success p-2 m-2">Sponsorizzato</span>
-                </h4>
+                    <h4 class="position-absolute">
+                        <span class="badge badge-success p-2 m-2">Sponsorizzato</span>
+                    </h4>
+                @break
+                @elseif ($loop->last)
+                    <h4 class="position-absolute">
+                        <a  href="{{route('admin.apartments.sponsorship.pay', ['apartment' => $apartment])}}" class="badge badge-secondary p-2 m-2">Sponsorizza!</a>
+                    </h4>
                 @endif
-            @endforeach
+            @empty
+                <h4 class="position-absolute">
+                    <a  href="{{route('admin.apartments.sponsorship.pay', ['apartment' => $apartment])}}" class="badge badge-secondary p-2 m-2">Sponsorizza!</a>
+                </h4>
+            @endforelse
             <?php 
             $count = 0;
             foreach ($apartment->info_requests as $request) {
                 $count++;
             }
             if ($count != 0) {
-                echo '<h3 style="display: contents;"><span class="badge badge-danger position-absolute" style="top: 7%; left: 2%;">'; 
+                echo '<h3 class="position-absolute mt-5 ml-2"><span class="badge badge-danger mt-2">'; 
                 echo $count;
                 echo '</span></h3>';
             }
             ?>
-            <img class="w-100 rounded-lg card-img-top" style="height: 350px; object-fit: cover;" src="{{strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img)}}" alt="{{$apartment->title}}">
+            <a href="{{ route('admin.apartments.show', $apartment->id)}}" class="text-decoration-none">
+                <img class="w-100 card-img-top" style="height: 350px; object-fit: cover;" src="{{strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img)}}" alt="{{$apartment->title}}">
+            </a>
             <div class="card-body">
-                <h5 class="card-title">{{$apartment->title}}</h5>
+                <a href="{{ route('admin.apartments.show', $apartment->id)}}" class="text-dark text-decoration-none">
+                    <h5 class="card-title">{{$apartment->title}}</h5>
+                </a>
                 <p>{{$apartment->city . ', ' . $apartment->province . ',' . $apartment->region }}</p>
                 <strong>{{$apartment->category->name}}</strong>
                 <p>{{$apartment->address}}</p>
@@ -57,7 +70,7 @@
                 </div>      
                 {{-- BUTTONS SHOW, DISABLED, DELETE --}}
                 <div class="mt-3 d-flex button-options">
-                    <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-sm btn-primary mr-2">Mostra</a>
+                    <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-sm btn-primary mr-2">Dettagli</a>
                     <form action="{{ route('admin.apartments.toggle', $apartment->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
