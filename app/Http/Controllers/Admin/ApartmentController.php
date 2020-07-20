@@ -87,7 +87,6 @@ class ApartmentController extends Controller
 
         $data = $request->all();
         $data['user_id'] = Auth::id();
-        $data['views'] = 0;
         $data['featured_img'] = Storage::disk('public')->put('images', $data['featured_img']);
 
         $newApartment = new Apartment();

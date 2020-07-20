@@ -17,8 +17,8 @@ class CreateStatsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('apartment_id');
             $table->unsignedBigInteger('stat_type_id');
-            $table->datetime('created_at');
-            $table->datetime('updated_at');
+            $table->datetime('created_at')->useCurrent();
+            $table->datetime('updated_at')->useCurrent();
 
             $table->foreign('apartment_id')
                   ->references('id')
@@ -27,7 +27,6 @@ class CreateStatsTable extends Migration
             $table->foreign('stat_type_id')
                   ->references('id')
                   ->on('stat_types');
-
         });
     }
 
