@@ -35,13 +35,12 @@
     <div class="mt-4 details-apartment row">
         <div class="featured-img col-12 col-lg-6">
             <span class="badge badge-success position-absolute p-2 m-2">Immagine in primo piano</span>
-            <img class="w-100 rounded-lg" style="height: 400px" src="{{strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img)}}" alt="{{$apartment->title}}">
+            <img class="w-100 rounded-lg" style="height: 400px; object-fit: cover;" src="{{strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img)}}" alt="{{$apartment->title}}">
         </div>
         <div class="col-12 col-lg-6">
             <h2 class="card-title">
                 <strong>{{$apartment->title}}</strong>
             </h2>
-            {{-- <p>{{$apartment->city . ', ' . $apartment->region . ', ' . $apartment->province}}</p> --}}
             <p>{{$apartment->address}} ({{$apartment->city . ', ' . $apartment->province . ', ' . $apartment->region}})</p>
             <div class="d-flex align-items-center mb-4">
                 <h5 class="mr-2"> {{$apartment->rooms_number}} <i class="fas fa-person-booth text-secondary"></i></h5>
@@ -62,7 +61,7 @@
                     @endforelse
                 </div>
             </div>  
-            {{-- BUTTONS EDIT AND DELETE --}}
+            {{-- BUTTONS EDIT, STATS, DELETE --}}
             <div class="mt-3 button-options">
                 <a class="btn btn-sm btn-primary" href="{{route('admin.apartments.edit', $apartment->id)}}">Modifica</a>
                 <a class="btn btn-sm btn-dark" href="{{ route('admin.apartments.stats.index', ['apartment' => $apartment ]) }}">Statistiche</a>
@@ -77,35 +76,33 @@
     {{-- CAROUSEL MEDIA CONTENTS --}}
     <div class="media-apartment row align-items-baseline mt-4">
         <div class="col-12 col-lg-6">
-                <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+                <div id="carousel" class="carousel carousel-fade" data-ride="carousel">
                     <ol class="carousel-indicators">
                         @foreach($apartment->media as $item)
                             <li data-target="#carousel" data-slide-to="{{$loop->index}}" class="{{$loop->first ? 'active' : ''}}"></li>
                         @endforeach
-                    </ol>    
-                    <div class="carousel-inner" role="listbox">
+                    </ol>
+                    <div class="carousel-inner rounded-lg bg-secondary" role="listbox" style="height: 300px;">
                         @foreach ($apartment->media as $item)
                             <div class="carousel-item {{$loop->first ? 'active' : ''}}">
-                                <img src="{{strpos($item->path, '://') ? $item->path : asset("/storage/" . $item->path)}}" class="d-block w-100 rounded-lg" style="height: 300px" alt="{{$item->caption}}">
+                                <img src="{{strpos($item->path, '://') ? $item->path : asset("/storage/" . $item->path)}}" class="w-100" style="height: 300px; object-fit: cover;" alt="{{$item->caption}}">
                             </div>
                         @endforeach
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="carousel-control-prev-icon bg-secondary rounded-circle" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="carousel-control-next-icon bg-secondary rounded-circle" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
         </div>
         {{-- MAP --}}
         <div class="mt-4 col-12 col-lg-6">
-                <div id="show-map" class="rounded-lg" style="height: 300px"></div>
+            <div id="show-map" class="rounded-lg" style="height: 300px"></div>
         </div> 
-       
-
     </div>
     {{-- INFO REQUESTS --}}
     <div class="mt-4 info-requests">
@@ -117,7 +114,7 @@
                     <small class="d-block mb-2">{{$request->created_at}}</small>
                     <h6><strong>{{$request->title}}</strong></h6>
                     <p>{{$request->body}}</p>
-                    <a class="btn btn-sm btn-danger mb-4" href="#">Elimina</a>
+                    <a href="#" class="btn btn-sm btn-primary">Rispondi</a>
                 </div>
             @empty
                 <div class="mb-4 col-12 col-lg-6 mb-4">
@@ -126,11 +123,20 @@
             @endforelse
         </div>
     </div>
-    {{-- COMMENTS --}}
+    {{-- REVIEWS --}}
     <div class="reviews">
-        <h4>Recensioni:</h4>
+        @if ($numvotes == 0)
+            <div class="row">
+                <div class="col-12 col-lg-6 mb-4">
+                    <h4>Recensioni:</h4>
+                    <p>Non ci sono recensioni!</p>
+                </div>
+            </div>
+        @else    
+            <h4><i class="fas fa-star"></i>{{$average}}/5 ({{$numvotes}} {{$numvotes == 1 ? 'recensione' : 'recensioni'}})</h4>
+        @endif
         <div class="row">
-            @forelse ($apartment->reviews as $review)
+            @foreach ($apartment->reviews as $review)
                 <div class="col-12 col-lg-6 mb-4">
                     <h5><strong>{{$review->first_name}} {{$review->last_name}}</strong></h5>
                     <small class="d-block mb-2">{{$review->created_at}}</small>    
@@ -141,11 +147,7 @@
                         <strong>{{$review->rating}}/5</strong>
                     </span>
                 </div>
-            @empty
-                <div class="col-12 col-lg-6 mb-4">
-                    <p>Non ci sono commenti!</p>
-                </div>
-            @endforelse    
+            @endforeach    
         </div>
     </div>
 </div>
