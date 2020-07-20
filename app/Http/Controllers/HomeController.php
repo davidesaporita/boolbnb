@@ -6,11 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\support\Facades\Mail;
 
-use App\Apartment;
-use App\Service;
 use App\Mail\NewInfoRequest;
+use Carbon\Carbon;
+
+use App\Apartment;
 use App\InfoRequest;
 use App\Review;
+use App\Service;
+use App\Stat;
+use App\StatType;
 
 use function GuzzleHttp\Promise\all;
 
@@ -26,9 +30,8 @@ class HomeController extends Controller
 
     public function show(Apartment $apartment)
     {
-        
-
-
+        // Add new "view" stat to stats table
+        Stat::addNewStat($apartment, 'view');
 
         return view('guest.apartments.show', compact('apartment'));
 
@@ -47,9 +50,10 @@ class HomeController extends Controller
         $newRequest->fill($data);
         $saved = $newRequest->save();
 
-        
-
         if($saved) {
+
+            // Add new "view" stat to stats table
+            Stat::addNewStat($apartment, 'info_request');
 
             Mail::to('user@test.com')->send(new NewInfoRequest($newRequest));
             
@@ -73,6 +77,10 @@ class HomeController extends Controller
 
 
         if($saved) {
+
+            // Add new "view" stat to stats table
+            Stat::addNewStat($apartment, 'review');
+
             return view('guest.apartments.show', compact('apartment'));
         }
     }

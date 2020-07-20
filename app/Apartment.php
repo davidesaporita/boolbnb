@@ -29,7 +29,6 @@ class Apartment extends Model
         'geo_lat',
         'geo_lng',
         'active',
-        'views',
         'featured_img'
     ];
 

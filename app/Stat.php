@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Apartment;
+
 class Stat extends Model
 {
     protected $fillable = [
@@ -25,5 +27,15 @@ class Stat extends Model
     // Apartments table | Many to one
     public function apartment() {
         return $this->belongsTo('App\Apartment');
+    }
+
+    // Create stats records
+    public static function addNewStat(Apartment $apartment, $stat_type_name) {
+        $data['apartment_id'] = $apartment->id;
+        $data['stat_type_id'] = StatType::where('name', $stat_type_name)->value('id');
+        
+        $newStat = new Stat();
+        $newStat->fill($data);
+        $newStat->save();
     }
 }
