@@ -18,7 +18,11 @@ class SponsorshipController extends Controller
      */
     public function pay(Apartment $apartment) 
     {
-        return view('admin.apartments.sponsorship.pay', compact('apartment'));
+
+        $gateway = new Braintree\Gateway(config('braintree'));
+        $client_token = $gateway->ClientToken()->generate(); 
+
+        return view('admin.apartments.sponsorship.pay', compact('apartment', 'gateway', 'client_token'));
     }
     
     /**
@@ -30,12 +34,7 @@ class SponsorshipController extends Controller
     {
         $data = $request->all();
 
-        $gateway = new Braintree\Gateway([
-            'environment' => getenv('BT_ENVIRONMENT'),
-            'merchantId'  => getenv('BT_MERCHANT_ID'),
-            'publicKey'   => getenv('BT_PUBLIC_KEY'),
-            'privateKey'  => getenv('BT_PRIVATE_KEY')
-        ]);
+        $gateway = new Braintree\Gateway(config('braintree'));
     
         $amount = $data["amount"];
         $nonce  = $data["payment_method_nonce"];
