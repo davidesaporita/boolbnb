@@ -22,7 +22,7 @@ let search             = L.map('search-map', {
                             dragging: false,
                             keyboard: false,
                             scrollWheelZoom: true
-}).setView([latUrl, lngUrl], 14);
+}).setView([latUrl, lngUrl], 15);
 
 let wifi           = document.querySelector('#wifi');
 let posto_macchina = document.querySelector('#posto_macchina');
@@ -40,6 +40,13 @@ let dataHome       =  {
   geo_lng : lngUrl, 
   radius : radius 
 };
+
+var myIcon = L.icon({
+  iconUrl: window.location.protocol + '//' + window.location.host + '/storage/images/mymarker.png',
+  iconSize: [38, 50],
+  iconAnchor: [22, 49],
+  popupAnchor: [-3, -75],
+});
 
 let radius;
 output.innerHTML = slider.value;
@@ -60,7 +67,7 @@ placesAutocomplete.on('change', (e) => {
   
   
   
-  search.setView([ lat, lng], 10);
+  search.setView([ lat, lng], 14);
   apartmentContainer.html(" ");
 
   wifi.value           = checkedService(wifi)           ? 1 : 0;
@@ -99,17 +106,19 @@ placesAutocomplete.on('change', (e) => {
     vista_mare.value     = checkedService(vista_mare)     ? 1 : 0;
     
     let dataFilter = {
-      geo_lat        : lat,
-      geo_lng        : lng, 
-      radius         : radius,
-      wifi           : wifi.value,
-      posto_macchina : posto_macchina.value,
-      piscina        : piscina.value,
-      portineria     : portineria.value,
-      sauna          : sauna.value,
-      vista_mare     : vista_mare.value,
+
+      geo_lat          : lat,
+      geo_lng          : lng, 
+      radius           : radius,
+      wifi             : wifi.value,
+      posto_macchina   : posto_macchina.value,
+      piscina          : piscina.value,
+      portineria       : portineria.value,
+      sauna            : sauna.value,
+      vista_mare       : vista_mare.value,
       rooms_number_min : minRooms.value,
-      beds_number_min : minBeds.value
+      beds_number_min  : minBeds.value
+      
     }
 
     ajaxCall( url, 'GET', dataFilter, template) 
@@ -125,7 +134,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
       zoomOffset: -1,
       accessToken: 'your.mapbox.access.token'
 }).addTo(search);
-
 
 //---------- Function
 
@@ -171,9 +179,12 @@ function ajaxCall( urlRecived, methodRecived, dataRecived, template) {
       let distance =               res['distance'];
       let geoLat =                 res['geo_lat'];
       let geoLng =                 res['geo_lng'];
-      
-      let marker = L.marker([geoLat, geoLng]).addTo(search);
-      
+
+      let marker = L.marker([geoLat, geoLng], { icon: myIcon }).addTo(search);
+      marker.bindPopup("<strong>" + title + "</strong>", {
+
+      });
+
       var apartment = {
   
         image: pathImg = pathImg.includes("://") ? pathImg : "http://127.0.0.1:8000/storage/" + pathImg,
