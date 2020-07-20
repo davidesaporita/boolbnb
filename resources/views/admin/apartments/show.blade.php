@@ -4,23 +4,23 @@
 <div class="container">
     @forelse ($apartment->sponsor_plans as $plan)
         @if ($plan->sponsorships->deadline > $now)
-        <div class="card bg-success text-white mt-4">
-            <div class="mt-3 mb-3 sponsor-plan text-center">
-                <h4 class="mb-3">Piano sponsorizzazione</h4>
-                <span class="p-2 pr-4 pl-4 rounded bg-light text-dark">{{$plan->name}}</span>
-                <p class="mt-4">Durata sponsorizzazione: {{$plan->hours}} ore</p>
-                <p class="text-warning">Termine della sponsorizzazione: {{$plan->sponsorships->deadline}}</p>
+            <div class="card bg-success text-white mt-4">
+                <div class="mt-3 mb-3 sponsor-plan text-center">
+                    <h4 class="mb-3">Piano sponsorizzazione</h4>
+                    <span class="p-2 pr-4 pl-4 rounded bg-light text-dark">{{$plan->name}}</span>
+                    <p class="mt-4">Durata sponsorizzazione: {{$plan->hours}} ore</p>
+                    <p class="text-warning">Termine della sponsorizzazione: {{$plan->sponsorships->deadline}}</p>
+                </div>
             </div>
-        </div>
         @break
         @elseif ($loop->last)
-        <div class="card bg-dark text-white mt-4">
-            <div class="mt-3 mb-3 sponsor-plan text-center">
-                <h4 class="mb-3">Piano sponsorizzazione</h4>                
-                <p>Quest{{(substr($apartment->category->name, -1, 1) == 'o') ? 'o' : 'a'}} {{$apartment->category->name}} non è sponsorizzat{{(substr($apartment->category->name, -1, 1) == 'o') ? 'o' : 'a'}}!</p>
-                <a class="btn btn-sm btn-light" href="{{route('admin.apartments.sponsorship.pay', ['apartment' => $apartment])}}">Nuovo Sponsor</a>
+            <div class="card bg-dark text-white mt-4">
+                <div class="mt-3 mb-3 sponsor-plan text-center">
+                    <h4 class="mb-3">Piano sponsorizzazione</h4>                
+                    <p>Quest{{(substr($apartment->category->name, -1, 1) == 'o') ? 'o' : 'a'}} {{$apartment->category->name}} non è sponsorizzat{{(substr($apartment->category->name, -1, 1) == 'o') ? 'o' : 'a'}}!</p>
+                    <a class="btn btn-sm btn-light" href="{{route('admin.apartments.sponsorship.pay', ['apartment' => $apartment])}}">Nuovo Sponsor</a>
+                </div>
             </div>
-        </div>
         @endif
     @empty
         <div class="card bg-dark text-white mt-4">
@@ -73,7 +73,6 @@
             </div>
         </div>
     </div>
-
     {{-- CAROUSEL MEDIA CONTENTS --}}
     <div class="media-apartment row align-items-baseline mt-4">
         <div class="col-12 col-lg-6">
@@ -129,7 +128,7 @@
         @if ($numvotes == 0)
             <div class="row">
                 <div class="col-12 col-lg-6 mb-4">
-                    <h4>Recensioni:</h4>
+                    <h4>({{$numvotes}} recensioni)</h4>
                     <p>Non ci sono recensioni!</p>
                 </div>
             </div>
@@ -152,10 +151,9 @@
         </div>
     </div>
 </div>
-
+{{-- MAP LAT AND LONG --}}
 <input type="hidden" id="lat" value="{{$apartment->geo_lat}}">
 <input type="hidden" id="lng" value="{{$apartment->geo_lng}}">
-
+{{-- JS --}}
 <script src="{{asset('js/map/map-show.js')}}"></script>
-
 @endsection
