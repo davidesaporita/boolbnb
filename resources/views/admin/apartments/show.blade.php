@@ -74,6 +74,7 @@
             </div>
         </div>
     </div>
+
     {{-- CAROUSEL MEDIA CONTENTS --}}
     <div class="media-apartment row align-items-baseline mt-4">
         <div class="col-12 col-lg-6">
@@ -104,8 +105,6 @@
         <div class="mt-4 col-12 col-lg-6">
                 <div id="show-map" class="rounded-lg" style="height: 300px"></div>
         </div> 
-       
-
     </div>
     {{-- INFO REQUESTS --}}
     <div class="mt-4 info-requests">
