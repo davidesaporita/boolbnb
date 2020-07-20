@@ -1,5 +1,6 @@
 var places = require('places.js');
 import L from 'leaflet'
+import * as FilePond from 'filepond';
 
 let lat =  document.querySelector('#geo_lat')
 let lng =  document.querySelector('#geo_lng')
@@ -112,3 +113,28 @@ function findBestZoom() {
     var featureGroup = L.featureGroup(markers);
     map.fitBounds(featureGroup.getBounds().pad(0.5), {animate: false});
 }
+
+
+/////////////////////////////////////////// FILE POND TEST ////////////////////////////////////////
+
+// Connesione agli input
+const featuredImgInputElement = document.querySelector( '#featured_img' );
+
+// Ottimizzazione prograssiva del caricamento dei file in base al browser
+const featuredImgPond = FilePond.create( featuredImgInputElement, {
+    
+    // OPZIONI
+    maxFiles: 1,            // File massimi caricabili
+    checkValidity: true     // Controllo del tipo di file
+
+});
+
+console.log('Name: ' + featuredImgPond.name);
+console.log('Max file: ' + featuredImgPond.maxFiles);
+console.log('Required: ' + featuredImgPond.required);
+
+// Setting del server
+
+FilePond.setOptions({
+    server: 'http://127.0.0.1:8000/'
+});
