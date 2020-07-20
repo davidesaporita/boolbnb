@@ -99,16 +99,17 @@
                 {{-- File Immagine principale --}}
                 <div class="form-group">
                     <h3>Immagine principale</h3>
-                    <input  class="form-control-file" type="file" name="featured_img" id="featured_img" accept="image/*">
+                    <input type="file" id="featured_img" class="form-control-file" name="featured_img"  accept="image/*" required>
                 </div>
                 {{-- File Immagine secondaria --}}
                 <h3>Immagini secondarie</h3>
                 <div class="row">
                     @for ( $i = 0; $i < 5; $i++ )
                         <div class="form-group col-3">
-                            <input type="file" name="media[]" accept="image/*">
+                            <input id="secondary_img" type="file" name="media[]" accept="image/*">
                         </div>
                     @endfor
+                    {{-- <input type="file" name="media[]" accept="image/*"> --}}
                 </div>
             </section>
 
