@@ -32,8 +32,35 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->paginate(10);
-        return view('admin.apartments.index', compact('apartments'));
+        $apartments = Apartment::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->paginate(9);
+        $now = Carbon::now();
+        // Ref
+        $numrequests = 0;
+        $numreviews = 0;
+        $rating = 0;
+        $numvotes = 0;
+        foreach ($apartments as $apartment) {
+            // Info requests count
+            foreach ($apartment->info_requests as $request) {
+                $numrequests++;    
+            }
+            // Reviews average
+            foreach ($apartment->reviews as $review) {
+                $numreviews++;  
+                $numvotes++;
+                $rating += $review->rating;
+            }
+            if ($numvotes != 0) {
+                $fullaverage = $rating / $numvotes;
+                $average = round($fullaverage, 2);
+            }
+            elseif ($numvotes == 0) {
+                $fullaverage = 0;
+                $average = 0;
+            }
+        }
+
+        return view('admin.apartments.index', compact('apartments', 'now', 'numrequests', 'numreviews', 'numvotes', 'average'));
     }
 
     /**
@@ -100,8 +127,25 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {
         $now = Carbon::now();
+        // Reviews Avarage
+        $numreviews = 0;
+        $rating = 0;
+        $numvotes = 0;
+        foreach ($apartment->reviews as $review) {
+            $numreviews++;  
+            $numvotes++;
+            $rating += $review->rating;
+        }
+        if ($numvotes != 0) {
+            $fullaverage = $rating / $numvotes;
+            $average = round($fullaverage, 2);
+        }
+        elseif ($numvotes == 0) {
+            $fullaverage = 0;
+            $average = 0;
+        }
 
-        return view('admin.apartments.show', compact('apartment', 'now'));
+        return view('admin.apartments.show', compact('apartment', 'now', 'average', 'numvotes'));
     }
 
     /**
