@@ -1,7 +1,5 @@
 @include('shared.header')
 
-
-
 <div class="container">
 
     
@@ -77,7 +75,6 @@
 
 
 <main class="py-4">
-
     <div class="container text-center">
         <a class="btn btn-lg btn-primary w-50 mt-5" href="{{ route('admin.apartments.create') }}">
             Add a new apartment
@@ -90,6 +87,7 @@
     <img class="d-block w-100" src="https://cdn-skill.splashmath.com/panel-uploads/GlossaryTerm/0053540d59ee4824b70187bce47ef0e4/1551236725_Drawing-a-bar-graph-to-represent-the-data.png" alt="">
 </div>
 </main>
+</div>
 
 
 

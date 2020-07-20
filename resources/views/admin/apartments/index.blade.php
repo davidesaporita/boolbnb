@@ -1,59 +1,83 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container d-flex flex-column justify-center">
-        
-        <h1 class="mb-5">Tutti gli appartamenti</h1>
-
-        @if (session('deleted_apartment'))
-            <div class="card text-white bg-success mb-3" style="width: 100%;">
-                <div class="card-header">Eliminato!</div>
-                <div class="card-body">
-                <h5 class="card-title">{{ session('deleted_apartment') }} è stato eliminato.</h5>
+<div class="container d-flex flex-wrap justify-content-center">
+    <div class="mb-3 d-flex flex-wrap justify-content-around w-100">
+        <h3>Messaggi ricevuti: {{$numrequests}}</h3>
+        @if ($numvotes == 0)
+            <h3>Non ci sono recensioni!</h3>
+        @else    
+            <h3><i class="fas fa-star"></i>{{$average}}/5 ({{$numvotes}} {{$numvotes == 1 ? 'recensione' : 'recensioni'}})</h3>
+        @endif
+        <a class="btn btn-lg btn-danger" href="{{route('admin.apartments.create')}}">Add a new apartment</a>
+    </div>
+    @foreach ($apartments as $apartment) 
+        <div class="card mb-4 mr-3" style="width: 22rem;">
+            @foreach ($apartment->sponsor_plans as $plan)
+                @if ($plan->sponsorships->deadline > $now)
+                <h4 class="position-absolute">
+                    <span class="badge badge-success p-2 m-2">Sponsorizzato</span>
+                </h4>
+                @endif
+            @endforeach
+            <?php 
+            $count = 0;
+            foreach ($apartment->info_requests as $request) {
+                $count++;
+            }
+            if ($count != 0) {
+                echo '<h3 style="display: contents;"><span class="badge badge-danger position-absolute" style="top: 7%; left: 2%;">'; 
+                echo $count;
+                echo '</span></h3>';
+            }
+            ?>
+            <img class="w-100 rounded-lg card-img-top" style="height: 350px; object-fit: cover;" src="{{strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img)}}" alt="{{$apartment->title}}">
+            <div class="card-body">
+                <h5 class="card-title">{{$apartment->title}}</h5>
+                <p>{{$apartment->city . ', ' . $apartment->province . ',' . $apartment->region }}</p>
+                <strong>{{$apartment->category->name}}</strong>
+                <p>{{$apartment->address}}</p>
+                <div class="d-flex align-items-center mb-3">
+                    <h5 class="mr-2"> {{$apartment->rooms_number}} <i class="fas fa-person-booth text-secondary"></i></h5>
+                    <h5 class="mr-2">{{$apartment->beds_number}} <i class="fas fa-bed text-secondary"></i></h5>
+                    <h5 class="mr-2">{{$apartment->bathrooms_number}} <i class="fas fa-bath text-secondary"></i></h5>
+                    <h5 class="mr-2">{{$apartment->square_meters}} m²</h5>
+                </div>
+                <div class="services-apartment">
+                    <div class="mb-2">
+                        <strong>Servizi disponibili</strong>
+                    </div>
+                    <div class="services-badge">
+                        @forelse ($apartment->services as $service)
+                            <span class="badge badge-pill badge-primary mb-2">{{$service->name}}</span>
+                        @empty
+                            <p>Non ci sono servizi aggiuntivi!</p>
+                        @endforelse
+                    </div>
+                </div>      
+                {{-- BUTTONS SHOW, DISABLED, DELETE --}}
+                <div class="mt-3 d-flex button-options">
+                    <a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-sm btn-primary mr-2">Mostra</a>
+                    <form action="{{ route('admin.apartments.toggle', $apartment->id) }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+                        @if($apartment->active == 1)
+                            <input type="submit" class="btn btn-sm btn-dark mr-2" value="Disabilita">
+                        @else 
+                            <input type="submit" class="btn btn-sm btn-success mr-2" value="Abilita">
+                        @endif
+                    </form>
+                    <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input class="btn btn-sm btn-danger mr-2" type="submit" value="Elimina">
+                    </form>
                 </div>
             </div>
-        @endif
-
-        <div class="apartments-list" >
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>NOME APPARTAMENTO</th>
-                        <th colspan="4">Azioni</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ( $apartments as $apartment )
-                        <tr>
-                            <th>{{ $apartment->title }}</th>
-                            <td><a href="{{ route('admin.apartments.show', $apartment->id) }}" class="btn btn-primary">Mostra</a></td>
-                            <td><a href="{{ route('admin.apartments.edit', $apartment->id) }}" class="btn btn-primary">Modifica</a></td>
-                                <td>
-                                <form action="{{ route('admin.apartments.toggle', $apartment->id) }}" method="POST">
-                                    @csrf
-                                    @method('PATCH')
-                                    @if($apartment->active == 1)
-                                        <input type="submit" class="btn btn-dark" value="Disabilita">
-                                    @else 
-                                        <input type="submit" class="btn btn-success" value="Abilita">
-                                    @endif
-                                </form>
-                            </td>  
-                            <td>
-                                <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input class="btn btn-danger" type="submit" value="Elimina">
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
         </div>
-
-        <div class="wrap-pagination mt-5 d-flex justify-content-center">
-            {{ $apartments->links() }}
-        </div>
-    </div>
+    @endforeach
+</div>
+<div class="wrap-pagination mt-5 d-flex justify-content-center">
+    {{$apartments->links()}}
+</div>
 @endsection
