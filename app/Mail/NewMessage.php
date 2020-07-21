@@ -7,9 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-use App\InfoRequest;
+use App\Message;
 
-class NewInfoRequest extends Mailable
+class NewMessage extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,16 +18,16 @@ class NewInfoRequest extends Mailable
      * 
      */
 
-    protected $infoRequest;
+    protected $message;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(InfoRequest $infoRequest)
+    public function __construct(Message $message)
     {
-        $this->infoRequest = $infoRequest;
+        $this->message = $message;
     }
 
     /**
@@ -37,12 +37,12 @@ class NewInfoRequest extends Mailable
      */
     public function build()
     {
-        return $this->from($this->infoRequest->email)
+        return $this->from($this->message->email)
                     // ->view('mail.new-info-request')
                     ->markdown('mail.new-info-request')
                     ->with([
-                        'title' => $this->infoRequest->title,
-                        'body' => $this->infoRequest->body
+                        'title' => $this->message->title,
+                        'body' => $this->message->body
                     ]);
     }
 }

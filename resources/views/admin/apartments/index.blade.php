@@ -3,7 +3,7 @@
 @section('content')
 <div class="container d-flex flex-wrap justify-content-center">
     <div class="mb-3 d-flex flex-wrap justify-content-around w-100">
-        <h3>Messaggi ricevuti: {{$numrequests}}</h3>
+        <h3>Messaggi ricevuti: {{$messages_number}}</h3>
         @if ($numvotes == 0)
             <h3>Non ci sono recensioni!</h3>
         @else    
@@ -31,7 +31,7 @@
             @endforelse
             <?php 
             $count = 0;
-            foreach ($apartment->info_requests as $request) {
+            foreach ($apartment->messages as $message) {
                 $count++;
             }
             if ($count != 0) {

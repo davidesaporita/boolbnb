@@ -15,7 +15,7 @@ class StatTypeTableSeeder extends Seeder
     {
         $types = [
             'view',         //1
-            'info_request', //2
+            'message', //2
             'review',       //3
         ];
 

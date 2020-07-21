@@ -19,7 +19,7 @@ class StatsController extends Controller
                      ->select( array(
                        \DB::raw('DATE(created_at) as date'),
                        \DB::raw('sum(stat_type_id = "1") as views'),
-                       \DB::raw('sum(stat_type_id = "2") as info_requests'),
+                       \DB::raw('sum(stat_type_id = "2") as messages'),
                        \DB::raw('sum(stat_type_id = "3") as reviews')
                      ))
                      ->groupBy('date')

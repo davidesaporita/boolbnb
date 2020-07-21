@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\support\Facades\Mail;
 
-use App\Mail\NewInfoRequest;
+use App\Mail\NewMessage;
 use Carbon\Carbon;
 
 use App\Apartment;
-use App\InfoRequest;
+use App\Message;
 use App\Review;
 use App\Service;
 use App\Stat;
@@ -46,16 +46,16 @@ class HomeController extends Controller
         // get apartment id
         $data['apartment_id'] = $apartment->id;
 
-        $newRequest = new InfoRequest();
+        $newRequest = new Message();
         $newRequest->fill($data);
         $saved = $newRequest->save();
 
         if($saved) {
 
             // Add new "view" stat to stats table
-            Stat::addNewStat($apartment, 'info_request');
+            Stat::addNewStat($apartment, 'message');
 
-            Mail::to('user@test.com')->send(new NewInfoRequest($newRequest));
+            Mail::to('user@test.com')->send(new NewMessage($newRequest));
             
             // todo redirect
             return view('guest.apartments.show', compact('apartment'));
