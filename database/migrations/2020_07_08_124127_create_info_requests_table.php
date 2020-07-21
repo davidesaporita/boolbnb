@@ -18,6 +18,8 @@ class CreateInfoRequestsTable extends Migration
             $table->unsignedBigInteger('apartment_id');
             $table->string('email', 50);
             $table->string('title', 30);
+            $table->string('direction', 8)->default('received');
+            $table->boolean('read')->default(false);
             $table->text('body');
             $table->timestamps();
 

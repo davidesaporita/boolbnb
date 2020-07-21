@@ -21,9 +21,12 @@ class InfoRequestTableSeeder extends Seeder
                 if ( $faker->boolean(30) ) {
                     $newInfoRequest = new InfoRequest();
                     $newInfoRequest->apartment_id = $apartment->id;
-                    $newInfoRequest->email = $faker->email();
-                    $newInfoRequest->title = $faker->text(30);
-                    $newInfoRequest->body = $faker->text(400);
+                    $newInfoRequest->email        = $faker->email();
+                    $newInfoRequest->title        = $faker->text(30);
+                    $newInfoRequest->body         = $faker->text(400);
+                    $newInfoRequest->direction    = 'received';
+                    $newInfoRequest->read         = $faker->boolean(20) ? true : false ;
+                    $newInfoRequest->body         = $faker->text(400);
                     $newInfoRequest->save();
                 }
             }
