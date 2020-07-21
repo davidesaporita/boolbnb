@@ -1,6 +1,5 @@
 //// COMMONS
 
-
 //// MIXIN
 
 @mixin font_options ($size: false, $color: false, $weight: false, $lh: false, $ls: false) {
@@ -34,4 +33,10 @@
     justify-content: $just-content;
     flex-direction: $flex-direction;
 
+}
+
+@mixin list_style {
+    margin: 0;
+    padding: 0;
+    list-style: none;  
 }
