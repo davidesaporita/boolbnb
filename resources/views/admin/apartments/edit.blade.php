@@ -51,7 +51,7 @@
                 </div>
                 {{-- Numero di letti --}}
                 <div class="form-group col-3">
-                    <label for="beds_number">Numero di letti</label>
+                    <label for="beds_number">Numero di posti letto</label>
                     <input id="beds_number" class="form-control" type="number" name="beds_number" placeholder="n°" value="{{ old('beds_number', $apartment->beds_number) }}" min="1" max="50" required>
                 </div>
                 {{-- Numero di bagni --}}
