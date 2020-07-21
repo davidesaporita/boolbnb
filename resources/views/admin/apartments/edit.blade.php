@@ -25,11 +25,11 @@
                 {{-- Titolo --}}
                 <div class="form-group col-8">
                     <label for="title">Nome appartamento</label>
-                    <input id="title" class="form-control" type="text" name="title" placeholder="Inserisci il nome del appartamento" value="{{ old('title', $apartment->title) }}">
+                    <input id="title" class="form-control" type="text" name="title" placeholder="Inserisci il nome dell'appartamento" maxlength="50" minlength="10" value="{{ old('title', $apartment->title) }}" required>
                 </div>        
                 {{-- Category --}}
                 <div class="d-flex flex-column form-group col-4 ">
-                    <label for="category">Category</label>
+                    <label for="category">Categoria</label>
                     <select class="form-control" name="category_id" id="category" value="{{ old('category_id') }}">
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -39,30 +39,30 @@
             </section>
             {{-- Descrizione --}}
             <div class="form-group">
-                <label for="description">Descrizione dell appartamento</label>
-                <textarea name="description" id="description" class="form-control" placeholder="Inserisci una descrizione">{{ old('description', $apartment->description) }}</textarea>
+                <label for="description">Descrizione dell'appartamento</label>
+                <textarea name="description" id="description" class="form-control" placeholder="Inserisci una descrizione" maxlength="200" minlength="10" required>{{ old('description', $apartment->description) }}</textarea>
             </div>
             {{-- Info stanza : Numero Stanze / Letti / Bagni / Mq --}}
             <section class="row mb-5">
                 {{-- Numero di stanze --}}
                 <div class="form-group col-3">
                     <label for="rooms_number">Numero di stanze</label>
-                    <input id="rooms_number" class="form-control" type="number" name="rooms_number" placeholder="n°" value="{{ old('rooms_number', $apartment->rooms_number) }}">
+                    <input id="rooms_number" class="form-control" type="number" name="rooms_number" placeholder="n°" value="{{ old('rooms_number', $apartment->rooms_number) }}" min="1" max="50" required>
                 </div>
                 {{-- Numero di letti --}}
                 <div class="form-group col-3">
                     <label for="beds_number">Numero di letti</label>
-                    <input id="beds_number" class="form-control" type="number" name="beds_number" placeholder="n°" value="{{ old('beds_number', $apartment->beds_number) }}">
+                    <input id="beds_number" class="form-control" type="number" name="beds_number" placeholder="n°" value="{{ old('beds_number', $apartment->beds_number) }}" min="1" max="50" required>
                 </div>
                 {{-- Numero di bagni --}}
                 <div class="form-group col-3">
                     <label for="bathrooms_number">Numero di bagni</label>
-                    <input id="bathrooms_number" class="form-control" type="number" name="bathrooms_number" placeholder="n°" value="{{ old('bathrooms_number', $apartment->bathrooms_number) }}">
+                    <input id="bathrooms_number" class="form-control" type="number" name="bathrooms_number" placeholder="n°" value="{{ old('bathrooms_number', $apartment->bathrooms_number) }}" min="1" max="50" required>
                 </div>
                 {{-- Mq --}}
                 <div class="form-group col-3">
-                    <label for="square_meters">Mq</label>
-                    <input id="square_meters" class="form-control" type="number" name="square_meters" placeholder="n°" value="{{ old('square_meters', $apartment->square_meters) }}">
+                    <label for="square_meters">Metri quadrati</label>
+                    <input id="square_meters" class="form-control" type="number" name="square_meters" placeholder="n°" value="{{ old('square_meters', $apartment->square_meters) }}" min="1" max="1000" required>
                 </div>
             </section>
             {{-- Indicazioni Geografiche : Via / Regione / Città / Codice Postale --}}
@@ -71,7 +71,7 @@
                     {{-- Via --}}
                     <div class="form-group">
                         <label for="search">Indirizzo</label>
-                        <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address', $apartment->address) }}" />
+                        <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address', $apartment->address) }}" required>
                     </div>
                     {{-- Regione --}}
                     <div class="form-group">
@@ -99,7 +99,7 @@
 
                 {{-- File Immagine principale --}}        
                 <div class="d-flex flex-column align-items-center mb-5">
-                    <h3 class="mb-5">IMMAGINE PRINCIPALE</h3>    
+                    <h3 class="mb-5">Immagine principale</h3>    
                     <div class="card mb-4" style="width: 500px;">
 
                         @isset($apartment->featured_img)
@@ -122,7 +122,7 @@
                 </div>
                 {{-- File Immagine secondaria --}}
                 <div class="d-flex justify-content-center mb-5">
-                    <h3>IMMAGINI SECONDARIE</h3>
+                    <h3>Immagini secondarie</h3>
                 </div>
 
                 <div class="d-flex justify-content-around flex-wrap">
