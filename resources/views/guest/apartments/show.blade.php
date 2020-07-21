@@ -99,7 +99,7 @@
         {{-- email --}}
         <div class="form-group">
             <label for="email">Email</label>
-            <input class="form-control" id="email" type="email" name="email" placeholder="Inserisci la tua email">
+            <input class="form-control" id="email" type="email" name="email" placeholder="Inserisci la tua email" @auth value="{{ Auth::user()->email }}" @endauth>
         </div>
         {{-- titolo --}}
         <div class="form-group">
