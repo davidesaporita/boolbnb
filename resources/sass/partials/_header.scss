@@ -1,0 +1,129 @@
+.main-navbar {
+    background-color: $grey_bg;
+
+    .wrap-nav {
+
+        padding: 20px;
+        @include flex(center, space-between);
+        img { height: 30px; }
+        
+        .nav-action-guest {
+            
+            a { color: $text_color;}
+
+            & a:nth-child(2) {
+
+                display: none;
+
+            }
+
+        }
+        .nav-action-admin {
+            
+            i { font-size: 20px; }
+            @include flex(center, flex-end);
+
+            .menu-large {
+
+                display:none;
+
+            }
+
+        }
+        
+    }
+
+    .sub-menu {
+
+        padding: 20px;
+
+        div {
+
+            padding: 10px;
+
+            a { 
+                padding: 10px;
+                border-radius: 25px;
+                transition: background .2s;
+            }
+        }
+
+        div:hover a {
+            color: white;
+            background-color: $primary_pink;
+        }
+        
+    }
+
+
+}
+
+@media (min-width: 576px) {
+    .main-navbar {
+    
+        .wrap-nav {
+    
+            .nav-action-guest {
+    
+                & a:nth-child(2) {
+    
+                    color:white;
+                    padding: 10px;
+                    display: inline-block;
+                    border-radius: 25px;
+                    background: $primary_pink;
+
+                }
+    
+            }
+
+        }
+    
+    }
+}
+
+@media (min-width: 999px) {
+    .main-navbar {
+    
+        .wrap-nav {
+    
+            .mobile-user,
+            .menu-mobile { 
+                display:none; 
+                
+            }
+
+            .nav-action-admin {
+    
+                .menu-large {
+    
+                    display: block;
+
+                    ul { 
+
+                        display: flex;
+                        align-items: center;
+
+                        li {
+                            
+                            list-style: none;
+                            margin-left: 15px;
+
+                        }
+
+                        .desktop-user {
+                            color: #ffffff;
+                            font-weight: bold;
+                            border-radius: 25px;
+                            background: $primary_pink;
+                        }
+
+                    }
+
+                }
+    
+            }
+        }
+    
+    }
+}
