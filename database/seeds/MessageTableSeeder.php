@@ -21,9 +21,11 @@ class MessageTableSeeder extends Seeder
                 if ( $faker->boolean(30) ) {
                     $newMessage = new Message();
                     $newMessage->apartment_id = $apartment->id;
-                    $newMessage->email = $faker->email();
-                    $newMessage->title = $faker->text(30);
-                    $newMessage->body = $faker->text(400);
+                    $newMessage->email        = $faker->email();
+                    $newMessage->title        = $faker->text(30);
+                    $newMessage->body         = $faker->text(400);
+                    $newMessage->direction    = 'received';
+                    $newMessage->read         = $faker->boolean(20) ? true : false ;
                     $newMessage->save();
                 }
             }

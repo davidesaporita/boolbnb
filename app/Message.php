@@ -15,7 +15,9 @@ class Message extends Model
       'apartment_id',
       'email',
       'title',
-      'body'
+      'body',
+      'direction', 
+      'read'
     ];
 
     /**
