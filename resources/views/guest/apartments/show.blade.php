@@ -3,8 +3,6 @@
 @section('content')
 <div class="container">
 
-    
-
     <div class="card mb-3">
         <div class="card-body">
             <h2 class="card-title">{{ $apartment->title }}</h2>
@@ -77,13 +75,15 @@
         {{-- reviews --}}
         <div class="card-body">
             <h4>Recensioni</h4>
-            @forelse ($apartment->reviews as $review)
-                <h5>{{$review->first_name}} {{$review->last_name}}</h5>
-                <strong>{{$review->title}}</strong>
-                <p>{{$review->body}}</p>
-            @empty
-                <p>Non ci sono commenti!</p>
-            @endforelse
+            <div id="reviews-container">
+                @forelse ($apartment->reviews as $review)
+                    <h5>{{$review->first_name}} {{$review->last_name}}</h5>
+                    <strong>{{$review->title}}</strong>
+                    <p>{{$review->body}}</p>
+                @empty
+                    <p>Nessun cliente ha ancora lasciato una recensione</p>
+                @endforelse
+            </div>
         </div>
     </div>
 
@@ -121,46 +121,46 @@
         <h2 class="h1-responsive font-weight-bold text-center my-4">Invia una recensione</h2>
     </div>
 
-    <form action="{{ route('reviews', $apartment->id)}}" method="post" enctype="multipart/form-data">
-        @csrf
-        @method('POST')
-
+    {{-- <form action="{{ route('reviews', $apartment->id)}}" method="post" enctype="multipart/form-data"> --}}
+    <form class="form">
         {{-- Name --}}
         <div class="form-group">
-            <label for="first_name">Nome</label>
-            <input class="form-control" id="first_name" type="text" name="first_name" placeholder="Inserisci un nome">
+            <input class="form-control" id="first_name" type="text" name="first_name" placeholder="Il tuo nome" value="John">
         </div>
         {{-- Last_name --}}
         <div class="form-group">
-            <label for="last_name">Nome</label>
-            <input class="form-control" id="last_name" type="text" name="last_name" placeholder="Inserisci un cognome">
+            <input class="form-control" id="last_name" type="text" name="last_name" placeholder="Il tuo cognome" value="Doe">
         </div>
         
         {{-- titolo --}}
         <div class="form-group">
-            <label for="title">Titolo</label>
-            <input class="form-control" id="title" type="text" name="title" placeholder="Inserisci un titolo">
+            <input class="form-control" id="title" type="text" name="title" placeholder="Aggiungi un titolo accattivante alla tua recensione" value="Exciting title">
         </div>
         {{-- descrizione --}}
         <div class="form-group">
-            <label for="body">Descrizione</label>
-            <textarea class="form-control" name="body" id="body" placeholder="Inserisci una descrizione"></textarea>
+            <textarea class="form-control" name="body" id="body" placeholder="Racconta qui la tua esperienza presso {{ $apartment->title }}">Good experience</textarea>
         </div>
 
         {{-- rating --}}
         <div class="form-group">
-            <label for="rating">Dai un voto</label>
+            <label for="rating">Che voto dai a {{ $apartment->title }}?</label>
             <select class="form-control" name="rating" id="rating">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="5" selected>5</option>
             </select>
         </div>
         
-        <input type="submit" value="Invia" class="btn btn-success">
+        <input type="hidden" name="apartment_id" value="{{ $apartment->id }}">
+        <input type="submit" value="Pubblica recensione" class="btn btn-success" id="send-review">
         
     </form>
 </div>
+
+@include('shared.handlebars.template-review-guest')
+
+<script src="{{ asset('js/reviews/reviews.js') }}"></script>
+
 @endsection

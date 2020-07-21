@@ -23,5 +23,6 @@ Route::namespace('Api')
         Route::get('search/serviceQuery', 'SearchController@serviceQuery');
         Route::get('search/query', 'SearchController@query');
         Route::get('stats/query', 'StatsController@query');
+        Route::resource('reviews', 'ReviewController');
     }
 );

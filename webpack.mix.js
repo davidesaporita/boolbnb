@@ -19,6 +19,7 @@ mix.js('resources/js/app.js', 'public/js/app.js')
    .js('resources/js/home.js', 'public/js/home.js')
    .js('resources/js/stats/stats_chart.js', 'public/js/stats/stats_chart.js')
    .js('resources/js/braintree/pay.js', 'public/js/braintree/pay.js')
+   .js('resources/js/reviews/reviews.js', 'public/js/reviews/reviews.js')
    .sass('resources/sass/app.scss', 'public/css');
 //    .browserSync({
 //        proxy: 'http://127.0.0.1:8000/'
