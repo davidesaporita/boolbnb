@@ -24,11 +24,12 @@ class ReviewTableSeeder extends Seeder
             $newReview = new Review();
 
             $newReview->apartment_id = $apartment->random()->id;
-            $newReview->first_name = $faker->firstName();
-            $newReview->last_name = $faker->lastName();
-            $newReview->title = $faker->text(10);
-            $newReview->body = $faker->text(200);
-            $newReview->rating = rand(1,5);
+            $newReview->first_name   = $faker->firstName();
+            $newReview->last_name    = $faker->lastName();
+            $newReview->title        = $faker->text(10);
+            $newReview->body         = $faker->text(200);
+            $newReview->verified     = $faker->boolean(10) ? true : false;
+            $newReview->rating       = rand(1,5);
 
             $newReview->save();
         }

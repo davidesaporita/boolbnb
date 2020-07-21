@@ -138,14 +138,34 @@
         <div class="row">
             @foreach ($apartment->reviews as $review)
                 <div class="col-12 col-lg-6 mb-4">
-                    <h5><strong>{{$review->first_name}} {{$review->last_name}}</strong></h5>
-                    <small class="d-block mb-2">{{$review->created_at}}</small>    
+                    <h5>
+                        @if($review->verified)
+                            <i class="fas fa-check"></i>
+                        @endif
+                        <strong>{{$review->first_name}} {{$review->last_name}}</strong>
+                    </h5>
+                    <small class="d-block mb-2">
+                        <span>{{$review->created_at}}</span>
+                        @if($review->verified == true) 
+                            <span>&nbsp|&nbsp</span>
+                            <span>Cliente verificato</span>
+                        @endif
+                    </small>    
                     <strong>{{$review->title}}</strong>
                     <p>{{$review->body}}</p>
                     <span class="review-rating">
                         <i class="fas fa-star"></i>
                         <strong>{{$review->rating}}/5</strong>
                     </span>
+                    @if(!$review->verified)
+                        <form action="#">
+                            <input type="submit" class="btn btn-sm btn-secondary" value="Conferma cliente verificato"/>
+                        </form>
+                    @else
+                        <form action="#">
+                            <input type="submit" class="btn btn-sm btn-secondary" value="Rimuovi etichetta cliente verificato"/>
+                        </form>
+                    @endif
                 </div>
             @endforeach    
         </div>
