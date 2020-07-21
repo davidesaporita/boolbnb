@@ -65,9 +65,8 @@ class SponsorshipController extends Controller
 
             $apartment->sponsor_plans()->attach($sponsorPlan_id, $fields);
 
-            return redirect()->route('admin.apartments.sponsorship.transaction', ['transaction_id' => $transaction->id, 'apartment' => $apartment]);
-
-
+            // return redirect()->route('admin.apartments.sponsorship.transaction', ['transaction_id' => $transaction->id, 'apartment' => $apartment]);
+            return redirect()->route('admin.apartments.show', ['transaction_id' => $transaction->id, 'apartment' => $apartment]);
 
         } else {
             $errorString = "";
@@ -82,12 +81,13 @@ class SponsorshipController extends Controller
     }
 
     /**
-     * Show sponsorship page.
+     * Show transaction complete page. Temporarly out.
+     * 
      *
      * @return \Illuminate\Http\Response
      */
     public function transaction($transaction_id, $apartment) 
-    {
-        return view('admin.apartments.sponsorship.success', compact('transaction_id', 'apartment'));
+    {   
+        //return view('admin.apartments.sponsorship.success', compact('transaction_id', 'apartment'));
     }
 }
