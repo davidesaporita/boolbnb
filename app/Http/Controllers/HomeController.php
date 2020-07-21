@@ -25,63 +25,6 @@ class HomeController extends Controller
         $apartments = Apartment::where('active', 1)->paginate(9);
         $services = Service::all();
 
-        return view('guest.welcome', compact('apartments', 'services'));
-    }
-
-    public function show(Apartment $apartment)
-    {
-        // Add new "view" stat to stats table
-        Stat::addNewStat($apartment, 'view');
-
-        return view('guest.apartments.show', compact('apartment'));
-
-    }
-
-    public function send(Request $request, Apartment $apartment)
-    {
-        // todo validation
-
-        $data = $request->all();
-
-        // get apartment id
-        $data['apartment_id'] = $apartment->id;
-
-        $newRequest = new Message();
-        $newRequest->fill($data);
-        $saved = $newRequest->save();
-
-        if($saved) {
-
-            // Add new "view" stat to stats table
-            Stat::addNewStat($apartment, 'message');
-
-            Mail::to('user@test.com')->send(new NewMessage($newRequest));
-            
-            // todo redirect
-            return view('guest.apartments.show', compact('apartment'));
-        }
-
-    }
-    
-
-    public function reviews(Request $request, Apartment $apartment) {
-
-        $data = $request->all();
-
-        // get apartment id
-        $data['apartment_id'] = $apartment->id;
-
-        $newReview = new Review();
-        $newReview->fill($data);
-        $saved = $newReview->save();
-
-
-        if($saved) {
-
-            // Add new "view" stat to stats table
-            Stat::addNewStat($apartment, 'review');
-
-            return view('guest.apartments.show', compact('apartment'));
-        }
+        return view('guest.home', compact('apartments', 'services'));
     }
 }
