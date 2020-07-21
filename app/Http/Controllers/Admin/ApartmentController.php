@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
-use Carbon\Carbon;
-use App\Http\Controllers\Controller;
-use DB;
 
 use App\Apartment;
 use App\Category;
@@ -35,14 +34,14 @@ class ApartmentController extends Controller
         $apartments = Apartment::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->paginate(9);
         $now = Carbon::now();
         // Ref
-        $numrequests = 0;
+        $messages_number = 0;
         $numreviews = 0;
         $rating = 0;
         $numvotes = 0;
         foreach ($apartments as $apartment) {
             // Info requests count
-            foreach ($apartment->info_requests as $request) {
-                $numrequests++;    
+            foreach ($apartment->messages as $message) {
+                $messages_number++;    
             }
             // Reviews average
             foreach ($apartment->reviews as $review) {
@@ -60,7 +59,7 @@ class ApartmentController extends Controller
             }
         }
 
-        return view('admin.apartments.index', compact('apartments', 'now', 'numrequests', 'numreviews', 'numvotes', 'average'));
+        return view('admin.apartments.index', compact('apartments', 'now', 'messages_number', 'numreviews', 'numvotes', 'average'));
     }
 
     /**
@@ -261,7 +260,7 @@ class ApartmentController extends Controller
 
         $apartment->services()->detach();
         $apartment->sponsor_plans()->detach();
-        $apartment->info_requests()->delete();
+        $apartment->messages()->delete();
         $apartment->reviews()->delete();
 
         $media_to_delete = Media::where('apartment_id', $apartment->id)->get();

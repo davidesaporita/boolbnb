@@ -19,13 +19,13 @@
     var monthly_stats = @json($monthly_stats);
     var date = [];
     var views = [];
-    var info_requests = [];
+    var messages = [];
     var reviews = [];
     
     monthly_stats.forEach(item => {
         date.push(item.date);
         views.push(item.views);
-        info_requests.push(item.info_requests);
+        messages.push(item.messages);
         reviews.push(item.reviews);
     })
 
@@ -43,7 +43,7 @@
             },
             {
                 label: 'Richieste info',
-                data: info_requests,
+                data: messages,
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1

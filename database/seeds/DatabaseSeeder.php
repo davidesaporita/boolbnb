@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             ServiceTableSeeder::class,
             SponsorPlanTableSeeder::class,
             ApartmentTableSeeder::class,
-            InfoRequestTableSeeder::class,
+            MessageTableSeeder::class,
             MediaTableSeeder::class,
             ReviewTableSeeder::class,
             ApartmentServiceTableSeeder::class,

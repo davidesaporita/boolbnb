@@ -46,9 +46,9 @@ class Apartment extends Model
         return $this->belongsTo('App\Category');
     }
 
-    // Info_request table | One to Many
-    public function info_requests() {
-        return $this->hasMany('App\InfoRequest');
+    // message table | One to Many
+    public function messages() {
+        return $this->hasMany('App\Message');
     }
 
     // Media table | One to Many

@@ -1,11 +1,11 @@
 <?php
 
-use App\InfoRequest;
+use App\Message;
 use App\Apartment;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 
-class InfoRequestTableSeeder extends Seeder
+class MessageTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,12 +19,12 @@ class InfoRequestTableSeeder extends Seeder
         foreach( $apartments as $apartment ) {
             for ( $i = 0; $i < 4; $i++ ) {
                 if ( $faker->boolean(30) ) {
-                    $newInfoRequest = new InfoRequest();
-                    $newInfoRequest->apartment_id = $apartment->id;
-                    $newInfoRequest->email = $faker->email();
-                    $newInfoRequest->title = $faker->text(30);
-                    $newInfoRequest->body = $faker->text(400);
-                    $newInfoRequest->save();
+                    $newMessage = new Message();
+                    $newMessage->apartment_id = $apartment->id;
+                    $newMessage->email = $faker->email();
+                    $newMessage->title = $faker->text(30);
+                    $newMessage->body = $faker->text(400);
+                    $newMessage->save();
                 }
             }
         }

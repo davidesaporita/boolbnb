@@ -108,12 +108,12 @@
     <div class="mt-4 info-requests">
         <h4>Richieste di informazioni:</h4>
         <div class="row">
-            @forelse ($apartment->info_requests as $request)
+            @forelse ($apartment->messages as $message)
                 <div class="mb-4 col-12 col-lg-6 mb-4">
-                    <h5>Ricevuta da: <a href="mailto:{{$request->email}}">{{$request->email}}</a></h5>
-                    <small class="d-block mb-2">{{$request->created_at}}</small>
-                    <h6><strong>{{$request->title}}</strong></h6>
-                    <p>{{$request->body}}</p>
+                    <h5>Ricevuta da: <a href="mailto:{{$message->email}}">{{$message->email}}</a></h5>
+                    <small class="d-block mb-2">{{$message->created_at}}</small>
+                    <h6><strong>{{$message->title}}</strong></h6>
+                    <p>{{$message->body}}</p>
                     <a href="#" class="btn btn-sm btn-primary">Rispondi</a>
                 </div>
             @empty
