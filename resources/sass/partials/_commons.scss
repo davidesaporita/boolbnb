@@ -1,5 +1,12 @@
 //// COMMONS
 
+body { 
+    color: $text_color;
+}
+
+.hidden {
+    display: none
+}
 
 //// MIXIN
 
