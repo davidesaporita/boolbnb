@@ -1,0 +1,37 @@
+//// COMMONS
+
+
+//// MIXIN
+
+@mixin font_options ($size: false, $color: false, $weight: false, $lh: false, $ls: false) {
+        
+    // font-size
+    @if $size {
+        font-size: $size;
+    }
+    // color
+    @if $color {
+        color: $color;
+    }
+    // font-weight
+    @if $weight {
+        font-weight: $weight;
+    }
+    // line-height
+    @if $lh {
+        line-height: $lh;
+    }
+    // letter-spacing
+    @if $ls {
+        letter-spacing: $ls;
+    }
+}
+
+@mixin flex($align:flex-start, $just-content:flex-start, $flex-direction:row) {
+
+    display: flex;
+    align-items: $align;
+    justify-content: $just-content;
+    flex-direction: $flex-direction;
+
+}
