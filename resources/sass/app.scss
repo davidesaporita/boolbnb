@@ -1,8 +1,10 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+//// APP SCSS
 
 // Variables
-@import 'variables';
+@import 'partials/variables';
+
+// Commons
+@import 'partials/commons';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -15,6 +17,26 @@
 
 // FILE POND
 @import '~filepond/dist/filepond.min.css';
+
+// HEADER ALL PAGE
+@import 'partials/header';
+
+// GUEST
+
+    //MAIN
+    @import 'partials/partials_guest/index-guest';
+    @import 'partials/partials_guest/show-guest';
+
+// ADMIN
+
+    // MAIN
+    @import 'partials/partials_admin/main-admin';
+
+// SEARCH
+@import 'partials/partials_search/search';
+
+// FOOTER ALL PAGE
+@import 'partials/footer';
 
 
 // MAPPE
