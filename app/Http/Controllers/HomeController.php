@@ -22,10 +22,13 @@ class HomeController extends Controller
 {
     public function index() 
     {
-        $apartments = Apartment::where('active', 1)   ->whereHas('sponsor_plans', function($query) {$query->where('deadline', '>', Carbon::now());})
-                                                    ->inRandomOrder()
-                                                    ->take(10)
-                                                    ->get();;
+        $apartments = Apartment::where('active', 1)
+                               ->whereHas('sponsor_plans', function($query) {
+                                    $query->where('deadline', '>', Carbon::now());
+                               })
+                               ->inRandomOrder()
+                               ->take(10)
+                               ->get();
         $services = Service::all();
         $now = Carbon::now();
 

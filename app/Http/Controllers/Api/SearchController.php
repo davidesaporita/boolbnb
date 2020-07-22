@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -32,7 +33,9 @@ class SearchController extends Controller
 
 
     public function query(Request $request)
-    {
+    {   
+        $now = Carbon::now();
+
         // Geolocation data
         $geo_lat          = $request->input('geo_lat')          ? $request->input('geo_lat')          : null;
         $geo_lng          = $request->input('geo_lng')          ? $request->input('geo_lng')          : null;
@@ -67,7 +70,9 @@ class SearchController extends Controller
         $apartments = Apartment::where('active', 1)
                                ->with('category')
                                ->with('services:name')
-                               ->with('sponsor_plans:name')
+                               ->with(['sponsor_plans' => function($query) use ($now) {
+                                    $query->selectRaw('name as active_sponsorship')->where('deadline', '>', $now);
+                               }])
                                ->selectRaw("*, {$haversine} AS distance")
                                ->whereRaw("{$haversine} < ?", [$radius])
                                ->where('rooms_number', '>=', $rooms_number_min)
@@ -85,8 +90,13 @@ class SearchController extends Controller
         // Execute query
         $apartments = $apartments->orderBy('distance', 'asc')
                                  ->get()
-                                 ->makeHidden($hidden_fields);
+                                 ->makeHidden($hidden_fields)
+                                 ->sortBy('distance')
+                                 ->sortByDesc('sponsor_plans');
         
+        // Rebuild indexes (otherwise ajax calls doesn't care about sortByDesc instruction)
+        $apartments = array_values($apartments->toArray());
+
         return response()->json($apartments);
     }
 
