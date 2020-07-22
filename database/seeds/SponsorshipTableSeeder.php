@@ -17,7 +17,7 @@ class SponsorshipTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         $active_sponsorships_counter = 0;
-        $max_active_sponsorships = 8; // Max for active sponsorships
+        $max_active_sponsorships = 20; // Max for active sponsorships
         
         $sponsorships_counter = 0;
         $max_total_sponsorships = 40; // Max for all sponsorships (including active and expired ones)
@@ -32,8 +32,8 @@ class SponsorshipTableSeeder extends Seeder
                             ->get()
                         );
                 
-                if($faker->boolean(20) && $sponsorships_counter < $max_total_sponsorships) {
-                    if($faker->boolean(60) && $active_sponsorships_counter < $max_active_sponsorships) {
+                if($faker->boolean(30) && $sponsorships_counter < $max_total_sponsorships) {
+                    if($faker->boolean(70) && $active_sponsorships_counter < $max_active_sponsorships) {
                         $date = Carbon::instance($faker->dateTimeBetween('-20 hours', 'now', 'Europe/Rome'));
                         $active_sponsorships_counter++;
                     } else {
