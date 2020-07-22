@@ -92,7 +92,7 @@ placesAutocomplete.on('change', (e) => {
     beds_number_min  : minBeds.value
   } 
 
-  ajaxCall( url, 'GET', dataSearch, template) 
+  ajaxCall(url, 'GET', dataSearch, template) 
 
   searchButton.addEventListener('click', () => {
     
@@ -151,7 +151,7 @@ function checkedService( service ) {
   return service.checked; 
 }
 
-function ajaxCall( urlRecived, methodRecived, dataRecived, template) {
+function ajaxCall(urlRecived, methodRecived, dataRecived, template) {
 
   $.ajax({
     url: urlRecived,
@@ -179,6 +179,7 @@ function ajaxCall( urlRecived, methodRecived, dataRecived, template) {
       let distance =               res['distance'];
       let geoLat =                 res['geo_lat'];
       let geoLng =                 res['geo_lng'];
+      let sponsored =              res['sponsor_plans'].length > 0 ? 'Sponsorizzato' : null;
 
       let marker = L.marker([geoLat, geoLng], { icon: myIcon }).addTo(search);
       marker.bindPopup("<strong>" + title + "</strong>", {
@@ -195,8 +196,8 @@ function ajaxCall( urlRecived, methodRecived, dataRecived, template) {
         apartmentRegion,
         apartmentProvince,
         apartmentDescription,
-        distance
-      
+        distance,
+        sponsored
       };
       
       var html = template(apartment);
