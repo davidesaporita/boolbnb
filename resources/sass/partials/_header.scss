@@ -3,7 +3,7 @@
 
     .wrap-nav {
 
-        padding: 20px;
+        padding: 20px 0px 20px 0px;
         @include flex(center, space-between);
         img { height: 30px; }
         
@@ -66,6 +66,12 @@
         .wrap-nav {
     
             .nav-action-guest {
+
+                & a:nth-child(1) {
+
+                    margin-right: 10px;
+    
+                }    
     
                 & a:nth-child(2) {
     
