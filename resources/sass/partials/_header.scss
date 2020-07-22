@@ -59,6 +59,7 @@
 }
 
 @media (min-width: 576px) {
+    
     .main-navbar {
     
         .wrap-nav {
@@ -83,6 +84,7 @@
 }
 
 @media (min-width: 1200px) {
+
     .main-navbar {
     
         .wrap-nav {
@@ -112,10 +114,12 @@
                         }
 
                         .desktop-user {
+
                             color: #ffffff;
                             font-weight: bold;
                             border-radius: 25px;
                             background: $primary_pink;
+
                         }
 
                     }

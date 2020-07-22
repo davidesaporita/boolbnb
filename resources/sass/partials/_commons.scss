@@ -4,6 +4,18 @@ body {
     color: $text_color;
 }
 
+#app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    & main:first-of-type {
+        flex-grow: 1
+    }
+}
+
+
+
 .hidden {
     display: none
 }
