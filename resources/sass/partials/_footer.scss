@@ -69,7 +69,7 @@ footer {
                     content: '';
                     position: absolute;
                     width: 2px;
-                    height: 115px;
+                    height: 90px;
                     top: 49%;
                     right: 30%;
                     transform: translate(-50%, -50%);
@@ -78,7 +78,7 @@ footer {
 
                 ul:last-child {
                     i {
-                        @include font_options(20px, $footer_icon_color);
+                        @include font_options(16px, $footer_icon_color);
                         margin-right: 10px;
                     }
                 }
