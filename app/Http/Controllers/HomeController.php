@@ -22,10 +22,11 @@ class HomeController extends Controller
 {
     public function index() 
     {
-        $apartments = Apartment::where('active', 1)->paginate(9);
+        $apartments = Apartment::where('active', 1)->get();
         $services = Service::all();
+        $now = Carbon::now();
 
-        return view('guest.welcome', compact('apartments', 'services'));
+        return view('guest.welcome', compact('apartments', 'services', 'now'));
     }
 
     public function show(Apartment $apartment)

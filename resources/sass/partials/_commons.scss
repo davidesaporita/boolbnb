@@ -8,6 +8,10 @@ body {
     display: none
 }
 
+a {
+    text-decoration: none;
+}
+
 //// MIXIN
 
 @mixin font_options ($size: false, $color: false, $weight: false, $lh: false, $ls: false) {
@@ -48,3 +52,5 @@ body {
     padding: 0;
     list-style: none;  
 }
+
+

@@ -1,0 +1,76 @@
+.algolia-search {
+    .algolia-places > input {
+        border-radius: 28px;
+        padding: 23px;
+        //padding: 23px 23px 23px 60px;
+    }
+}
+.apartments-list {
+    @include flex();
+    overflow-x: auto;
+    grid-gap: 12px;
+    margin: 0 -24px;
+    padding: 0 24px;
+    padding-bottom: 8px;
+    padding-top: 4px;
+    scroll-padding: 0 24px;
+    a:hover {
+        text-decoration: none;
+    }
+    .box {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 275px;
+        background-color: white;
+        border: 1px solid lightgray;
+        border-radius: 15px;
+        h4 {
+            position: absolute;
+            .plate {
+                display: inline-block;
+                font-size: 15px;
+                font-weight: 700;
+                line-height: 1;
+                color: white;
+                background: #F58D9D;
+                border-radius: 0.25rem;
+            }
+        }
+        .box-img {
+            object-fit: cover;
+            flex-shrink: 0;
+            width: 100%;
+            height: 200px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        .box-body {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            .box-title {
+                color: grey;
+                font-weight: bold;
+            }
+            .box-text {
+                color: #b5a3a3;
+                i {
+                    color: #F58D9D;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 576px) {}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}
