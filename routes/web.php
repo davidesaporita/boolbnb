@@ -15,20 +15,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Auth::routes();
 
-// guest
+// GUEST 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/guest/{apartment}', 'HomeController@show')->name('apartments.show');
-Route::post('/guest/{apartment}/send', 'HomeController@send')->name('info.send');
-Route::post('/guest/{apartment}/review', 'HomeController@reviews')->name('reviews');
+
+// Apartment
+Route::get('/{apartment}', 'ApartmentController@customizeUrl')->name('apartments.show');
+Route::get('/{category}/{country}/{region}/{city}/{title}/{apartment}', 'ApartmentController@show')->name('apartments.show.custom');
+
+Route::post('/{apartment}/send', 'ApartmentController@send')->name('info.send');
+Route::post('/{apartment}/review', 'ApartmentController@reviews')->name('reviews');
 
 // Search
 Route::get('/search', 'SearchController@index')->name('search');
 
 
-// ADMIN Controller
+// ADMIN
 Route::prefix('admin')
     ->name('admin.')
     ->namespace('Admin')

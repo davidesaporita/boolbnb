@@ -25,7 +25,7 @@
         {{-- Apartments --}}
         <div class="apartments-list-guest">
             @foreach ( $apartments as $apartment )
-            <a href="{{ route('apartments.show', $apartment->id)}}">
+            <a href="{{ route('apartments.show', $apartment)}}">
                 <div class="box-guest">
                     @foreach ($apartment->sponsor_plans as $plan)
                         @if ($plan->sponsorships->deadline > $now)
