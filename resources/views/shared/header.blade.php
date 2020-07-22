@@ -20,7 +20,7 @@
                 <div class="wrap-nav">
                     {{-- Logo --}}
                     <a href="{{ url('/') }}">
-                        <img src="{{URL::to('/')}}/img/logo-boolbnb.png" alt="">
+                        <img src="{{URL::to('/')}}/img/boolbnb-logo.png" alt="">
                     </a>
 
                     @guest
