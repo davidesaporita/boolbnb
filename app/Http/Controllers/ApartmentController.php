@@ -26,6 +26,26 @@ class ApartmentController extends Controller
 
     }
 
+    public function discover($country = null, $region = null, $city = null)
+    {
+        $now = Carbon::now();
+
+        if(isset($country) && $region === null && $city === null) {
+            $apartments = Apartment::where('country', $country)->get();
+            return view('guest.discover.country', compact('apartments', 'country', 'now'));
+        }
+        
+        if(isset($country) && isset($region) && !isset($city)) {
+            $apartments = Apartment::where('region', $region)->get();
+            return view('guest.discover.region', compact('apartments', 'country', 'region', 'now'));
+        }
+        
+        if(isset($country) && isset($region) && !isset($city)) {
+            $apartments = Apartment::where('city', $city)->get();
+            return view('guest.discover.city', compact('apartments', 'country', 'region', 'city', 'now'));
+        }
+    }
+
     public function send(Request $request, Apartment $apartment)
     {
         // todo validation
@@ -63,7 +83,6 @@ class ApartmentController extends Controller
         $newReview = new Review();
         $newReview->fill($data);
         $saved = $newReview->save();
-
 
         if($saved) {
 
