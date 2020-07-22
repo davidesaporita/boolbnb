@@ -11,16 +11,16 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Reviews<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Recensioni<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Your Clients</a>
+            <a class="nav-link" href="#">I tuoi appartamenti</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Statistics</a>
+            <a class="nav-link" href="#">Statistiche</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Terms of service</a>
+            <a class="nav-link" href="#">Termini di servizio</a>
           </li>
         </ul>
       </div>
