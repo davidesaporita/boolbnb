@@ -1,5 +1,13 @@
 //// COMMONS
 
+body { 
+    color: $text_color;
+}
+
+.hidden {
+    display: none
+}
+
 //// MIXIN
 
 @mixin font_options ($size: false, $color: false, $weight: false, $lh: false, $ls: false) {
