@@ -22,6 +22,7 @@
             
             i { font-size: 20px; }
             @include flex(center, flex-end);
+            cursor: pointer;
 
             .menu-large {
 
