@@ -61,7 +61,7 @@ class SearchController extends Controller
         }
 
         // Fields doesn't have to show
-        $hidden_fields = ['created_at', 'updated_at','square_meters'];
+        $hidden_fields = ['created_at', 'updated_at'];
 
         // Retrieving Haversine formula for geolocation
         $haversine = $this->haversine($geo_lat, $geo_lng, $radius);
@@ -71,12 +71,12 @@ class SearchController extends Controller
                                ->with('category')
                                ->with('services:name')
                                ->with(['sponsor_plans' => function($query) use ($now) {
-                                    $query->selectRaw('name')->where('deadline', '>', $now);
+                                    $query->selectRaw('name as active_sponsorship')->where('deadline', '>', $now);
                                }])
                                ->selectRaw("*, {$haversine} AS distance")
                                ->whereRaw("{$haversine} < ?", [$radius])
                                ->where('rooms_number', '>=', $rooms_number_min)
-                               ->where('beds_number', '>=', $beds_number_min);
+                               ->where('beds_number',  '>=', $beds_number_min);
 
         // Add service filters (if requested) to query
         if(isset($service_filters) && count($service_filters) > 0) {
