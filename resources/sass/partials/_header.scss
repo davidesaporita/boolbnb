@@ -1,9 +1,12 @@
 .main-navbar {
-    background-color: $grey_bg;
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+    background-color: $grey_header;
 
     .wrap-nav {
 
-        padding: 20px 0px 20px 0px;
+        padding: 10px 0px;
         @include flex(center, space-between);
         img { height: 30px; }
         
