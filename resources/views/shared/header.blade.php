@@ -39,7 +39,7 @@
 
                             <div class="menu-large">
                                 <ul>
-                                    <li><a href="{{ route('admin.index') }}">La tua Dashborad</a></li>
+                                    <li><a href="{{ route('admin.index') }}">La tua Dashboard</a></li>
                                     <li><a href=""><a href="{{ route('admin.apartments.create') }}">Aggiungi appartamento</a></a></li>
                                     <li><a href="{{ route('admin.apartments.index') }}">I tuoi Appartamenti</a></li>
                                     <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >Logout</a></li>
