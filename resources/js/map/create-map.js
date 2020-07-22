@@ -1,6 +1,5 @@
 var places = require('places.js');
 import L from 'leaflet'
-import * as FilePond from 'filepond';
 
 let lat =  document.querySelector('#geo_lat')
 let lng =  document.querySelector('#geo_lng')

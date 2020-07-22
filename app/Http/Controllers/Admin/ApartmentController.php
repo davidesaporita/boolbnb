@@ -84,7 +84,13 @@ class ApartmentController extends Controller
     {
         // Todo: Add validations via validationRules() references
 
+        // Validation
+        $request->validate($this->validationRules());
+
+        //dd($request);
+
         $data = $request->all();
+
         $data['user_id'] = Auth::id();
         $data['featured_img'] = Storage::disk('public')->put('images', $data['featured_img']);
 
@@ -93,9 +99,11 @@ class ApartmentController extends Controller
         $saved = $newApartment->save();
         
         if($saved) {
+
             if(!empty($data['services'])) {
                 $newApartment->services()->attach($data['services']);
             }
+
             if(!empty($data['media'])) {
                 $counter = 0;
                 foreach($data['media'] as $path) {
@@ -112,6 +120,7 @@ class ApartmentController extends Controller
                     }
                 }
             }
+
             return redirect()->route('admin.apartments.show', $newApartment);
         }
     }
@@ -170,7 +179,8 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, Apartment $apartment)
     {
-        // Todo: Add validations via validationRules() references
+        // Validation
+        $request->validate($this->validationRules());
 
         $data = $request->all();
 
@@ -300,14 +310,23 @@ class ApartmentController extends Controller
      */
     private function validationRules($id = null)
     {
+
         return [
-            'user_id'          => 'required|numeric',
-            'title'            => 'required|string|max:255',
-            'description'      => 'required|string|max:255',
-            'rooms_number'     => 'required|string|max:255',
-            'beds_number'      => 'required|max:200',
-            'bathrooms_number' => 'required|max:200',
-            'square_meters'    => 'required|max:200',
+            'title'            => 'required|string|min:4|max:50',
+            'category_id'      => 'required|numeric|exists:categories,id',
+            'description'      => 'required|string|min:10|max:200',
+            'rooms_number'     => 'required|numeric|min:1|max:50',
+            'beds_number'      => 'required|numeric|min:1|max:50',
+            'bathrooms_number' => 'required|numeric|min:1|max:50',
+            'square_meters'    => 'required|numeric|min:1|max:1000',
+            'address'          => 'required|min:2|max:100',
+            'country'          => 'required|string|max:50',
+            'region'           => 'required|string|max:50',
+            'city'             => 'required|string|max:50',
+            'geo_lat'          => 'required|numeric|between:-90,90',
+            'geo_lng'          => 'required|numeric|between:-180,180',
+            'services'         => 'exists:services,id',
+            'featured_img'     => 'file|image'
         ];
     }
 }

@@ -1,4 +1,11 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/braintree/pay.js": "/js/braintree/pay.js",
+    "/js/home.js": "/js/home.js",
+    "/js/map/create-map.js": "/js/map/create-map.js",
+    "/js/map/edit-map.js": "/js/map/edit-map.js",
+    "/js/map/map-show.js": "/js/map/map-show.js",
+    "/js/search.js": "/js/search.js",
+    "/js/stats/stats_chart.js": "/js/stats/stats_chart.js"
 }

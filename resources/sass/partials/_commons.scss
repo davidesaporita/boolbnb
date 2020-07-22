@@ -1,5 +1,16 @@
 //// COMMONS
 
+body { 
+    color: $text_color;
+}
+
+.hidden {
+    display: none
+}
+
+a {
+    text-decoration: none;
+}
 
 //// MIXIN
 
@@ -36,12 +47,10 @@
 
 }
 
-// GENERAL
-a {
-    text-decoration: none;
+@mixin list_style {
+    margin: 0;
+    padding: 0;
+    list-style: none;  
 }
 
-a:hover {
-    text-decoration: none;
-    text-decoration-line: none;
-}
+
