@@ -18,19 +18,15 @@
         <nav class="main-navbar">
             <div class="container">
                 <div class="wrap-nav">
-                    {{-- Logo --}}
                     <a href="{{ url('/') }}">
                         <img src="{{URL::to('/')}}/img/boolbnb-logo.png" alt="">
                     </a>
-
                     @guest
                         <div class="nav-action-guest">
                             <a href="{{ route('login') }}">Login</a>
                             <a href="{{ route('register') }}">Diventa Host</a>
                         </div>
                     @else
-                        {{-- Admin --}}
-
                         <div class="nav-action-admin">
                             <a class="nav-link mobile-user" data-toggle="dropdown">
                                 {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <span class="caret"></span>
@@ -55,9 +51,6 @@
                                 </form>
                             </div>
                         </div>
-
-                        
-                        
                     @endguest
                 </div>
 
