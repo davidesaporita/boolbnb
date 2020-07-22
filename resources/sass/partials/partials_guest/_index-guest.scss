@@ -1,3 +1,14 @@
+// CONTAINER
+.container {
+    z-index: 1;
+}
+
+// TITLE GUEST
+.title-guest {
+    display: none;
+}
+
+// ALGOLIA SEARCH INPUT
 .algolia-search {
     .algolia-places > input {
         border-radius: 28px;
@@ -5,7 +16,9 @@
         //padding: 23px 23px 23px 60px;
     }
 }
-.apartments-list {
+
+// APARTMENT LIST
+.apartments-list-guest {
     @include flex();
     overflow-x: auto;
     grid-gap: 12px;
@@ -17,27 +30,27 @@
     a:hover {
         text-decoration: none;
     }
-    .box {
+    .box-guest {
         display: flex;
         flex-direction: column;
         position: relative;
         width: 275px;
-        background-color: white;
-        border: 1px solid lightgray;
+        height: 305px;
+        background-color: $primary_white;
         border-radius: 15px;
         h4 {
             position: absolute;
-            .plate {
+            .plate-guest {
                 display: inline-block;
                 font-size: 15px;
                 font-weight: 700;
                 line-height: 1;
                 color: white;
-                background: #F58D9D;
+                background: $primary_pink;
                 border-radius: 0.25rem;
             }
         }
-        .box-img {
+        .box-guest-img {
             object-fit: cover;
             flex-shrink: 0;
             width: 100%;
@@ -45,32 +58,88 @@
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
         }
-        .box-body {
+        .box-guest-body {
             display: flex;
             flex-direction: column;
             padding: 10px;
-            .box-title {
+            .box-guest-title {
                 color: grey;
                 font-weight: bold;
             }
-            .box-text {
+            .box-guest-text {
                 color: #b5a3a3;
                 i {
-                    color: #F58D9D;
+                    color: $primary_pink;
                 }
             }
         }
     }
 }
 
-@media (min-width: 576px) {}
+// BUTTON
+.button-guest {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    & a {
+        color:white;
+        padding: 10px;
+        display: inline-block;
+        border-radius: 25px;
+        background: $primary_pink;
+    }
+    & a:hover {
+        text-decoration: none;
+    }
+}
+
+@media (min-width: 576px) {
+    .button-guest {
+        display: none;
+    }
+    // BACKGROUND
+    .wrapper-guest {
+        height: 100%;
+        position: relative;
+        background-position: center;
+        background-size: cover;
+        //background: grey;
+        background-image: url(../../../../public/img/bg-home-guest.jpeg);
+        display: flex;   
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 0px 40px 0px;    
+    }
+
+    .layover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);    
+    }    
+}
 
 // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+    // TITLE
+    .title-guest {
+        display: block;
+        margin-bottom: 50px;
+        text-align: center;
+        & h1 {
+            color: $primary_pink;
+        }
+        & h2 {
+            color: $primary_white;
+        }
+    }
+}
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {}
 
 // Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-}
+@media (min-width: 1200px) {}
