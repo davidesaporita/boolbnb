@@ -21,7 +21,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 // Apartment
-Route::get('/{apartment}', 'ApartmentController@customizeUrl')->name('apartments.show');
+Route::get('/apartment/{apartment}', 'ApartmentController@customizeUrl')->name('apartments.show');
 Route::get('/{category}/{country}/{region}/{city}/{title}/{apartment}', 'ApartmentController@show')->name('apartments.show.custom');
 
 Route::get('/vacanze/{country}', 'ApartmentController@discover')->name('apartments.discover.country');
@@ -34,18 +34,21 @@ Route::post('/{apartment}/review', 'ApartmentController@reviews')->name('reviews
 // Search
 Route::get('/search', 'SearchController@index')->name('search');
 
-
 // ADMIN
 Route::prefix('admin')
     ->name('admin.')
     ->namespace('Admin')
     ->middleware('auth')
     ->group(function() {
+
         // Home
         Route::get('/home', 'HomeController@index')->name('home');
 
         // Dashboard
         Route::get('/index', 'HomeController@index')->name('index');
+
+        // Inbox
+        Route::get('/inbox', 'HomeController@inbox')->name('inbox');
 
         // Apartments CRUD 
         Route::resource('/apartments', 'ApartmentController');
