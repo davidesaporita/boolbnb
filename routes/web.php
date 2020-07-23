@@ -50,6 +50,9 @@ Route::prefix('admin')
         // Inbox
         Route::get('/inbox', 'HomeController@inbox')->name('inbox');
 
+        // Inbox
+        Route::get('/reviews', 'HomeController@inbox')->name('reviews');
+
         // Apartments CRUD 
         Route::resource('/apartments', 'ApartmentController');
         Route::patch('/apartments/{apartment}/toggle', 'ApartmentController@toggle')->name('apartments.toggle');

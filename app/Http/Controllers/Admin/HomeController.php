@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Apartment;
 use App\Category;
 use App\Message;
+use App\Review;
 use App\Service;
 use App\SponsorPlan;
 
@@ -35,5 +36,15 @@ class HomeController extends Controller
         $now        = Carbon::now();
 
         return view('admin.inbox', compact('apartments', 'messages', 'now'));
+    }
+
+    public function reviews() 
+    {
+        $user_id    = Auth::user()->id;
+        $apartments = Apartment::where('user_id', $user_id)->get();
+        $reviews    = Review::whereIn('apartment_id', $apartments)->get();
+        $now        = Carbon::now();
+
+        return view('admin.inbox', compact('apartments', 'reviews', 'now'));
     }
 }
