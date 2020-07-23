@@ -11,6 +11,10 @@ use App\Stat;
 class StatsController extends Controller
 {
     public function index(Apartment $apartment) {
+
+        // Policy check
+        $this->authorize('stats', $apartment);
+
         $stats_by_day = Stat::whereApartmentId($apartment->id)
                             ->select( array(
                                 \DB::raw('DATE(created_at) as date'),
