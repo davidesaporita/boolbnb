@@ -82,12 +82,8 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        // Todo: Add validations via validationRules() references
-
         // Validation
         $request->validate($this->validationRules());
-
-        //dd($request);
 
         $data = $request->all();
 
@@ -133,6 +129,9 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
+        // Policy check
+        $this->authorize('view', $apartment);
+
         $now = Carbon::now();
         // Reviews Avarage
         $numreviews = 0;
@@ -163,6 +162,9 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
+        // Policy check
+        $this->authorize('update', $apartment);
+
         $services = Service::all();
         $categories = Category::all();
         $media = $apartment->media;
@@ -179,6 +181,9 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, Apartment $apartment)
     {
+        // Policy check
+        $this->authorize('update', $apartment);
+
         // Validation
         $request->validate($this->validationRules());
 
@@ -262,6 +267,9 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
+        // Policy check
+        $this->authorize('delete', $apartment);
+        
         if(empty($apartment)) {
             abort(404);
         }
