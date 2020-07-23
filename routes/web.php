@@ -21,7 +21,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 // Apartment
-Route::get('/{apartment}', 'ApartmentController@customizeUrl')->name('apartments.show');
+Route::get('/apartments/{apartment}', 'ApartmentController@customizeUrl')->name('apartments.show');
 Route::get('/{category}/{country}/{region}/{city}/{title}/{apartment}', 'ApartmentController@show')->name('apartments.show.custom');
 
 Route::get('/vacanze/{country}', 'ApartmentController@discover')->name('apartments.discover.country');
