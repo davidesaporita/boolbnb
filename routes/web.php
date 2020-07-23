@@ -47,6 +47,16 @@ Route::prefix('admin')
         // Dashboard
         Route::get('/index', 'HomeController@index')->name('index');
 
+        // Inbox
+
+        //Route::get('/inbox', 'HomeController@inbox')->name('inbox');
+
+        Route::get('/inbox', function(){
+            return view('admin.inbox');
+        })->name('inbox');
+
+
+
         // Apartments CRUD 
         Route::resource('/apartments', 'ApartmentController');
         Route::patch('/apartments/{apartment}/toggle', 'ApartmentController@toggle')->name('apartments.toggle');
