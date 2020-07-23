@@ -51,7 +51,7 @@ Route::prefix('admin')
         Route::get('/inbox', 'HomeController@inbox')->name('inbox');
 
         // Inbox
-        Route::get('/reviews', 'HomeController@inbox')->name('reviews');
+        Route::get('/reviews', 'HomeController@reviews')->name('reviews');
 
         // Apartments CRUD 
         Route::resource('/apartments', 'ApartmentController');

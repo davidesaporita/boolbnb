@@ -45,6 +45,6 @@ class HomeController extends Controller
         $reviews    = Review::whereIn('apartment_id', $apartments)->get();
         $now        = Carbon::now();
 
-        return view('admin.inbox', compact('apartments', 'reviews', 'now'));
+        return view('admin.reviews', compact('apartments', 'reviews', 'now'));
     }
 }

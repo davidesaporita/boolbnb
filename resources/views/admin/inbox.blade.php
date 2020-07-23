@@ -14,6 +14,7 @@
                 <th scope="col">Titolo</th>
                 <th scope="col">Testo</th>
                 <th scope="col">Visualizzato</th>
+                <th scope="col">Azioni</th>
               </tr>
             </thead>
             <tbody>
@@ -23,26 +24,13 @@
                     <td>{{ $message->title}}</td>
                     <td>{{ $message->body}}</td>
                     <td>{{ $message->read}}</td>
+                    <td>
+                      <a class="btn btn-success" href="#" role="button">Verifica</a>
+                      <br>
+                      <a class="btn btn-danger" href="#" role="button">Elimina</a>
+                    </td>
                   </tr>
                 @endforeach
-              <tr>
-                <th scope="row">    </th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">"nome utente"</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">"nome utente"</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
             </tbody>
           </table>
           
