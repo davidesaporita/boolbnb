@@ -1,9 +1,5 @@
 .main-navbar {
-    position: fixed;
-    width: 100%;
-    z-index: 3;
-    background-color: $grey_header;
-
+    
     .wrap-nav {
 
         padding: 10px 0px;
@@ -97,6 +93,11 @@
 
     .main-navbar {
     
+        position: fixed;
+        width: 100%;
+        z-index: 3;
+        background-color: $grey_header;
+        
         .wrap-nav {
 
             .mobile-user,
