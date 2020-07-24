@@ -1,0 +1,236 @@
+
+.edit-jumbotron {
+    display: none;
+}
+
+.edit-page {
+    padding: 0 20px;
+    
+    .desktop-label {
+        display:none;
+    }
+
+    .title-page {
+        font-size: 20px;
+        padding: 30px 0;
+        @include flex($just-content: center);
+    }
+    
+    .form-card {
+        background-color: #fff;
+        border-radius: 10px;
+        
+        .subtitle-size { 
+            font-size: 16px; 
+            margin-bottom: 20px ;
+        }
+
+        form {
+            padding: 10px;
+
+            select,
+            textarea,
+            input { 
+
+                color: #bbb;  
+                border: none;
+                margin-bottom:  25px; 
+                border-radius: 15px;
+                box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+
+                &::placeholder {
+                    color: #bbb;  
+                }
+            }
+
+            .apartment-image {
+
+                .featured-img-container {
+                    width: 100%;
+                    border-bottom: 1px solid #606060;
+                    
+                    img {
+                        object-fit: content; 
+                        width: 100%; 
+                        border-radius: 15px;
+                    }
+
+                    
+                }
+
+                .secondary-img-container {
+                   
+                    .secondary-img {
+
+                        & > div {
+                            width: 100%;
+                            img { 
+                                width: 100%;
+                                object-fit: contain; 
+                                border-radius: 15px;
+                            }
+                        }
+                    }
+                    
+                }
+                
+                .image-action{
+                    margin-top: 30px; 
+                    .checkbox-container {
+                        display:flex;
+                        box-shadow: none;
+                        label { margin-left: 5px;}
+                    }
+                }
+               
+
+            }
+
+            .apartment-service {
+                @include flex($flex-direction:column);
+                .radio {
+                    border-radius: 30px;
+                }
+            }
+
+            .apartment-location {
+                
+                #edit-map {
+                    height: 300px;
+                    z-index: 0;
+                    margin-bottom: 30px;
+                    border-radius: 15px;
+                    box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                }
+
+                .ap-input-icon svg {
+                    top: 33%;
+                }
+            }
+
+            .submit-container {
+                @include flex($just-content:flex-end);
+                .button-submit {
+                    padding: 15px;
+                    color: #fff;
+                    font-weight: 800;
+                    border-radius: 15px;
+                    background: $primary_pink;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    
+    
+    .edit-jumbotron {
+        display:block;
+        height: 180px;
+        width: 100%;
+        color: #fff;
+        font-weight: 800;
+        background-color: $primary_pink;
+        @include flex($align:center, $just-content:center);
+    }
+    
+    .edit-page {
+        
+        .desktop-label {
+            display:block;
+        }
+    
+        .form-card {
+            background: none;
+            padding: 10px 10px 30px 10px;
+            
+            .desktop-card {
+                padding: 20px 20px;
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                @include flex();
+
+                .apartment-description {
+                    width: 60%;
+                    padding: 0 10px;
+                    @include flex();
+
+                    .description-sx{
+                        width: 50%;
+                        margin-right: 5px;
+                        select,
+                        input { margin-bottom: 10px; }
+                        textarea {
+                            height: 276px;
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    .description-dx{
+                        width: 50%;
+                        margin: 39px 0 0 5px;
+                        padding-left: 10px; 
+                        input { margin-bottom: 10px; }
+                    }
+                }
+
+                .apartment-location {
+                    width: 40%;
+                    #create-map {
+                        margin-bottom: 0;
+                    }
+                }
+
+            }
+
+            .apartment-image {
+                padding: 10px;
+                margin-top: 50px;
+                background-color: #fff;
+                border-radius: 15px;
+                box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                
+                &:first-child div {
+                    width: 100%; 
+                    padding: 10px;
+                }
+
+                .secondary-img-container {
+                    .secondary-img-desktop {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-around;
+
+                        .secondary-img {
+                            img { 
+                                height: 234px; 
+                                object-fit: cover;
+                            }
+                        }
+
+                        div {
+                            width: 30%;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+
+            .submit-container {
+                margin-top: 20px;
+                a {
+                    box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                }
+            }
+        }
+        
+    }
+}
+
+@media (min-width: 1200px) {
+    .edit-jumbotron {
+        margin-top: 54px;
+    }
+}
