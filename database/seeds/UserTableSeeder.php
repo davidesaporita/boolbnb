@@ -16,21 +16,15 @@ class UserTableSeeder extends Seeder
     {
         $users = 30;
 
-        $defaultUser = new User();
-        $defaultUser->first_name = $faker->firstName();
-        $defaultUser->last_name = $faker->lastName();
-        $defaultUser->birth_date = $faker->date('Y-m-d', '2002-01-01');
-        $defaultUser->email = "admin@test.com";
-        $defaultUser->password = Hash::make('password');
-        $defaultUser->save();       
-
         for ($i = 0; $i < $users; $i++) {
             $newUser = new User();
             $newUser->first_name = $faker->firstName();
-            $newUser->last_name = $faker->lastName();
+            $newUser->last_name  = $faker->lastName();
             $newUser->birth_date = $faker->date('Y-m-d', '2002-01-01');
-            $newUser->email = $faker->email();
-            $newUser->password = Hash::make('password');
+            $newUser->email      = $i == 0 ? "admin@test.com" : $faker->email();
+            $newUser->password   = Hash::make('password');
+            $newUser->path_img   = asset('public/img/man-2.jpg');
+            $newUser->gender     = $i == 0 ? 'm' : ($faker->boolean(50) ? 'm' : 'f');
             $newUser->save();       
         }
     }
