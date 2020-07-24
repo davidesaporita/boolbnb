@@ -86,7 +86,6 @@
 }
 
 @media (min-width: 992px) {
-
     
     
     .create-jumbotron {
@@ -107,11 +106,13 @@
     
         .form-card {
             background: none;
-
+            padding: 10px 10px 30px 10px;
+            
             .desktop-card {
                 padding: 20px 20px;
                 background-color: #fff;
                 border-radius: 10px;
+                box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
                 @include flex();
 
                 .apartment-description {
@@ -152,6 +153,7 @@
                 margin-top: 50px;
                 background-color: #fff;
                 border-radius: 15px;
+                box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
                 @include flex();
                 div {
                     width: 50%; 
@@ -161,6 +163,9 @@
 
             .submit-container {
                 margin-top: 20px;
+                a {
+                    box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                }
             }
         }
         
