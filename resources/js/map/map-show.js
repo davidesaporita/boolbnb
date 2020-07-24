@@ -4,7 +4,15 @@ import L from 'leaflet'
 let lat = document.querySelector('#lat').value
 let lng = document.querySelector('#lng').value
 
-let showMap = L.map('show-map').setView([lat, lng], 13);
+let showMap = L.map('show-map', {
+    zoomControl: false,
+    boxZoom: false,
+    doubleClickZoom: false,
+    dragging: false,
+    keyboard: false,
+    scrollWheelZoom: false
+}).setView([lat, lng], 13);
+
 let marker = L.marker([lat, lng]).addTo(showMap);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2FybWlsZW50aXNjbyIsImEiOiJja2NjNnRmYjcwMXMyMnlwdXg0ZDYxM3JwIn0.Zg-CS3Rc5Krle5GllL7reQ', {
