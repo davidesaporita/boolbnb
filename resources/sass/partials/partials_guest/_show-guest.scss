@@ -1,0 +1,100 @@
+.wrap-content {
+    margin-top: 54px;
+    .carousel-inner {
+        .carousel-item {
+            img {
+                object-fit: cover;
+                max-height: 250px;
+            }
+        }
+    }
+    .wrap-box {
+        padding: 10px 0;
+        background-color: $primary_white;
+        // wrap title
+        .wrap-box-title {
+            @include flex(center, $just-content: space-between);
+        }
+
+        .wrap-title::after {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 40px;
+            top: 60%;
+            right: 30%;
+            transform: translate(-50%, -82%);
+            background-color: #C6C6C6;
+        }
+        // wrap rating
+        .wrap-rating {
+            @include flex(end, $flex-direction: column);
+        }
+
+    }
+
+    // wrap-description
+    .wrap-description-box,
+    .wrap-service-box,
+    .wrap-reviews-box {
+        background-color: $primary_white;
+        .wrap-box-click {
+            padding: 15px 0;
+            background-color: $primary_white;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+            .container {
+                .box-title {
+                    @include flex(center, $just-content: space-between);
+                    h5 {
+                        margin-bottom: 0px;
+                    }
+                    i {
+                        font-size: 20px;
+                        color: $primary_pink;
+                    }
+                }
+            }
+
+        }
+
+        .description-dropdown,
+        .service-dropdown,
+        .reviews-dropdown {
+            .container {
+                .box-details {
+                    padding: 20px 0;
+                    p {
+                        @include font_options($color: $color_paraghrap);
+                    }
+
+                    // description
+                    .details-apartment {
+                        @include flex(center);
+                        h5 {
+                            margin-right: 20px;
+                        }
+                    }
+
+                    // service
+                    .service-badge {
+                        background-color: $primary_pink;
+                        @include font_options($color: $primary_white);
+                    }
+
+                    // reviews
+                    .wrap-reviews {
+                        padding: 20px;
+                        .card-reviews {
+                            padding: 15px 20px;
+                            border-radius: 10px;
+                            margin-bottom: 20px;
+                            background-color: $primary_white;
+                            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)); 
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

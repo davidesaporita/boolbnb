@@ -10,7 +10,7 @@
           <p class="card-text">@{{ apartmentDescription }}</p>
           <label for="distance">Distanda dal luogo scelto</label>
           <span id="distance">@{{ distance }}</span>
-          <a class="btn btn-primary" href="{{ url('guest') }}/@{{apartmentID}}">Show</a>
+          <a class="btn btn-primary" href="{{ url('apartments' ) }}/@{{apartmentID}}">Show</a>
       </div>
   </div>
 </script>
