@@ -74,13 +74,13 @@
                         </div>
                     </section>
 
-                    <input type="hidden" name="province" id="province" value="">
-                    <input type="hidden" name="country" id="country" value="">
-                    <input type="hidden" name="geo_lat" id="geo_lat" value="">
-                    <input type="hidden" name="geo_lng" id="geo_lng" value="">
-                    <input type="hidden" id="city" class="form-control" name="city">
-                    <input type="hidden" id="region" class="form-control" name="region">
-                    <input type="hidden" id="zip_code" class="form-control" name="zip_code">
+                    <input type="hidden" name="province" id="province" value="{{ old('province') }}">
+                    <input type="hidden" name="country" id="country" value="{{ old('country') }}">
+                    <input type="hidden" name="geo_lat" id="geo_lat" value="{{ old('geo_lat') }}">
+                    <input type="hidden" name="geo_lng" id="geo_lng" value="{{ old('geo_lng') }}">
+                    <input type="hidden" id="city" class="form-control" name="city" value="{{ old('city') }}">
+                    <input type="hidden" id="region" class="form-control" name="region" value="{{ old('region') }}">
+                    <input type="hidden" id="zip_code" class="form-control" name="zip_code" value="{{ old('zip_code') }}">
 
                     <section class="submit-container">
                         <a href="#" id="submit-create" onclick="document.getElementById('create-form').submit()"class="button-submit">CREA</a>
