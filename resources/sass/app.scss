@@ -31,6 +31,7 @@
 
     // MAIN
     @import 'partials/partials_admin/main-admin';
+    @import 'partials/partials_admin/create-admin';
 
 // SEARCH
 @import 'partials/partials_search/search';
@@ -49,3 +50,7 @@
 .slidecontainer {
 width: 100%; /* Width of the outside container */
 }
+
+// #create-map {
+//     height: 300px;
+// }

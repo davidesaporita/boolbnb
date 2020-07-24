@@ -1,0 +1,174 @@
+
+.create-jumbotron {
+    display: none;
+}
+
+.create-page {
+    padding: 0 20px;
+    
+    .desktop-label {
+        display:none;
+    }
+
+    .title-page {
+        font-size: 20px;
+        padding: 30px 0;
+        @include flex($just-content: center);
+    }
+    
+    .form-card {
+        background-color: #fff;
+        border-radius: 10px;
+        
+        .subtitle-size { 
+            font-size: 16px; 
+            margin-bottom: 20px ;
+        }
+
+        form {
+            padding: 10px;
+
+            select,
+            textarea,
+            input { 
+
+                color: #bbb;  
+                border: none;
+                margin-bottom:  25px; 
+                border-radius: 15px;
+                box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+
+                &::placeholder {
+                    color: #bbb;  
+                }
+            }
+
+            .apartment-image {
+                input {
+                   width: 100%;
+                } 
+            }
+
+            .apartment-service {
+                @include flex($flex-direction:column);
+                .radio {
+                    border-radius: 30px;
+                }
+            }
+
+            .apartment-location {
+                
+                #create-map {
+                    height: 300px;
+                    z-index: 0;
+                    margin-bottom: 30px;
+                    border-radius: 15px;
+                    box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                }
+
+                .ap-input-icon svg {
+                    top: 33%;
+                }
+            }
+
+            .submit-container {
+                @include flex($just-content:flex-end);
+                .button-submit {
+                    padding: 15px;
+                    color: #fff;
+                    font-weight: 800;
+                    border-radius: 15px;
+                    background: $primary_pink;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+
+    
+    
+    .create-jumbotron {
+        display:block;
+        height: 180px;
+        width: 100%;
+        color: #fff;
+        font-weight: 800;
+        background-color: $primary_pink;
+        @include flex($align:center, $just-content:center);
+    }
+    
+    .create-page {
+        
+        .desktop-label {
+            display:block;
+        }
+    
+        .form-card {
+            background: none;
+
+            .desktop-card {
+                padding: 20px 20px;
+                background-color: #fff;
+                border-radius: 10px;
+                @include flex();
+
+                .apartment-description {
+                    width: 60%;
+                    padding: 0 10px;
+                    @include flex();
+
+                    .description-sx{
+                        width: 50%;
+                        margin-right: 5px;
+                        select,
+                        input { margin-bottom: 10px; }
+                        textarea {
+                            height: 276px;
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    .description-dx{
+                        width: 50%;
+                        margin: 39px 0 0 5px;
+                        padding-left: 10px; 
+                        input { margin-bottom: 10px; }
+                    }
+                }
+
+                .apartment-location {
+                    width: 40%;
+                    #create-map {
+                        margin-bottom: 0;
+                    }
+                }
+
+            }
+
+            .apartment-image {
+                padding: 10px;
+                margin-top: 50px;
+                background-color: #fff;
+                border-radius: 15px;
+                @include flex();
+                div {
+                    width: 50%; 
+                    padding: 10px;
+                }
+            }
+
+            .submit-container {
+                margin-top: 20px;
+            }
+        }
+        
+    }
+}
+
+@media (min-width: 1200px) {
+    .create-jumbotron {
+        margin-top: 54px;
+    }
+}

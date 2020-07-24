@@ -1,18 +1,20 @@
 .main-navbar {
-    position: fixed;
-    width: 100%;
-    z-index: 3;
-    background-color: $grey_header;
 
+    background-color: #fff;
+    
     .wrap-nav {
-
+        
         padding: 10px 0px;
         @include flex(center, space-between);
         img { height: 30px; }
         
         .nav-action-guest {
             
-            a { color: $text_color;}
+            a { 
+            
+                color: $text_color;
+            
+            }
 
             & a:nth-child(2) {
 
@@ -21,11 +23,19 @@
             }
 
         }
+
         .nav-action-admin {
             
-            i { font-size: 20px; }
             @include flex(center, flex-end);
             cursor: pointer;
+            
+            i { 
+                font-size: 20px; 
+            }
+            
+            .mobile-user {
+                display: none;
+            }
 
             .menu-large {
 
@@ -88,6 +98,12 @@
     
             }
 
+            .nav-action-admin {
+                .mobile-user {
+                    display: inline;
+                }
+            }
+
         }
     
     }
@@ -97,6 +113,10 @@
 
     .main-navbar {
     
+        position: fixed;
+        width: 100%;
+        z-index: 3;
+        
         .wrap-nav {
 
             .mobile-user,

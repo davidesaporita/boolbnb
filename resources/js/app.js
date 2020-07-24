@@ -11,11 +11,13 @@ $(document).ready(function(){
         subMenu.slideToggle();
 
         if ( menuIcon.hasClass("fa-bars") ) {
-            menuIcon.removeClass("fa-bars").addClass("fa-times")
+            menuIcon.removeClass("fa-bars").addClass("fa-times");
         } else { 
-            menuIcon.removeClass("fa-times").addClass("fa-bars") 
+            menuIcon.removeClass("fa-times").addClass("fa-bars"); 
         }
     })
+
+    ///// SUBMIT BUTTON
 
 })
 
