@@ -11,6 +11,7 @@ footer {
                 margin-bottom: 25px;
                 @include flex(center);
                 .logo {
+                    @include flex(center);
                     opacity: 0;
                     .circle {
                         height: 10px;
