@@ -17,7 +17,7 @@ var placesAutocomplete = places({
     type: 'address'
 });
 
-var map = L.map('mapid', {
+var map = L.map('edit-map', {
     scrollWheelZoom: true,
     zoomControl: false
 });
