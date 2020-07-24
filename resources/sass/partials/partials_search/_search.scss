@@ -1,0 +1,87 @@
+.wrap-search {
+    position: relative;
+
+    .search-bar-container {
+        padding:  15px;
+        
+        input { 
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+        }
+    }
+
+    .filter-menu {
+        
+        .filter-title {
+            padding: 10px 0;
+            background: #fff;
+            filter: drop-shadow(0px 2px 8px rgba( 0, 0, 0, .15));
+            
+            .container {
+                @include flex( $align:center, $just-content:space-between);
+            }
+
+            i {
+                font-size: 20px;
+                color: $primary_pink;
+            }
+        }
+    }
+
+    .dropdown-filter {
+        padding: 20px 0;
+        background-color: #fff;
+
+        .dropdown-filter-service {
+            @include flex($just-content: space-around);   
+        }
+        .slider-search {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .input-number {
+            input {
+                border: none;
+                box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+            }
+           
+        }
+
+        .submit-container {
+            margin-top: 20px;
+            text-align: center;
+            a {
+                color: #fff;
+                padding: 10px;
+                border-radius: 15px;
+                text-transform: uppercase;
+                background-color: $primary_pink;
+                box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+            }
+        }
+
+    }
+
+    #search-map {
+        height: 180px;
+    }
+
+    .apartment-container {
+        margin-top: 40px;
+        @include flex($flex-direction: column, $align: center)
+    }
+}
+
+// Small devices (landscape phones, 576px and up)
+// @media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+// @media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+// @media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+// @media (min-width: 1200px) { ... }

@@ -18,8 +18,12 @@ var placesAutocomplete = places({
 });
 
 var map = L.map('edit-map', {
-    scrollWheelZoom: true,
-    zoomControl: false
+    zoomControl: false,
+    boxZoom: false,
+    doubleClickZoom: false,
+    dragging: false,
+    keyboard: false,
+    scrollWheelZoom: false
 });
 
 var osmLayer = new L.TileLayer( 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
