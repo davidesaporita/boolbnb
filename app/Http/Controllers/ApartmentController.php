@@ -40,7 +40,7 @@ class ApartmentController extends Controller
             return view('guest.discover.region', compact('apartments', 'country', 'region', 'now'));
         }
         
-        if(isset($country) && isset($region) && !isset($city)) {
+        if(isset($country) && isset($region) && isset($city)) {
             $apartments = Apartment::where('city', $city)->get();
             return view('guest.discover.city', compact('apartments', 'country', 'region', 'city', 'now'));
         }

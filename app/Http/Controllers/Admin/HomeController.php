@@ -25,6 +25,30 @@ class HomeController extends Controller
         $services     = Service::all();
         $sponsorplans = SponsorPlan::all();
 
+        //  // Ref
+        //  $messages_number = 0;
+        //  $numreviews = 0;
+        //  $rating = 0;
+        //  $numvotes = 0;
+        //  $average = 0;
+        //  $fullaverage = 0;
+        //  foreach ($apartments as $apartment) {
+        //      // Info requests count
+        //      foreach ($apartment->messages as $message) {
+        //          $messages_number++;    
+        //      }
+        //      // Reviews average
+        //      foreach ($apartment->reviews as $review) {
+        //          $numreviews++;  
+        //          $numvotes++;
+        //          $rating += $review->rating;
+        //      }
+        //      if ($numvotes > 0) {
+        //          $fullaverage = $rating / $numvotes;
+        //          $average = round($fullaverage, 2);
+        //      }
+        //  }
+
         return view('admin.index', compact('apartments', 'categories', 'services', 'sponsorplans'));
     }
 

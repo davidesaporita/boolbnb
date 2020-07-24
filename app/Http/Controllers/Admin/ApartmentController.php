@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 use App\Apartment;
 use App\Category;
 use App\Media;
+use App\Message;
 use App\Service;
 
 class ApartmentController extends Controller
@@ -33,33 +34,8 @@ class ApartmentController extends Controller
     {
         $apartments = Apartment::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->paginate(9);
         $now = Carbon::now();
-        // Ref
-        $messages_number = 0;
-        $numreviews = 0;
-        $rating = 0;
-        $numvotes = 0;
-        foreach ($apartments as $apartment) {
-            // Info requests count
-            foreach ($apartment->messages as $message) {
-                $messages_number++;    
-            }
-            // Reviews average
-            foreach ($apartment->reviews as $review) {
-                $numreviews++;  
-                $numvotes++;
-                $rating += $review->rating;
-            }
-            if ($numvotes != 0) {
-                $fullaverage = $rating / $numvotes;
-                $average = round($fullaverage, 2);
-            }
-            elseif ($numvotes == 0) {
-                $fullaverage = 0;
-                $average = 0;
-            }
-        }
 
-        return view('admin.apartments.index', compact('apartments', 'now', 'messages_number', 'numreviews', 'numvotes', 'average'));
+        return view('admin.apartments.index', compact('apartments', 'now'));
     }
 
     /**
@@ -71,6 +47,7 @@ class ApartmentController extends Controller
     {
         $services = Service::all();
         $categories = Category::all();
+        
         return view('admin.apartments.create', compact('services', 'categories'));
     }
 
@@ -142,11 +119,10 @@ class ApartmentController extends Controller
             $numvotes++;
             $rating += $review->rating;
         }
-        if ($numvotes != 0) {
+        if ($numvotes > 0) {
             $fullaverage = $rating / $numvotes;
             $average = round($fullaverage, 2);
-        }
-        elseif ($numvotes == 0) {
+        } else {
             $fullaverage = 0;
             $average = 0;
         }

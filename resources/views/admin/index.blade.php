@@ -1,7 +1,15 @@
 @include('shared.header')
 
 <div class="container">
-
+    {{-- <div class="mb-3 d-flex flex-wrap justify-content-around w-100">
+        <h3>Messaggi ricevuti: {{$messages_number}}</h3>
+        @if ($numvotes == 0)
+            <h3>Non ci sono recensioni!</h3>
+        @else    
+            <h3><i class="fas fa-star"></i>{{$average}}/5 ({{$numvotes}} {{$numvotes == 1 ? 'recensione' : 'recensioni'}})</h3>
+        @endif
+        <a class="btn btn-lg btn-danger" href="{{route('admin.apartments.create')}}">Aggiungi un appartamento</a>
+    </div> --}}
     
     <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
       <a class="navbar-brand" href="#">Dashboard</a>
