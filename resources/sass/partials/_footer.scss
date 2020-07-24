@@ -9,10 +9,9 @@ footer {
             margin-bottom: 25px;
             .wrap-logo {
                 margin-bottom: 25px;
-                @include flex(center);
                 .logo {
-                    @include flex(center);
-                    opacity: 0;
+                    @include flex(center);  
+                    display: none;
                     .circle {
                         height: 10px;
                         width: 10px;
@@ -122,7 +121,7 @@ footer {
                 margin: 0;
                 .wrap-logo {
                     .logo {
-                        opacity: 1;
+                        @include flex(center);
                     }
                     p {
                         margin: 0;
