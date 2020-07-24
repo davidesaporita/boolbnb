@@ -65,10 +65,8 @@ placesAutocomplete.on('change', (e) => {
   let lat          = searchResult.latlng['lat'];
   let lng          = searchResult.latlng['lng'];
   
-  
-  
   search.setView([ lat, lng], 14);
-  apartmentContainer.html(" ");
+  apartmentContainer.html('');
 
   wifi.value           = checkedService(wifi)           ? 1 : 0;
   posto_macchina.value = checkedService(posto_macchina) ? 1 : 0;
@@ -78,7 +76,7 @@ placesAutocomplete.on('change', (e) => {
   vista_mare.value     = checkedService(vista_mare)     ? 1 : 0;
 
   let dataSearch =  {
-    geo_lat        : lat,
+    geo_lat          : lat,
     geo_lat          : lat,
     geo_lng          : lng, 
     radius           : radius,
@@ -96,6 +94,7 @@ placesAutocomplete.on('change', (e) => {
 
   searchButton.addEventListener('click', () => {
     
+    apartmentContainer.html('');
     
     wifi.value           = checkedService(wifi)           ? 1 : 0;
     posto_macchina.value = checkedService(posto_macchina) ? 1 : 0;
