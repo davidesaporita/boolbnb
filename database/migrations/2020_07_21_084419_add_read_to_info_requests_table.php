@@ -26,7 +26,7 @@ class AddReadToInfoRequestsTable extends Migration
     public function down()
     {
         Schema::table('info_requests', function (Blueprint $table) {
-            $table->boolean(['read']);
+            $table->dropColumn('read');
         });
     }
 }
