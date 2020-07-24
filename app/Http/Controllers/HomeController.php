@@ -29,6 +29,6 @@ class HomeController extends Controller
         $services = Service::all();
         $now = Carbon::now();
 
-        return view('guest.welcome', compact('apartments', 'services', 'now'));
+        return view('guest.home', compact('apartments', 'services', 'now'));
     }
 }
