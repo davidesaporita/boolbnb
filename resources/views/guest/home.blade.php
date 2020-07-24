@@ -19,7 +19,8 @@
                         <input type="search" id="search" class="form-control" placeholder="Inserisci un indirizzo!" name="address" value="{{ old('address') }}" />
                         <div class="algolia-button-search">
                             <a href="#" onclick="document.getElementById('search-home-guest').submit()">Cerca</a>
-                        </div>            
+                        </div>
+                        <input type="hidden" id="city" name="city" value="">
                         <input type="hidden" id="geo_lat" name="geo_lat" value="">
                         <input type="hidden" id="geo_lng" name="geo_lng" value="">
                     </div>
