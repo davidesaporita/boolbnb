@@ -46,7 +46,7 @@
                         @foreach ($apartments as $apartment)
                             @if ($loop->first)
                                 <div class="carousel-item carousel-custom active">  
-                            @elseif ($loop->iteration == 5)
+                            @elseif ((($loop->iteration - 1) % 4) == 0)
                                 <div class="carousel-item carousel-custom">
                             @endif
                                 <div class="col-md-3">
