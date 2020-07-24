@@ -11,7 +11,10 @@ use App\Stat;
 
 class StatsController extends Controller
 {
-    public function query(Request $request) {       
+    public function query(Request $request) { 
+      
+        // Policy check
+        $this->authorize('stats', $apartment);
 
         $apartment = Apartment::find($request->input('apartment_id'));
 
