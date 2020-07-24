@@ -20,6 +20,14 @@ body {
     display: none
 }
 
+.active {
+    display: block;
+}
+
+.carousel-custom {
+    display: flex;
+}
+
 a {
     text-decoration: none;
 }
