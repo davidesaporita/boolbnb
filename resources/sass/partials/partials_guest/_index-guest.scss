@@ -138,6 +138,14 @@
     }
 }
 
+// CAROUSEL DISPLAY FIX
+@media (max-width: 991px) {
+    .carousel-item.carousel-custom,
+    .carousel-item.carousel-custom.active {
+        display: flex;
+    }
+}
+
 @media (min-width: 576px) {
     // BUTTON GUEST
     .button-guest {
