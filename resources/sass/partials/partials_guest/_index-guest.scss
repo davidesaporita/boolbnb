@@ -4,35 +4,59 @@
 }
 
 // TITLE GUEST
-.title-guest {
-    display: none;
+.title-guest-home {
+    text-align: center;
+    & h1 {
+        font-size: 25px;
+        color: $primary_pink;
+    }
+    & h2 {
+        font-size: 16px;
+        color: $color_paraghrap;
+    }
 }
 
 // ALGOLIA SEARCH INPUT
-.algolia-search {
+.algolia-search-guest-home {
     margin-top: 40px; 
     margin-bottom: 35px;
-    .algolia-places > input {
-            padding: 18px;
-            border-radius: 28px;
+    .form-group {
+        i {
+            display: none;
         }
+        .algolia-places > input {
+                padding-right: 110px;
+                border-radius: 25px;
+            }
+    }
 }
 
-// ALGOLIA BUTTON SEARCH
-.algolia-button-search {
-    margin-top: 10px;
-    text-align: center;
-    a {
-        display: inline-block;
-        padding: 10px 30px 10px 30px;
-        color: white;
-        border-radius: 25px;
-        background: #F58D9D;
-    }    
+// ALGOLIA ICON AND BUTTON SEARCH
+.algolia-search-guest-home {
+    .form-group {
+        position: relative;
+        .algolia-places {
+            & .ap-input-icon svg {
+                right: 85px;
+            }
+        }
+        .algolia-button-search {
+            position: absolute;
+            top: 0px;
+            right: 0;
+            a {
+                display: inline-block;
+                padding: 7px 26px;
+                color: white;
+                border-radius: 25px;
+                background: $primary_pink;
+            }    
+        }
+    }
 }
 
 // APARTMENT LIST CAROUSEL MODIFICATIONS
-.wrapper-guest {
+.wrapper-guest-home {
     padding-top: 50px;
     .carousel {
         .controls-top {
@@ -53,11 +77,7 @@
                 padding-top: 4px;
                 scroll-padding: 0 24px;
                 .carousel-item {
-                    //@include flex();
                     margin: 0px;
-                    /*.col-md-3 a {
-                        margin-right: 15px;
-                    }*/
                 }
             }
         }
@@ -65,7 +85,8 @@
 }
 
 // APARTMENT LIST
-.wrapper-guest {
+.wrapper-guest-home {
+    margin-bottom: 40px;
     padding-top: 50px;
     .apartments-list-guest {
         a:hover {
@@ -103,8 +124,6 @@
             }
             .box-guest-body {
                 @include flex($flex-direction: column);
-                //display: flex;
-                //flex-direction: column;
                 padding: 10px;
                 .box-guest-title {
                     color: grey;
@@ -124,11 +143,10 @@
 // BUTTON
 .button-guest {
     margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
     text-align: center;
     & a {
         color:white;
-        padding: 10px;
+        padding: 10px 50px;
         display: inline-block;
         border-radius: 25px;
         background: $primary_pink;
@@ -147,57 +165,76 @@
 }
 
 @media (min-width: 576px) {
+    // TITLE GUEST
+    .title-guest-home {
+        & h2 {
+            font-size: 16px;
+            color: $primary_white;
+        }
+    }
+
     // BUTTON GUEST
-    .button-guest {
-        display: none;
+    .wrapper-guest-home {
+        margin-bottom: 0px;
+        .button-guest {
+            display: none;
+        }
     }
     
     // ALGOLI SEARCH FORM
-    .algolia-search {
-        margin-bottom: 50px;
+    .algolia-search-guest-home {
+        margin-bottom: 40px;
         .form-group {
             position: relative;
+            i {
+                display: block;
+                position: absolute;
+                left: 16px;
+                top: 17px;
+                font-size: initial;
+                color: $search_bar_icon;
+                z-index: 3;
+            }
+            // ALGOLIA BUTTON SEARCH
+            .algolia-button-search {
+                position: absolute;
+                top: 5px;
+                right: 10px;
+                z-index: 4;
+                & a {
+                    display: inline-block;
+                    padding: 10px 30px 10px 30px;
+                    color: white;
+                    border-radius: 25px;
+                    background: #F58D9D;
+                }
+                & a:hover {
+                    text-decoration: none;
+                }        
+            }    
             .algolia-places {
                 & input:first-child {
-                    padding: 23px;
-                    //margin-left: 12px;
+                    padding: 23px 125px 23px 40px;
                 }
                 & .ap-input-icon svg {
                     right: 100px;
                 }
-                /*& .ap-dropdown-menu {
-                    margin-left: 12px;
-                }*/
             }
         }
     }  
-    // ALGOLIA BUTTON SEARCH
-    .algolia-button-search {
-        position: absolute;
-        top: -5px;
-        right: 10px;
-        z-index: 4;
-        & a {
-            display: inline-block;
-            padding: 10px 30px 10px 30px;
-            color: white;
-            border-radius: 25px;
-            background: #F58D9D;
-        }
-    }    
 
     // BACKGROUND
-    .wrapper-guest {
+    .wrapper-guest-home {
         @include flex($align:center, $just-content:center, $flex-direction:column);
         height: 100%;
         position: relative;
         background-position: center;
         background-size: cover;
         background-image: url(../../../../public/img/bg-home-guest.jpeg);
-        padding: 70px 0px 40px 0px;    
+        padding: 70px 0px 30px 0px;    
     }
     // LAYOVER
-    .layover {
+    .layover-guest-home {
         position: absolute;
         top: 0;
         left: 0;
@@ -209,23 +246,36 @@
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-    // TITLE
-    .title-guest {
-        display: block;
-        text-align: center;
-        & h1 {
-            color: $primary_pink;
-        }
+    // TITLE GUEST
+    .title-guest-home {
         & h2 {
-            color: $primary_white;
+            font-size: 20px;
         }
     }
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
+    // TITLE GUEST
+    .title-guest-home {
+        text-align: center;
+        & h1 {
+            font-size: 1.875rem;
+        }
+        & h2 {
+            font-size: 1.5rem;
+        }
+    }
+
+    // FORM GROUP
+    .algolia-search-guest-home {
+        .form-group {
+            margin: 0 64px;
+        }
+    }
+
     // APARTMENT LIST CAROUSEL MODIFICATIONS
-    .wrapper-guest {
+    .wrapper-guest-home {
         padding-top: 50px;
         .carousel {
             .controls-top {
@@ -250,9 +300,9 @@
                 bottom: -45px;
             }
             .carousel-inner {  
-                //display: block;
                 overflow: hidden;
                 .apartments-list-guest {
+                    width: 100%;
                     grid-gap: 0px;
                     margin: 0px;
                     padding: 0px;
@@ -261,8 +311,7 @@
                     scroll-padding: 0px;
                     .carousel-item {
                         margin-right: -100%;
-                        //all: revert;
-                        .col-md-3 {
+                        .col-lg-3 {
                             margin-right: 0px;
                             float: left;
                             .box-guest {
@@ -274,47 +323,16 @@
             }
         }
     }
-    
-    // APARTMENT LIST
-    /*.wrapper-guest {
-        padding-top: 50px;
-        .carousel {
-            .controls-top {
-                display: block;
-            }
-            .carousel-indicators {
-                display: block;
-            }
-            .carousel-inner {  
-                overflow-x: hidden;
-                .apartments-list-guest {
-                    grid-gap: 0px;
-                    margin: 0px;
-                    padding: 0px;
-                    padding-bottom: 0px;
-                    padding-top: 0px;
-                    scroll-padding: 0 24px;
-                    .carousel-item {
-                        .carousel-item {
-                            .col-md-3 {
-                                float: left;
-                            }
-                        }            
-                    }
-                }
-            }
-        }
-    }*/   
 }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-    .wrapper-guest {
+    .wrapper-guest-home {
         .carousel {
             .carousel-inner {  
                 .apartments-list-guest {
                     .carousel-item {
-                        .col-md-3 {
+                        .col-lg-3 {
                             .box-guest {
                                 width: 250px;
                             }
