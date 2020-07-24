@@ -29,7 +29,7 @@
                         <section class="apartment-description">
                             <div class="description-sx">
                                     <h3 class="subtitle-size">Descrizione</h3>
-                                    <input id="title" class="form-control" type="text" name="title" placeholder="Nome appartmaneto" maxlength="50" minlength="10" value="{{ old('title') }}" required>
+                                    <input id="title" class="form-control" type="text" name="title" placeholder="Nome appartamento" maxlength="50" minlength="10" value="{{ old('title') }}" required>
                                     <select class="form-control" name="category_id" id="category">
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
