@@ -33,6 +33,10 @@
 
     }
 
+    #show-map {
+        height: 300px;
+    }
+
     // wrap-description + wrap service 
     .wrap-description-box,
     .wrap-service-box {
@@ -182,6 +186,28 @@
             }
         }
     }
+
+    // desktop
+    .wrap-img-desktop {
+        display: none;
+        padding: 20px 0;
+        .container {
+            .wrap-img-apartment {
+                @include flex;
+                .wrap-img {
+                    @include flex($just-content: space-between);
+                    flex-wrap: wrap;
+                    img {
+                        margin-left: 10px;
+                        margin-bottom: 10px;
+                        &:nth-child(3), &:nth-child(4) {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
@@ -192,17 +218,100 @@
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) { 
-    
+    .wrap-content {
+        #carousel {
+            display: none;
+        }
+
+        // desktop
+        .wrap-img-desktop {
+            display: block;
+            .container {
+                .wrap-img-apartment {
+                    .wrap-featured-img {
+                        img {
+                            width: 100%;
+                            height: 230px;
+                        }
+                    }
+                    .wrap-img {
+                        img {
+                            width: 162.5px;
+                            height: 109.967px;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) { 
     .wrap-content {
-        margin-top: 54px;
+
+        #carousel {
+            display: none;
+        }
+
+        .wrap-box {
+            display: none;
+        }
+
+        .mobile-map {
+            display: none;
+        }
+
+        // desktop
+        .wrap-img-desktop {
+            display: block;
+            .container {
+                .wrap-img-apartment {
+                    .wrap-featured-img {
+                        img {
+                            width: 100%;
+                            height: 310px;
+                        }
+                    }
+                    .wrap-img {
+                        img {
+                            width: 222.5px;
+                            height: 150.067px;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) { 
-    
+
+    .wrap-content {
+        margin-top: 58px;
+        // desktop
+        .wrap-img-desktop {
+            display: block;
+            .container {
+                .wrap-img-apartment {
+                    .wrap-featured-img {
+                        img {
+                            width: 100%;
+                            height: 370px;
+                        }
+                    }
+                    .wrap-img {
+                        img {
+                            width: 267.5px;
+                            height: 180.015px;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

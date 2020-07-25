@@ -2,6 +2,28 @@
 
 @section('content')
 <div class="wrap-content">
+
+    {{-- desktop --}}
+
+    <div class="wrap-img-desktop">
+        <div class="container">
+
+            <div class="wrap-img-apartment">
+                <div class="wrap-featured-img w-50">
+                    <img src="{{ $apartment->featured_img }}" alt="{{ $apartment->title }}">
+                </div>
+                <div class="wrap-img w-50">
+                    @for ($i = 0; $i < 4; $i ++)
+                        <?php $urlImage = $apartment->media[$i]['path'] ?>
+                        <img src="{{ strpos($urlImage, '://') ? $urlImage : asset("/storage/" . $urlImage ) }}" alt="">
+                    @endfor
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {{-- <!-- End desktop--> --}}
+
     {{-- <!--Carousel--> --}}
     <div>
         <div id="carousel" class="carousel slide" data-ride="carousel">
@@ -83,9 +105,6 @@
             </div>
         </div>
     </div>
-
-    {{-- map --}}
-    <div id="show-map"></div>
 
     {{-- description box --}}
     <div class="wrap-description-box">
@@ -258,7 +277,8 @@
         </div>
     </div>
 
-    
+    {{-- map --}}
+    <div id="show-map" class="mobile-map"></div>
     
 </div>{{-- <!-- wrap content--> --}}
 
