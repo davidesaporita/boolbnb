@@ -223,6 +223,14 @@
             display: none;
         }
 
+        .wrap-box {
+            display: none;
+        }
+
+        .mobile-map {
+            display: none;
+        }
+
         // desktop
         .wrap-img-desktop {
             display: block;
@@ -251,21 +259,8 @@
 @media (min-width: 992px) { 
     .wrap-content {
 
-        #carousel {
-            display: none;
-        }
-
-        .wrap-box {
-            display: none;
-        }
-
-        .mobile-map {
-            display: none;
-        }
-
         // desktop
         .wrap-img-desktop {
-            display: block;
             .container {
                 .wrap-img-apartment {
                     .wrap-featured-img {
@@ -294,7 +289,6 @@
         margin-top: 58px;
         // desktop
         .wrap-img-desktop {
-            display: block;
             .container {
                 .wrap-img-apartment {
                     .wrap-featured-img {
