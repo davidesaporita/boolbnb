@@ -61,33 +61,10 @@ class HomeController extends Controller
                                            'sponsorplans',
                                            'unread_messages_number',
                                            'total_views_number',
-                                           'total_reviews_number'
+                                           'total_reviews_number',
+                                           'average_rating'
                                         ));
         
-        //  // Ref
-        //  $messages_number = 0;
-        //  $numreviews = 0;
-        //  $rating = 0;
-        //  $numvotes = 0;
-        //  $average = 0;
-        //  $fullaverage = 0;
-        //  foreach ($apartments as $apartment) {
-        //      // Info requests count
-        //      foreach ($apartment->messages as $message) {
-        //          $messages_number++;    
-        //      }
-        //      // Reviews average
-        //      foreach ($apartment->reviews as $review) {
-        //          $numreviews++;  
-        //          $numvotes++;
-        //          $rating += $review->rating;
-        //      }
-        //      if ($numvotes > 0) {
-        //          $fullaverage = $rating / $numvotes;
-        //          $average = round($fullaverage, 2);
-        //      }
-        //  }
-
     }
 
     public function inbox() 
