@@ -1,5 +1,19 @@
 // Extra small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap
+#dashboard-carousel {
+    background: none;
+    padding-top: 0px;
+    .carousel {
+        .carousel-inner {  
+            .apartments-list-guest {
+                padding-top: 10px;
+                padding-bottom: 10px;        
+            }
+        }
+    }
+}
+
+
 .dashboard-admin {
     padding-top: 30px;
     .jumbotron-dashboard {
@@ -37,6 +51,7 @@
                     background: $primary_pink;
                     border-radius: 20px;
                     span {
+                        font-size: 15px;
                         font-weight: 500;
                         color: $primary_white;
                     }
@@ -95,6 +110,17 @@
         }
     }
 }
+
+// DASHBOARD CAROUSEL
+.your-apartments {
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: $dashbord_grey;
+    }
+}
+
 @media (min-width: 390px) { 
     .dashboard-admin {
         .option-card {
