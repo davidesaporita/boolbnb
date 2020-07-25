@@ -13,8 +13,9 @@ let source             = $("#template-card-home").html();
 let template           = Handlebars.compile(source);
 let url                = window.location.protocol + '//' + window.location.host + '/' +'api/search/query';
 let urlParams          = new URLSearchParams(window.location.search);
-let latUrl             = getParameterByName('geo_lat')
-let lngUrl             = getParameterByName('geo_lng')
+let latUrl             = getParameterByName('geo_lat');
+let lngUrl             = getParameterByName('geo_lng');
+let addressUrl            = getParameterByName('address');
 let search             = L.map('search-map', {
                             zoomControl: false,
                             boxZoom: false,
@@ -40,6 +41,12 @@ let dataHome       =  {
   geo_lng : lngUrl, 
   radius : radius 
 };
+
+let searchResultName = document.querySelector('#searchResultName');
+
+document.querySelector('#search').value = addressUrl;
+
+searchResultName.innerHTML = addressUrl; 
 
 var myIcon = L.icon({
   iconUrl: 'img/mymarker.png',
@@ -77,7 +84,6 @@ placesAutocomplete.on('change', (e) => {
 
   let dataSearch =  {
     geo_lat          : lat,
-    geo_lat          : lat,
     geo_lng          : lng, 
     radius           : radius,
     wifi             : wifi.value,
@@ -95,7 +101,7 @@ placesAutocomplete.on('change', (e) => {
   searchButton.addEventListener('click', () => {
     
     apartmentContainer.html('');
-    
+
     wifi.value           = checkedService(wifi)           ? 1 : 0;
     posto_macchina.value = checkedService(posto_macchina) ? 1 : 0;
     piscina.value        = checkedService(piscina)        ? 1 : 0;
@@ -178,12 +184,17 @@ function ajaxCall(urlRecived, methodRecived, dataRecived, template) {
       let geoLat =                 res['geo_lat'];
       let geoLng =                 res['geo_lng'];
       let sponsored =              res['sponsor_plans'].length > 0 ? 'Sponsorizzato' : null;
+      let services =               res['services'];
+      
+      
+      
 
       let marker = L.marker([geoLat, geoLng], { icon: myIcon }).addTo(search);
       marker.bindPopup("<strong>" + title + "</strong>", {
 
       });
 
+      
       var apartment = {
   
         image: pathImg = pathImg.includes("://") ? pathImg : "http://127.0.0.1:8000/storage/" + pathImg,
@@ -195,7 +206,7 @@ function ajaxCall(urlRecived, methodRecived, dataRecived, template) {
         apartmentProvince,
         apartmentDescription,
         distance,
-        sponsored
+        sponsored,
       };
       
       var html = template(apartment);
