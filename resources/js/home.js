@@ -12,7 +12,8 @@ var placesAutocomplete = places({
 // Refefrence
 let lat  = document.querySelector('#geo_lat');
 let lng  = document.querySelector('#geo_lng');
-let city = document.querySelector('#city');
+// let city = document.querySelector('#city');
+let name = document.querySelector('#name');
 
 placesAutocomplete.on('change', (e) => {
 
@@ -20,6 +21,7 @@ placesAutocomplete.on('change', (e) => {
     
     lat.value  = searchResult.latlng['lat'];
     lng.value  = searchResult.latlng['lng'];
-    city.value = searchResult.city;
+    // city.value = searchResult.city;
+    name.value = searchResult.name;
 
 })
