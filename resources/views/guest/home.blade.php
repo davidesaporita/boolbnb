@@ -20,7 +20,8 @@
                         <div class="algolia-button-search">
                             <a href="#" onclick="document.getElementById('search-home-guest').submit()">Cerca</a>
                         </div>
-                        <input type="hidden" id="city" name="city" value="">
+                        {{-- <input type="hidden" id="city" name="city" value=""> --}}
+                        <input type="hidden" id="name" name="name" value="">
                         <input type="hidden" id="geo_lat" name="geo_lat" value="">
                         <input type="hidden" id="geo_lng" name="geo_lng" value="">
                     </div>
