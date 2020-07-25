@@ -13,7 +13,7 @@
       <div class="message-info">
         <div class="new-message">
           @if ($unread_messages_number > 0)
-            <p> Hai {{$unread_messages_number}} messaggi non letti!</p>            
+            <p> Hai {{ $unread_messages_number }} messaggi non letti!</p>            
           @else
             <p>Non hai nuovi messaggi!</p>
           @endif
@@ -27,13 +27,13 @@
       <div class="icon-info">
         <ul>
           <li>
-            <i class="fas fa-globe-europe"></i> 150 visite
+            <i class="fas fa-globe-europe"></i> {{ $total_views_number }} visite
           </li>
           <li>
-            <i class="fas fa-inbox"></i> 15 messaggi
+            <i class="fas fa-inbox"></i> {{ $unread_messages_number }} messaggi
           </li>
           <li>
-            <i class="fas fa-star"></i> 4.5/5 (12 recensioni)
+            <i class="fas fa-star"></i> {{ $average_rating }}/5 ({{ $total_reviews_number }} recensioni)
           </li>
         </ul>
       </div>
