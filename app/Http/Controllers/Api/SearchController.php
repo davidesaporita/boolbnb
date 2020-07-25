@@ -69,7 +69,7 @@ class SearchController extends Controller
         // Prepare DB query with numeric & geolocation filters applied
         $apartments = Apartment::where('active', 1)
                                ->with('category')
-                               ->with('services:name')
+                               ->with('services')
                                ->with(['sponsor_plans' => function($query) use ($now) {
                                     $query->selectRaw('name as active_sponsorship')->where('deadline', '>', $now);
                                }])
