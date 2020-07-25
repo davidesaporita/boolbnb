@@ -69,7 +69,7 @@ class SearchController extends Controller
         // Prepare DB query with numeric & geolocation filters applied
         $apartments = Apartment::where('active', 1)
                                ->with('category')
-                               ->with('services:name')
+                               ->with('services')
                                ->with(['sponsor_plans' => function($query) use ($now) {
                                     $query->selectRaw('name as active_sponsorship')->where('deadline', '>', $now);
                                }])
@@ -92,7 +92,7 @@ class SearchController extends Controller
                                  ->get()
                                  ->makeHidden($hidden_fields)
                                  ->sortBy('distance')
-                                 ->sortByDesc('sponsor_plans');
+                                 ->sortBy('sponsor_plans');
         
         // Rebuild indexes (otherwise ajax calls doesn't care about sortByDesc instruction)
         $apartments = array_values($apartments->toArray());

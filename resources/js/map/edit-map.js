@@ -17,9 +17,13 @@ var placesAutocomplete = places({
     type: 'address'
 });
 
-var map = L.map('mapid', {
-    scrollWheelZoom: true,
-    zoomControl: false
+var map = L.map('edit-map', {
+    zoomControl: false,
+    boxZoom: false,
+    doubleClickZoom: false,
+    dragging: false,
+    keyboard: false,
+    scrollWheelZoom: false
 });
 
 var osmLayer = new L.TileLayer( 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

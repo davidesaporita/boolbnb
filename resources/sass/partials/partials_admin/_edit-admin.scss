@@ -1,9 +1,9 @@
 
-.create-jumbotron {
+.edit-jumbotron {
     display: none;
 }
 
-.create-page {
+.edit-page {
     padding: 0 20px;
     
     .desktop-label {
@@ -44,9 +44,46 @@
             }
 
             .apartment-image {
-                input {
-                   width: 100%;
-                } 
+
+                .featured-img-container {
+                    width: 100%;
+                    border-bottom: 1px solid #606060;
+                    
+                    img {
+                        object-fit: content; 
+                        width: 100%; 
+                        border-radius: 15px;
+                    }
+
+                    
+                }
+
+                .secondary-img-container {
+                   
+                    .secondary-img {
+
+                        & > div {
+                            width: 100%;
+                            img { 
+                                width: 100%;
+                                object-fit: contain; 
+                                border-radius: 15px;
+                            }
+                        }
+                    }
+                    
+                }
+                
+                .image-action{
+                    margin-top: 30px; 
+                    .checkbox-container {
+                        display:flex;
+                        box-shadow: none;
+                        label { margin-left: 5px;}
+                    }
+                }
+               
+
             }
 
             .apartment-service {
@@ -58,7 +95,7 @@
 
             .apartment-location {
                 
-                #create-map {
+                #edit-map {
                     height: 300px;
                     z-index: 0;
                     margin-bottom: 30px;
@@ -88,7 +125,7 @@
 @media (min-width: 992px) {
     
     
-    .create-jumbotron {
+    .edit-jumbotron {
         display:block;
         height: 180px;
         width: 100%;
@@ -98,7 +135,7 @@
         @include flex($align:center, $just-content:center);
     }
     
-    .create-page {
+    .edit-page {
         
         .desktop-label {
             display:block;
@@ -154,10 +191,30 @@
                 background-color: #fff;
                 border-radius: 15px;
                 box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
-                @include flex();
-                div {
-                    width: 50%; 
+                
+                &:first-child div {
+                    width: 100%; 
                     padding: 10px;
+                }
+
+                .secondary-img-container {
+                    .secondary-img-desktop {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-around;
+
+                        .secondary-img {
+                            img { 
+                                height: 234px; 
+                                object-fit: cover;
+                            }
+                        }
+
+                        div {
+                            width: 30%;
+                            margin-right: 10px;
+                        }
+                    }
                 }
             }
 
@@ -173,7 +230,7 @@
 }
 
 @media (min-width: 1200px) {
-    .create-jumbotron {
+    .edit-jumbotron {
         margin-top: 54px;
     }
 }

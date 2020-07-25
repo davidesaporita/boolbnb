@@ -13,15 +13,25 @@ let source             = $("#template-card-home").html();
 let template           = Handlebars.compile(source);
 let url                = window.location.protocol + '//' + window.location.host + '/' +'api/search/query';
 let urlParams          = new URLSearchParams(window.location.search);
-let latUrl             = getParameterByName('geo_lat')
-let lngUrl             = getParameterByName('geo_lng')
+let latUrl             = getParameterByName('geo_lat');
+let lngUrl             = getParameterByName('geo_lng');
+let nameUrl            = getParameterByName('name');
+let addressUrl         = getParameterByName('address');
 let search             = L.map('search-map', {
                             zoomControl: false,
                             boxZoom: false,
                             doubleClickZoom: false,
                             dragging: false,
                             keyboard: false,
-                            scrollWheelZoom: true
+                            scrollWheelZoom: false
+}).setView([latUrl, lngUrl], 15);
+let searchMobile            = L.map('search-map-mobile', {
+                            zoomControl: false,
+                            boxZoom: false,
+                            doubleClickZoom: false,
+                            dragging: false,
+                            keyboard: false,
+                            scrollWheelZoom: false
 }).setView([latUrl, lngUrl], 15);
 
 let wifi           = document.querySelector('#wifi');
@@ -41,13 +51,18 @@ let dataHome       =  {
   radius : radius 
 };
 
+let searchResultName = document.querySelector('#searchResultName');
+
+document.querySelector('#search').value = addressUrl;
+
+searchResultName.innerHTML = nameUrl; 
+
 var myIcon = L.icon({
   iconUrl: 'img/mymarker.png',
   iconSize: [38, 50],
   iconAnchor: [22, 49],
   popupAnchor: [-3, -75],
 });
-
 let radius;
 output.innerHTML = slider.value;
 radius = slider.value;
@@ -64,11 +79,14 @@ placesAutocomplete.on('change', (e) => {
   let searchResult = e.suggestion;
   let lat          = searchResult.latlng['lat'];
   let lng          = searchResult.latlng['lng'];
-  
-  
-  
+  let cityResult   = searchResult.name;
+  console.log(searchResult.name);
   search.setView([ lat, lng], 14);
-  apartmentContainer.html(" ");
+  searchMobile.setView([ lat, lng], 14);
+  apartmentContainer.html('');
+  
+  document.querySelector('#searchResultName').innerHTML
+  searchResultName.innerHTML = cityResult;
 
   wifi.value           = checkedService(wifi)           ? 1 : 0;
   posto_macchina.value = checkedService(posto_macchina) ? 1 : 0;
@@ -78,7 +96,6 @@ placesAutocomplete.on('change', (e) => {
   vista_mare.value     = checkedService(vista_mare)     ? 1 : 0;
 
   let dataSearch =  {
-    geo_lat        : lat,
     geo_lat          : lat,
     geo_lng          : lng, 
     radius           : radius,
@@ -96,7 +113,7 @@ placesAutocomplete.on('change', (e) => {
 
   searchButton.addEventListener('click', () => {
     
-    apartmentContainer.html(" ");
+    apartmentContainer.html('');
 
     wifi.value           = checkedService(wifi)           ? 1 : 0;
     posto_macchina.value = checkedService(posto_macchina) ? 1 : 0;
@@ -134,6 +151,14 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
       zoomOffset: -1,
       accessToken: 'your.mapbox.access.token'
 }).addTo(search);
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2FybWlsZW50aXNjbyIsImEiOiJja2NjNnRmYjcwMXMyMnlwdXg0ZDYxM3JwIn0.Zg-CS3Rc5Krle5GllL7reQ', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: 'your.mapbox.access.token'
+}).addTo(searchMobile);
 
 //---------- Function
 
@@ -180,12 +205,16 @@ function ajaxCall(urlRecived, methodRecived, dataRecived, template) {
       let geoLat =                 res['geo_lat'];
       let geoLng =                 res['geo_lng'];
       let sponsored =              res['sponsor_plans'].length > 0 ? 'Sponsorizzato' : null;
+      let services =               res['services'];
+      
+      
+      
 
       let marker = L.marker([geoLat, geoLng], { icon: myIcon }).addTo(search);
-      marker.bindPopup("<strong>" + title + "</strong>", {
+      let markerMobile = L.marker([geoLat, geoLng], { icon: myIcon }).addTo(searchMobile);
+      marker.bindPopup("<strong>" + title + "</strong>", {});
 
-      });
-
+      
       var apartment = {
   
         image: pathImg = pathImg.includes("://") ? pathImg : "http://127.0.0.1:8000/storage/" + pathImg,
@@ -197,7 +226,7 @@ function ajaxCall(urlRecived, methodRecived, dataRecived, template) {
         apartmentProvince,
         apartmentDescription,
         distance,
-        sponsored
+        sponsored,
       };
       
       var html = template(apartment);

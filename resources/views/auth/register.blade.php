@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -40,6 +40,8 @@
                             </div>
                         </div>
 
+                        
+
                         <div class="form-group row">
                             <label for="birth_date" class="col-md-4 col-form-label text-md-right">{{ __('birthdate') }}</label>
 
@@ -68,6 +70,26 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">Genere</label>
+
+                            <div class="col-md-6">
+                                <select id="gender" name="gender"  accept="image/*" required>
+                                    <option value="m">Uomo</option>
+                                    <option value="f">Donna</option>
+                                    <option value="a">Altro</option>
+                                </select>     
+                            </div>
+                        </div>                
+
+                        <div class="form-group row">
+                            <label for="path_img" class="col-md-4 col-form-label text-md-right">Immagine del profilo</label>
+
+                            <div class="col-md-6">
+                                <input type="file" id="path_img" name="path_img"  accept="image/*" required>     
+                            </div>
+                        </div>        
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>

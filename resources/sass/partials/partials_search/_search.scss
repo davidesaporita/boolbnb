@@ -1,0 +1,382 @@
+.wrap-search {
+    position: relative;
+    margin-bottom: 30px;
+    .container-x {
+        
+        .desktop-size-search {
+        
+            .search-bar-container {
+                padding:  15px;
+                
+                input { 
+                    border: none;
+                    border-radius: 15px;
+                    box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                }
+            }
+    
+            .filter-menu {
+                
+                .filter-title {
+                    cursor:pointer;
+                    padding: 10px 0;
+                    background: #fff;
+                    filter: drop-shadow(0px 2px 8px rgba( 0, 0, 0, .15));
+                    
+                    .container {
+                        h5 {
+                            margin: 0 10px 0 0;
+                        }
+    
+                        @include flex( $align:center, $just-content:center);
+                    }
+    
+                    i {
+                        font-size: 20px;
+                        color: $primary_pink;
+                    }
+                }
+            }
+    
+            .dropdown-filter {
+                display:none;
+                padding: 20px 0;
+                background-color: #fff;
+
+                
+                .dropdown-filter-service {
+                    @include flex($flex-direction:column); 
+                    
+                    .service-container {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-around;   
+                    }
+
+                    .service-desktop-title{
+                        display: none;
+                    }
+                }
+                .slider-search {
+                    width: 100%;
+                    margin-top: 15px;
+                }
+    
+                .input-number {
+                    input {
+                        border: none;
+                        box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                    }
+                }
+    
+                .submit-container {
+                    margin-top: 20px;
+                    text-align: center;
+                    a {
+                        cursor: pointer;
+                        color: #fff;
+                        padding: 10px 35px;
+                        border-radius: 15px;
+                        text-transform: uppercase;
+                        background-color: $primary_pink;
+                        box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                    }
+                }
+    
+            }
+    
+            .search-map {
+                height: 250px;
+                z-index: 0;
+            }
+    
+            .desktop-map {
+                display: none;
+            }
+        }
+        
+        .desktop-search-result {
+
+            .apartment-container {
+                margin-top: 40px;
+                @include flex($flex-direction: column, $align: center)
+            }
+            
+            .card-search {
+                width: 300px;
+                margin-bottom: 20px;
+                border-radius: 15px;
+                background-color: #fff;
+                box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                .card-img-top {
+                    border-top-left-radius: 15px;
+                    border-top-right-radius: 15px;
+                }
+            }
+            
+            .search-map {
+                height: 250px;
+                z-index: 0;
+            }
+            
+            .result-name {
+                display:none;
+            }
+
+            .card-desktop-view { 
+                display: none;
+            }
+
+            .desktop-map {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (min-width: 576px) and (max-width:  991px) {
+    .wrap-search {
+        position: relative;
+    
+        .container-x {
+            width: 768px;
+            margin: 0 auto;
+
+            .desktop-size-search {
+            
+                .search-bar-container {
+                    padding:  15px;
+                    
+                    input { 
+                        border: none;
+                        border-radius: 15px;
+                        box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                    }
+                }
+        
+                .filter-menu {
+                    
+                    .filter-title {
+                        padding: 10px 0;
+                        background: #fff;
+                        filter: drop-shadow(0px 2px 8px rgba( 0, 0, 0, .15));
+                        
+                        .container {
+                            h5 {
+                                margin: 0 10px 0 0;
+                            }
+        
+                            @include flex( $align:center, $just-content:center);
+                        }
+        
+                        i {
+                            font-size: 20px;
+                            color: $primary_pink;
+                        }
+                    }
+                }
+        
+                .dropdown-filter {
+                    display:none;
+                    padding: 20px 0;
+                    background-color: #fff;
+    
+                    
+                    .dropdown-filter-service {
+                        @include flex($flex-direction:column); 
+                        
+                        .service-container {
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-around;   
+                        }
+    
+                        .service-desktop-title{
+                            display: none;
+                        }
+                    }
+                    .slider-search {
+                        width: 100%;
+                        margin-top: 15px;
+                    }
+        
+                    .input-number {
+                        input {
+                            border: none;
+                            box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                        }
+                    
+                    }
+        
+                    .submit-container {
+                        margin-top: 20px;
+                        text-align: center;
+                        a {
+                            color: #fff;
+                            padding: 10px;
+                            border-radius: 15px;
+                            text-transform: uppercase;
+                            background-color: $primary_pink;
+                            box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                        }
+                    }
+        
+                }
+        
+                .search-map {
+                    height: 250px;
+                    z-index: 0;
+                }
+        
+                .desktop-map {
+                    display: none;
+                }
+            }
+            
+            .desktop-search-result {
+    
+                .apartment-container {
+
+                    & > div {
+                        display: flex;
+                        
+                        a {
+                            margin-right: 10px;
+                        }
+                    }
+                }
+                
+                .card-search {
+                    width: 300px;
+                    margin-bottom: 20px;
+                    border-radius: 15px;
+                    background-color: #fff;
+                    box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                    .card-img-top {
+                        border-top-left-radius: 15px;
+                        border-top-right-radius: 15px;
+                    }
+                }
+    
+                .result-name {
+                    display:none;
+                }
+    
+            
+                
+            }
+        }
+    }
+} 
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    .wrap-search {
+        margin-top: 100px;
+        .container-x {
+            width: 960px;
+            margin:0 auto;
+            display: flex;
+            .desktop-size-search {
+                width: 40%;
+                height: 800px;
+                padding: 10px;
+                border-radius: 15px;
+                background-color: #fff;
+                box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+                .container {
+                    padding: 0;
+                    .search-bar-container {
+                        padding: 0;
+                        input { 
+                            width: 100%;
+                            height: 45px;
+                            margin-bottom: 20px;
+                            border-radius: 40px;
+                        }
+                    }
+                }
+                
+                .filter-menu {
+                    .filter-title {
+                        display:none;
+                    }
+                    .dropdown-filter {
+                        display:block;
+                        .dropdown-filter-service {
+                            @include flex($flex-direction:column);                           
+                            .service-desktop-title{
+                                display: block;
+                            }
+
+                            div {
+                                margin-right: 13px;
+
+                                label { 
+                                    margin:  0 0 0 4px;
+                                    font-size: 11px;
+                                }
+                            }           
+                        }
+                        .slider-container {
+                            margin-top: 20px;
+                            p { text-align: center; }
+                        }
+                        .input-number {
+                            .container {
+                               input { 
+                                   border-radius: 15px;
+                               } 
+                            }
+                        }                       
+                    }
+                }
+
+                .desktop-map {
+                    height: 400px;
+                    display:block;
+                    z-index: 0;
+                }
+            }
+
+            
+            .desktop-search-result {
+                width: 60%;
+                padding: 0 20px;
+                .result-name {
+                    display:block;
+                    border-bottom: 1px solid $separator;
+
+                    h2 { 
+                        font-size: 45px;
+                        font-weight: bold;
+                        text-align: left;
+                    }
+                }
+
+                .card-search {
+                    display:none;
+                }
+                
+                .card-desktop-view {
+                    display:block;
+                    display: flex;
+                    .img-container {
+                        .card-img {
+                            height: 100%;
+                        }
+                    }
+                }
+
+                .search-map {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+}

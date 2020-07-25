@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddReadToInfoRequestsTable extends Migration
+class AddIconToServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddReadToInfoRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::table('info_requests', function (Blueprint $table) {
-            $table->boolean('read')->default(false);
+        Schema::table('services', function (Blueprint $table) {
+            $table->string('icon')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddReadToInfoRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::table('info_requests', function (Blueprint $table) {
-            $table->dropColumn('read');
+        Schema::table('services', function (Blueprint $table) {
+            $table->dropColumn('icon');
         });
     }
 }

@@ -29,6 +29,10 @@ class Stat extends Model
         return $this->belongsTo('App\Apartment');
     }
 
+    /**
+     * Static functions
+     */
+
     // Create stats records
     public static function addNewStat(Apartment $apartment, $stat_type_name) {
         $data['apartment_id'] = $apartment->id;

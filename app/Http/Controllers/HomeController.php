@@ -23,12 +23,12 @@ class HomeController extends Controller
                                     $query->where('deadline', '>', Carbon::now());
                                })
                                ->inRandomOrder()
-                               ->take(10)
+                               ->take(8)
                                ->get();
 
         $services = Service::all();
         $now = Carbon::now();
 
-        return view('guest.welcome', compact('apartments', 'services', 'now'));
+        return view('guest.home', compact('apartments', 'services', 'now'));
     }
 }
