@@ -26,19 +26,19 @@
                     <div class="footer-link">
                         <ul>
                             <li>
-                                Davide Saporita
-                            </li>
-                            <li>
                                 Carime Lentisco
                             </li>
                             <li>
-                                Paolo F. Marino
+                                Davide Saporita
+                            </li>
+                            <li>
+                                Emanuele Sanquirico
                             </li>
                             <li>
                                 Gerardo Pagliarulo
                             </li>
                             <li>
-                                Emanuele Sanquirico
+                                Paolo F. Marino
                             </li>
                         </ul>
 

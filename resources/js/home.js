@@ -10,14 +10,16 @@ var placesAutocomplete = places({
 })
 
 // Refefrence
-let lat = document.querySelector('#geo_lat');
-let lng = document.querySelector('#geo_lng');
+let lat  = document.querySelector('#geo_lat');
+let lng  = document.querySelector('#geo_lng');
+let city = document.querySelector('#city');
 
 placesAutocomplete.on('change', (e) => {
 
     let searchResult = e.suggestion;
     
-    lat.value = searchResult.latlng['lat'];
-    lng.value = searchResult.latlng['lng'];
+    lat.value  = searchResult.latlng['lat'];
+    lng.value  = searchResult.latlng['lng'];
+    city.value = searchResult.city;
 
 })

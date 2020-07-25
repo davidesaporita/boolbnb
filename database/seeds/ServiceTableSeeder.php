@@ -13,16 +13,17 @@ class ServiceTableSeeder extends Seeder
     public function run()
     {
         $services = [
-            'WiFi',
-            'Posto Macchina',
-            'Piscina',
-            'Portineria',
-            'Sauna',
-            'Vista Mare'
+            [ 'WiFi',           'fas fa-wifi' ],
+            [ 'Posto Macchina', 'fas fa-car'],
+            [ 'Piscina',        'fas fa-swimming-pool'],
+            [ 'Portineria',     'fas fa-bell'],
+            [ 'Sauna',          'fas fa-hot-tub'],
+            [ 'Vista Mare',     'fas fa-water']
         ];
         foreach ($services as $service) {
             $newService = new Service();
-            $newService->name = $service;
+            $newService->name = $service[0];
+            $newService->icon = $service[1];
             $newService->save();
         }
     }
