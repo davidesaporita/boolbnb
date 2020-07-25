@@ -1,0 +1,221 @@
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+.dashboard-admin {
+    padding-top: 30px;
+    .jumbotron-dashboard {
+        margin-bottom: 40px;
+        padding: 40px 20px 15px 20px;
+        background-color: $primary_white;
+        border-radius: 15px;
+        // JUMBOTRON TITLE
+        .jum-dash-title {
+            border-bottom: 1.5px solid $light_grey;
+            h1 {
+                font-weight: bold;
+                color: $dashbord_grey;
+            }
+            p {
+                font-weight: 600;
+                color: $dashbord_lightgrey;
+            }
+        }
+        // MESSAGE INFO
+        .message-info {
+        border-bottom: 1.5px solid $light_grey;
+            .new-message {
+                p {
+                    margin-top: 15px;
+                    font-weight: 500;
+                    color: $dashbord_grey;
+                }
+            }
+            .button-message {
+                margin-top: 30px;
+                margin-bottom: 45px;
+                a {
+                    padding: 6px 15px;
+                    background: $primary_pink;
+                    border-radius: 20px;
+                    span {
+                        font-weight: 500;
+                        color: $primary_white;
+                    }
+                }
+                a:hover {
+                    opacity: .8;
+                    text-decoration: none;
+                }
+            }
+        }
+        // ICON INFO
+        .icon-info {
+            ul {
+                @include flex($flex-direction: column);
+                margin-top: 20px;
+                margin-bottom: 0px;
+                padding: 0;
+                list-style: none;
+                color: $dashbord_grey;
+                li {
+                    @include flex(center);
+                    padding-bottom: 10px;
+                    i {
+                        margin-right: 10px;
+                        font-size: 20px;
+                    }
+                } 
+            }
+        }
+    }
+    // CARD OPTION
+    .option-card {
+        @include flex();
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        a {
+            text-decoration: none;
+            flex-basis: 47%;
+            margin-bottom: 30px;
+            padding: 30px;
+            text-align: center;
+            background: $primary_pink;
+            border-radius: 15px;
+            span {
+                font-weight: bold;
+                color: white;
+            }
+        }
+        a:first-child,
+        a:nth-child(3) {
+            margin-right: 17px;
+        }
+        a:hover {
+            transition: .3s;
+            opacity: .7;
+        }
+    }
+}
+@media (min-width: 390px) { 
+    .dashboard-admin {
+        .option-card {
+            a {
+                padding: 45px;
+            }
+        }
+    }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {    // CARD OPTION
+    .dashboard-admin {
+        .jumbotron-dashboard {
+            // ICON INFO
+            .icon-info {
+                ul {
+                    @include flex($just-content: space-between);
+                    margin-top: 20px;
+                    margin-bottom: 0px;
+                    padding: 0;
+                    list-style: none;
+                    color: $dashbord_grey;
+                    li {
+                        @include flex(center);
+                        padding-bottom: 10px;
+                        i {
+                            margin-right: 10px;
+                            font-size: 20px;
+                        }
+                    } 
+                }
+            }                
+        }
+        .option-card {
+            @include flex();
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            a {
+                flex-basis: 23%;
+                margin-bottom: 30px;
+                margin-right: 10px;
+                padding: 30px;
+                text-align: center;
+                background: $primary_pink;
+                border-radius: 15px;
+            }
+            a:first-child,
+            a:nth-child(3) {
+                margin-right: 10px;
+            }    
+            a:nth-child(4) {
+                margin-right: 0px;
+            }    
+        }
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    .dashboard-admin {
+        .jumbotron-dashboard {
+            // ICON INFO
+            .icon-info {
+                ul ul i {
+                    margin-right: 15px;
+                    font-size: 30px;
+                }
+            }                
+        }
+        .option-card {
+            a {
+                margin-right: 18px;
+                padding: 40px;
+            }
+            a:first-child,
+            a:nth-child(3) {
+                margin-right: 18px;
+            }    
+            a:nth-child(4) {
+                margin-right: 0px;
+            }    
+        }
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    .dashboard-admin {
+        .option-card {
+            a {
+                margin-right: 24px;
+                padding: 60px;
+            }
+            a:first-child,
+            a:nth-child(3) {
+                margin-right: 24px;
+            }    
+            a:nth-child(4) {
+                margin-right: 0px;
+            }    
+        }
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+    .dashboard-admin {
+        padding-top: 80px;
+        .option-card {
+            a {
+                margin-right: 29px;
+                padding: 75px;
+            }
+            a:first-child,
+            a:nth-child(3) {
+                margin-right: 29px;
+            }    
+            a:nth-child(4) {
+                margin-right: 0px;
+            }    
+        }
+    }
+}
