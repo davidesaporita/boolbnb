@@ -65,12 +65,20 @@ $(document).ready(function(){
 
     // button form-reviews
     let btnReviews = $('#btn-reviews');
-    let btnCancel = $('#btn-cancel');
     let boxReviews = $('#box-reviews');
+
+    let btnReviewsDesktop = $('#btn-reviews-desktop');
+    let boxReviewsDesktop = $('#box-reviews-desktop');
+
 
     btnReviews.click( () => {
         // boxReviews.fadeToggle("slow");
         boxReviews.slideToggle("slow");
+    })
+
+    btnReviewsDesktop.click( () => {
+        // boxReviews.fadeToggle("slow");
+        boxReviewsDesktop.slideToggle("slow");
     })
 
 
