@@ -17,10 +17,14 @@ $(document).ready(function(){
         }
     })
 
+
+    ////////////////// Search functionality
+
     let filterShowButton = $('#filterTitle');
     let filterShowButtonIcon = $('#filterShowButtonIcon');
     let dropDownFilter = $('#dropDownFilter');
     let dropDownSearchButton = $('#button-search');
+    
     filterShowButton.click( () => {
         dropDownFilter.slideToggle();
 
@@ -30,10 +34,28 @@ $(document).ready(function(){
             filterShowButtonIcon.removeClass('fa-minus-circle').addClass('fa-plus-circle');
         }
     })
+    
 
-    dropDownSearchButton.click(() => {
-        dropDownFilter.slideUp();
-    });
+  
+    // dropDownSearchButton.click(() => {
+    //      wdropDownFilter.slideUp();
+    //      filterShowButtonIcon.removeClass('fa-minus-circle').addClass('fa-plus-circle');
+    // });
+
+    // $(window).resize(function() {
+    //     console.log(document.body.clientWidth + ' wide by ' + document.body.clientHeight+' high');
+        
+
+    //     if ( document.body.clientWidth < 992 ) {
+    //          dropDownSearchButton.click(() => {
+    //              dropDownFilter.slideUp();
+    //              filterShowButtonIcon.removeClass('fa-minus-circle').addClass('fa-plus-circle');
+    //         });
+    //     } 
+        
+    // });
+
+    ////////////////// Search functionality  [ END ]
     ///// SUBMIT BUTTON
 
 })
