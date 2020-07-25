@@ -63,7 +63,6 @@ var myIcon = L.icon({
   iconAnchor: [22, 49],
   popupAnchor: [-3, -75],
 });
-
 let radius;
 output.innerHTML = slider.value;
 radius = slider.value;
