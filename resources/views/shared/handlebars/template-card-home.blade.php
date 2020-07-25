@@ -14,7 +14,7 @@
   </div>
 </a>
 
-<a href="{{ url('apartments') }}/@{{apartmentID}}">
+<a href="{{ url('apartments') }}/@{{apartmentID}}" class="card-desktop-view">
   <div class="card mb-3">
     <div class="row no-gutters card-desktop">
         <div class="col-md-4 img-container">

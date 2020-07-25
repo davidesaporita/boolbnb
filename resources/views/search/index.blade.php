@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="slider-container">
+                                <div class="slider-container container">
                                     <input type="range" class="slider-search " min="1" max="50" value="20" id="myRange">
                                     <p>Km: <span id="show-km"></span></p>
                                 </div>
@@ -88,8 +88,7 @@
                     <div class="container apartment-container">
                         <div id="apartment-list"></div>
                     </div>
-            
-                    <div id="search-map" class="search-map rounded-lg"></div>  
+                    <div id="search-map-mobile" class="rounded-lg search-map"></div>
                 </div> 
             </div>
     </section>
