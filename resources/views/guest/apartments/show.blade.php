@@ -1,166 +1,456 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="wrap-content">
 
-    
+    {{-- desktop --}}
 
-    <div class="card mb-3">
-        <div class="card-body">
-            <h2 class="card-title">{{ $apartment->title }}</h2>
-            <h4 class="card-text">{{ $apartment->city . ', ' . $apartment->region . ', ' . $apartment->province }}</h4>
+    <div class="wrap-img-desktop">
+        <div class="container">
+            <div class="wrap-img-apartment">
+                <div class="wrap-featured-img w-50">
+                    <img src="{{ $apartment->featured_img }}" alt="{{ $apartment->title }}">
+                </div>
+                <div class="wrap-img w-50">
+                    @for ($i = 0; $i < 4; $i ++)
+                        <?php $urlImage = $apartment->media[$i]['path'] ?>
+                        <img src="{{ strpos($urlImage, '://') ? $urlImage : asset("/storage/" . $urlImage ) }}" alt="">
+                    @endfor
+                </div>
+            </div>
         </div>
+    </div>
 
-
-        <div class="card-body">
-            <img src="{{ strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img  ) }}" style="width: 100%;" alt="{{ $apartment->title }}">
-        </div>
-
-        {{-- <!--Carousel--> --}}
-        <div class="card-body" style="width: 100%;">
-            <div id="carousel" class="carousel slide" data-ride="carousel">
-
-                {{-- <!--indicators--> --}}
-                <ol class="carousel-indicators">
-                    @foreach($apartment->media as $item)
-                    <li data-target="#carousel" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
-                    @endforeach
-                </ol>
-
-                {{-- <!--carousel img--> --}}
-                <div class="carousel-inner">
-                    @foreach( $apartment->media as $item)
-                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                        <img src="{{ strpos($item->path, '://') ? $item->path : asset("/storage/" . $item->path ) }}" class="d-block w-100" alt="{{$item->caption}}">
+    <div class="wrap-apartment-desktop">
+        <div class="container">
+            <div class="wrap-card-info">
+                <div class="apartment-card">
+                    {{-- apartment title --}}
+                    <div class="wrap-title">
+                        <h4>{{ $apartment->title}}</h4>
+                        <h5>{{ $apartment->city . ', ' . $apartment->region }}</h5>
                     </div>
-                    @endforeach
+                    <p>{{ $apartment->description}}</p>
+                    {{-- apartments details --}}
+                    <div class="details-apartment">
+                        <h5>{{ $apartment->rooms_number }} <i class="fas fa-person-booth text-secondary"></i></h5>
+                        <h5>{{ $apartment->beds_number }} <i class="fas fa-bed text-secondary"></i></h5>
+                        <h5>{{ $apartment->bathrooms_number }} <i class="fas fa-bath text-secondary"></i></h5>
+                        <h5>{{ $apartment->square_meters }} mq</h5>
+                    </div>
+                    {{-- service --}}
+                    <div class="wrap-service">
+                        @forelse ($apartment->services as $service)
+                            <h6 class="service-badge"><i class="@isset($service->icon) {{ $service->icon }} @else {{ "fas fa-plus" }} @endisset"></i>{{$service->name}}</h6>
+                        @empty
+                            <p>Non ci sono servizi aggiuntivi!</p>
+                        @endforelse
+                    </div>
+                    {{-- rating --}}
+                    <div class="wrap-rating">
+                        <?php
+                            // Reviews average
+                            $numreviews = 0;
+                            $rating = 0;
+                            $numvotes = 0;
+                            foreach ($apartment->reviews as $review) {
+                                $numreviews++;  
+                                $numvotes++;
+                                $rating += $review->rating;
+                            }
+                            if ($numvotes != 0) {
+                                $fullaverage = $rating / $numvotes;
+                                $average = round($fullaverage, 2);
+                                echo '<h6><i class="fas fa-star"></i> ';
+                                echo $average;
+                                echo '/5 </h6>';
+                                echo " <h6> $numreviews";
+                                if ($numreviews == 1) {
+                                    echo ' recensione)';
+                                }
+                                else {
+                                    echo ' recensioni';
+                                }
+                                echo '</h6>';
+                            }
+                            elseif ($numvotes == 0) {
+                                $fullaverage = 0;
+                                $average = 0;
+                                echo '<h6>';
+                                echo "$numreviews recensioni</h6>";
+                            }
+                        ?>
+                    </div>
                 </div>
 
-                {{-- <!--controller--> --}}
-                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                {{-- info request --}}
+                <div class="info-card">
+                    <div class="title">
+                        <h4>Richiedi Informazioni</h4>
+                    </div>
+                    <div class="wrap-box-info">
+                        <form action="{{ route('info.send', $apartment->id)}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('POST')
+                    
+                            {{-- email --}}
+                            <div class="form-group">
+                                
+                                <input class="form-control" id="email" type="email" name="email" placeholder="email" @auth value="{{ Auth::user()->email }}" @endauth>
+                            </div>
+                            {{-- titolo --}}
+                            <div class="form-group">
+                                
+                                <input class="form-control" id="title" type="text" name="title" placeholder="titolo">
+                            </div>
+                            {{-- descrizione --}}
+                            <div class="form-group">
+                                
+                                <textarea class="form-control" name="body" id="body" placeholder="descrizione"></textarea>
+                            </div>
+                            
+                            <input type="submit" value="Invia" class="btn btn-success">  
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrap-reviews-desktop">
+                <div class="wrap-reviews">
+                    @forelse ($apartment->reviews as $review)
+                        <div class="card-reviews">
+                            <div class="reviews-title">
+                                <h4>{{$review->title}}</h4>
+                                <h6>{{$review->created_at->format('d/m/Y')}}</h6>
+                            </div>
+                            <p>{{$review->body}}</p>
+                            <div class="reviews-rating">
+                                <h5>{{$review->first_name}} {{$review->last_name}}</h5>
+                                <p>{{$review->rating}}/5 <i class="fas fa-star"></i></p>
+                            </div>
+                        </div>
+                    @empty
+                        <p>Non ci sono Recensioni!</p>
+                    @endforelse
+                </div>
+            </div>
+
+            <div class="wrap-reviews-form">
+                <div class="button-reviews">
+                    <button id="btn-reviews-desktop">Lascia una Recensione</button>
+                </div>
+
+                {{-- box-reviews --}}
+                <div id="box-reviews-desktop" class="reviews-form hidden">
+                    <form action="{{ route('reviews', $apartment->id)}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('POST')
+                
+                        {{-- Name --}}
+                        <div class="form-group">
+                            <label for="first_name">Nome</label>
+                            <input class="form-control" id="first_name" type="text" name="first_name" placeholder="Inserisci un nome">
+                        </div>
+                        {{-- Last_name --}}
+                        <div class="form-group">
+                            <label for="last_name">Cognome</label>
+                            <input class="form-control" id="last_name" type="text" name="last_name" placeholder="Inserisci un cognome">
+                        </div>
+                
+                        {{-- titolo --}}
+                        <div class="form-group">
+                            <label for="title">Titolo</label>
+                            <input class="form-control" id="title" type="text" name="title" placeholder="Inserisci un titolo">
+                        </div>
+                        {{-- descrizione --}}
+                        <div class="form-group">
+                            <label for="body">Descrizione</label>
+                            <textarea class="form-control" name="body" id="body" placeholder="Inserisci una descrizione"></textarea>
+                        </div>
+                
+                        {{-- rating --}}
+                        <div class="form-group">
+                            <label for="rating">Dai un voto</label>
+                            <select class="form-control" name="rating" id="rating">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                
+                        <input type="submit" value="Invia" class="btn btn-success">
+                    </form>
+                </div>
             </div>
         </div>
-        {{-- <!-- End Carousel--> --}}
+    </div>
+    {{-- <!-- End desktop--> --}}
 
-        {{-- details apartment --}}
-        <div class="card-body">
-            <p>{{ $apartment->description }}</p>
-            <div class="d-flex align-items-center">
-                <h5 class="ml-2"> {{ $apartment->rooms_number }} <i class="fas fa-person-booth text-secondary"></i></h5>
-                <h5 class="ml-2">{{ $apartment->beds_number }} <i class="fas fa-bed text-secondary"></i></h5>
-                <h5 class="ml-2">{{ $apartment->bathrooms_number }} <i class="fas fa-bath text-secondary"></i></h5>
-                <h5 class="ml-2">{{ $apartment->square_meters }} mq</h5>
+    {{-- <!--Carousel--> --}}
+    <div>
+        <div id="carousel" class="carousel slide" data-ride="carousel">
+
+            {{-- <!--indicators--> --}}
+            <ol class="carousel-indicators">
+                @foreach($apartment->media as $item)
+                <li data-target="#carousel" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+                @endforeach
+            </ol>
+
+            {{-- <!--carousel img--> --}}
+            <div class="carousel-inner">
+                @foreach( $apartment->media as $item)
+                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                    <img src="{{ strpos($item->path, '://') ? $item->path : asset("/storage/" . $item->path ) }}" class="d-block w-100" alt="{{$item->caption}}">
+                </div>
+                @endforeach
+            </div>
+
+            {{-- <!--controller--> --}}
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    {{-- <!-- End Carousel--> --}}
+
+
+    <div class="wrap-box">
+        <div class="container">
+            {{-- title  + city--}}
+            <div class="wrap-box-title">
+                <div class="wrap-title">
+                    <h4>{{ substr($apartment->title, 0,  22) }}{{(strlen($apartment->title) >= 22) ? '...' : ''}}</h4>
+                    <h6>{{ $apartment->city . ', ' . $apartment->region }}</h6>
+                </div>
+                {{-- rating --}}
+                <div class="wrap-rating">
+                    <?php
+                        // Reviews average
+                        $numreviews = 0;
+                        $rating = 0;
+                        $numvotes = 0;
+                        foreach ($apartment->reviews as $review) {
+                            $numreviews++;  
+                            $numvotes++;
+                            $rating += $review->rating;
+                        }
+                        if ($numvotes != 0) {
+                            $fullaverage = $rating / $numvotes;
+                            $average = round($fullaverage, 2);
+                            echo '<h4><i class="fas fa-star"></i> ';
+                            echo $average;
+                            echo '/5 </h4>';
+                            echo " <h6> $numreviews";
+                            if ($numreviews == 1) {
+                                echo ' recensione)';
+                            }
+                            else {
+                                echo ' recensioni';
+                            }
+                            echo '</h6>';
+                        }
+                        elseif ($numvotes == 0) {
+                            $fullaverage = 0;
+                            $average = 0;
+                            echo '<h6>';
+                            echo "$numreviews recensioni</h6>";
+                        }
+                    ?>
+                </div>
+                {{-- <!-- End rating--> --}}
             </div>
         </div>
+    </div>
 
-        {{-- services --}}
-        <div class="card-body">
-            <div>
-                <strong>Servizi disponibili</strong>
+    {{-- description box --}}
+    <div class="wrap-description-box">
+        <div class="wrap-box-click">
+            <div class="container">
+                <div class="box-title">
+                    <h5>Descrizione</h5>
+                    <i id="plus-description" class="fas fa-plus-circle"></i>
+                </div>
             </div>
-            @forelse ($apartment->services as $service)
-                <span class="badge badge-pill badge-primary">{{$service->name}}</span>
-            @empty
-                <p>Non ci sono servizi aggiuntivi!</p>
-            @endforelse
+        </div>
+        <div id="dropdown-description" class="description-dropdown hidden">
+            <div class="container">
+                <div class="box-details">
+                    <p>{{ $apartment->description }}</p>
+                    <div class="details-apartment">
+                        <h5>{{ $apartment->rooms_number }} <i class="fas fa-person-booth text-secondary"></i></h5>
+                        <h5>{{ $apartment->beds_number }} <i class="fas fa-bed text-secondary"></i></h5>
+                        <h5>{{ $apartment->bathrooms_number }} <i class="fas fa-bath text-secondary"></i></h5>
+                        <h5>{{ $apartment->square_meters }} mq</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- <!-- End description--> --}}
+
+    {{-- service box --}}
+    <div class="wrap-service-box">
+        <div class="wrap-box-click">
+            <div class="container">
+                <div class="box-title">
+                    <h5>Servizi</h5>
+                    <i id="plus-service" class="fas fa-plus-circle"></i>
+                </div>
+            </div>
+        </div>
+        <div id="dropdown-service" class="service-dropdown hidden">
+            <div class="container">
+                <div class="box-details">
+                    <div class="wrap-service">
+                        @forelse ($apartment->services as $service)
+                            <h6 class="service-badge"><i class="@isset($service->icon) {{ $service->icon }} @else {{ "fas fa-plus" }} @endisset"></i>{{$service->name}}</h6>
+                        @empty
+                            <p>Non ci sono servizi aggiuntivi!</p>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- <!-- End service box--> --}}
+
+    {{-- reviews box --}}
+    <div class="wrap-reviews-box">
+        <div class="wrap-box-click">
+            <div class="container">
+                <div class="box-title">
+                    <h5>Recensioni</h5>
+                    <i id="plus-reviews" class="fas fa-plus-circle"></i>
+                </div>
+            </div>
+        </div>
+        <div id="dropdown-reviews" class="reviews-dropdown hidden">
+            <div class="container">
+                <div class="box-details">
+                    <div class="wrap-reviews">
+                        @forelse ($apartment->reviews as $review)
+                            <div class="card-reviews">
+                                <div class="reviews-title">
+                                    <h6>{{$review->title}}</h6>
+                                    <h6>{{$review->created_at->format('d/m/Y')}}</h6>
+                                </div>
+                                <p>{{$review->body}}</p>
+                                <div class="reviews-rating">
+                                    <p>{{$review->rating}}/5 <i class="fas fa-star"></i></p>
+                                    <h5>{{$review->first_name}} {{$review->last_name}}</h5>
+                                </div>
+                            </div>
+                        @empty
+                            <p>Non ci sono Recensioni!</p>
+                        @endforelse
+
+                        <div class="wrap-box-reviews">
+                            <div class="button-reviews">
+                                <button id="btn-reviews">Lascia una Recensione</button>
+                            </div>
+                            
+                            {{-- box-reviews --}}
+                            <div id="box-reviews" class="reviews-form box-out hidden">
+                                <form action="{{ route('reviews', $apartment->id)}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('POST')
+                                    
+                                    {{-- Name --}}
+                                    <div class="form-group">
+                                        <label for="first_name">Nome</label>
+                                        <input class="form-control" id="first_name" type="text" name="first_name" placeholder="Inserisci un nome">
+                                    </div>
+                                    {{-- Last_name --}}
+                                    <div class="form-group">
+                                        <label for="last_name">Cognome</label>
+                                        <input class="form-control" id="last_name" type="text" name="last_name" placeholder="Inserisci un cognome">
+                                    </div>
+                                    
+                                    {{-- titolo --}}
+                                    <div class="form-group">
+                                        <label for="title">Titolo</label>
+                                        <input class="form-control" id="title" type="text" name="title" placeholder="Inserisci un titolo">
+                                    </div>
+                                    {{-- descrizione --}}
+                                    <div class="form-group">
+                                        <label for="body">Descrizione</label>
+                                        <textarea class="form-control" name="body" id="body" placeholder="Inserisci una descrizione"></textarea>
+                                    </div>
+                                    
+                                    {{-- rating --}}
+                                    <div class="form-group">
+                                        <label for="rating">Dai un voto</label>
+                                        <select class="form-control" name="rating" id="rating">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <input type="submit" value="Invia" class="btn btn-success">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- <!-- End reviews box--> --}}
+
+    <div class="wrap-request">
+        <div class="container">
+            <div class="title">
+                <h2>Richiedi Informazioni</h2>
+            </div>
+            <div class="wrap-box-info">
+                <div class="info-form">
+                    <form action="{{ route('info.send', $apartment->id)}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('POST')
+                
+                        {{-- email --}}
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" id="email" type="email" name="email" placeholder="Inserisci la tua email" @auth value="{{ Auth::user()->email }}" @endauth>
+                        </div>
+                        {{-- titolo --}}
+                        <div class="form-group">
+                            <label for="title">Titolo</label>
+                            <input class="form-control" id="title" type="text" name="title" placeholder="Inserisci un titolo">
+                        </div>
+                        {{-- descrizione --}}
+                        <div class="form-group">
+                            <label for="body">Body</label>
+                            <textarea class="form-control" name="body" id="body" placeholder="Inserisci una descrizione"></textarea>
+                        </div>
+                        
+                        <input type="submit" value="Invia" class="btn btn-success">
+                        
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="card mb-3">
-        {{-- reviews --}}
-        <div class="card-body">
-            <h4>Recensioni</h4>
-            @forelse ($apartment->reviews as $review)
-                <h5>{{$review->first_name}} {{$review->last_name}}</h5>
-                <strong>{{$review->title}}</strong>
-                <p>{{$review->body}}</p>
-            @empty
-                <p>Non ci sono commenti!</p>
-            @endforelse
-        </div>
-    </div>
+    {{-- map --}}
+    <div id="show-map" class="mobile-map"></div>
+    
+</div>{{-- <!-- wrap content--> --}}
 
-    {{-- info request --}}
-    <div class="d-flex justify-content-center">
-        <h2 class="h1-responsive font-weight-bold text-center my-4">Richiedi Informazioni</h2>
-    </div>
-
-    <form action="{{ route('info.send', $apartment->id)}}" method="post" enctype="multipart/form-data">
-        @csrf
-        @method('POST')
-
-        {{-- email --}}
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input class="form-control" id="email" type="email" name="email" placeholder="Inserisci la tua email" @auth value="{{ Auth::user()->email }}" @endauth>
-        </div>
-        {{-- titolo --}}
-        <div class="form-group">
-            <label for="title">Titolo</label>
-            <input class="form-control" id="title" type="text" name="title" placeholder="Inserisci un titolo">
-        </div>
-        {{-- descrizione --}}
-        <div class="form-group">
-            <label for="body">Body</label>
-            <textarea class="form-control" name="body" id="body" placeholder="Inserisci una descrizione"></textarea>
-        </div>
-        
-        <input type="submit" value="Invia" class="btn btn-success">
-        
-    </form>
-
-    {{-- reviws --}}
-    <div class="d-flex justify-content-center">
-        <h2 class="h1-responsive font-weight-bold text-center my-4">Invia una recensione</h2>
-    </div>
-
-    <form action="{{ route('reviews', $apartment->id)}}" method="post" enctype="multipart/form-data">
-        @csrf
-        @method('POST')
-
-        {{-- Name --}}
-        <div class="form-group">
-            <label for="first_name">Nome</label>
-            <input class="form-control" id="first_name" type="text" name="first_name" placeholder="Inserisci un nome">
-        </div>
-        {{-- Last_name --}}
-        <div class="form-group">
-            <label for="last_name">Nome</label>
-            <input class="form-control" id="last_name" type="text" name="last_name" placeholder="Inserisci un cognome">
-        </div>
-        
-        {{-- titolo --}}
-        <div class="form-group">
-            <label for="title">Titolo</label>
-            <input class="form-control" id="title" type="text" name="title" placeholder="Inserisci un titolo">
-        </div>
-        {{-- descrizione --}}
-        <div class="form-group">
-            <label for="body">Descrizione</label>
-            <textarea class="form-control" name="body" id="body" placeholder="Inserisci una descrizione"></textarea>
-        </div>
-
-        {{-- rating --}}
-        <div class="form-group">
-            <label for="rating">Dai un voto</label>
-            <select class="form-control" name="rating" id="rating">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-        
-        <input type="submit" value="Invia" class="btn btn-success">
-        
-    </form>
-</div>
+{{-- MAP LAT AND LONG --}}
+<input type="hidden" id="lat" value="{{$apartment->geo_lat}}">
+<input type="hidden" id="lng" value="{{$apartment->geo_lng}}">
+{{-- JS map --}}
+<script src="{{asset('js/map/map-show.js')}}"></script>
 @endsection

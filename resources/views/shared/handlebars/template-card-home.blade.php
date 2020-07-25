@@ -10,6 +10,7 @@
           <h6 class="card-title">@{{ apartmentCity }}, @{{ apartmentRegion }}, @{{apartmentProvince}}</h6>
           <label for="distance">Distanza dal luogo scelto</label>
           <span id="distance">@{{ distance }}</span>
+          <a class="btn btn-primary" href="{{ url('apartments' ) }}/@{{apartmentID}}">Show</a>
       </div>
   </div>
 </a>

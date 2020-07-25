@@ -1,0 +1,474 @@
+.wrap-content {
+    .carousel-inner {
+        .carousel-item {
+            img {
+                object-fit: cover;
+                max-height: 250px;
+            }
+        }
+    }
+    .wrap-box {
+        padding: 10px 0;
+        background-color: $primary_white;
+        // wrap title
+        .wrap-box-title {
+            @include flex(center, $just-content: space-between);
+            position: relative;
+        }
+
+        .wrap-title::after {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 40px;
+            top: 60%;
+            right: 30%;
+            transform: translate(-50%, -70%);
+            background-color: #C6C6C6;
+        }
+        // wrap rating
+        .wrap-rating {
+            @include flex(end, $flex-direction: column);
+        }
+
+    }
+
+    #show-map {
+        height: 300px;
+    }
+
+    // wrap-description + wrap service 
+    .wrap-description-box,
+    .wrap-service-box {
+        background-color: $primary_white;
+        .wrap-box-click {
+            padding: 15px 0;
+            background-color: $primary_white;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+            .container {
+                .box-title {
+                    @include flex(center, $just-content: space-between);
+                    h5 {
+                        margin-bottom: 0px;
+                    }
+                    i {
+                        font-size: 20px;
+                        color: $primary_pink;
+                    }
+                }
+            }
+        }
+
+        .description-dropdown,
+        .service-dropdown {
+            .container {
+                .box-details {
+                    padding: 20px 0;
+                    p {
+                        @include font_options($color: $color_paraghrap);
+                    }
+
+                    // description
+                    .details-apartment {
+                        @include flex(center);
+                        h5 {
+                            margin-right: 20px;
+                        }
+                    }
+
+                    // service
+                    .wrap-service {
+                        @include flex(center);
+                        flex-wrap: wrap;
+                        .service-badge {
+                            margin-right: 10px;
+                            padding: 10px;
+                            border-radius: 10px;
+                            background-color: $primary_pink;
+                            @include font_options($color: $primary_white);
+                            i {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // wrap reviews
+    .wrap-reviews-box {
+        position: relative;
+        .wrap-box-click {
+            padding: 15px 0;
+            background-color: $primary_white;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+            .container {
+                .box-title {
+                    @include flex(center, $just-content: space-between);
+                    h5 {
+                        margin-bottom: 0px;
+                    }
+                    i {
+                        font-size: 20px;
+                        color: $primary_pink;
+                    }
+                }
+            }
+        }
+
+        .reviews-dropdown {
+            .box-details {
+                padding: 20px 0;
+                // reviews
+                .wrap-reviews {
+                    padding: 20px;
+                    .card-reviews {
+                        margin-bottom: 20px;
+                        padding: 15px 20px;
+                        border-radius: 10px;
+                        background-color: $primary_white;
+                        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)); 
+                        .reviews-title {
+                            @include flex($just-content: space-between);
+                        }
+                        .reviews-rating {
+                            @include flex($just-content: space-between);
+                        }
+                    }
+
+                    .wrap-box-reviews {
+                        @include flex(center, $flex-direction: column);
+                        .button-reviews {
+                            @include flex($just-content: center);
+                            margin-bottom: 20px;
+                            button {
+                                padding: 10px;
+                                border-radius: 10px;
+                                background-color: $primary_pink;
+                                color: $primary_white;
+                                border: none;
+                            }
+                        }
+    
+                        #box-reviews {
+                            max-width: 345px;
+                            margin-bottom: 20px;
+                            padding: 15px 20px;
+                            border-radius: 10px;
+                            background-color: $primary_white;
+                            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    
+
+    // request info
+
+    .wrap-request {
+        background-color: $primary_pink;
+        .container {
+            .title {
+                padding-top: 30px;
+                @include flex($just-content: center);
+                h2 {
+                    @include font_options($color: $primary_white);
+                }
+            }
+            .wrap-box-info {
+                padding: 20px;
+                .info-form {
+                    margin-bottom: 30px;
+                    padding: 15px 20px;
+                    border-radius: 10px;
+                    background-color: $primary_white;
+                    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)); 
+                }
+            }
+        }
+    }
+
+    // desktop
+    .wrap-img-desktop {
+        display: none;
+        padding: 20px 0;
+        .container {
+            .wrap-img-apartment {
+                @include flex;
+                .wrap-img {
+                    @include flex($just-content: space-between);
+                    flex-wrap: wrap;
+                    img {
+                        margin-left: 10px;
+                        margin-bottom: 10px;
+                        &:nth-child(3), &:nth-child(4) {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // card apartment
+    .wrap-apartment-desktop {
+        display: none;
+        margin-bottom: 20px;
+        .container{
+            .wrap-card-info {
+                @include flex($just-content: space-between);
+                margin-bottom: 20px;
+                padding-top: 20px;
+                border-top: 2px solid $footer_separetor;
+                .apartment-card {
+                    @include flex($flex-direction: column);
+                    width: 72%;
+                    min-height: 300px;
+                    padding: 15px;
+                    border-radius: 10px;
+                    background-color: $primary_white;
+                    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)); 
+
+                    p {
+                        flex-grow: 1;
+                        @include font_options($color: $color_paraghrap);
+                    }
+
+                    .details-apartment {
+                        margin-bottom: 16px;
+                        @include flex(center);
+                        h5 {
+                            margin-right: 20px;
+                        }
+                    }
+
+                    .wrap-service {
+                        margin-bottom: 16px;
+                        @include flex(center);
+                        flex-wrap: wrap;
+                        .service-badge {
+                            margin-right: 10px;
+                            padding: 10px;
+                            border-radius: 10px;
+                            background-color: $primary_pink;
+                            @include font_options($color: $primary_white);
+                            i {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+
+                    .wrap-rating {
+                        @include flex($just-content: space-between);
+
+                        width: 100%;
+                    }
+                }
+
+                .info-card {
+                    width: 28%;
+                    min-height: 300px;
+                    margin-left: 10px;
+                    padding: 15px;
+                    border-radius: 10px;
+                    background-color: $primary_white;
+                    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+                    .title {
+                        @include flex($just-content: center);
+                        h2 {
+                            @include font_options($color: $text_color);
+                        }
+                    }
+                    .wrap-box-info {
+                        padding: 10px;
+                    }
+                }
+            }
+        }
+
+        .wrap-reviews-desktop {
+            width: 71%;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: $primary_white;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+            .wrap-reviews {
+                
+                .card-reviews {
+                    margin-bottom: 20px;
+                    border-bottom: 1px solid #c6c6c6;
+                    &:last-child {
+                        margin-bottom: 0;
+                        border-bottom: none;
+                    }
+
+                    .reviews-rating {
+                        @include flex;
+                        h5 {
+                            @include font_options($weight: 400);
+                            font-style: italic;
+                            margin-right: 20px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .wrap-reviews-form {
+            @include flex(center, $flex-direction: column);
+            width: 71%;
+
+            .button-reviews {
+                @include flex($just-content: center);
+                margin-bottom: 20px;
+                button {
+                    padding: 10px;
+                    border-radius: 10px;
+                    background-color: $primary_pink;
+                    color: $primary_white;
+                    border: none;
+                }
+            }
+
+            #box-reviews-desktop {
+                max-width: 345px;
+                margin-bottom: 20px;
+                padding: 15px 20px;
+                border-radius: 10px;
+                background-color: $primary_white;
+                filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+            }
+        }
+    }
+}
+
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+    
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+    .wrap-content {
+        #carousel {
+            display: none;
+        }
+
+        // desktop
+        .wrap-img-desktop {
+            display: block;
+            .container {
+                .wrap-img-apartment {
+                    .wrap-featured-img {
+                        img {
+                            width: 100%;
+                            height: 230px;
+                        }
+                    }
+                    .wrap-img {
+                        img {
+                            width: 162.5px;
+                            height: 109.967px;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+    .wrap-content {
+        .wrap-description-box,
+        .wrap-service-box,
+        .wrap-reviews-box,
+        .wrap-request,
+        .wrap-box  {
+            display: none;
+        }
+
+        .wrap-apartment-desktop { 
+            display: block;
+        }
+
+        // desktop
+        .wrap-img-desktop {
+            .container {
+                .wrap-img-apartment {
+                    .wrap-featured-img {
+                        img {
+                            width: 100%;
+                            height: 310px;
+                        }
+                    }
+                    .wrap-img {
+                        img {
+                            width: 222.5px;
+                            height: 150.067px;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+
+    .wrap-content {
+        margin-top: 58px;
+        // desktop
+        .wrap-img-desktop {
+            .container {
+                .wrap-img-apartment {
+                    .wrap-featured-img {
+                        img {
+                            width: 100%;
+                            height: 370px;
+                        }
+                    }
+                    .wrap-img {
+                        img {
+                            width: 267.5px;
+                            height: 180.015px;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+
+        .wrap-apartment-desktop { 
+            display: block;
+            .container{
+                .wrap-card-info {
+                    @include flex($just-content: space-between);
+                    padding-top: 20px;
+                    border-top: 2px solid $footer_separetor;
+                    .apartment-card {
+                        width: 75%;
+                    }
+
+                    .info-card {
+                        width: 24%;
+                    }
+                }
+
+                .wrap-reviews-desktop {
+                    width: 75%;
+                }
+            }
+        }
+
+    }
+}

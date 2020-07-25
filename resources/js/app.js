@@ -18,6 +18,72 @@ $(document).ready(function(){
     })
 
 
+
+    // show-guest-mobile-click description
+
+    let clickDescription = $('#plus-description');
+    let dropdownDescription = $('#dropdown-description');
+
+    clickDescription.click( () => {
+        dropdownDescription.slideToggle();
+
+        if ( clickDescription.hasClass("fa-plus-circle") ) {
+            clickDescription.removeClass("fa-plus-circle").addClass("fa-minus-circle");
+        } else { 
+            clickDescription.removeClass("fa-minus-circle").addClass("fa-plus-circle"); 
+        }
+    })
+
+    // show-guest-mobile-click service
+
+    let clickService = $('#plus-service');
+    let dropdownService = $('#dropdown-service');
+
+    clickService.click( () => {
+        dropdownService.slideToggle();
+
+        if ( clickService.hasClass("fa-plus-circle") ) {
+            clickService.removeClass("fa-plus-circle").addClass("fa-minus-circle");
+        } else { 
+            clickService.removeClass("fa-minus-circle").addClass("fa-plus-circle"); 
+        }
+    })
+
+    // show-guest-mobile-click reviews
+
+    let clickReviews = $('#plus-reviews');
+    let dropdownReviews = $('#dropdown-reviews');
+
+    clickReviews.click( () => {
+        dropdownReviews.slideToggle();
+
+        if ( clickReviews.hasClass("fa-plus-circle") ) {
+            clickReviews.removeClass("fa-plus-circle").addClass("fa-minus-circle");
+        } else { 
+            clickReviews.removeClass("fa-minus-circle").addClass("fa-plus-circle"); 
+        }
+    })
+
+    // button form-reviews
+    let btnReviews = $('#btn-reviews');
+    let boxReviews = $('#box-reviews');
+
+    let btnReviewsDesktop = $('#btn-reviews-desktop');
+    let boxReviewsDesktop = $('#box-reviews-desktop');
+
+
+    btnReviews.click( () => {
+        // boxReviews.fadeToggle("slow");
+        boxReviews.slideToggle("slow");
+    })
+
+    btnReviewsDesktop.click( () => {
+        // boxReviews.fadeToggle("slow");
+        boxReviewsDesktop.slideToggle("slow");
+    })
+
+
+
     ////////////////// Search functionality
 
     let filterShowButton = $('#filterTitle');
@@ -56,6 +122,7 @@ $(document).ready(function(){
     // });
 
     ////////////////// Search functionality  [ END ]
+
     ///// SUBMIT BUTTON
 
 })
