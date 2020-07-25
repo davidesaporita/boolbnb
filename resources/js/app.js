@@ -63,6 +63,16 @@ $(document).ready(function(){
         }
     })
 
+    // button form-reviews
+    let btnReviews = $('#btn-reviews');
+    let btnCancel = $('#btn-cancel');
+    let boxReviews = $('#box-reviews');
+
+    btnReviews.click( () => {
+        // boxReviews.fadeToggle("slow");
+        boxReviews.slideToggle("slow");
+    })
+
 
     ///// SUBMIT BUTTON
 

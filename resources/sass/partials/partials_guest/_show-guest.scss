@@ -1,5 +1,4 @@
 .wrap-content {
-    margin-top: 54px;
     .carousel-inner {
         .carousel-item {
             img {
@@ -14,6 +13,7 @@
         // wrap title
         .wrap-box-title {
             @include flex(center, $just-content: space-between);
+            position: relative;
         }
 
         .wrap-title::after {
@@ -23,7 +23,7 @@
             height: 40px;
             top: 60%;
             right: 30%;
-            transform: translate(-50%, -82%);
+            transform: translate(-50%, -70%);
             background-color: #C6C6C6;
         }
         // wrap rating
@@ -33,10 +33,9 @@
 
     }
 
-    // wrap-description
+    // wrap-description + wrap service 
     .wrap-description-box,
-    .wrap-service-box,
-    .wrap-reviews-box {
+    .wrap-service-box {
         background-color: $primary_white;
         .wrap-box-click {
             padding: 15px 0;
@@ -54,12 +53,10 @@
                     }
                 }
             }
-
         }
 
         .description-dropdown,
-        .service-dropdown,
-        .reviews-dropdown {
+        .service-dropdown {
             .container {
                 .box-details {
                     padding: 20px 0;
@@ -76,25 +73,136 @@
                     }
 
                     // service
-                    .service-badge {
-                        background-color: $primary_pink;
-                        @include font_options($color: $primary_white);
-                    }
-
-                    // reviews
-                    .wrap-reviews {
-                        padding: 20px;
-                        .card-reviews {
-                            padding: 15px 20px;
+                    .wrap-service {
+                        @include flex(center);
+                        flex-wrap: wrap;
+                        .service-badge {
+                            margin-right: 10px;
+                            padding: 10px;
                             border-radius: 10px;
-                            margin-bottom: 20px;
-                            background-color: $primary_white;
-                            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)); 
+                            background-color: $primary_pink;
+                            @include font_options($color: $primary_white);
+                            i {
+                                margin-right: 10px;
+                            }
                         }
                     }
                 }
             }
         }
-
     }
+
+    // wrap reviews
+    .wrap-reviews-box {
+        position: relative;
+        .wrap-box-click {
+            padding: 15px 0;
+            background-color: $primary_white;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+            .container {
+                .box-title {
+                    @include flex(center, $just-content: space-between);
+                    h5 {
+                        margin-bottom: 0px;
+                    }
+                    i {
+                        font-size: 20px;
+                        color: $primary_pink;
+                    }
+                }
+            }
+        }
+
+        .reviews-dropdown {
+            .box-details {
+                padding: 20px 0;
+                // reviews
+                .wrap-reviews {
+                    padding: 20px;
+                    .card-reviews {
+                        margin-bottom: 20px;
+                        padding: 15px 20px;
+                        border-radius: 10px;
+                        background-color: $primary_white;
+                        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)); 
+                        .reviews-title {
+                            @include flex($just-content: space-between);
+                        }
+                        .reviews-rating {
+                            @include flex($just-content: space-between);
+                        }
+                    }
+
+                    .button-reviews {
+                        @include flex($just-content: center);
+                        margin-bottom: 20px;
+                        button {
+                            padding: 10px;
+                            border-radius: 10px;
+                            background-color: $primary_pink;
+                            color: $primary_white;
+                            border: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #box-reviews {
+        max-width: 345px;
+        margin-bottom: 20px;
+        padding: 15px 20px;
+        border-radius: 10px;
+        background-color: $primary_white;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+    }
+
+    // request info
+
+    .wrap-request {
+        background-color: $primary_pink;
+        .container {
+            .title {
+                padding-top: 30px;
+                @include flex($just-content: center);
+                h2 {
+                    @include font_options($color: $primary_white);
+                }
+            }
+            .wrap-box-info {
+                padding: 20px;
+                .info-form {
+                    margin-bottom: 30px;
+                    padding: 15px 20px;
+                    border-radius: 10px;
+                    background-color: $primary_white;
+                    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)); 
+                }
+            }
+        }
+    }
+}
+
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+    
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+    
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+    .wrap-content {
+        margin-top: 54px;
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+    
 }

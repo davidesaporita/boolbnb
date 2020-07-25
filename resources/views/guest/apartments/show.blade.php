@@ -126,11 +126,13 @@
         <div id="dropdown-service" class="service-dropdown hidden">
             <div class="container">
                 <div class="box-details">
-                    @forelse ($apartment->services as $service)
-                        <span class="service-badge">{{$service->name}}</span>
-                    @empty
-                        <p>Non ci sono servizi aggiuntivi!</p>
-                    @endforelse
+                    <div class="wrap-service">
+                        @forelse ($apartment->services as $service)
+                            <h6 class="service-badge"><i class="@isset($service->icon) {{ $service->icon }} @else {{ "fas fa-plus" }} @endisset"></i>{{$service->name}}</h6>
+                        @empty
+                            <p>Non ci sono servizi aggiuntivi!</p>
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </div>
@@ -153,109 +155,113 @@
                     <div class="wrap-reviews">
                         @forelse ($apartment->reviews as $review)
                             <div class="card-reviews">
-                                <h5>{{$review->first_name}} {{$review->last_name}}</h5>
-                                <strong>{{$review->title}}</strong>
+                                <div class="reviews-title">
+                                    <h6>{{$review->title}}</h6>
+                                    <h6>{{$review->created_at->format('d/m/Y')}}</h6>
+                                </div>
                                 <p>{{$review->body}}</p>
-                                <p>{{$review->rating}}</p>
+                                <div class="reviews-rating">
+                                    <p>{{$review->rating}}/5 <i class="fas fa-star"></i></p>
+                                    <h5>{{$review->first_name}} {{$review->last_name}}</h5>
+                                </div>
                             </div>
                         @empty
                             <p>Non ci sono Recensioni!</p>
                         @endforelse
+
+                        <div class="button-reviews">
+                            <button id="btn-reviews">Lascia una Recensione</button>
+                        </div>
+
+                        {{-- box-reviews --}}
+                        <div id="box-reviews" class="reviews-form box-out hidden">
+                            <form action="{{ route('reviews', $apartment->id)}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                @method('POST')
+                        
+                                {{-- Name --}}
+                                <div class="form-group">
+                                    <label for="first_name">Nome</label>
+                                    <input class="form-control" id="first_name" type="text" name="first_name" placeholder="Inserisci un nome">
+                                </div>
+                                {{-- Last_name --}}
+                                <div class="form-group">
+                                    <label for="last_name">Nome</label>
+                                    <input class="form-control" id="last_name" type="text" name="last_name" placeholder="Inserisci un cognome">
+                                </div>
+                        
+                                {{-- titolo --}}
+                                <div class="form-group">
+                                    <label for="title">Titolo</label>
+                                    <input class="form-control" id="title" type="text" name="title" placeholder="Inserisci un titolo">
+                                </div>
+                                {{-- descrizione --}}
+                                <div class="form-group">
+                                    <label for="body">Descrizione</label>
+                                    <textarea class="form-control" name="body" id="body" placeholder="Inserisci una descrizione"></textarea>
+                                </div>
+                        
+                                {{-- rating --}}
+                                <div class="form-group">
+                                    <label for="rating">Dai un voto</label>
+                                    <select class="form-control" name="rating" id="rating">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                        
+                                <input type="submit" value="Invia" class="btn btn-success">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     {{-- <!-- End reviews box--> --}}
+
+    <div class="wrap-request">
+        <div class="container">
+            <div class="title">
+                <h2>Richiedi Informazioni</h2>
+            </div>
+            <div class="wrap-box-info">
+                <div class="info-form">
+                    <form action="{{ route('info.send', $apartment->id)}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('POST')
+                
+                        {{-- email --}}
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" id="email" type="email" name="email" placeholder="Inserisci la tua email" @auth value="{{ Auth::user()->email }}" @endauth>
+                        </div>
+                        {{-- titolo --}}
+                        <div class="form-group">
+                            <label for="title">Titolo</label>
+                            <input class="form-control" id="title" type="text" name="title" placeholder="Inserisci un titolo">
+                        </div>
+                        {{-- descrizione --}}
+                        <div class="form-group">
+                            <label for="body">Body</label>
+                            <textarea class="form-control" name="body" id="body" placeholder="Inserisci una descrizione"></textarea>
+                        </div>
+                        
+                        <input type="submit" value="Invia" class="btn btn-success">
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     
-
-
+    
 </div>{{-- <!-- wrap content--> --}}
 
-
-
-
-
-
-<div class="container">   
-
-
-    {{-- info request --}}
-    <div class="d-flex justify-content-center">
-        <h2 class="h1-responsive font-weight-bold text-center my-4">Richiedi Informazioni</h2>
-    </div>
-
-    <form action="{{ route('info.send', $apartment->id)}}" method="post" enctype="multipart/form-data">
-        @csrf
-        @method('POST')
-
-        {{-- email --}}
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input class="form-control" id="email" type="email" name="email" placeholder="Inserisci la tua email" @auth value="{{ Auth::user()->email }}" @endauth>
-        </div>
-        {{-- titolo --}}
-        <div class="form-group">
-            <label for="title">Titolo</label>
-            <input class="form-control" id="title" type="text" name="title" placeholder="Inserisci un titolo">
-        </div>
-        {{-- descrizione --}}
-        <div class="form-group">
-            <label for="body">Body</label>
-            <textarea class="form-control" name="body" id="body" placeholder="Inserisci una descrizione"></textarea>
-        </div>
-        
-        <input type="submit" value="Invia" class="btn btn-success">
-        
-    </form>
-
-    {{-- reviws --}}
-    <div class="d-flex justify-content-center">
-        <h2 class="h1-responsive font-weight-bold text-center my-4">Invia una recensione</h2>
-    </div>
-
-    <form action="{{ route('reviews', $apartment->id)}}" method="post" enctype="multipart/form-data">
-        @csrf
-        @method('POST')
-
-        {{-- Name --}}
-        <div class="form-group">
-            <label for="first_name">Nome</label>
-            <input class="form-control" id="first_name" type="text" name="first_name" placeholder="Inserisci un nome">
-        </div>
-        {{-- Last_name --}}
-        <div class="form-group">
-            <label for="last_name">Nome</label>
-            <input class="form-control" id="last_name" type="text" name="last_name" placeholder="Inserisci un cognome">
-        </div>
-        
-        {{-- titolo --}}
-        <div class="form-group">
-            <label for="title">Titolo</label>
-            <input class="form-control" id="title" type="text" name="title" placeholder="Inserisci un titolo">
-        </div>
-        {{-- descrizione --}}
-        <div class="form-group">
-            <label for="body">Descrizione</label>
-            <textarea class="form-control" name="body" id="body" placeholder="Inserisci una descrizione"></textarea>
-        </div>
-
-        {{-- rating --}}
-        <div class="form-group">
-            <label for="rating">Dai un voto</label>
-            <select class="form-control" name="rating" id="rating">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-        
-        <input type="submit" value="Invia" class="btn btn-success">
-        
-    </form>
-</div>
 {{-- MAP LAT AND LONG --}}
 <input type="hidden" id="lat" value="{{$apartment->geo_lat}}">
 <input type="hidden" id="lng" value="{{$apartment->geo_lng}}">
