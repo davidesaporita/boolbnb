@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Mail\NewMessage;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
-use App\Mail\NewMessage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 
 use App\Apartment;
@@ -48,7 +51,7 @@ class ApartmentController extends Controller
 
     public function send(Request $request, Apartment $apartment)
     {
-        // todo validation
+        $request->validate($this->messageValidationRules());
 
         $data = $request->all();
 
@@ -65,19 +68,19 @@ class ApartmentController extends Controller
             Stat::addNewStat($apartment, 'message');
 
             Mail::to('user@test.com')->send(new NewMessage($newRequest));
-            
-            // todo redirect
-            return view('guest.apartments.show', compact('apartment'));
-        }
 
+            $request->session()->put('message', 'La tua richiesta di informazioni è stata inviata con successo!');
+            
+            return redirect()->route('apartments.show', $apartment);
+        }
     }
     
 
-    public function reviews(Request $request, Apartment $apartment) {
+    public function reviews(Request $request, Apartment $apartment) 
+    {
+        $request->validate($this->reviewValidationRules());
 
         $data = $request->all();
-
-        // get apartment id
         $data['apartment_id'] = $apartment->id;
 
         $newReview = new Review();
@@ -89,7 +92,9 @@ class ApartmentController extends Controller
             // Add new "view" stat to stats table
             Stat::addNewStat($apartment, 'review');
 
-            return view('guest.apartments.show', compact('apartment'));
+            $request->session()->put('message', 'La tua recensione è stata pubblicata con successo!');
+
+            return redirect()->route('apartments.show', $apartment);
         }
     }
 
@@ -113,5 +118,30 @@ class ApartmentController extends Controller
     private function softSlugify($string, $separator = '-')
     {
         return Str::slug($string, $separator);
+    }
+
+    /**
+     * Validation rules.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    private function messageValidationRules()
+    {
+        return [
+            'email' => 'required|string|email|max:255',
+            'title' => 'required|string|max:255',
+            'body'  => 'required|string|max:600',
+        ];
+    }
+
+    private function reviewValidationRules()
+    {
+        return [
+            'first_name' => 'required|string|max:40',
+            'last_name'  => 'required|string|max:40',
+            'title'      => 'required|string|max:255',
+            'body'       => 'required|string|max:600',
+            'rating'     => 'required|numeric|between:1,5'
+        ];
     }
 }
