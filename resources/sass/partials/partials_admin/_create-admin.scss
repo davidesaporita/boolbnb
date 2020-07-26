@@ -19,6 +19,7 @@
     .form-card {
         background-color: #fff;
         border-radius: 10px;
+        margin-bottom: 20px;
         
         .subtitle-size { 
             font-size: 16px; 
@@ -108,8 +109,7 @@
         @include flex($align:center, $just-content:center);
     }
     
-    .create-page {
-        
+    .create-page {         
         .desktop-label {
             display:block;
         }
@@ -117,6 +117,7 @@
         .form-card {
             background: none;
             padding: 10px 10px 30px 10px;
+            margin-bottom: 0;
             
             .desktop-card {
                 padding: 20px 20px;
