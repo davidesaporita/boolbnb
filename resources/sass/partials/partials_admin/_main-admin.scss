@@ -4,6 +4,14 @@
     background: none;
     padding-top: 0px;
     .carousel {
+        .controls-top {
+            a i {
+                color: $primary_pink;
+            }
+        }
+        .carousel-indicators li {
+                background-color: #aaa;
+        }
         .carousel-inner {  
             .apartments-list-guest {
                 padding-top: 10px;
