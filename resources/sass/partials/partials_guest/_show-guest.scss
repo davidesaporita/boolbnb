@@ -166,7 +166,8 @@
                         }
     
                         #box-reviews {
-                            max-width: 345px;
+                            // max-width: 345px;
+                            width: 100%;
                             margin-bottom: 20px;
                             padding: 15px 20px;
                             border-radius: 10px;
@@ -194,7 +195,7 @@
                                     box-shadow: 0 0 0 0.2rem rgba(112, 112, 112, 0.25);
                                 }
 
-                                a {
+                                .submit-magenta {
                                     text-decoration: none;
                                     padding: 10px;
                                     border-radius: 10px;
@@ -255,7 +256,7 @@
                             box-shadow: 0 0 0 0.2rem rgba(112, 112, 112, 0.25);
                         }
 
-                        a {
+                        .submit-magenta {
                             text-decoration: none;
                             padding: 10px;
                             border-radius: 10px;
@@ -570,7 +571,7 @@
                                     box-shadow: 0 0 0 0.2rem rgba(112, 112, 112, 0.25);
                                 }
 
-                                a {
+                                .submit-magenta {
                                     text-decoration: none;
                                     padding: 10px;
                                     border-radius: 10px;
@@ -623,7 +624,7 @@
                                     box-shadow: 0 0 0 0.2rem rgba(112, 112, 112, 0.25);
                                 }
                                 
-                                a {
+                                .submit-magenta {
                                     text-decoration: none;
                                     padding: 10px;
                                     border-radius: 10px;
@@ -631,7 +632,6 @@
                                     color: $primary_white;
                                     border: none;
                                 }
-
                             }
                         }
                     }
