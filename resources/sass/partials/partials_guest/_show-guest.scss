@@ -231,9 +231,9 @@
             .wrap-card-info {
                 @include flex($just-content: space-between);
                 margin-bottom: 20px;
-                padding-top: 20px;
+                // padding-top: 20px;
                 // border-top: 2px solid $footer_separetor;
-                border-top: 1px solid #ddd;
+                // border-top: 1px solid #ddd;
                 .apartment-card {
                     @include flex($flex-direction: column);
                     width: 72%;
@@ -346,15 +346,6 @@
                     border: none;
                 }
             }
-
-            #box-reviews-desktop {
-                max-width: 345px;
-                margin-bottom: 20px;
-                padding: 15px 20px;
-                border-radius: 10px;
-                background-color: $primary_white;
-                filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
-            }
         }
     }
 }
@@ -433,6 +424,78 @@
                 }
             }
         }
+
+        .wrap-apartment-desktop { 
+            display: block;
+
+            .container{
+                @include flex();
+
+                padding-top: 20px;
+                border-top: 1px solid #ddd;
+
+                .col-data-apartment {
+                    margin-right: 10px;
+                    .wrap-card-info {
+                        @include flex($just-content: space-between);
+
+                        .apartment-card {
+                            width: 100%;
+                        }
+                    }
+                    .wrap-reviews-desktop {
+                        width: 100%;
+                    }
+
+                    .wrap-reviews-form {
+                        width: 100%;
+            
+                        .button-reviews {
+                            @include flex($just-content: center);
+                            margin-bottom: 20px;
+                            button {
+                                padding: 10px;
+                                border-radius: 10px;
+                                background-color: $primary_pink;
+                                color: $primary_white;
+                                border: none;
+                            }
+                        }
+            
+                        #box-reviews-desktop {
+                            width: 100%;
+                            margin-bottom: 20px;
+                            padding: 15px 20px;
+                            border-radius: 10px;
+                            background-color: $primary_white;
+                            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+                        }
+                    }
+                }
+
+                .col-sticky-form {
+                    position: -webkit-sticky; /* Safari */
+                    position: sticky;
+                    top: 80px;
+                    .info-card {
+                        width: 267px;
+                        padding: 15px;
+                        border-radius: 10px;
+                        background-color: $primary_white;
+                        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+                        .title {
+                            @include flex($just-content: center);
+                            h2 {
+                                @include font_options($color: $text_color);
+                            }
+                        }
+                        .wrap-box-info {
+                            padding: 10px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -441,6 +504,7 @@
 
     .wrap-content {
         margin-top: 58px;
+
         // desktop
         .wrap-img-desktop {
             .container {
@@ -462,29 +526,5 @@
                 }
             }
         }
-
-        .wrap-apartment-desktop { 
-            display: block;
-            .container{
-                .wrap-card-info {
-                    @include flex($just-content: space-between);
-                    padding-top: 20px;
-                    // border-top: 2px solid $footer_separetor;
-                    border-top: 1px solid #ddd;
-                    .apartment-card {
-                        width: 75%;
-                    }
-
-                    .info-card {
-                        width: 24%;
-                    }
-                }
-
-                .wrap-reviews-desktop {
-                    width: 75%;
-                }
-            }
-        }
-
     }
 }
