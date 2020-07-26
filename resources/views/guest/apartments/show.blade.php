@@ -117,13 +117,16 @@
                             @csrf
                             @method('POST')
                             <h5>Raccontaci la tua esperienza presso {{ $apartment->title }}</h5>
-                            {{-- Name --}}
-                            <div class="form-group">
-                                <input required class="form-control" id="first_name" type="text" name="first_name" placeholder="Il tuo nome">
-                            </div>
-                            {{-- Last_name --}}
-                            <div class="form-group">
-                                <input required class="form-control" id="last_name" type="text" name="last_name" placeholder="Il tuo cognome">
+
+                            <div class="name">
+                                {{-- Name --}}
+                                <div class="">
+                                    <input required class="form-control" id="first_name" type="text" name="first_name" placeholder="Il tuo nome">
+                                </div>
+                                {{-- Last_name --}}
+                                <div class="">
+                                    <input required class="form-control" id="last_name" type="text" name="last_name" placeholder="Il tuo cognome">
+                                </div>
                             </div>
                             
                             {{-- titolo --}}
