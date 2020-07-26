@@ -6,7 +6,7 @@
                 <div class="desktop-size-search">
                     <div class="container">
                         <div class="search-bar-container">
-                            <input type="search" id="search" class="form-control" placeholder="Inserisi l'indirizzo!" name="address" value="{{ old('address') }}" />
+                            <input type="search" id="search" class="form-control" placeholder="Inserisci l'indirizzo" name="address" value="{{ old('address') }}" />
                         </div>
                     </div>
                 
@@ -82,7 +82,7 @@
                 
                 <div class="desktop-search-result">
                     <div class="container result-name">
-                        <h2>Risultati per : <span id="searchResultName"></span></h2>
+                        <h2>Risultati per: <span id="searchResultName"></span></h2>
                     </div>
         
                     <div class="container apartment-container">
