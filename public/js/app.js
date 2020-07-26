@@ -37271,10 +37271,106 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
+  var menuIcon = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#menu-icon');
+  var subMenu = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#sub-menu');
+  menuIcon.click(function () {
+    subMenu.slideToggle();
+
+    if (menuIcon.hasClass("fa-bars")) {
+      menuIcon.removeClass("fa-bars").addClass("fa-times");
+    } else {
+      menuIcon.removeClass("fa-times").addClass("fa-bars");
+    }
+  }); // show-guest-mobile-click description
+
+  var clickDescription = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#plus-description');
+  var dropdownDescription = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#dropdown-description');
+  clickDescription.click(function () {
+    dropdownDescription.slideToggle();
+
+    if (clickDescription.hasClass("fa-plus-circle")) {
+      clickDescription.removeClass("fa-plus-circle").addClass("fa-minus-circle");
+    } else {
+      clickDescription.removeClass("fa-minus-circle").addClass("fa-plus-circle");
+    }
+  }); // show-guest-mobile-click service
+
+  var clickService = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#plus-service');
+  var dropdownService = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#dropdown-service');
+  clickService.click(function () {
+    dropdownService.slideToggle();
+
+    if (clickService.hasClass("fa-plus-circle")) {
+      clickService.removeClass("fa-plus-circle").addClass("fa-minus-circle");
+    } else {
+      clickService.removeClass("fa-minus-circle").addClass("fa-plus-circle");
+    }
+  }); // show-guest-mobile-click reviews
+
+  var clickReviews = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#plus-reviews');
+  var dropdownReviews = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#dropdown-reviews');
+  clickReviews.click(function () {
+    dropdownReviews.slideToggle();
+
+    if (clickReviews.hasClass("fa-plus-circle")) {
+      clickReviews.removeClass("fa-plus-circle").addClass("fa-minus-circle");
+    } else {
+      clickReviews.removeClass("fa-minus-circle").addClass("fa-plus-circle");
+    }
+  }); // button form-reviews
+
+  var btnReviews = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-reviews');
+  var boxReviews = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#box-reviews');
+  var btnReviewsDesktop = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#btn-reviews-desktop');
+  var boxReviewsDesktop = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#box-reviews-desktop');
+  btnReviews.click(function () {
+    // boxReviews.fadeToggle("slow");
+    boxReviews.slideToggle("slow");
+  });
+  btnReviewsDesktop.click(function () {
+    // boxReviews.fadeToggle("slow");
+    boxReviewsDesktop.slideToggle("slow");
+  }); ////////////////// Search functionality
+
+  var filterShowButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#filterTitle');
+  var filterShowButtonIcon = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#filterShowButtonIcon');
+  var dropDownFilter = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#dropDownFilter');
+  var dropDownSearchButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#button-search');
+  filterShowButton.click(function () {
+    dropDownFilter.slideToggle();
+
+    if (filterShowButtonIcon.hasClass('fa-plus-circle')) {
+      filterShowButtonIcon.removeClass('fa-plus-circle').addClass('fa-minus-circle');
+    } else {
+      filterShowButtonIcon.removeClass('fa-minus-circle').addClass('fa-plus-circle');
+    }
+  }); // dropDownSearchButton.click(() => {
+  //      wdropDownFilter.slideUp();
+  //      filterShowButtonIcon.removeClass('fa-minus-circle').addClass('fa-plus-circle');
+  // });
+  // $(window).resize(function() {
+  //     console.log(document.body.clientWidth + ' wide by ' + document.body.clientHeight+' high');
+  //     if ( document.body.clientWidth < 992 ) {
+  //          dropDownSearchButton.click(() => {
+  //              dropDownFilter.slideUp();
+  //              filterShowButtonIcon.removeClass('fa-minus-circle').addClass('fa-plus-circle');
+  //         });
+  //     } 
+  // });
+  ////////////////// Search functionality  [ END ]
+  ///// SUBMIT BUTTON
+});
 
 /***/ }),
 
