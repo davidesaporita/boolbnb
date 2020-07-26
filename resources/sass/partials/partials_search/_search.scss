@@ -5,6 +5,10 @@
         
         .desktop-size-search {
         
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            top: 60px;
+
             .search-bar-container {
                 padding:  15px;
                 
@@ -272,7 +276,7 @@
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
     .wrap-search {
-        margin-top: 100px;
+        margin-top: 30px;
         .container-x {
             width: 960px;
             margin:0 auto;
@@ -383,5 +387,7 @@
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-
+    .wrap-search {
+        margin-top: 80px;
+    }
 }
