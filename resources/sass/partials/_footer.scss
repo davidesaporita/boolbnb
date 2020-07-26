@@ -77,9 +77,16 @@ footer {
                 }
 
                 ul:last-child {
-                    i {
-                        @include font_options(16px, $footer_icon_color);
-                        margin-right: 10px;
+                    a {
+                        &:hover {
+                            i {
+                                color: $primary_pink;
+                            }
+                        }
+                        i {
+                            @include font_options(16px, $color_paraghrap);
+                            margin-right: 10px;
+                        }
                     }
                 }
             }
