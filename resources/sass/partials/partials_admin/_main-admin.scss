@@ -59,7 +59,6 @@
                     background: $primary_pink;
                     border-radius: 20px;
                     span {
-                        font-size: 15px;
                         font-weight: 500;
                         color: $primary_white;
                     }
@@ -96,14 +95,19 @@
         flex-wrap: wrap;
         margin-bottom: 20px;
         a {
-            text-decoration: none;
             flex-basis: 47%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 135px;
             margin-bottom: 30px;
             padding: 30px;
-            text-align: center;
+            text-decoration: none;
             background: $primary_pink;
             border-radius: 15px;
             span {
+                text-align: center;
+                font-size: 15px;
                 font-weight: bold;
                 color: white;
             }
@@ -122,7 +126,6 @@
 // DASHBOARD CAROUSEL
 .your-apartments {
     h2 {
-        text-align: center;
         margin-bottom: 20px;
         font-weight: bold;
         color: $dashbord_grey;
@@ -167,7 +170,7 @@
             flex-wrap: wrap;
             margin-bottom: 20px;
             a {
-                flex-basis: 23%;
+                flex-basis: 48%;
                 margin-bottom: 30px;
                 margin-right: 10px;
                 padding: 30px;
@@ -196,7 +199,7 @@
                     @include flex($just-content: space-between);
                 }
 
-                ul ul i {
+                ul li i {
                     margin-right: 15px;
                     font-size: 30px;
                 }
@@ -204,6 +207,7 @@
         }
         .option-card {
             a {
+                flex-basis: 23%;
                 margin-right: 18px;
                 padding: 40px;
             }

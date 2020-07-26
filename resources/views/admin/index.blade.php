@@ -49,8 +49,8 @@
             <a href="#">
                 <span>Messaggi</span>
             </a>
-            <a href="#">
-                <span>Messaggi</span>
+            <a href="{{route('admin.apartments.create')}}">
+                <span>Aggiungi alloggio</span>
             </a>
             <a href="#alloggi">
                 <span>I tuoi alloggi</span>
@@ -93,14 +93,14 @@
                                 <div class="col-lg-3">
                                     <a href="{{ route('admin.apartments.show', $apartment)}}">
                                         <div class="box-guest">
-                                            {{-- @foreach ($apartment->sponsor_plans as $plan)
+                                            @foreach ($apartment->sponsor_plans as $plan)
                                                 @if ($plan->sponsorships->deadline > $now)
                                                     <div class="plate-guest">
                                                         <span>Special Host</span>
                                                     </div>
                                                 @break
                                                 @endif
-                                            @endforeach --}}
+                                            @endforeach
                                             <img class="box-guest-img" src="{{ strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img  ) }}" alt="Card image cap">
                                             <div class="box-guest-body">
                                                 <h5 class="box-guest-title">{{ substr($apartment->title, 0, 25) }}{{(strlen($apartment->title) >= 25) ? '...' : ''}}</h5>
