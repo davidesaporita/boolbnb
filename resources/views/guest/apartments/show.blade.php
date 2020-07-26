@@ -27,7 +27,7 @@
                 <div class="apartment-card">
                     {{-- apartment title --}}
                     <div class="wrap-title">
-                        <h4>{{ $apartment->title}}</h4>
+                        <h3 class="show-title">{{ $apartment->title}}</h3>
                         <h5>{{ $apartment->city . ', ' . $apartment->region }}</h5>
                     </div>
                     <p>{{ $apartment->description}}</p>
@@ -64,7 +64,7 @@
                                 echo '<h6><i class="fas fa-star"></i> ';
                                 echo $average;
                                 echo '/5 </h6>';
-                                echo " <h6> $numreviews";
+                                echo " <h6> ($numreviews";
                                 if ($numreviews == 1) {
                                     echo ' recensione)';
                                 }
@@ -130,7 +130,7 @@
                             </div>
                         </div>
                     @empty
-                        <p>Non ci sono Recensioni!</p>
+                        <p>Nessun ha ancora lasciato una recensione su questo alloggio</p>
                     @endforelse
                 </div>
             </div>
@@ -227,7 +227,8 @@
             {{-- title  + city--}}
             <div class="wrap-box-title">
                 <div class="wrap-title">
-                    <h4>{{ substr($apartment->title, 0,  22) }}{{(strlen($apartment->title) >= 22) ? '...' : ''}}</h4>
+                    {{-- <h3>{{ substr($apartment->title, 0,  22) }}{{(strlen($apartment->title) >= 22) ? '...' : ''}}</h3> --}}
+                    <h4 class="show-title">{{ $apartment->title }}</h4>
                     <h6>{{ $apartment->city . ', ' . $apartment->region }}</h6>
                 </div>
                 {{-- rating --}}
@@ -248,7 +249,7 @@
                             echo '<h4><i class="fas fa-star"></i> ';
                             echo $average;
                             echo '/5 </h4>';
-                            echo " <h6> $numreviews";
+                            echo " <h6> ($numreviews";
                             if ($numreviews == 1) {
                                 echo ' recensione)';
                             }
@@ -349,12 +350,12 @@
                                 </div>
                             </div>
                         @empty
-                            <p>Non ci sono Recensioni!</p>
+                            <p>Nessun ha ancora lasciato una recensione su questo alloggio</p>
                         @endforelse
 
                         <div class="wrap-box-reviews">
                             <div class="button-reviews">
-                                <button id="btn-reviews">Lascia una Recensione</button>
+                                <button id="btn-reviews">Lascia una recensione</button>
                             </div>
                             
                             {{-- box-reviews --}}

@@ -204,7 +204,7 @@ function ajaxCall(urlRecived, methodRecived, dataRecived, template) {
       let distance =               res['distance'];
       let geoLat =                 res['geo_lat'];
       let geoLng =                 res['geo_lng'];
-      let sponsored =              res['sponsor_plans'].length > 0 ? 'Sponsorizzato' : null;
+      let sponsored =              res['sponsor_plans'].length > 0 ? 'Special Host' : null;
       let services =               res['services'];
       
       

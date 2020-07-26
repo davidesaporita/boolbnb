@@ -16,7 +16,7 @@
                     @method('GET')
                     <div class="form-group">
                         {{-- <i class="fas fa-search"></i> --}}
-                        <input type="search" id="search" class="form-control" placeholder="Inserisci un indirizzo!" name="address" value="{{ old('address') }}" />
+                        <input type="search" id="search" class="form-control" placeholder="Inserisci un indirizzo" name="address" value="{{ old('address') }}" />
                         <div class="algolia-button-search">
                             <a href="#">Cerca</a>
                         </div>            
@@ -55,7 +55,7 @@
                                             @foreach ($apartment->sponsor_plans as $plan)
                                                 @if ($plan->sponsorships->deadline > $now)
                                                     <div class="plate-guest">
-                                                        <span>Sponsorizzato</span>
+                                                        <span>Special Host</span>
                                                     </div>
                                                 @break
                                                 @endif
