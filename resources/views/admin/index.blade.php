@@ -49,8 +49,8 @@
             <a href="#">
                 <span>Messaggi</span>
             </a>
-            <a href="#">
-                <span>Messaggi</span>
+            <a href="{{route('admin.apartments.create')}}">
+                <span>Aggiungi alloggio</span>
             </a>
             <a href="#alloggi">
                 <span>I tuoi alloggi</span>
