@@ -1,6 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if ($errors->all())
+    <div class="alert alert-danger alerts-show">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if(session()->get('message'))
+    <div class="alert alert-success alerts-show">
+        {{ session()->get('message') }}
+    </div>
+@endif
+
 <div class="wrap-content">
 
     {{-- desktop --}}
