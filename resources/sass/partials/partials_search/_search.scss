@@ -256,6 +256,21 @@
                 
                 .card-search-mobile {
                     margin: 0;
+                    .plate-guest {
+                        position: absolute;
+                        span {
+                            display: inline-block;
+                            font-size: 14px;
+                            font-weight: 600;
+                            line-height: 1;
+                            color: #B34262;
+                            margin: 0.5rem;
+                            padding: 0.35rem;
+                            background: #fff;
+                            border-radius: 0.25rem;
+                            opacity: 0.9;
+                        }
+                    }
                 }
 
                 .card-search {
@@ -380,6 +395,21 @@
                 }
                 
                 .card-desktop-view {
+                    .plate-guest {
+                        position: absolute;
+                        span {
+                            display: inline-block;
+                            font-size: 14px;
+                            font-weight: 600;
+                            line-height: 1;
+                            color: #B34262;
+                            margin: 0.5rem;
+                            padding: 0.35rem;
+                            background: #fff;
+                            border-radius: 0.25rem;
+                            opacity: 0.9;
+                        }
+                    }
                     display:block;
                     display: flex;
                     border-radius: 15px;
