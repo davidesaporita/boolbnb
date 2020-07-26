@@ -91,7 +91,7 @@
                                             {{-- @foreach ($apartment->sponsor_plans as $plan)
                                                 @if ($plan->sponsorships->deadline > $now)
                                                     <div class="plate-guest">
-                                                        <span>Sponsorizzato</span>
+                                                        <span>Special Host</span>
                                                     </div>
                                                 @break
                                                 @endif

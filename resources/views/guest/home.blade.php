@@ -6,7 +6,7 @@
         {{-- Titolo pagina + Search Bar --}}
         <div class="container">
             <div class="title-guest-home">
-                <h1>Dove vuoi quando vuoi</h1>
+                <h1>Dove vuoi, quando vuoi</h1>
                 <h2>Non devi andare lontano per trovare ciò che conta</h2>
             </div>
             {{-- Search bar --}}
@@ -16,7 +16,7 @@
                     @method('GET')
                     <div class="form-group">
                         <i class="fas fa-search"></i>
-                        <input type="search" id="search" class="form-control" placeholder="Inserisci un indirizzo!" name="address" value="{{ old('address') }}" />
+                        <input type="search" id="search" class="form-control" placeholder="Inserisci un indirizzo" name="address" value="{{ old('address') }}" />
                         <div class="algolia-button-search">
                             <a href="#" onclick="document.getElementById('search-home-guest').submit()">Cerca</a>
                         </div>
@@ -59,7 +59,7 @@
                                             @foreach ($apartment->sponsor_plans as $plan)
                                                 @if ($plan->sponsorships->deadline > $now)
                                                     <div class="plate-guest">
-                                                        <span>Sponsorizzato</span>
+                                                        <span>Special Host</span>
                                                     </div>
                                                 @break
                                                 @endif

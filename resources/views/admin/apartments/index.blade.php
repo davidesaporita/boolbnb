@@ -14,7 +14,7 @@
             @forelse ($apartment->sponsor_plans as $plan)
                 @if ($plan->sponsorships->deadline > $now)
                     <h4 class="position-absolute">
-                        <span class="badge badge-success p-2 m-2">Sponsorizzato</span>
+                        <span class="badge badge-success p-2 m-2">Special Host</span>
                     </h4>
                 @break
                 @elseif ($loop->last)

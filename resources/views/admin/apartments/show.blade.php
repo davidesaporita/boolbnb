@@ -129,7 +129,7 @@
             <div class="row">
                 <div class="col-12 col-lg-6 mb-4">
                     <h4>({{$numvotes}} recensioni)</h4>
-                    <p>Non ci sono recensioni!</p>
+                    <p>Nessun ha ancora lasciato una recensione su questo alloggio</p>
                 </div>
             </div>
         @else    

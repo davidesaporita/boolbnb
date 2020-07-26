@@ -16,6 +16,15 @@
             position: relative;
         }
 
+        .wrap-title {
+            max-width: calc(100%/3*2);
+            padding-right: 3%;
+        }
+
+        h5.show-title {
+            font-weight: 700 !important;
+        }
+
         .wrap-title::after {
             content: "";
             position: absolute;
@@ -223,7 +232,8 @@
                 @include flex($just-content: space-between);
                 margin-bottom: 20px;
                 padding-top: 20px;
-                border-top: 2px solid $footer_separetor;
+                // border-top: 2px solid $footer_separetor;
+                border-top: 1px solid #ddd;
                 .apartment-card {
                     @include flex($flex-direction: column);
                     width: 72%;
@@ -263,9 +273,11 @@
                     }
 
                     .wrap-rating {
-                        @include flex($just-content: space-between);
-
+                        @include flex($just-content: flex-start);
                         width: 100%;
+                        & :nth-child(2) {
+                            margin-left: 8px;
+                        }
                     }
                 }
 
@@ -454,7 +466,8 @@
                 .wrap-card-info {
                     @include flex($just-content: space-between);
                     padding-top: 20px;
-                    border-top: 2px solid $footer_separetor;
+                    // border-top: 2px solid $footer_separetor;
+                    border-top: 1px solid #ddd;
                     .apartment-card {
                         width: 75%;
                     }
