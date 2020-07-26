@@ -1,0 +1,11 @@
+.container {
+    .card {
+        margin-bottom: 20px;
+        .card-body {
+            canvas {
+                max-width: 500px;
+                max-height: 500px;
+            }
+        }
+    }
+}
