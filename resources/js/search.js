@@ -57,12 +57,12 @@ document.querySelector('#search').value = addressUrl;
 
 searchResultName.innerHTML = nameUrl; 
 
-var myIcon = L.icon({
-  iconUrl: 'img/mymarker.png',
-  iconSize: [38, 50],
-  iconAnchor: [22, 49],
-  popupAnchor: [-3, -75],
-});
+// var myIcon = L.icon({
+//   iconUrl: 'img/mymarker.png',
+//   iconSize: [38, 50],
+//   iconAnchor: [22, 49],
+//   popupAnchor: [-3, -75],
+// });
 let radius;
 output.innerHTML = slider.value;
 radius = slider.value;
@@ -210,8 +210,8 @@ function ajaxCall(urlRecived, methodRecived, dataRecived, template) {
       
       
 
-      let marker = L.marker([geoLat, geoLng], { icon: myIcon }).addTo(search);
-      let markerMobile = L.marker([geoLat, geoLng], { icon: myIcon }).addTo(searchMobile);
+      let marker = L.marker([geoLat, geoLng]).addTo(search);
+      let markerMobile = L.marker([geoLat, geoLng]).addTo(searchMobile);
       marker.bindPopup("<strong>" + title + "</strong>", {});
 
       
