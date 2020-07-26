@@ -7,7 +7,8 @@
         
             position: -webkit-sticky; /* Safari */
             position: sticky;
-            top: 60px;
+            top: 0;
+            background: white;
 
             .search-bar-container {
                 padding:  15px;
@@ -143,7 +144,7 @@
         position: relative;
     
         .container-x {
-            width: 768px;
+            // width: 768px;
             margin: 0 auto;
 
             .desktop-size-search {
@@ -265,9 +266,6 @@
                 .result-name {
                     display:none;
                 }
-    
-            
-                
             }
         }
     }
