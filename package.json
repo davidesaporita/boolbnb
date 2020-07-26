@@ -13,7 +13,7 @@
         "axios": "^0.19",
         "bootstrap": "^4.0.0",
         "browser-sync": "^2.26.10",
-        "browser-sync-webpack-plugin": "^2.0.1",
+        "browser-sync-webpack-plugin": "^2.2.2",
         "cross-env": "^7.0",
         "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
@@ -25,9 +25,8 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.13.1",
+        "@fortawesome/fontawesome-free": "^5.14.0",
         "chart.js": "^2.9.3",
-        "filepond": "^4.18.0",
         "handlebars": "^4.7.6",
         "leaflet": "^1.6.0",
         "places.js": "^1.19.0"
