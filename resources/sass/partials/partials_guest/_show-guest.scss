@@ -1,3 +1,8 @@
+.alerts-show {
+    font-size: 16px;
+    text-align: center;
+}
+
 .wrap-content {
     .carousel-inner {
         .carousel-item {
@@ -638,6 +643,10 @@
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) { 
+
+    .alerts-show {
+        margin-top: 56px;
+    }
 
     .wrap-content {
         margin-top: 58px;

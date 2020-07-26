@@ -19,6 +19,7 @@
     .form-card {
         background-color: #fff;
         border-radius: 10px;
+        margin-bottom: 20px;
         
         .subtitle-size { 
             font-size: 16px; 
@@ -41,6 +42,16 @@
                 &::placeholder {
                     color: #bbb;  
                 }
+            }
+
+            select:focus, 
+            textarea:focus,
+            input:focus {
+                color: #495057;
+                background-color: #fff;
+                border-color: #b0b0b0;
+                outline: 0;
+                box-shadow: 0 0 0 0.2rem rgba(112, 112, 112, 0.25);
             }
 
             .apartment-image {
@@ -136,6 +147,10 @@
     }
     
     .edit-page {
+
+        .title-page {
+            display: none;
+        }
         
         .desktop-label {
             display:block;
@@ -143,7 +158,8 @@
     
         .form-card {
             background: none;
-            padding: 10px 10px 30px 10px;
+            padding: 50px 10px 50px 10px;
+            margin-bottom: 0;
             
             .desktop-card {
                 padding: 20px 20px;

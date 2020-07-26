@@ -1,10 +1,15 @@
 .wrap-search {
     position: relative;
-    margin-bottom: 30px;
     .container-x {
         
         .desktop-size-search {
         
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 5;
+
             .search-bar-container {
                 padding:  15px;
                 
@@ -112,6 +117,10 @@
                     border-top-left-radius: 15px;
                     border-top-right-radius: 15px;
                 }
+
+                .badge {
+                    z-index: 1;
+                }
             }
             
             .search-map {
@@ -139,11 +148,11 @@
         position: relative;
     
         .container-x {
-            width: 768px;
+            // width: 768px;
             margin: 0 auto;
 
             .desktop-size-search {
-            
+
                 .search-bar-container {
                     padding:  15px;
                     
@@ -261,9 +270,6 @@
                 .result-name {
                     display:none;
                 }
-    
-            
-                
             }
         }
     }
@@ -272,12 +278,14 @@
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
     .wrap-search {
-        margin-top: 100px;
+        margin-top: 30px;
+        margin-bottom: 30px;
         .container-x {
             width: 960px;
             margin:0 auto;
             display: flex;
             .desktop-size-search {
+                top: 25px; // Position sticky
                 width: 40%;
                 height: 800px;
                 padding: 10px;
@@ -291,11 +299,12 @@
                         input { 
                             width: 100%;
                             height: 45px;
-                            margin-bottom: 20px;
+                            margin-top: 10px;
+                            margin-bottom: 10px;
                             border-radius: 40px;
                         }
                         span .ap-input-icon svg {
-                            top: 35%; 
+                            top: 48%; 
                         }
                     }
                 }
@@ -349,9 +358,13 @@
                 .result-name {
                     display:block;
                     border-bottom: 1px solid $separator;
+                    padding-right: 0;
+                    padding-left: 0;
+                    margin-right: 15px;
+                    margin-left: 15px;
 
                     h2 { 
-                        font-size: 45px;
+                        font-size: 35px;
                         font-weight: bold;
                         text-align: left;
                     }
@@ -383,5 +396,14 @@
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
+    .wrap-search {
+        margin-top: 80px;
 
+        .container-x {
+            .desktop-size-search {
+                // Position sticky
+                top: 80px;
+            }
+        }
+    }
 }
