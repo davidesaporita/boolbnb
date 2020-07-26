@@ -26,7 +26,7 @@
                     <div class="footer-link">
                         <ul>
                             <li>
-                                Carime Lentisco
+                                Carmine Lentisco
                             </li>
                             <li>
                                 Davide Saporita
