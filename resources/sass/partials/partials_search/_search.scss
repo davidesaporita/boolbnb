@@ -9,6 +9,7 @@
             position: sticky;
             top: 0;
             background: white;
+            z-index: 5;
 
             .search-bar-container {
                 padding:  15px;
@@ -116,6 +117,10 @@
                 .card-img-top {
                     border-top-left-radius: 15px;
                     border-top-right-radius: 15px;
+                }
+
+                .badge {
+                    z-index: 1;
                 }
             }
             
