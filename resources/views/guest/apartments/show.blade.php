@@ -15,6 +15,7 @@
 @if(session()->get('message'))
     <div class="alert alert-success alerts-show">
         {{ session()->get('message') }}
+        {{ session()->forget('message') }}
     </div>
 @endif
 
@@ -138,21 +139,21 @@
                             <div class="name">
                                 {{-- Name --}}
                                 <div class="">
-                                    <input required class="form-control" id="first_name" type="text" name="first_name" placeholder="Il tuo nome">
+                                    <input required class="form-control" id="first_name" type="text" name="first_name" placeholder="Il tuo nome" value="{{ old('first_name') }}">
                                 </div>
                                 {{-- Last_name --}}
                                 <div class="">
-                                    <input required class="form-control" id="last_name" type="text" name="last_name" placeholder="Il tuo cognome">
+                                    <input required class="form-control" id="last_name" type="text" name="last_name" placeholder="Il tuo cognome" value="{{ old('last_name') }}">
                                 </div>
                             </div>
                             
                             {{-- titolo --}}
                             <div class="form-group">
-                                <input required class="form-control" id="title" type="text" name="title" placeholder="Titolo della recensione">
+                                <input required class="form-control" id="title" type="text" name="title" placeholder="Titolo della recensione" value="{{ old('title') }}">
                             </div>
                             {{-- descrizione --}}
                             <div class="form-group">
-                                <textarea  required class="form-control" name="body" id="body" placeholder="Scrivi qui la tua recensione"></textarea>
+                                <textarea  required class="form-control" name="body" id="body" placeholder="Scrivi qui la tua recensione">{{ old('title') }}</textarea>
                             </div>
                             
                             {{-- rating --}}
@@ -167,7 +168,7 @@
                                 </select>
                             </div>
                     
-                            <a href="#" onclick="document.getElementById('info-request-desktop').submit()">Invia</a>
+                            <input type="submit" value="Invia richiesta" class="submit submit-magenta">
                         </form>
                     </div>
                 </div>
@@ -186,21 +187,18 @@
                     
                             {{-- email --}}
                             <div class="form-group">
-                                
-                                <input required class="form-control" id="email" type="email" name="email" placeholder="email" @auth value="{{ Auth::user()->email }}" @endauth>
+                                <input required class="form-control" id="email" type="email" name="email" placeholder="Il tuo indirizzo email" @auth value="{{ old('email', Auth::user()->email) }}" @endauth value="{{ old('email') }}">
                             </div>
                             {{-- titolo --}}
                             <div class="form-group">
-                                
-                                <input required class="form-control" id="title" type="text" name="title" placeholder="titolo">
+                                <input required class="form-control" id="title" type="text" name="title" placeholder="Oggetto della tua richiesta" value="{{ old('title') }}">
                             </div>
                             {{-- descrizione --}}
                             <div class="form-group">
-                                
-                                <textarea required class="form-control" name="body" id="body" placeholder="descrizione"></textarea>
+                                <textarea required class="form-control" name="body" id="body" placeholder="Scrivi qui la tua richiesta">{{ old('body') }}</textarea>
                             </div>
-                            
-                            <a href="#" onclick="document.getElementById('form-request-desktop').submit()">Invia</a>
+
+                            <input type="submit" value="Invia richiesta" class="submit submit-magenta">
                             
                         </form>
                     </div>
@@ -389,20 +387,20 @@
                                     
                                     {{-- Name --}}
                                     <div class="form-group">
-                                        <input required class="form-control" id="first_name" type="text" name="first_name" placeholder="Il tuo nome">
+                                        <input required class="form-control" id="first_name" type="text" name="first_name" placeholder="Il tuo nome" value="{{ old('first_name') }}">
                                     </div>
                                     {{-- Last_name --}}
                                     <div class="form-group">
-                                        <input required class="form-control" id="last_name" type="text" name="last_name" placeholder="Il tuo cognome">
+                                        <input required class="form-control" id="last_name" type="text" name="last_name" placeholder="Il tuo cognome" value="{{ old('last_name') }}"">
                                     </div>
                                     
                                     {{-- titolo --}}
                                     <div class="form-group">
-                                        <input required class="form-control" id="title" type="text" name="title" placeholder="Titolo della recensione">
+                                        <input required class="form-control" id="title" type="text" name="title" placeholder="Titolo della recensione" value="{{ old('title') }}"">
                                     </div>
                                     {{-- descrizione --}}
                                     <div class="form-group">
-                                        <textarea required class="form-control" name="body" id="body" placeholder="Scrivi qui la tua recensione"></textarea>
+                                        <textarea required class="form-control" name="body" id="body" placeholder="Scrivi qui la tua recensione">{{ old('body') }}</textarea>
                                     </div>
                                     
                                     {{-- rating --}}
@@ -417,7 +415,7 @@
                                         </select>
                                     </div>
 
-                                    <a href="#" onclick="document.getElementById('info-request-mobile').submit()">Invia</a>
+                                    <input type="submit" value="Pubblica recensione" class="submit submit-magenta">
                                 </form>
                             </div>
                         </div>
@@ -441,18 +439,18 @@
                 
                         {{-- email --}}
                         <div class="form-group">
-                            <input required class="form-control" id="email" type="email" name="email" placeholder="Inserisci la tua email" @auth value="{{ Auth::user()->email }}" @endauth>
+                            <input required class="form-control" id="email" type="email" name="email" placeholder="Inserisci la tua email" @auth value="{{ old('email', Auth::user()->email) }}" @endauth>
                         </div>
                         {{-- titolo --}}
                         <div class="form-group">
-                            <input required class="form-control" id="title" type="text" name="title" placeholder="Oggetto della tua richiesta">
+                            <input required class="form-control" id="title" type="text" name="title" placeholder="Oggetto della tua richiesta" value="{{ old('title') }}">
                         </div>
                         {{-- descrizione --}}
                         <div class="form-group">
-                            <textarea required class="form-control" name="body" id="body" placeholder="Scrivi qui la tua richiesta"></textarea>
+                            <textarea required class="form-control" name="body" id="body" placeholder="Scrivi qui la tua richiesta">{{ old('body') }}</textarea>
                         </div>
     
-                        <a href="#" onclick="document.getElementById('form-request-mobile').submit()">Invia</a>
+                        <input type="submit" value="Invia richiesta" class="submit submit-magenta">
                         
                     </form>
                 </div>
