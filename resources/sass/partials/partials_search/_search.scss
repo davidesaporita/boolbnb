@@ -250,12 +250,15 @@
                     & > div {
                         display: flex;
                         flex-wrap: wrap;
-                        a {
-                            margin-right: 10px;
-                        }
+                        justify-content: space-around;
+                        
                     }
                 }
                 
+                .card-search-mobile {
+                    margin: 0;
+                }
+
                 .card-search {
                     width: 300px;
                     margin-bottom: 20px;
@@ -265,6 +268,8 @@
                     .card-img-top {
                         border-top-left-radius: 15px;
                         border-top-right-radius: 15px;
+                        object-fit: cover;
+                        height: 170px;
                     }
                 }
     
@@ -370,18 +375,21 @@
                     }
                 }
 
-                .card-search {
+                .card-search-mobile {
                     display:none;
                 }
                 
                 .card-desktop-view {
                     display:block;
                     display: flex;
+                    border-radius: 15px;
                     .img-container {
                         .card-img {
                             height: 100%;
                             object-fit: cover;
-                            max-height: 142px;
+                            max-height: 143px;
+                            border-top-left-radius: 15px;
+                            border-bottom-left-radius: 15px;
                         }
                     }
                 }
@@ -403,6 +411,7 @@
             .desktop-size-search {
                 // Position sticky
                 top: 80px;
+                z-index: 0;
             }
         }
     }
