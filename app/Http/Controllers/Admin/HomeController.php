@@ -54,6 +54,9 @@ class HomeController extends Controller
         $services     = Service::all();
         $sponsorplans = SponsorPlan::all();
 
+        // Carbon Now
+        $now = Carbon::now();
+
         // Call view for dashboard
         return view('admin.index', compact('apartments', 
                                            'categories', 
@@ -62,7 +65,8 @@ class HomeController extends Controller
                                            'unread_messages_number',
                                            'total_views_number',
                                            'total_reviews_number',
-                                           'average_rating'
+                                           'average_rating',
+                                           'now'
                                         ));
         
     }
