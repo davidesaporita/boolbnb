@@ -43,6 +43,16 @@
                 }
             }
 
+            select:focus, 
+            textarea:focus,
+            input:focus {
+                color: #495057;
+                background-color: #fff;
+                border-color: #b0b0b0;
+                outline: 0;
+                box-shadow: 0 0 0 0.2rem rgba(112, 112, 112, 0.25);
+            }
+
             .apartment-image {
                 input {
                    width: 100%;
