@@ -250,6 +250,20 @@
     }    
 }
 
+    .card-header {
+        color: white;
+        background-color: $primary_pink;            
+    }
+
+    .form-check-label{
+        margin-top: 2px;
+    }
+
+    .btn-primary-pink {
+        background-color: $primary_pink;
+        color: white;
+    }
+
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
     // TITLE GUEST
