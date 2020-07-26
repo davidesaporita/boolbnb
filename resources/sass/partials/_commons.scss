@@ -26,6 +26,13 @@ a {
     text-decoration: none;
 }
 
+.button-common {
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 10px;
+    background-color: $primary_pink;
+}
+
 //// MIXIN
 
 @mixin font_options ($size: false, $color: false, $weight: false, $lh: false, $ls: false) {
