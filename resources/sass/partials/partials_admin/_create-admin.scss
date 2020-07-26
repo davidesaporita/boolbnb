@@ -100,13 +100,17 @@
     
     .create-page {
         
+        .title-page {
+            display: none;
+        }
+        
         .desktop-label {
             display:block;
         }
     
         .form-card {
             background: none;
-            padding: 10px 10px 30px 10px;
+            padding: 50px 10px 50px 10px;
             
             .desktop-card {
                 padding: 20px 20px;

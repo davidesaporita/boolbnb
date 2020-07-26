@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="edit-jumbotron">
-        <h1>Modifica alloggio</h1>
+        <h1>Modifica un alloggio</h1>
     </section>
 
     <section class="edit-page">
