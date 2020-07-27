@@ -199,22 +199,22 @@ function ajaxCall(urlRecived, methodRecived, dataRecived, template) {
       let apartmentID =            res['id'];
       let apartmentCity =          res['city'];
       let apartmentRegion =        res['region'];
+      let apartmentAddress =       res['address'];
       let apartmentProvince =      res['province'];
       let apartmentDescription =   res['description'];
-      let distance =               res['distance'];
+      let distance =               res['distance'].toFixed(2);
       let geoLat =                 res['geo_lat'];
       let geoLng =                 res['geo_lng'];
       let sponsored =              res['sponsor_plans'].length > 0 ? 'Special Host' : null;
       let services =               res['services'];
       
-      
+      console.log(res);
       
 
       let marker = L.marker([geoLat, geoLng]).addTo(search);
       let markerMobile = L.marker([geoLat, geoLng]).addTo(searchMobile);
       marker.bindPopup("<strong>" + title + "</strong>", {});
 
-      
       var apartment = {
   
         image: pathImg = pathImg.includes("://") ? pathImg : "http://127.0.0.1:8000/storage/" + pathImg,
@@ -223,6 +223,7 @@ function ajaxCall(urlRecived, methodRecived, dataRecived, template) {
         apartmentID,
         apartmentCity,
         apartmentRegion,
+        apartmentAddress,
         apartmentProvince,
         apartmentDescription,
         distance,
@@ -232,7 +233,6 @@ function ajaxCall(urlRecived, methodRecived, dataRecived, template) {
       var html = template(apartment);
       apartmentContainer.append(html)
     }
-  
   
   }).fail(function() {
   

@@ -1,31 +1,44 @@
 <script id="template-card-home" type="text/x-handlebars-template"> 
 
 <div class="card-search card-search-mobile">
-    <h4 class="position-absolute">
-          <span class="badge badge-success p-2 m-2">@{{ sponsored }}</span>
-    </h4>
-    <img class="card-img-top" src="@{{ image }}" alt="@{{altImage }}">
-      <div class="card-body">
-          <h5 class="card-title">@{{ title }}</h5>
-          <h6 class="card-title">@{{ apartmentCity }}, @{{ apartmentRegion }}, @{{apartmentProvince}}</h6>
-          <label for="distance">Distanza dal luogo scelto</label>
-          <span id="distance">@{{ distance }}</span>
-          <a href="{{ url('apartments') }}/@{{apartmentID}}" class="button-common">Mostra</a>
+    @{{#if sponsored}}
+      <div class="plate-guest">
+        <span>@{{ sponsored }}</span>
       </div>
+    @{{/if}}
+    
+    <a href="{{ url('apartments') }}/@{{apartmentID}}">
+      <img class="card-img-top" src="@{{ image }}" alt="@{{altImage }}">
+    </a>
+    <div class="card-body">
+      <a href="{{ url('apartments') }}/@{{apartmentID}}">
+        <h4 class="card-title">@{{ title }}</h4>
+      </a>
+      <h5 class="card-title">@{{ apartmentCity }}</h5>
+      <span  style="display: block">@{{ apartmentAddress }}</span>
+      <label for="distance">Distanza: </label>
+      <span id="distance">@{{ distance }} Km</span> 
+    </div>
 </div>
 
 <a href="{{ url('apartments') }}/@{{apartmentID}}" class="card-desktop-view">
   <div class="card mb-3 card-desktop-view">
     <div class="row no-gutters card-desktop">
         <div class="col-md-4 img-container">
+          @{{#if sponsored}}
+          <div class="plate-guest">
+            <span>@{{ sponsored }}</span>
+          </div>
+        @{{/if}}
           <img src="@{{ image }}" alt="@{{altImage }}" class="card-img" alt="@{{altImage }}">
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">@{{ title }}</h5>
-            <h5 class="card-title">@{{ apartmentCity }}, @{{ apartmentRegion }}, @{{apartmentProvince}}</h5>
-            <label for="distance">Distanza dal luogo scelto</label>
-            <span id="distance">@{{ distance }}</span>
+            <h4 class="card-title">@{{ title }}</h4>
+            <h5 class="card-title">@{{ apartmentCity }}</h5>
+            <span  style="display: block">@{{ apartmentAddress }}</span>
+            <label for="distance">Distanza: </label>
+            <span id="distance">@{{ distance }} Km</span> 
           </div>
         </div>
       </div>

@@ -256,6 +256,21 @@
                 
                 .card-search-mobile {
                     margin: 0;
+                    .plate-guest {
+                        position: absolute;
+                        span {
+                            display: inline-block;
+                            font-size: 14px;
+                            font-weight: 600;
+                            line-height: 1;
+                            color: #B34262;
+                            margin: 0.5rem;
+                            padding: 0.35rem;
+                            background: #fff;
+                            border-radius: 0.25rem;
+                            opacity: 0.9;
+                        }
+                    }
                 }
 
                 .card-search {
@@ -379,9 +394,25 @@
                 }
                 
                 .card-desktop-view {
+                    .plate-guest {
+                        position: absolute;
+                        span {
+                            display: inline-block;
+                            font-size: 14px;
+                            font-weight: 600;
+                            line-height: 1;
+                            color: #B34262;
+                            margin: 0.5rem;
+                            padding: 0.35rem;
+                            background: #fff;
+                            border-radius: 0.25rem;
+                            opacity: 0.9;
+                        }
+                    }
                     display:block;
                     display: flex;
                     border-radius: 15px;
+                    max-height: 162px;
                     .img-container {
                         .card-img {
                             height: 100%;
@@ -389,6 +420,21 @@
                             max-height: 143px;
                             border-top-left-radius: 15px;
                             border-bottom-left-radius: 15px;
+                        }
+                    }
+
+                    .card-body {
+                        margin: 0 auto;
+                        padding: 1rem;
+                        height: 145px;
+
+                        h4 {
+                            font-size: 16px;
+                            font-weight: bold;
+                            margin-bottom: 0.8rem;
+                        }
+                        h5 {
+                            margin-bottom: 0.2rem;
                         }
                     }
                 }

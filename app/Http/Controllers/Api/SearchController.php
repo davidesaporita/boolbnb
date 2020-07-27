@@ -91,8 +91,8 @@ class SearchController extends Controller
         $apartments = $apartments->orderBy('distance', 'asc')
                                  ->get()
                                  ->makeHidden($hidden_fields)
-                                 ->sortBy('distance')
-                                 ->sortBy('sponsor_plans');
+                                 ->sortBy('sponsor_plans')
+                                 ->sortBy('distance');
         
         // Rebuild indexes (otherwise ajax calls doesn't care about sortByDesc instruction)
         $apartments = array_values($apartments->toArray());
