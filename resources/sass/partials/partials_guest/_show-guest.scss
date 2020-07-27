@@ -6,6 +6,8 @@
 .wrap-content {
     .carousel-inner {
 
+        max-height: 205px;
+
         .plate-guest {
             position: absolute;
             z-index: 2;
@@ -22,11 +24,11 @@
                 opacity: 0.9;
             }
         }
-
+      
         .carousel-item {
             img {
                 object-fit: cover;
-                max-height: 250px;
+                max-height: 205px;
             }
         }
     }
@@ -433,6 +435,20 @@
                     border: none;
                 }
             }
+        }
+    }
+}
+
+// Images height fix
+@media (min-width: 375px) { 
+    .wrap-content {
+        .carousel-inner {
+            max-height: 250px;
+            .carousel-item {
+                img {
+                    max-height: 250px;
+                }
+            } 
         }
     }
 }

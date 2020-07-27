@@ -96,7 +96,7 @@
             @include flex($flex-direction: column);
             position: relative;
             width: 250px;
-            height: 261px;
+            height: 265px;
             background-color: $primary_white;
             border-radius: 15px;
             box-shadow: 0px 2px 8px rgba(0, 0, 0, .4);
@@ -336,6 +336,7 @@
                             margin-right: 0px;
                             float: left;
                             .box-guest {
+                                height: 290px;
                                 width: 210px;
                             }
                         }
@@ -355,6 +356,7 @@
                     .carousel-item {
                         .col-lg-3 {
                             .box-guest {
+                                height: 265px;
                                 width: 250px;
                             }
                         }
