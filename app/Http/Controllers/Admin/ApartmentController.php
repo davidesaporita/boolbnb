@@ -296,9 +296,9 @@ class ApartmentController extends Controller
     {
 
         return [
-            'title'            => 'required|string|min:4|max:50',
+            'title'            => 'required|string|min:3|max:80',
             'category_id'      => 'required|numeric|exists:categories,id',
-            'description'      => 'required|string|min:10|max:200',
+            'description'      => 'required|string|min:10|max:1000',
             'rooms_number'     => 'required|numeric|min:1|max:50',
             'beds_number'      => 'required|numeric|min:1|max:50',
             'bathrooms_number' => 'required|numeric|min:1|max:50',

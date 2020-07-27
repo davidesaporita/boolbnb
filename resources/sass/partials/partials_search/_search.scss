@@ -1,6 +1,7 @@
 .wrap-search {
     position: relative;
     .container-x {
+        margin: 0 auto;
         
         .desktop-size-search {
         
@@ -114,12 +115,32 @@
                 background-color: #fff;
                 box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
                 .card-img-top {
+                    height: 170px;
+                    object-fit: cover;
                     border-top-left-radius: 15px;
                     border-top-right-radius: 15px;
                 }
 
                 .badge {
                     z-index: 1;
+                }
+            }
+
+            .card-search-mobile {
+                .plate-guest {
+                    position: absolute;
+                    span {
+                        display: inline-block;
+                        font-size: 14px;
+                        font-weight: 600;
+                        line-height: 1;
+                        color: #B34262;
+                        margin: 0.5rem;
+                        padding: 0.35rem;
+                        background: #fff;
+                        border-radius: 0.25rem;
+                        opacity: 0.9;
+                    }
                 }
             }
             

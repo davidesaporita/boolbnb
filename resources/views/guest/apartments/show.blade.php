@@ -27,6 +27,11 @@
         <div class="container">
             <div class="wrap-img-apartment">
                 <div class="wrap-featured-img w-50">
+                    @if($sponsored)
+                        <div class="plate-guest">
+                            <span>Special Host</span>
+                        </div>
+                    @endif
                     <img src="{{ $apartment->featured_img }}" alt="{{ $apartment->title }}">
                 </div>
                 <div class="wrap-img w-50">
@@ -168,7 +173,7 @@
                                 </select>
                             </div>
                     
-                            <input type="submit" value="Invia richiesta" class="submit submit-magenta">
+                            <input type="submit" value="Invia recensione" class="submit submit-magenta">
                         </form>
                     </div>
                 </div>
@@ -222,6 +227,11 @@
 
             {{-- <!--carousel img--> --}}
             <div class="carousel-inner">
+                @if($sponsored)
+                    <div class="plate-guest">
+                        <span>Special Host</span>
+                    </div>
+                @endif
                 @foreach( $apartment->media as $item)
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                     <img src="{{ strpos($item->path, '://') ? $item->path : asset("/storage/" . $item->path ) }}" class="d-block w-100" alt="{{$item->caption}}">

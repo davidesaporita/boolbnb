@@ -101,26 +101,6 @@ $(document).ready(function(){
         }
     })
     
-
-  
-    // dropDownSearchButton.click(() => {
-    //      wdropDownFilter.slideUp();
-    //      filterShowButtonIcon.removeClass('fa-minus-circle').addClass('fa-plus-circle');
-    // });
-
-    // $(window).resize(function() {
-    //     console.log(document.body.clientWidth + ' wide by ' + document.body.clientHeight+' high');
-        
-
-    //     if ( document.body.clientWidth < 992 ) {
-    //          dropDownSearchButton.click(() => {
-    //              dropDownFilter.slideUp();
-    //              filterShowButtonIcon.removeClass('fa-minus-circle').addClass('fa-plus-circle');
-    //         });
-    //     } 
-        
-    // });
-
     ////////////////// Search functionality  [ END ]
 
     ///// SUBMIT BUTTON

@@ -24,8 +24,8 @@ class HomeController extends Controller
 
         // All apartments for Auth::user()
         $apartments = Apartment::where('user_id', Auth::id())
-                               ->orderBy('created_at', 'DESC')
-                               ->get();
+                                ->orderBy('created_at', 'DESC')
+                                ->get();
 
         // Apartments ids array
         $apartments_id = $apartments->pluck('id'); 
@@ -38,8 +38,8 @@ class HomeController extends Controller
         $total_views_number = Stat::whereHas('statType', function (Builder $query) {
                                         $query->where('name', 'view');
                                     })
-                                  ->whereIn('apartment_id', $apartments_id)
-                                  ->count();
+                                    ->whereIn('apartment_id', $apartments_id)
+                                    ->count();
 
         // Numero totale recensioni
         $reviews = Review::whereIn('apartment_id', $apartments_id)->get();
@@ -59,14 +59,16 @@ class HomeController extends Controller
 
         // Call view for dashboard
         return view('admin.index', compact('apartments', 
-                                           'categories', 
-                                           'services', 
-                                           'sponsorplans',
-                                           'unread_messages_number',
-                                           'total_views_number',
-                                           'total_reviews_number',
-                                           'average_rating',
-                                           'now'
+                                            'categories', 
+                                            'services', 
+                                            'sponsorplans',
+                                            'messages',
+                                            'unread_messages_number',
+                                            'reviews',
+                                            'total_views_number',
+                                            'total_reviews_number',
+                                            'average_rating',
+                                            'now'
                                         ));
         
     }
