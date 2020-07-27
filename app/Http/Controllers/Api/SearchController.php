@@ -67,17 +67,13 @@ class SearchController extends Controller
         $haversine = $this->haversine($geo_lat, $geo_lng, $radius);
 
         // Prepare DB query with numeric & geolocation filters applied
-        $apartments = Apartment::selectRaw("IF(sponsorships.deadline > NOW() , true, false) AS sponsored, apartments.*, {$haversine} AS distance ")
-                               ->leftJoin('sponsorships', 'sponsorships.apartment_id', '=', 'apartments.id')
-                               ->where('active', 1)
-                            //    ->with('category')
-                            //    ->with('services')
-                               ->with(['sponsor_plans' => function($query) use ($now, $haversine) {
-                                    $query->selectRaw("{$haversine} AS distance, deadline")
-                                          ->join('apartments', 'apartments.id', '=', 'sponsorships.id')
-                                          ->where('sponsorships.deadline', '>', $now)
-                                          ->orderBy('distance');
+        $apartments = Apartment::where('active', 1)
+                               ->with('category')
+                               ->with('services')
+                               ->with(['sponsor_plans' => function($query) use ($now) {
+                                    $query->selectRaw('name as active_sponsorship')->where('deadline', '>', $now);
                                }])
+                               ->selectRaw("*, {$haversine} AS distance")
                                ->whereRaw("{$haversine} < ?", [$radius])
                                ->where('rooms_number', '>=', $rooms_number_min)
                                ->where('beds_number',  '>=', $beds_number_min);
@@ -92,12 +88,11 @@ class SearchController extends Controller
         }
 
         // Execute query
-        $apartments = $apartments->orderBy('sponsored', 'desc')
-                                 ->orderBy('distance', 'asc')
+        $apartments = $apartments->orderBy('distance', 'asc')
                                  ->get()
-                                 ->makeHidden($hidden_fields);
-
-        
+                                 ->makeHidden($hidden_fields)
+                                 ->sortBy('sponsor_plans')
+                                 ->sortBy('distance');
         
         // Rebuild indexes (otherwise ajax calls doesn't care about sortByDesc instruction)
         $apartments = array_values($apartments->toArray());
