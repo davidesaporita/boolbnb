@@ -74,8 +74,12 @@
                 </div>
                 <div class="wrap-img w-50">
                     @for ($i = 0; $i < 4; $i ++)
-                        <?php $urlImage = $apartment->media[$i]['path'] ?>
-                        <img src="{{ strpos($urlImage, '://') ? $urlImage : asset("/storage/" . $urlImage ) }}" alt="">
+                        @isset($apartment->media[$i]['path'])
+                            <?php $urlImage = $apartment->media[$i]['path'] ?>
+                            <img src="{{ strpos($urlImage, '://') ? $urlImage : asset("/storage/" . $urlImage ) }}" alt="">
+                        @else
+                            <img src="https://www.libera-mente.org/wp-content/uploads/2017/10/appartamento-vignola-1024x768.jpg" alt="">
+                        @endisset
                     @endfor
                 </div>
             </div>
