@@ -119,14 +119,16 @@
         
         .wrap-nav {
 
-            .mobile-user,
+            
             .menu-mobile { 
                 display:none; 
                 
             }
 
             .nav-action-admin {
-                
+                .mobile-user {
+                    display: none;
+                }
                 .menu-large {
     
                     display: block;
