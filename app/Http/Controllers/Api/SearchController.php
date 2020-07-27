@@ -66,36 +66,59 @@ class SearchController extends Controller
         // Retrieving Haversine formula for geolocation
         $haversine = $this->haversine($geo_lat, $geo_lng, $radius);
 
-        // Prepare DB query with numeric & geolocation filters applied
-        $apartments = Apartment::where('active', 1)
-                               ->with('category')
-                               ->with('services')
-                               ->with(['sponsor_plans' => function($query) use ($now) {
-                                    $query->selectRaw('name as active_sponsorship')->where('deadline', '>', $now);
-                               }])
-                               ->selectRaw("*, {$haversine} AS distance")
-                               ->whereRaw("{$haversine} < ?", [$radius])
-                               ->where('rooms_number', '>=', $rooms_number_min)
-                               ->where('beds_number',  '>=', $beds_number_min);
-
+        // All active sponsored apartments
+        $sponsored_apartments = Apartment::selectRaw("*, {$haversine} AS distance")
+                                      ->where('active', 1)
+                                      ->whereRaw("{$haversine} < ?", [$radius])
+                                      ->where('rooms_number', '>=', $rooms_number_min)
+                                      ->where('beds_number',  '>=', $beds_number_min)
+                                      ->whereHas('sponsor_plans', function($query) use ($now) {
+                                            $query->selectRaw('deadline')
+                                                  ->where('deadline', '>=', $now);
+                                        })
+                                      ->with('sponsor_plans');
+        
         // Add service filters (if requested) to query
         if(isset($service_filters) && count($service_filters) > 0) {
             foreach($service_filters as $filter) {
-                $apartments = $apartments->whereHas('services', function (Builder $query) use ($filter) {
+                $sponsored_apartments = $sponsored_apartments->whereHas('services', function (Builder $query) use ($filter) {
                     $query->where('service_id', $filter);
                 });
             }
         }
-
-        // Execute query
-        $apartments = $apartments->orderBy('distance', 'asc')
-                                 ->get()
-                                 ->makeHidden($hidden_fields)
-                                 ->sortBy('sponsor_plans')
-                                 ->sortBy('distance');
         
-        // Rebuild indexes (otherwise ajax calls doesn't care about sortByDesc instruction)
-        $apartments = array_values($apartments->toArray());
+        $sponsored_apartments = $sponsored_apartments->orderBy('distance', 'asc')->get();
+        $sponsored_apartments->map(function ($sponsored_apartment) {
+            $sponsored_apartment['sponsored'] = 1;
+            return $sponsored_apartment;
+        });
+
+        // All apartments 
+        $active_apartments = Apartment::selectRaw("*, {$haversine} AS distance")
+                                      ->where('active', 1)
+                                      ->whereRaw("{$haversine} < ?", [$radius])
+                                      ->where('rooms_number', '>=', $rooms_number_min)
+                                      ->where('beds_number',  '>=', $beds_number_min)
+                                      ->with('sponsor_plans');
+        
+        // Add service filters (if requested) to query
+        if(isset($service_filters) && count($service_filters) > 0) {
+            foreach($service_filters as $filter) {
+                $active_apartments = $active_apartments->whereHas('services', function (Builder $query) use ($filter) {
+                    $query->where('service_id', $filter);
+                });
+            }
+        }
+        
+        $active_apartments = $active_apartments->orderBy('distance', 'asc')->get();        
+        
+        $other_apartments = $active_apartments->diff($sponsored_apartments);
+        $other_apartments->map(function ($other_apartments) {
+            $other_apartments['sponsored'] = 0;
+            return $other_apartments;
+        });
+
+        $apartments = $sponsored_apartments->merge($other_apartments);
 
         return response()->json($apartments);
     }
