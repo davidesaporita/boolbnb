@@ -3,19 +3,23 @@
 #dashboard-carousel {
     background: none;
     padding-top: 0px;
-    .carousel {
-        .controls-top {
-            a i {
-                color: $primary_pink;
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+        .carousel {
+            .controls-top {
+                a i {
+                    color: $primary_pink;
+                }
             }
-        }
-        .carousel-indicators li {
-                background-color: #aaa;
-        }
-        .carousel-inner {  
-            .apartments-list-guest {
-                padding-top: 10px;
-                padding-bottom: 10px;        
+            .carousel-indicators li {
+                    background-color: #aaa;
+            }
+            .carousel-inner {  
+                .apartments-list-guest {
+                    padding-top: 10px;
+                    padding-bottom: 10px;        
+                }
             }
         }
     }
@@ -99,7 +103,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 135px;
+            height: 120px;
             margin-bottom: 30px;
             padding: 30px;
             text-decoration: none;

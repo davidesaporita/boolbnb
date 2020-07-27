@@ -1,6 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if ($errors->all())
+    <div class="alert alert-danger alerts-show">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if(session()->get('message'))
+    <div class="alert alert-success alerts-show">
+        {{ session()->get('message') }}
+        {{ session()->forget('message') }}
+    </div>
+@endif
+
 <div class="wrap-content">
 
     {{-- desktop --}}
@@ -113,32 +131,35 @@
 
                     {{-- box-reviews --}}
                     <div id="box-reviews-desktop" class="reviews-form hidden">
-                        <form action="{{ route('reviews', $apartment->id) }}" method="post" enctype="multipart/form-data">
+                        <form id="info-request-desktop" action="{{ route('reviews', $apartment->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('POST')
                             <h5>Raccontaci la tua esperienza presso {{ $apartment->title }}</h5>
-                            {{-- Name --}}
-                            <div class="form-group">
-                                <input class="form-control" id="first_name" type="text" name="first_name" placeholder="Il tuo nome">
-                            </div>
-                            {{-- Last_name --}}
-                            <div class="form-group">
-                                <input class="form-control" id="last_name" type="text" name="last_name" placeholder="Il tuo cognome">
+
+                            <div class="name">
+                                {{-- Name --}}
+                                <div class="">
+                                    <input required class="form-control" id="first_name" type="text" name="first_name" placeholder="Il tuo nome" value="{{ old('first_name') }}">
+                                </div>
+                                {{-- Last_name --}}
+                                <div class="">
+                                    <input required class="form-control" id="last_name" type="text" name="last_name" placeholder="Il tuo cognome" value="{{ old('last_name') }}">
+                                </div>
                             </div>
                             
                             {{-- titolo --}}
                             <div class="form-group">
-                                <input class="form-control" id="title" type="text" name="title" placeholder="Titolo della recensione">
+                                <input required class="form-control" id="title" type="text" name="title" placeholder="Titolo della recensione" value="{{ old('title') }}">
                             </div>
                             {{-- descrizione --}}
                             <div class="form-group">
-                                <textarea class="form-control" name="body" id="body" placeholder="Scrivi qui la tua recensione"></textarea>
+                                <textarea  required class="form-control" name="body" id="body" placeholder="Scrivi qui la tua recensione">{{ old('title') }}</textarea>
                             </div>
                             
                             {{-- rating --}}
                             <div class="form-group">
                                 <label for="rating">Valutazione</label>
-                                <select class="form-control" name="rating" id="rating">
+                                <select required class="form-control" name="rating" id="rating">
                                     <option value="1">1 - Pessima</option>
                                     <option value="2">2 - Discreta</option>
                                     <option value="3">3 - Nella Media</option>
@@ -147,7 +168,7 @@
                                 </select>
                             </div>
                     
-                            <input type="submit" value="Invia" class="btn btn-success">
+                            <input type="submit" value="Invia richiesta" class="submit submit-magenta">
                         </form>
                     </div>
                 </div>
@@ -160,27 +181,25 @@
                         <h4>Contatta l'host</h4>
                     </div>
                     <div class="wrap-box-info">
-                        <form action="{{ route('info.send', $apartment->id)}}" method="post" enctype="multipart/form-data">
+                        <form id="form-request-desktop" action="{{ route('info.send', $apartment->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('POST')
                     
                             {{-- email --}}
                             <div class="form-group">
-                                
-                                <input class="form-control" id="email" type="email" name="email" placeholder="email" @auth value="{{ Auth::user()->email }}" @endauth>
+                                <input required class="form-control" id="email" type="email" name="email" placeholder="Il tuo indirizzo email" @auth value="{{ old('email', Auth::user()->email) }}" @endauth value="{{ old('email') }}">
                             </div>
                             {{-- titolo --}}
                             <div class="form-group">
-                                
-                                <input class="form-control" id="title" type="text" name="title" placeholder="titolo">
+                                <input required class="form-control" id="title" type="text" name="title" placeholder="Oggetto della tua richiesta" value="{{ old('title') }}">
                             </div>
                             {{-- descrizione --}}
                             <div class="form-group">
-                                
-                                <textarea class="form-control" name="body" id="body" placeholder="descrizione"></textarea>
+                                <textarea required class="form-control" name="body" id="body" placeholder="Scrivi qui la tua richiesta">{{ old('body') }}</textarea>
                             </div>
+
+                            <input type="submit" value="Invia richiesta" class="submit submit-magenta">
                             
-                            <input type="submit" value="Invia" class="btn btn-success">  
                         </form>
                     </div>
                 </div>
@@ -362,32 +381,32 @@
                             
                             {{-- box-reviews --}}
                             <div id="box-reviews" class="reviews-form box-out hidden">
-                                <form action="{{ route('reviews', $apartment->id)}}" method="post" enctype="multipart/form-data">
+                                <form id="info-request-mobile" action="{{ route('reviews', $apartment->id)}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('POST')
                                     
                                     {{-- Name --}}
                                     <div class="form-group">
-                                        <input class="form-control" id="first_name" type="text" name="first_name" placeholder="Il tuo nome">
+                                        <input required class="form-control" id="first_name" type="text" name="first_name" placeholder="Il tuo nome" value="{{ old('first_name') }}">
                                     </div>
                                     {{-- Last_name --}}
                                     <div class="form-group">
-                                        <input class="form-control" id="last_name" type="text" name="last_name" placeholder="Il tuo cognome">
+                                        <input required class="form-control" id="last_name" type="text" name="last_name" placeholder="Il tuo cognome" value="{{ old('last_name') }}"">
                                     </div>
                                     
                                     {{-- titolo --}}
                                     <div class="form-group">
-                                        <input class="form-control" id="title" type="text" name="title" placeholder="Titolo della recensione">
+                                        <input required class="form-control" id="title" type="text" name="title" placeholder="Titolo della recensione" value="{{ old('title') }}"">
                                     </div>
                                     {{-- descrizione --}}
                                     <div class="form-group">
-                                        <textarea class="form-control" name="body" id="body" placeholder="Scrivi qui la tua recensione"></textarea>
+                                        <textarea required class="form-control" name="body" id="body" placeholder="Scrivi qui la tua recensione">{{ old('body') }}</textarea>
                                     </div>
                                     
                                     {{-- rating --}}
                                     <div class="form-group">
                                         <label for="rating">Valutazione</label>
-                                        <select class="form-control" name="rating" id="rating">
+                                        <select required class="form-control" name="rating" id="rating">
                                             <option value="1">1 - Pessima</option>
                                             <option value="2">2 - Discreta</option>
                                             <option value="3">3 - Nella Media</option>
@@ -395,8 +414,8 @@
                                             <option value="5" selected>5 - Ottima</option>
                                         </select>
                                     </div>
-                                    
-                                    <input type="submit" value="Invia" class="btn btn-success">
+
+                                    <input type="submit" value="Pubblica recensione" class="submit submit-magenta">
                                 </form>
                             </div>
                         </div>
@@ -414,24 +433,24 @@
             </div>
             <div class="wrap-box-info">
                 <div class="info-form">
-                    <form action="{{ route('info.send', $apartment->id)}}" method="post" enctype="multipart/form-data">
+                    <form id="form-request-mobile" action="{{ route('info.send', $apartment->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('POST')
                 
                         {{-- email --}}
                         <div class="form-group">
-                            <input class="form-control" id="email" type="email" name="email" placeholder="Inserisci la tua email" @auth value="{{ Auth::user()->email }}" @endauth>
+                            <input required class="form-control" id="email" type="email" name="email" placeholder="Inserisci la tua email" @auth value="{{ old('email', Auth::user()->email) }}" @endauth>
                         </div>
                         {{-- titolo --}}
                         <div class="form-group">
-                            <input class="form-control" id="title" type="text" name="title" placeholder="Oggetto della tua richiesta">
+                            <input required class="form-control" id="title" type="text" name="title" placeholder="Oggetto della tua richiesta" value="{{ old('title') }}">
                         </div>
                         {{-- descrizione --}}
                         <div class="form-group">
-                            <textarea class="form-control" name="body" id="body" placeholder="Scrivi qui la tua richiesta"></textarea>
+                            <textarea required class="form-control" name="body" id="body" placeholder="Scrivi qui la tua richiesta">{{ old('body') }}</textarea>
                         </div>
-                        
-                        <input type="submit" value="Invia" class="btn btn-success">
+    
+                        <input type="submit" value="Invia richiesta" class="submit submit-magenta">
                         
                     </form>
                 </div>

@@ -1,3 +1,8 @@
+.alerts-show {
+    font-size: 16px;
+    text-align: center;
+}
+
 .wrap-content {
     .carousel-inner {
         .carousel-item {
@@ -161,7 +166,8 @@
                         }
     
                         #box-reviews {
-                            max-width: 345px;
+                            // max-width: 345px;
+                            width: 100%;
                             margin-bottom: 20px;
                             padding: 15px 20px;
                             border-radius: 10px;
@@ -187,6 +193,15 @@
                                     border-color: #b0b0b0;
                                     outline: 0;
                                     box-shadow: 0 0 0 0.2rem rgba(112, 112, 112, 0.25);
+                                }
+
+                                .submit-magenta {
+                                    text-decoration: none;
+                                    padding: 10px;
+                                    border-radius: 10px;
+                                    background-color: $primary_pink;
+                                    color: $primary_white;
+                                    border: none;
                                 }
                             }
                         }
@@ -241,9 +256,13 @@
                             box-shadow: 0 0 0 0.2rem rgba(112, 112, 112, 0.25);
                         }
 
-                        & > input {
+                        .submit-magenta {
+                            text-decoration: none;
+                            padding: 10px;
+                            border-radius: 10px;
+                            background-color: $primary_pink;
                             color: $primary_white;
-                            border-radius: 5px;
+                            border: none;
                         }
                     }
                 }
@@ -521,6 +540,17 @@
                             filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
 
                             form {
+                                .name {
+                                    @include flex($just-content: space-between);
+                                    margin: 25px 0;
+                                    div {
+                                        flex-basis: calc(100%/2 - 10px);
+                                        input {
+                                            margin-bottom: 0;
+                                        }
+                                    }
+                                }
+
                                 input,
                                 textarea,
                                 select {
@@ -539,6 +569,15 @@
                                     border-color: #b0b0b0;
                                     outline: 0;
                                     box-shadow: 0 0 0 0.2rem rgba(112, 112, 112, 0.25);
+                                }
+
+                                .submit-magenta {
+                                    text-decoration: none;
+                                    padding: 10px;
+                                    border-radius: 10px;
+                                    background-color: $primary_pink;
+                                    color: $primary_white;
+                                    border: none;
                                 }
                             }
                         }
@@ -572,8 +611,7 @@
                                     border: none;
                                     margin-bottom:  25px; 
                                     border-radius: 15px;
-                                    box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
-                                    
+                                    box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);   
                                 }
         
                                 select:focus, 
@@ -585,10 +623,14 @@
                                     outline: 0;
                                     box-shadow: 0 0 0 0.2rem rgba(112, 112, 112, 0.25);
                                 }
-        
-                                & > input {
+                                
+                                .submit-magenta {
+                                    text-decoration: none;
+                                    padding: 10px;
+                                    border-radius: 10px;
+                                    background-color: $primary_pink;
                                     color: $primary_white;
-                                    border-radius: 5px;
+                                    border: none;
                                 }
                             }
                         }
@@ -601,6 +643,10 @@
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) { 
+
+    .alerts-show {
+        margin-top: 56px;
+    }
 
     .wrap-content {
         margin-top: 58px;

@@ -109,16 +109,21 @@
         @include flex($align:center, $just-content:center);
     }
     
-    .create-page {         
+    .create-page {
+      
+        .title-page {
+            display: none;
+        }
+      
         .desktop-label {
             display:block;
         }
     
         .form-card {
             background: none;
-            padding: 10px 10px 30px 10px;
+            padding: 50px 10px 50px 10px;
             margin-bottom: 0;
-            
+          
             .desktop-card {
                 padding: 20px 20px;
                 background-color: #fff;
