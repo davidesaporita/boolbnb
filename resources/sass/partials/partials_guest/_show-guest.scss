@@ -8,9 +8,10 @@
     width: 100%;   
     background-color: $primary_pink;
     margin-top: 0px;
-    padding-bottom: 20px;
+    //padding-bottom: 20px;
     .dashboard-show-wrapper {
         .dashboard-admin.dashboard-show {
+            padding-top: 10px;
             .option-card-show {
                 @include flex($just-content: center);
                 flex-wrap: wrap;
@@ -20,7 +21,7 @@
                 }
 
                 i {
-                    font-size: 28px;
+                    font-size: 16px;
                     margin-right: 0px;
                 }  
 
@@ -28,12 +29,12 @@
                     display: flex;
                     justify-content: flex-start;
                     align-items: center;
-                    flex-basis: 29%;
+                    flex-basis: 14%;
                     background-color: $white;
-                    margin-right: 10px;
-                    padding: 10px 20px;
-                    height: 70px;
-                    border-radius: 10px;
+                    margin-right: 6px;
+                    padding: 10px 10px;
+                    height: 45px;
+                    border-radius: 7px;
                     justify-content: center;
                     align-items: center;
                     font-weight: 500;
@@ -47,7 +48,6 @@
                     margin-bottom: 10px;
                 }
 
-                a:nth-child(3),
                 a:last-child {
                     margin-right: 0px;
                 }
@@ -511,6 +511,23 @@
     }
 }
 
+@media (min-width: 450px) { 
+    .dashboard-show-container {
+        .dashboard-show-wrapper {
+            .dashboard-admin.dashboard-show {
+                .option-card-show {
+                    a {
+                        height: 52px;
+                        margin-right: 10px;
+                    }
+                    i {
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) { 
@@ -519,10 +536,10 @@
         .dashboard-show-wrapper {
             .dashboard-admin.dashboard-show {
                 .option-card-show {
-                    @include flex();
+                    @include flex($just-content: center);
                     flex-wrap: wrap;
                     i {
-                        font-size: 28px;
+                        font-size: 20px;
                         margin-right: 0px;
                     }  
 
@@ -531,10 +548,8 @@
                     }
 
                     a {
-                        flex-basis: 14%;
-                    }
-
-                    a:nth-child(3) {
+                        height: 60px;
+                        flex-basis: 15%;
                         margin-right: 10px;
                     }
 
@@ -550,6 +565,7 @@
     
     // Admin
     .dashboard-show-container {
+        padding-bottom: 10px;
         .dashboard-show-wrapper {
             .dashboard-admin.dashboard-show {
                 .option-card-show {
@@ -565,6 +581,7 @@
                     }
                     
                     a {
+                        height: 70px;
                         flex-basis: 23%;
                     }
 
@@ -627,6 +644,8 @@
 
     // admin
     .dashboard-show-container {
+        padding-top: 0px;
+        padding-bottom: 0px;
         .dashboard-show-wrapper {
             .dashboard-admin.dashboard-show {
                 .option-card-show {
@@ -839,6 +858,7 @@
         background-color: $primary_pink;
         margin-top: 0px;
         padding-bottom: 20px;
+        padding-top: 70px;
         .dashboard-show-wrapper {
             .dashboard-admin.dashboard-show {
                 .option-card-show {
