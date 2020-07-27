@@ -1,6 +1,5 @@
 .wrap-search {
     position: relative;
-    margin-bottom: 30px;
     .container-x {
         
         .desktop-size-search {
@@ -279,7 +278,7 @@
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
     .wrap-search {
-        margin-top: 30px;
+        margin: 30px;
         .container-x {
             width: 960px;
             margin:0 auto;
