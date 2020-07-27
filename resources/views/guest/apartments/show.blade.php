@@ -19,6 +19,42 @@
     </div>
 @endif
 
+@auth
+    <div class="dashboard-show-container">
+        <div class="dashboard-show-wrapper container">
+            <div class="dashboard-admin dashboard-show">
+                <div class="option-card-show">
+                    <a href="{{route('admin.apartments.sponsorship.pay', ['apartment' => $apartment])}}">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Promuovi l'annuncio</span>
+                    </a>
+                    <a href="{{ route('admin.apartments.edit', $apartment) }}">
+                        <i class="fas fa-edit"></i>
+                        <span>Modifica informazioni</span>
+                    </a>
+                    <a href="{{ route('admin.apartments.stats.index', ['apartment' => $apartment ]) }}"">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Visualizza statistiche</span>
+                    </a>
+                    <a href="{{ route('admin.apartments.create') }}">
+                        <i class="fas fa-volume-off"></i>
+                        <span>Disattiva annuncio</span>
+                    </a>
+                    <a href="{{ route('admin.apartments.create') }}">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Elimina l'annuncio</span>
+                    </a>
+                    <a href="{{ route('admin.apartments.create') }}">
+                        <i class="fas fa-plus"></i>
+                        <span>Aggiungi alloggio</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endauth 
+
+
 <div class="wrap-content">
 
     {{-- desktop --}}
@@ -200,7 +236,7 @@
                             </div>
                             {{-- descrizione --}}
                             <div class="form-group">
-                                <textarea required class="form-control" name="body" id="body" placeholder="Scrivi qui la tua richiesta">{{ old('body') }}</textarea>
+                                <textarea required class="form-control" name="body" id="body" placeholder="Scrivi qui la tua richiesta" rows="5">{{ old('body') }}</textarea>
                             </div>
 
                             <input type="submit" value="Invia richiesta" class="submit submit-magenta">

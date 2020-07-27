@@ -3,6 +3,56 @@
     text-align: center;
 }
 
+// Admin
+.dashboard-show-container {
+    width: 100%;   
+    background-color: $primary_pink;
+    margin-top: 0px;
+    padding-bottom: 20px;
+    .dashboard-show-wrapper {
+        .dashboard-admin.dashboard-show {
+            .option-card-show {
+                @include flex();
+                flex-wrap: wrap;
+
+                span {
+                    display: none;
+                }
+
+                i {
+                    font-size: 28px;
+                    margin-right: 10px;
+                }  
+
+                a {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    flex-basis: calc(100%/6);
+                    background-color: $white;
+                    padding: 10px 20px;
+                    height: 80px;
+                    border-radius: 10px;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: 500;
+                    font-size: 0.85rem;
+                    color: $primary_pink;
+                }
+
+                a:not(:last-child) {
+                    margin-right: 10px;
+                }
+                
+                a:hover {
+                    transition: .3s;
+                    opacity: .7;
+                }
+            }
+        }
+    }
+}
+
 .wrap-content {
     .carousel-inner {
 
@@ -444,7 +494,32 @@
 }
 
 // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
+    
+    // Admin
+    .dashboard-show-container {
+        .dashboard-show-wrapper {
+            .dashboard-admin.dashboard-show {
+                .option-card-show {
+                    @include flex();
+                    flex-wrap: wrap;
+                    i {
+                        font-size: 28px;
+                        margin-right: 10px;
+                    }  
+
+                    span {
+                        display: inline;
+                    }
+
+                    a {
+                        flex-basis: calc(100%/4);
+                    }
+                }
+            }
+        }
+    }    
+    
     .wrap-content {
         #carousel {
             display: none;
@@ -492,6 +567,22 @@
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) { 
+
+    // admin
+    .dashboard-show-container {
+        .dashboard-show-wrapper {
+            .dashboard-admin.dashboard-show {
+                .option-card-show {
+                    @include flex();
+                    flex-wrap: nowrap;
+                    i {
+                        font-size: 24px;
+                    }  
+                }
+            }
+        }
+    }
+
     .wrap-content {
         .wrap-description-box,
         .wrap-service-box,
@@ -676,6 +767,51 @@
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) { 
+
+    // admin
+    .dashboard-show-container {
+        width: 100%;   
+        background-color: $primary_pink;
+        margin-top: 0px;
+        padding-bottom: 20px;
+        .dashboard-show-wrapper {
+            .dashboard-admin.dashboard-show {
+                .option-card-show {
+                    @include flex();
+                    flex-wrap: nowrap;
+                    i {
+                        font-size: 28px;
+                        margin-right: 10px;
+                    }  
+
+                    a {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        flex-basis: calc(100%/6);
+                        background-color: $white;
+                        padding: 10px 20px;
+                        height: 80px;
+                        border-radius: 10px;
+                        justify-content: center;
+                        align-items: center;
+                        font-weight: 500;
+                        font-size: 0.85rem;
+                        color: $primary_pink;
+                    }
+
+                    a:not(:last-child) {
+                        margin-right: 10px;
+                    }
+                    
+                    a:hover {
+                        transition: .3s;
+                        opacity: .7;
+                    }
+                }
+            }
+        }
+    }
 
     .alerts-show {
         margin-top: 56px;
