@@ -149,6 +149,119 @@
                 </div>
             </div>
         </div>
+        <!--end Carousel Wrapper-->
+
+        {{-- inbox desktop --}}
+        <div class="info-requests">
+            <h4>Richieste di informazioni:</h4>
+            <div class="row">
+                <table class="table table-light">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Email Utente</th>
+                            <th scope="col">Titolo</th>
+                            <th scope="col">Testo</th>
+                            <th scope="col">Visualizzato</th>
+                            <th scope="col">Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($messages as $message)
+                        <tr>
+                            <th scope="row">{{ $message->email}} <br>{{ $message->created_at}}</th>
+                                <td>{{ $message->title}}</td>
+                                <td>{{ $message->body}}</td>
+                                <td>{{ $message->read}}</td>
+                                <td>
+                                    <a class="btn btn-success" href="#" role="button">Verifica</a>
+                                    <br>
+                                    <a class="btn btn-danger" href="#" role="button">Elimina</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        {{-- end inbox desktop --}}
+
+        {{-- mobile inbox --}}
+
+        <div class="info-requests-mobile">
+            <h4>Richieste di informazioni:</h4>
+            @foreach ($messages as $message)
+            <div class="box-requests">
+                <ul class="list-group list-unstyled">
+                    <li class="list-item"> <strong>Email Utente:</strong> {{ $message->email}}</li>
+                    <li class="list-item"> <strong>Titolo:</strong> {{ $message->title}}</li>
+                    <li class="list-item"> <strong>Testo:</strong> {{ $message->body}}</li>
+                    <li class="list-item"> <strong>Visualizzato:</strong> {{ $message->read}}</li>
+                    <li>
+                        <a class="btn btn-success" href="#" role="button">Verifica</a>
+                        <a class="btn btn-danger" href="#" role="button">Elimina</a>
+                    </li>
+                </ul>
+            </div>
+            @endforeach
+        </div>
+
+        {{-- end mobile inbox --}}
+
+        {{-- reviews desktop --}}
+
+        <div class="reviews-box">
+            <h4>Recensioni:</h4>
+            <div class="row">
+                <table class="table table-light">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Visitatore</th>
+                            <th scope="col">Titolo</th>
+                            <th scope="col">Testo</th>
+                            <th scope="col">Valutazione</th>
+                            <th scope="col">Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($reviews as $review)
+                        <tr>
+                            <th scope="row">{{ $review->first_name . ' ' . $review->last_name}} <br>{{ $review->created_at}}</th>
+                            <td>{{ $review->title}}</td>
+                            <td>{{ $review->body}}</td>
+                            <td>{{ $review->rating}}</td>
+                            <td>
+                                <a class="btn btn-success" href="#">Verifica</a>
+                                <br>
+                                <a class="btn btn-danger" href="#">Elimina</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{-- end reviews desktop --}}
+
+        {{-- reviews box mobile --}}
+
+        <div class="reviews-box-mobile">
+            <h4>Recensioni</h4>
+            @foreach ($reviews as $review)
+            <div class="box-reviews">
+                <ul class="list-group list-unstyled">
+                    <li class="list-item"> <strong>{{ $review->first_name . ' ' . $review->last_name}}</strong> {{ $review->created_at->diffForHumans()}}</li>
+                    <li class="list-item"> <strong>Titolo:</strong> {{ $review->title}}</li>
+                    <li class="list-item"> <strong>Testo:</strong> {{ $review->body}}</li>
+                    <li class="list-item"> <strong>Rating:</strong> {{ $review->rating}}</li>
+                    <li>
+                        <a class="btn btn-danger" href="#" role="button">Elimina</a>
+                    </li>
+                </ul>
+            </div>
+            @endforeach
+        </div>
+        
     </div>
 </div>
 
