@@ -21,17 +21,17 @@ let search             = L.map('search-map', {
                             zoomControl: false,
                             boxZoom: false,
                             doubleClickZoom: false,
-                            dragging: false,
+                            dragging: true,
                             keyboard: false,
-                            scrollWheelZoom: false
+                            scrollWheelZoom: true
 }).setView([latUrl, lngUrl], 15);
 let searchMobile            = L.map('search-map-mobile', {
                             zoomControl: false,
                             boxZoom: false,
-                            doubleClickZoom: false,
-                            dragging: false,
+                            doubleClickZoom: true,
+                            dragging: true,
                             keyboard: false,
-                            scrollWheelZoom: false
+                            scrollWheelZoom: true
 }).setView([latUrl, lngUrl], 15);
 
 let wifi           = document.querySelector('#wifi');
