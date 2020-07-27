@@ -83,9 +83,7 @@
                     <input type="hidden" id="zip_code" class="form-control" name="zip_code" value="{{ old('zip_code') }}">
 
                     <section class="submit-container">
-
                         <input type="submit" value="Crea alloggio">
-                        {{-- <a href="#" id="submit-create" onclick="document.getElementById('create-form').submit()"class="button-submit">CREA</a> --}}
                     </section>
                 </form>
             </section>

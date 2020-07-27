@@ -102,8 +102,5 @@ $(document).ready(function(){
     })
     
     ////////////////// Search functionality  [ END ]
-
-    ///// SUBMIT BUTTON
-
 })
 
