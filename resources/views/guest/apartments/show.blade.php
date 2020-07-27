@@ -168,7 +168,7 @@
                                 </select>
                             </div>
                     
-                            <input type="submit" value="Invia richiesta" class="submit submit-magenta">
+                            <input type="submit" value="Invia recensione" class="submit submit-magenta">
                         </form>
                     </div>
                 </div>
