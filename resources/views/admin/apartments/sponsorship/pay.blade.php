@@ -8,7 +8,7 @@
 		<h4>Scegli il tuo piano di sponsorizzazione per il tuo <span>{{ $apartment->title }}</span> situato in <span>{{ $apartment->address }}</span> a <span>{{ $apartment->city }}</span></h4>
 	</header>
 
-	<div class="payment-action">
+	<div class="payment-action container">
 		<div class="payment-button-container">
 			<div class="payment-card">
 				<section class="payment-card-header payment-color-basic">
