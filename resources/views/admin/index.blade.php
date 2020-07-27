@@ -91,7 +91,7 @@
                                 <div class="carousel-item carousel-custom">
                             @endif
                                 <div class="col-lg-3">
-                                    <a href="{{ route('admin.apartments.show', $apartment)}}">
+                                    <a href="{{ route('apartments.show', $apartment)}}">
                                         <div class="box-guest">
                                             @foreach ($apartment->sponsor_plans as $plan)
                                                 @if ($plan->sponsorships->deadline > $now)
