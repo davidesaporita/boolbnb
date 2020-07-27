@@ -71,3 +71,7 @@ Route::prefix('admin')
             ->name('apartments.sponsorship.transaction'); 
              
     });
+
+Route::get('gandalf', function() {
+    return view('egg.easter');
+});
