@@ -94,7 +94,7 @@ class ApartmentController extends Controller
                 }
             }
 
-            return redirect()->route('admin.apartments.show', $newApartment);
+            return redirect()->route('apartments.show', $newApartment);
         }
     }
 
@@ -127,7 +127,7 @@ class ApartmentController extends Controller
             $average = 0;
         }
 
-        return view('admin.apartments.show', compact('apartment', 'now', 'average', 'numvotes'));
+        return view('apartments.show', compact('apartment', 'now', 'average', 'numvotes'));
     }
 
     /**
@@ -310,7 +310,8 @@ class ApartmentController extends Controller
             'geo_lat'          => 'required|numeric|between:-90,90',
             'geo_lng'          => 'required|numeric|between:-180,180',
             'services'         => 'exists:services,id',
-            'featured_img'     => 'file|image'
+            'featured_img'     => 'file|image|mimes:jpeg,bmp,png|max:2048',
+            'media.*'          => 'file|image|mimes:jpeg,bmp,png|max:2048'
         ];
     }
 }

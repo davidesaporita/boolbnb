@@ -47,7 +47,7 @@
                                     <h3 class="subtitle-size">Servizi</h3>                  
                                     @foreach ($services as $service)                           
                                         <div>
-                                            <input class="form-group radio" type="checkbox" name="services[]" id="service-{{ $loop->iteration }}" value="{{ $service->id }}">
+                                            <input class="form-group radio" type="checkbox" name="services[]" id="service-{{ $loop->iteration }}" value="{{ $service->id }}" {{ old('services[]') == $service->id ? 'checked' : '' }}>
                                             <label for="service-{{ $loop->iteration }}">{{ $service->name }}</label>
                                         </div>
                                     @endforeach
@@ -66,7 +66,7 @@
                     <section class="apartment-image">                
                         <div>
                             <h3 class="subtitle-size">Immagine principale</h3>
-                            <input type="file" id="featured_img" class="form-control-file" name="featured_img"  accept="image/*" required>     
+                            <input type="file" id="featured_img" class="form-control-file" name="featured_img"  accept="image/*" required value="{{ old('featured_img') }}">     
                         </div>                            
                         <div>
                             <h3 class="subtitle-size">Immagini secondarie</h3>
