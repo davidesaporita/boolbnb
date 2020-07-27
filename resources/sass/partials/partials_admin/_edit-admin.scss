@@ -33,7 +33,7 @@
             textarea,
             input { 
 
-                color: #bbb;  
+                color: $color_paraghrap;  
                 border: none;
                 margin-bottom:  25px; 
                 border-radius: 15px;
@@ -47,7 +47,7 @@
             select:focus, 
             textarea:focus,
             input:focus {
-                color: #495057;
+                color: $color_paraghrap;
                 background-color: #fff;
                 border-color: #b0b0b0;
                 outline: 0;

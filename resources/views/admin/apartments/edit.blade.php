@@ -2,13 +2,13 @@
 
 @section('content')
     <section class="edit-jumbotron">
-        <h1>Modifica un alloggio</h1>
+        <h1>Modifica informazioni per {{$apartment->title}}</h1>
     </section>
 
     <section class="edit-page">
         <div class="container">
 
-            <h2 class="title-page">Modifica Alloggio</h2>
+            <h2 class="title-page">Modifica informazioni per {{$apartment->title}}</h2>
 
 
             @if ($errors->all())

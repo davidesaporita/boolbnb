@@ -5,10 +5,11 @@
 
 .wrap-content {
     .carousel-inner {
+        max-height: 205px;
         .carousel-item {
             img {
                 object-fit: cover;
-                max-height: 250px;
+                max-height: 205px;
             }
         }
     }
@@ -415,6 +416,20 @@
                     border: none;
                 }
             }
+        }
+    }
+}
+
+// Images height fix
+@media (min-width: 375px) { 
+    .wrap-content {
+        .carousel-inner {
+            max-height: 250px;
+            .carousel-item {
+                img {
+                    max-height: 250px;
+                }
+            } 
         }
     }
 }
