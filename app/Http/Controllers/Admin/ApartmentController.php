@@ -127,7 +127,8 @@ class ApartmentController extends Controller
             $average = 0;
         }
 
-        return view('apartments.show', compact('apartment', 'now', 'average', 'numvotes'));
+        return redirect()->route('apartments.show', $apartment->id);
+        // return view('apartments.show', compact('apartment', 'now', 'average', 'numvotes'));
     }
 
     /**
@@ -232,7 +233,7 @@ class ApartmentController extends Controller
             }
         }
 
-        return redirect()->route('admin.apartments.show', $apartment->id);
+        return redirect()->route('apartments.show', $apartment->id);
     }
 
     /**

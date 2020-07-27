@@ -25,9 +25,16 @@
             <div class="dashboard-show-wrapper container">
                 <div class="dashboard-admin dashboard-show">
                     <div class="option-card-show">
-                        <a href="{{route('admin.apartments.sponsorship.pay', ['apartment' => $apartment])}}">
-                            <i class="fas fa-bullhorn"></i>
-                            <span>Promuovi l'annuncio</span>
+                        <a  @if(!$sponsored) href="{{route('admin.apartments.sponsorship.pay', ['apartment' => $apartment])}}" @endif 
+                            @if($sponsored)  class="sponsored-button" @endif > 
+                            
+                            @if(!$sponsored) 
+                                <i class="fas fa-bullhorn"></i>
+                                <span>Promuovi l'annuncio</span>
+                            @else           
+                                <i class="fas fa-check"></i>
+                                <span>Annuncio sponsorizzato</span> 
+                            @endif
                         </a>
                         <a href="{{ route('admin.apartments.edit', $apartment) }}">
                             <i class="fas fa-edit"></i>
