@@ -70,7 +70,7 @@
                             <span>Special Host</span>
                         </div>
                     @endif
-                    <img src="{{ $apartment->featured_img }}" alt="{{ $apartment->title }}">
+                    <img src="{{strpos($apartment->featured_img, '://') ? $apartment->featured_img : asset("/storage/" . $apartment->featured_img)}}" alt="{{ $apartment->title }}">
                 </div>
                 <div class="wrap-img w-50">
                     @for ($i = 0; $i < 4; $i ++)

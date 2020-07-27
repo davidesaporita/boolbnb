@@ -713,6 +713,7 @@
 
                 .col-data-apartment {
                     margin-right: 10px;
+                    width: 100%;
                     .wrap-card-info {
                         @include flex($just-content: space-between);
 
@@ -736,6 +737,7 @@
                                 background-color: $primary_pink;
                                 color: $primary_white;
                                 border: none;
+                                outline: none;
                             }
                         }
             
