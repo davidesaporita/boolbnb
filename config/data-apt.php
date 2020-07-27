@@ -935,7 +935,6 @@ Upstairs, each spacious bedroom announces a theme: the jungle room, the Romeo-Ju
     'geo_lng' => '15.651813',
     'featured_img' => 'https://a0.muscache.com/im/pictures/1f214a2f-8fa4-42f8-b08c-37c4a332d396.jpg?im_w=1200',
     'media' => [
-        'https://a0.muscache.com/im/pictures/fa00d9be-92fd-4e3a-938a-244fa44b8abf.jpg?im_w=1440',
         'https://a0.muscache.com/im/pictures/754a8bbf-b7c1-45ba-b445-4261ebe1b28b.jpg?im_w=1440',
         'https://a0.muscache.com/im/pictures/b7b4371c-c9fe-4b48-a9cd-f62c84ef12a6.jpg?im_w=1440',
         'https://a0.muscache.com/im/pictures/1a424ea7-2794-42f9-8f4d-e73be45ff553.jpg?im_w=1440',
