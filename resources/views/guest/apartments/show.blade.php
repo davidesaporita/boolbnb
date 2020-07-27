@@ -20,38 +20,40 @@
 @endif
 
 @auth
-    <div class="dashboard-show-container">
-        <div class="dashboard-show-wrapper container">
-            <div class="dashboard-admin dashboard-show">
-                <div class="option-card-show">
-                    <a href="{{route('admin.apartments.sponsorship.pay', ['apartment' => $apartment])}}">
-                        <i class="fas fa-bullhorn"></i>
-                        <span>Promuovi l'annuncio</span>
-                    </a>
-                    <a href="{{ route('admin.apartments.edit', $apartment) }}">
-                        <i class="fas fa-edit"></i>
-                        <span>Modifica informazioni</span>
-                    </a>
-                    <a href="{{ route('admin.apartments.stats.index', ['apartment' => $apartment ]) }}"">
-                        <i class="fas fa-chart-bar"></i>
-                        <span>Visualizza statistiche</span>
-                    </a>
-                    <a href="{{ route('admin.apartments.create') }}">
-                        <i class="fas fa-volume-off"></i>
-                        <span>Disattiva annuncio</span>
-                    </a>
-                    <a href="{{ route('admin.apartments.create') }}">
-                        <i class="fas fa-trash-alt"></i>
-                        <span>Elimina l'annuncio</span>
-                    </a>
-                    <a href="{{ route('admin.apartments.create') }}">
-                        <i class="fas fa-plus"></i>
-                        <span>Aggiungi alloggio</span>
-                    </a>
+    @if(Auth::id() == $apartment->user_id)
+        <div class="dashboard-show-container">
+            <div class="dashboard-show-wrapper container">
+                <div class="dashboard-admin dashboard-show">
+                    <div class="option-card-show">
+                        <a href="{{route('admin.apartments.sponsorship.pay', ['apartment' => $apartment])}}">
+                            <i class="fas fa-bullhorn"></i>
+                            <span>Promuovi l'annuncio</span>
+                        </a>
+                        <a href="{{ route('admin.apartments.edit', $apartment) }}">
+                            <i class="fas fa-edit"></i>
+                            <span>Modifica informazioni</span>
+                        </a>
+                        <a href="{{ route('admin.apartments.stats.index', ['apartment' => $apartment ]) }}"">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Visualizza statistiche</span>
+                        </a>
+                        <a href="{{ route('admin.apartments.create') }}">
+                            <i class="fas fa-volume-off"></i>
+                            <span>Disattiva annuncio</span>
+                        </a>
+                        <a href="{{ route('admin.apartments.create') }}">
+                            <i class="fas fa-trash-alt"></i>
+                            <span>Elimina l'annuncio</span>
+                        </a>
+                        <a href="{{ route('admin.apartments.create') }}">
+                            <i class="fas fa-plus"></i>
+                            <span>Aggiungi alloggio</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endauth 
 
 
