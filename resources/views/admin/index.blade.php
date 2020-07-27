@@ -155,8 +155,8 @@
         <div class="info-requests">
             <h4>Richieste di informazioni:</h4>
             <div class="row">
-                <table class="table table-light">
-                    <thead class="thead-light">
+                <table class="table">
+                    <thead class="thead-container">
                         <tr>
                             <th scope="col">Email Utente</th>
                             <th scope="col">Titolo</th>
@@ -165,15 +165,15 @@
                             <th scope="col">Azioni</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="tbody-container">
                         @foreach ($messages as $message)
                         <tr>
                             <th scope="row">{{ $message->email}} <br>{{ $message->created_at}}</th>
                                 <td>{{ $message->title}}</td>
                                 <td>{{ $message->body}}</td>
                                 <td>{{ $message->read}}</td>
-                                <td>
-                                    <a class="btn btn-success" href="#" role="button">Verifica</a>
+                                <td class="table-button-align">
+                                    <a class="btn btn-success mb-2" href="#" role="button">Verifica</a>
                                     <br>
                                     <a class="btn btn-danger" href="#" role="button">Elimina</a>
                                 </td>
@@ -213,8 +213,8 @@
         <div class="reviews-box">
             <h4>Recensioni:</h4>
             <div class="row">
-                <table class="table table-light">
-                    <thead class="thead-light">
+                <table class="table">
+                    <thead class="thead-container">
                         <tr>
                             <th scope="col">Visitatore</th>
                             <th scope="col">Titolo</th>
@@ -223,7 +223,7 @@
                             <th scope="col">Azioni</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="tbody-container">
                         @foreach ($reviews as $review)
                         <tr>
                             <th scope="row">{{ $review->first_name . ' ' . $review->last_name}} <br>{{ $review->created_at}}</th>
@@ -231,7 +231,7 @@
                             <td>{{ $review->body}}</td>
                             <td>{{ $review->rating}}</td>
                             <td>
-                                <a class="btn btn-success" href="#">Verifica</a>
+                                <a class="btn btn-success mb-2" href="#">Verifica</a>
                                 <br>
                                 <a class="btn btn-danger" href="#">Elimina</a>
                             </td>
