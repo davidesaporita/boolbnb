@@ -33,6 +33,10 @@ a {
     background-color: $primary_pink;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 //// MIXIN
 
 @mixin font_options ($size: false, $color: false, $weight: false, $lh: false, $ls: false) {
