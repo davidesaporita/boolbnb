@@ -47,7 +47,12 @@ class HomeController extends Controller
 
         // Media voti ricevuti
         $ratings = $reviews->pluck('rating')->toArray();
-        $average_rating = number_format(array_sum($ratings) / $total_reviews_number, 2);
+        if($total_reviews_number > 0) {
+            $average_rating = number_format(array_sum($ratings) / $total_reviews_number, 2);
+        } else {
+            $average_rating = 0;
+        }
+        
 
         // Generals
         $categories   = Category::all();
