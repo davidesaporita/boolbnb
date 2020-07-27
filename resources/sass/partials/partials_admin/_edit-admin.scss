@@ -121,12 +121,12 @@
 
             .submit-container {
                 @include flex($just-content:flex-end);
-                .button-submit {
-                    padding: 15px;
-                    color: #fff;
-                    font-weight: 800;
-                    border-radius: 15px;
-                    background: $primary_pink;
+                input {
+                    padding: 10px;
+                    border-radius: 10px;
+                    background-color: $primary_pink;
+                    color: $primary_white;
+                    border: none;
                 }
             }
         }
