@@ -22,10 +22,17 @@ class ApartmentController extends Controller
 {
     public function show($category, $country, $region, $city, $title, Apartment $apartment)
     {
+        $now = Carbon::now();
+
         // Add new "view" stat to stats table
         Stat::addNewStat($apartment, 'view');
 
-        return view('guest.apartments.show', compact('apartment'));
+        // Check if sponsored
+        foreach($apartment->sponsor_plans as $plan) {
+            $sponsored = $plan->sponsorships->deadline > $now ? true : false;
+        }
+
+        return view('guest.apartments.show', compact('apartment', 'sponsored'));
 
     }
 
