@@ -5,6 +5,24 @@
 
 .wrap-content {
     .carousel-inner {
+
+        .plate-guest {
+            position: absolute;
+            z-index: 2;
+            span {
+                display: inline-block;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 1;
+                color: #B34262;
+                margin: 0.5rem;
+                padding: 0.35rem;
+                background: #fff;
+                border-radius: 0.25rem;
+                opacity: 0.9;
+            }
+        }
+
         .carousel-item {
             img {
                 object-fit: cover;
@@ -435,6 +453,21 @@
         // desktop
         .wrap-img-desktop {
             display: block;
+            .plate-guest {
+                position: absolute;
+                span {
+                    display: inline-block;
+                    font-size: 14px;
+                    font-weight: 600;
+                    line-height: 1;
+                    color: #B34262;
+                    margin: 0.5rem;
+                    padding: 0.35rem;
+                    background: #fff;
+                    border-radius: 0.25rem;
+                    opacity: 0.9;
+                }
+            }
             .container {
                 .wrap-img-apartment {
                     .wrap-featured-img {
