@@ -208,7 +208,7 @@ function ajaxCall(urlRecived, methodRecived, dataRecived, template) {
       let sponsored =              res['sponsor_plans'].length > 0 ? 'Special Host' : null;
       let services =               res['services'];
       
-      
+      console.log(res);
       
 
       let marker = L.marker([geoLat, geoLng]).addTo(search);
@@ -233,7 +233,6 @@ function ajaxCall(urlRecived, methodRecived, dataRecived, template) {
       var html = template(apartment);
       apartmentContainer.append(html)
     }
-  
   
   }).fail(function() {
   
