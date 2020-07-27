@@ -44,24 +44,24 @@
 
                         <ul>
                             <li>
-                                <a href="#"><i class="fab fa-github-square"></i></a>
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/carminelentisco"><i class="fab fa-github-square"></i></a>
+                                <a href="https://www.linkedin.com/in/carmine-lentisco-07a0871b2/"><i class="fab fa-linkedin"></i></a>
                             </li>
                             <li>
-                                <a href="#"><i class="fab fa-github-square"></i></a>
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/davidesaporita"><i class="fab fa-github-square"></i></a>
+                                <a href="https://www.linkedin.com/in/davidesaporita/"><i class="fab fa-linkedin"></i></a>
                             </li>
                             <li>
-                                <a href="#"><i class="fab fa-github-square"></i></a>
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/Emanuele-rgb"><i class="fab fa-github-square"></i></a>
+                                <a href="https://www.linkedin.com/in/emanuele-sanquirico-3791161b2/"><i class="fab fa-linkedin"></i></a>
                             </li>
                             <li>
-                                <a href="#"><i class="fab fa-github-square"></i></a>
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/GerardoPagliarulo"><i class="fab fa-github-square"></i></a>
+                                <a href="https://www.linkedin.com/in/gerardo-pagliarulo-b56105113/"><i class="fab fa-linkedin"></i></a>
                             </li>
                             <li>
-                                <a href="#"><i class="fab fa-github-square"></i></a>
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/PaoloFrancesco-Marino"><i class="fab fa-github-square"></i></a>
+                                <a href="https://www.linkedin.com/in/paolo-francesco-marino-0790981b2/"><i class="fab fa-linkedin"></i></a>
                             </li>
                         </ul>
                     </div>
