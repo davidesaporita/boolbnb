@@ -118,13 +118,8 @@
                     <input type="hidden" name="city"  id="city" class="form-control" value="{{ old('city', $apartment->city) }}">
                     <input type="hidden" name="zip_code" id="zip_code" class="form-control" value="{{ old('zip_code', $apartment->zip_code) }}">
 
-{{-- 
-                    <div class="d-flex justify-content-end">
-                        <input type="submit" value="Aggiorna" class="btn btn-success">
-                    </div> --}}
-
                     <section class="submit-container">
-                        <a href="#" id="submit-create" onclick="document.getElementById('edit-form').submit()"class="button-submit">Aggiorna</a>
+                        <input type="submit" value="Aggiorna" class="btn btn-success">
                     </section>
                 </form>
             </section>
