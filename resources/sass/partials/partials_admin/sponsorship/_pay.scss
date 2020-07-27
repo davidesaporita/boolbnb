@@ -32,12 +32,13 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            
+            align-items: center;
             .payment-color-basic {background-color: #E09F7D;}
             .payment-color-medium {background-color: #B34262;}
             .payment-color-premium {background-color: #320E3B;}
 
             .payment-card {
+                width: 100%;
                 margin-bottom: 20px;
                 display: flex;
                 flex-direction: column;
@@ -113,7 +114,7 @@
     }
 }
 
-@media (min-width: 714px) {
+@media (min-width: 410px) and (max-width: 766px)  {
     .wrap-payment-container {
 
         header {
@@ -121,8 +122,31 @@
         }
 
         .payment-action {
+            padding: 10px;
+    
+            .payment-button-container {
+    
+                .payment-card {
+                    width: 300px;
+                }
+            }
+        }
+    }    
+}
+
+@media (min-width: 767px) {
+    .wrap-payment-container {
+
+        header {
+            padding-top: 55px;
+        }
+
+        .payment-action {
+            margin: 0 auto;
+            width: 717px;
             .payment-button-container {
                 margin: 50px 0;
+                width: 720px;
                 flex-direction: row;
                 justify-content: space-around;
     
