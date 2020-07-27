@@ -1,20 +1,18 @@
-#app {
-    height: 100%;
-    .container {
-        .wrap-stats-box {
+
+.container {
+    .wrap-stats-box {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: $primary_white;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+        .wrap-stats {
             margin-top: 20px;
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: $primary_white;
-            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
-            .wrap-stats {
-                margin-top: 20px;
-                margin-bottom: 40px;
-                canvas {
-                    
-                    margin-bottom: 20px;
-                }
+            margin-bottom: 40px;
+            canvas {
+                
+                margin-bottom: 20px;
             }
         }
     }
