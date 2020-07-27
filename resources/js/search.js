@@ -205,10 +205,8 @@ function ajaxCall(urlRecived, methodRecived, dataRecived, template) {
       let distance =               res['distance'].toFixed(2);
       let geoLat =                 res['geo_lat'];
       let geoLng =                 res['geo_lng'];
-      let sponsored =              res['sponsor_plans'].length > 0 ? 'Special Host' : null;
+      let sponsored =              res['sponsored'] == 1 ? 'Special Host' : null;
       let services =               res['services'];
-      
-      console.log(res);
       
 
       let marker = L.marker([geoLat, geoLng]).addTo(search);
