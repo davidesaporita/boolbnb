@@ -3,24 +3,16 @@
 @section('content')
 
 <div class="container">
-    {{-- <div class="card">
-        <div class="card-body chart-container">
-            <canvas id="myChart" width="400" height="400"></canvas>
-        </div>
-    </div> --}}
-    <div class="card">
-        <div class="card-body chart-container">
-            <canvas id="myChart-views" width="400" height="400"></canvas>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-body chart-container">
-            <canvas id="myChart-messages" width="400" height="400"></canvas>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-body chart-container">
-            <canvas id="myChart-reviews" width="400" height="400"></canvas>
+    <div class="wrap-stats-box text-center">
+        <h2>Ecco le Statistiche del tuo Appartamento:</h2>
+        <h3>{{ $apartment->title . ', ' . $apartment->city . ', ' . $apartment->region . ', ' . $apartment->country}} </h3>
+
+            <div class="wrap-stats d-flex flex-wrap justify-content-between">
+                <canvas id="myChart-views" width="400" height="400"></canvas>
+                <canvas id="myChart-messages" width="400" height="400"></canvas>
+                <canvas id="myChart-reviews" width="400" height="400"></canvas>
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
         </div>
     </div>
 </div>
@@ -36,6 +28,8 @@
     var views = [];
     var messages = [];
     var reviews = [];
+
+    
     
     monthly_stats.forEach(item => {
         date.push(item.date);
@@ -44,44 +38,44 @@
         reviews.push(item.reviews);
     })
 
-    // // total
-    // var ctx = document.getElementById('myChart').getContext('2d');
-    // var myChart = new Chart(ctx, {
-    //     type: 'line',
-    //     data: {
-    //         labels: date,
-    //         datasets: [{
-    //             label: 'Visualizzazioni',
-    //             data: views,
-    //             backgroundColor: 'rgba(255, 99, 132, 0.2)',
-    //             borderColor: 'rgba(255, 99, 132, 1)',
-    //             borderWidth: 1
-    //         },
-    //         {
-    //             label: 'Richieste info',
-    //             data: messages,
-    //             backgroundColor: 'rgba(54, 162, 235, 0.2)',
-    //             borderColor: 'rgba(54, 162, 235, 1)',
-    //             borderWidth: 1
-    //         },
-    //         {
-    //             label: 'Recensioni',
-    //             data: reviews,
-    //             backgroundColor: 'rgba(255, 206, 86, 0.2)',
-    //             borderColor: 'rgba(255, 206, 86, 1)',
-    //             borderWidth: 1
-    //         }]
-    //     },
-    //     options: {
-    //         scales: {
-    //             yAxes: [{
-    //                 ticks: {
-    //                     beginAtZero: true
-    //                 }
-    //             }]
-    //         }
-    //     }
-    // });
+    // total
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: date,
+            datasets: [{
+                label: 'Visualizzazioni',
+                data: views,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Richieste info',
+                data: messages,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Recensioni',
+                data: reviews,
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
 
     // views
     var ctxViews = document.getElementById('myChart-views').getContext('2d');

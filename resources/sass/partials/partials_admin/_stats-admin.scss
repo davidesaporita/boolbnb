@@ -1,11 +1,65 @@
-.container {
-    .card {
-        margin-bottom: 20px;
-        .card-body {
-            canvas {
-                max-width: 500px;
-                max-height: 500px;
+#app {
+    height: 100%;
+    .container {
+        .wrap-stats-box {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: $primary_white;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+            .wrap-stats {
+                margin-top: 20px;
+                margin-bottom: 40px;
+                canvas {
+                    
+                    margin-bottom: 20px;
+                }
             }
         }
     }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+    
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    #app{
+        .container {
+            .wrap-stats-box {
+                .wrap-stats {
+                    canvas {
+                        max-width: 100%;
+                        max-height: auto;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+        }
+    }   
+}
+
+@media (min-width: 992px) { 
+    
+}
+
+@media (min-width: 1200px) { 
+
+    #app{
+        .container {
+            .wrap-stats-box {
+                margin-top: 74px;
+                .wrap-stats {
+                    canvas {
+                        max-width: 500px;
+                        max-height: 500px;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+        }
+    } 
 }
