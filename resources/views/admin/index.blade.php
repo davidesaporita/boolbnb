@@ -370,7 +370,7 @@
             </div>
             @endforeach
             <div class="button-message">
-                <a href="#">
+                <a href="{{ route('admin.reviews') }}">
                     <span>Tutte le recensioni</span>
                 </a>
             </div>
