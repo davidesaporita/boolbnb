@@ -153,7 +153,9 @@
 
         {{-- inbox desktop --}}
         <div class="info-requests">
-            <h4>Richieste di informazioni:</h4>
+            <a class="your-apartments" name="inbox">
+                <h2>Richieste di informazioni</h2>
+            </a>
             <div class="row">
                 <table class="table">
                     <thead class="thead-container">
@@ -212,7 +214,7 @@
 
         <div class="info-requests-mobile">
             <a class="your-apartments" name="inbox">
-                <h2>Richieste di informazioni:</h2>
+                <h2>Richieste di informazioni</h2>
             </a>
             @foreach ($messages as $message)
                 <div class="box-requests @if($message->read) read @else unread @endif">
@@ -236,23 +238,30 @@
                             {{ $message->body}}
                         </li>
                         <li>
-                            @if($message->read) 
-                                <a class="btn btn-secondary mb-2" href="#" role="button">
-                                    <i class="fas fa-undo"></i>
-                                    <span>Primo piano</span>
-                                </a>
-                            @else               
-                                <a class="btn btn-success mb-2" href="#" role="button">
-                                    <i class="fas fa-inbox"></i>
-                                    <span>Archivia</span>
-                                </a>
-                            @endif
+                            <form action="{{ route('admin.inbox.toggle', $message) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                @if($message->read) 
+                                    <button type="submit" class="btn btn-secondary mb-2">
+                                        <i class="fas fa-undo"></i>
+                                        <span>Primo piano</span>
+                                    </button>
+                                @else
+                                    <button type="submit" class="btn btn-success mb-2">
+                                        <i class="fas fa-inbox"></i>
+                                        <span>Archivia</span>
+                                    </button>
+                                @endif
+                            </form>
                                 
-                            <br>
-                            <a class="btn btn-danger" href="#" role="button">
-                                <i class="fas fa-trash-alt"></i>
-                                <span>Elimina</span>
-                            </a>
+                            <form action="{{ route('admin.inbox.destroy', $message) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span>Elimina</span>
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -265,7 +274,7 @@
 
         <div class="reviews-box">
             <a class="your-apartments" name="inbox">
-                <h2>Recensioni:</h2>
+                <h2>Recensioni</h2>
             </a>
             <div class="row">
                 <table class="table">
@@ -305,7 +314,9 @@
         {{-- reviews box mobile --}}
 
         <div class="reviews-box-mobile">
-            <h4>Recensioni</h4>
+            <a class="your-apartments" name="inbox">
+                <h2>Recensioni</h2>
+            </a>
             @foreach ($reviews as $review)
             <div class="box-reviews">
                 <ul class="list-group list-unstyled">
