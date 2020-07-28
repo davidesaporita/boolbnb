@@ -38,4 +38,19 @@ class MessageController extends Controller
             return redirect()->route('admin.index')->with('deleted_message', $deleted_message);
         }
     }
+
+    public function toggle(Message $message)
+    {
+        if($message->read == 0) {
+            $message->read = 1;
+        } else {
+            $message->read = 0;
+        }
+        
+        $updated = $message->update();
+
+        if($updated) {
+            return redirect()->route('admin.index', compact('message'));
+        }
+    }
 }

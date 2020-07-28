@@ -173,23 +173,31 @@
                                 <td>{{ $message->title }}</td>
                                 <td>{{ $message->body }}</td>
                                 <td class="table-button-align" width="150">
-                                    @if($message->read) 
-                                        <a class="btn btn-secondary mb-2" href="#" role="button">
-                                            <i class="fas fa-undo"></i>
-                                            <span>Primo piano</span>
-                                        </a>
-                                    @else               
-                                        <a class="btn btn-success mb-2" href="#" role="button">
-                                            <i class="fas fa-inbox"></i>
-                                            <span>Archivia</span>
-                                        </a>
-                                    @endif
+                                    <form action="{{ route('admin.inbox.toggle', $message) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        @if($message->read) 
+                                            <button type="submit" class="btn btn-secondary mb-2">
+                                                <i class="fas fa-undo"></i>
+                                                <span>Primo piano</span>
+                                            </button>
+                                        @else
+                                            <button type="submit" class="btn btn-success mb-2">
+                                                <i class="fas fa-inbox"></i>
+                                                <span>Archivia</span>
+                                            </button>
+                                        @endif
+                                    </form>
                                         
                                     <br>
-                                    <a class="btn btn-danger" href="#" role="button">
-                                        <i class="fas fa-trash-alt"></i>
-                                        <span>Elimina</span>
-                                    </a>
+                                    <form action="{{ route('admin.inbox.destroy', $message) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                            <span>Elimina</span>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -263,6 +271,7 @@
                 <table class="table">
                     <thead class="thead-container">
                         <tr>
+                            <th scope="col">Alloggio</th>
                             <th scope="col">Visitatore</th>
                             <th scope="col">Titolo</th>
                             <th scope="col">Testo</th>
@@ -273,12 +282,13 @@
                     <tbody class="tbody-container">
                         @foreach ($reviews as $review)
                         <tr>
-                            <th scope="row">{{ $review->first_name . ' ' . $review->last_name}} <br>{{ $review->created_at}}</th>
+                            <th scope="row">{{ $review->apartment->title. ', ' . $review->apartment->city }}</th>
+                            <td>{{ $review->first_name . ' ' . $review->last_name}} <br>{{ $review->created_at->diffForHumans() }}</td>
                             <td>{{ $review->title}}</td>
                             <td>{{ $review->body}}</td>
-                            <td>{{ $review->rating}}</td>
-                            <td>
-                                <form action="{{ route('admin.reviews.destroy', $review) }}" method="POST" id="toggle-annuncio">
+                            <td>{{ $review->rating}}/5</td>
+                            <td width="150">
+                                <form action="{{ route('admin.reviews.destroy', $review) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <input type="submit" class="btn btn-danger" href="#" role="button" value="Elimina">
@@ -307,7 +317,7 @@
                     <li class="list-item"> <strong>Testo:</strong> {{ $review->body}}</li>
                     <li class="list-item"> <strong>Rating:</strong> {{ $review->rating}}/5</li>
                     <li>
-                        <form action="{{ route('admin.reviews.destroy', $review) }}" method="POST" id="toggle-annuncio">
+                        <form action="{{ route('admin.reviews.destroy', $review) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <input type="submit" class="btn btn-danger" href="#" role="button" value="Elimina">
@@ -320,15 +330,6 @@
         
     </div>
 </div>
-
-
-
-{{-- Delete Form --}}
-{{-- <form action="{{ route('admin.inbox.destroy', $message) }}" method="POST" id="elimina-annuncio">
-    @csrf
-    @method('DELETE')
-</form> --}}
-
 
 
 @endsection

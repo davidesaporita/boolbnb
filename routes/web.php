@@ -50,6 +50,7 @@ Route::prefix('admin')
         // Inbox
         Route::get('/inbox', 'MessageController@inbox')->name('inbox');
         Route::delete('/inbox/{message}', 'MessageController@destroy')->name('inbox.destroy');
+        Route::patch('/inbox/{message}/toggle', 'MessageController@toggle')->name('inbox.toggle');
 
         // Reviews
         Route::get('/reviews', 'ReviewController@reviews')->name('reviews');
