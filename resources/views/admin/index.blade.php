@@ -8,7 +8,7 @@
         <div class="jumbotron-dashboard">
             <div class="jum-dash-title">
                 <h1>Bentornat{{(Auth::user()->gender == 'm' ? 'o' : 'a')}} {{Auth::user()->first_name}}</h1>
-                <p>E' un piacere ritrovarti. Ecco cosè successo dalla tua ultima visita</p>
+                <p>E' un piacere ritrovarti. Ecco cos'è successo dalla tua ultima visita</p>
             </div>
             <div class="message-info">
                 <div class="new-message">
