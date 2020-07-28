@@ -104,12 +104,15 @@
     
                     }
                 }
-
-                
-                .btn-pay {
-                    margin-top: 10px;
-                }
             } 
+            .btn.btn-success.btn-pay {
+                margin-top: 15px;
+                height: 60px;
+                background-color: $green;
+                color: $white;
+                font-size: 14px;
+                font-weight: bold;
+            }
         }  
     }
 }

@@ -66,7 +66,7 @@ class SponsorshipController extends Controller
             $apartment->sponsor_plans()->attach($sponsorPlan_id, $fields);
 
             // return redirect()->route('admin.apartments.sponsorship.transaction', ['transaction_id' => $transaction->id, 'apartment' => $apartment]);
-            return redirect()->route('admin.apartments.show', ['transaction_id' => $transaction->id, 'apartment' => $apartment]);
+            return redirect()->route('apartments.show', ['transaction_id' => $transaction->id, 'apartment' => $apartment]);
 
         } else {
             $errorString = "";

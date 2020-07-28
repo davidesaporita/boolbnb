@@ -4,14 +4,20 @@
 
     <div class="container">
         <div class="wrap-stats-box text-center">
-            <h2>Ecco le Statistiche del tuo Appartamento:</h2>
-            <h3>{{ $apartment->title . ', ' . $apartment->city . ', ' . $apartment->region . ', ' . $apartment->country}} </h3>
+            <h2>Statistiche annuncio</h2>
+            <a href="{{ route('apartments.show', $apartment) }}">
+                <h5>{{ $apartment->title }}</h5>
+            </a>
+            <h5>{{ $apartment->city . ', ' . $apartment->region }}</h5>
+            <h6>Dalla pubblicazione fino alla data odierna</h6>
             <div class="wrap-stats d-flex flex-wrap justify-content-between">
                 <canvas id="myChart-views" width="400" height="400"></canvas>
                 <canvas id="myChart-messages" width="400" height="400"></canvas>
                 <canvas id="myChart-reviews" width="400" height="400"></canvas>
                 <canvas id="myChart" width="400" height="400"></canvas>
             </div>
+            <a href="{{ route('apartments.show', $apartment) }}" class="button-back-show">Torna all'annuncio</a>
+            
         </div>
         {{-- TODO: proper link installed chart.js --}}
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -37,7 +43,7 @@
             // total
             var ctx = document.getElementById('myChart').getContext('2d');
             var myChart = new Chart(ctx, {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: date,
                     datasets: [{
@@ -48,7 +54,7 @@
                         borderWidth: 1
                     },
                     {
-                        label: 'Richieste info',
+                        label: 'Richieste di informazioni',
                         data: messages,
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgba(54, 162, 235, 1)',
@@ -106,7 +112,7 @@
                     labels: date,
                     datasets: [
                     {
-                        label: 'Richieste info',
+                        label: 'Richieste di informazioni',
                         data: messages,
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgba(54, 162, 235, 1)',

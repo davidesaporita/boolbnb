@@ -21,13 +21,20 @@
 
 @auth
     @if(Auth::id() == $apartment->user_id)
-        <div class="dashboard-show-container">
+        <div class="dashboard-show-container @if(!$apartment->active) deactivated @endif">
             <div class="dashboard-show-wrapper container">
                 <div class="dashboard-admin dashboard-show">
                     <div class="option-card-show">
-                        <a href="{{route('admin.apartments.sponsorship.pay', ['apartment' => $apartment])}}">
-                            <i class="fas fa-bullhorn"></i>
-                            <span>Promuovi l'annuncio</span>
+                        <a  @if(!$sponsored) href="{{route('admin.apartments.sponsorship.pay', ['apartment' => $apartment])}}" @endif 
+                            @if($sponsored)  class="sponsored-button" @endif > 
+                            
+                            @if(!$sponsored) 
+                                <i class="fas fa-bullhorn"></i>
+                                <span>Promuovi l'annuncio</span>
+                            @else           
+                                <i class="fas fa-check"></i>
+                                <span>Annuncio sponsorizzato</span> 
+                            @endif
                         </a>
                         <a href="{{ route('admin.apartments.edit', $apartment) }}">
                             <i class="fas fa-edit"></i>
@@ -37,11 +44,16 @@
                             <i class="fas fa-chart-bar"></i>
                             <span>Visualizza statistiche</span>
                         </a>
-                        <a href="{{ route('admin.apartments.create') }}">
-                            <i class="fas fa-volume-off"></i>
-                            <span>Disattiva annuncio</span>
+                        <a onclick="event.preventDefault(); document.getElementById('toggle-annuncio').submit();" style="cursor: pointer;">
+                            @if($apartment->active)
+                                <i class="fas fa-eye"></i>
+                                <span>Disattiva annuncio</span>
+                            @else 
+                                <i class="fas fa-eye-slash"></i>
+                                <span>Riattiva annuncio</span>
+                            @endif
                         </a>
-                        <a href="{{ route('admin.apartments.create') }}">
+                        <a onclick="event.preventDefault(); document.getElementById('elimina-annuncio').submit();" style="cursor: pointer;">
                             <i class="fas fa-trash-alt"></i>
                             <span>Elimina l'annuncio</span>
                         </a>
@@ -53,6 +65,19 @@
                 </div>
             </div>
         </div>
+
+        {{-- Deactivate Form --}}
+        <form action="{{ route('admin.apartments.toggle', $apartment->id) }}" method="POST" id="toggle-annuncio">
+            @csrf
+            @method('PATCH')
+        </form>
+        
+        {{-- Delete Form --}}
+        <form action="{{ route('admin.apartments.destroy', $apartment->id) }}" method="POST" id="elimina-annuncio">
+            @csrf
+            @method('DELETE')
+        </form>
+
     @endif
 @endauth 
 

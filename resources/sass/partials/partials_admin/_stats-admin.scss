@@ -4,6 +4,7 @@
         margin-top: 20px;
         margin-bottom: 20px;
         padding: 20px;
+        padding-bottom: 40px;
         border-radius: 10px;
         background-color: $primary_white;
         filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
@@ -14,6 +15,16 @@
                 
                 margin-bottom: 20px;
             }
+        }
+
+        a.button-back-show {
+            margin-bottom: 80px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: $primary_pink;
+            color: $primary_white;
+            border: none;
+            text-decoration: none;
         }
     }
 }

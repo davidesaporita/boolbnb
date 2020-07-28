@@ -127,7 +127,8 @@ class ApartmentController extends Controller
             $average = 0;
         }
 
-        return view('apartments.show', compact('apartment', 'now', 'average', 'numvotes'));
+        return redirect()->route('apartments.show', $apartment->id);
+        // return view('apartments.show', compact('apartment', 'now', 'average', 'numvotes'));
     }
 
     /**
@@ -232,7 +233,7 @@ class ApartmentController extends Controller
             }
         }
 
-        return redirect()->route('admin.apartments.show', $apartment->id);
+        return redirect()->route('apartments.show', $apartment->id);
     }
 
     /**
@@ -267,7 +268,7 @@ class ApartmentController extends Controller
         $deleted = $apartment->delete();
 
         if($deleted) {
-            return redirect()->route('admin.apartments.index')->with('deleted_apartment', $deleted_apartment);
+            return redirect()->route('admin.index')->with('deleted_apartment', $deleted_apartment);
         }
     }
 
@@ -282,7 +283,7 @@ class ApartmentController extends Controller
         $updated = $apartment->update();
 
         if($updated) {
-            return redirect()->route('admin.apartments.index');
+            return redirect()->route('apartments.show', compact('apartment'));
         }
     }
 

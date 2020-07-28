@@ -44,6 +44,11 @@
                 }
             }
 
+            input[type=file] { 
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+            }
+
             select:focus, 
             textarea:focus,
             input:focus {
