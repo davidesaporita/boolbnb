@@ -8,7 +8,7 @@
         <div class="jumbotron-dashboard">
             <div class="jum-dash-title">
                 <h1>Bentornat{{(Auth::user()->gender == 'm' ? 'o' : 'a')}} {{Auth::user()->first_name}}</h1>
-                <p>E' un piacere ritrovarti. Ecco cosè successo dalla tua ultima visita</p>
+                <p>È un piacere ritrovarti. Ecco cos'è successo dalla tua ultima visita.</p>
             </div>
             <div class="message-info">
                 <div class="new-message">
@@ -19,7 +19,7 @@
                     @endif
                 </div>
                 <div class="button-message">
-                    <a href="#">
+                    <a href="{{ route('admin.inbox') }}">
                         <span>Leggi Messaggi</span>
                     </a>
                 </div>
@@ -42,7 +42,7 @@
             </div>
         </div>
         {{-- CARDS --}}
-        <div class="option-card">
+        {{-- <div class="option-card">
             <a href="#">
                 <span>Messaggi</span>
             </a>
@@ -55,7 +55,7 @@
             <a href="#alloggi">
                 <span>I tuoi alloggi</span>
             </a>
-        </div>
+        </div> --}}
     </div>
 
     <a class="your-apartments" name="alloggi">
@@ -153,29 +153,53 @@
 
         {{-- inbox desktop --}}
         <div class="info-requests">
-            <h4>Richieste di informazioni:</h4>
+            <a class="your-apartments" name="inbox">
+                <h2>Richieste di informazioni</h2>
+            </a>
             <div class="row">
                 <table class="table">
                     <thead class="thead-container">
                         <tr>
+                            <th scope="col">Alloggio</th>
                             <th scope="col">Email Utente</th>
-                            <th scope="col">Titolo</th>
+                            <th scope="col">Oggetto</th>
                             <th scope="col">Testo</th>
-                            <th scope="col">Visualizzato</th>
                             <th scope="col">Azioni</th>
                         </tr>
                     </thead>
                     <tbody class="tbody-container">
                         @foreach ($messages as $message)
-                        <tr>
-                            <th scope="row">{{ $message->email}} <br>{{ $message->created_at}}</th>
-                                <td>{{ $message->title}}</td>
-                                <td>{{ $message->body}}</td>
-                                <td>{{ $message->read}}</td>
-                                <td class="table-button-align">
-                                    <a class="btn btn-success mb-2" href="#" role="button">Verifica</a>
+                            <tr class="@if($message->read) read @else unread @endif">
+                                <th scope="row">{{ $message->apartment->title }}</th>
+                                <td>{{ $message->email}} <br>{{ $message->created_at}}</td>
+                                <td>{{ $message->title }}</td>
+                                <td>{{ $message->body }}</td>
+                                <td class="table-button-align" width="150">
+                                    <form action="{{ route('admin.inbox.toggle', $message) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        @if($message->read) 
+                                            <button type="submit" class="btn btn-secondary mb-2">
+                                                <i class="fas fa-undo"></i>
+                                                <span>Primo piano</span>
+                                            </button>
+                                        @else
+                                            <button type="submit" class="btn btn-success mb-2">
+                                                <i class="fas fa-inbox"></i>
+                                                <span>Archivia</span>
+                                            </button>
+                                        @endif
+                                    </form>
+                                        
                                     <br>
-                                    <a class="btn btn-danger" href="#" role="button">Elimina</a>
+                                    <form action="{{ route('admin.inbox.destroy', $message) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                            <span>Elimina</span>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -189,20 +213,58 @@
         {{-- mobile inbox --}}
 
         <div class="info-requests-mobile">
-            <h4>Richieste di informazioni:</h4>
+            <a class="your-apartments" name="inbox">
+                <h2>Richieste di informazioni</h2>
+            </a>
             @foreach ($messages as $message)
-            <div class="box-requests">
-                <ul class="list-group list-unstyled">
-                    <li class="list-item"> <strong>Email Utente:</strong> {{ $message->email}}</li>
-                    <li class="list-item"> <strong>Titolo:</strong> {{ $message->title}}</li>
-                    <li class="list-item"> <strong>Testo:</strong> {{ $message->body}}</li>
-                    <li class="list-item"> <strong>Visualizzato:</strong> {{ $message->read}}</li>
-                    <li>
-                        <a class="btn btn-success" href="#" role="button">Verifica</a>
-                        <a class="btn btn-danger" href="#" role="button">Elimina</a>
-                    </li>
-                </ul>
-            </div>
+                <div class="box-requests @if($message->read) read @else unread @endif">
+                    <ul class="list-group list-unstyled">
+                        <li class="list-item">
+                            <h4>{{ $message->apartment->title . ', ' . $message->apartment->city }}</h4>
+                        </li>
+                        <li class="list-item">
+                            Data richiesta: <strong>{{ $message->created_at->diffForHumans() }}</strong>
+                        </li>
+                        <li class="list-item">
+                            Email Utente:
+                            <strong>{{ $message->email}}</strong>
+                        </li>
+                        <li class="list-item">
+                            Oggetto:
+                            <strong>{{ $message->title}}</strong>
+                        </li>
+                        <li class="list-item">
+                            Testo:
+                            {{ $message->body}}
+                        </li>
+                        <li>
+                            <form action="{{ route('admin.inbox.toggle', $message) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                @if($message->read) 
+                                    <button type="submit" class="btn btn-secondary mb-2">
+                                        <i class="fas fa-undo"></i>
+                                        <span>Primo piano</span>
+                                    </button>
+                                @else
+                                    <button type="submit" class="btn btn-success mb-2">
+                                        <i class="fas fa-inbox"></i>
+                                        <span>Archivia</span>
+                                    </button>
+                                @endif
+                            </form>
+                                
+                            <form action="{{ route('admin.inbox.destroy', $message) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span>Elimina</span>
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             @endforeach
         </div>
 
@@ -211,11 +273,14 @@
         {{-- reviews desktop --}}
 
         <div class="reviews-box">
-            <h4>Recensioni:</h4>
+            <a class="your-apartments" name="inbox">
+                <h2>Recensioni</h2>
+            </a>
             <div class="row">
                 <table class="table">
                     <thead class="thead-container">
                         <tr>
+                            <th scope="col">Alloggio</th>
                             <th scope="col">Visitatore</th>
                             <th scope="col">Titolo</th>
                             <th scope="col">Testo</th>
@@ -226,14 +291,17 @@
                     <tbody class="tbody-container">
                         @foreach ($reviews as $review)
                         <tr>
-                            <th scope="row">{{ $review->first_name . ' ' . $review->last_name}} <br>{{ $review->created_at}}</th>
+                            <th scope="row">{{ $review->apartment->title. ', ' . $review->apartment->city }}</th>
+                            <td>{{ $review->first_name . ' ' . $review->last_name}} <br>{{ $review->created_at->diffForHumans() }}</td>
                             <td>{{ $review->title}}</td>
                             <td>{{ $review->body}}</td>
-                            <td>{{ $review->rating}}</td>
-                            <td>
-                                <a class="btn btn-success mb-2" href="#">Verifica</a>
-                                <br>
-                                <a class="btn btn-danger" href="#">Elimina</a>
+                            <td>{{ $review->rating}}/5</td>
+                            <td width="150">
+                                <form action="{{ route('admin.reviews.destroy', $review) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" class="btn btn-danger" href="#" role="button" value="Elimina">
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -246,16 +314,25 @@
         {{-- reviews box mobile --}}
 
         <div class="reviews-box-mobile">
-            <h4>Recensioni</h4>
+            <a class="your-apartments" name="inbox">
+                <h2>Recensioni</h2>
+            </a>
             @foreach ($reviews as $review)
             <div class="box-reviews">
                 <ul class="list-group list-unstyled">
+                    <li class="list-item">
+                        <h4>{{ $review->apartment->title . ', ' . $review->apartment->city }}</h4>
+                    </li>
                     <li class="list-item"> <strong>{{ $review->first_name . ' ' . $review->last_name}}</strong> {{ $review->created_at->diffForHumans()}}</li>
                     <li class="list-item"> <strong>Titolo:</strong> {{ $review->title}}</li>
                     <li class="list-item"> <strong>Testo:</strong> {{ $review->body}}</li>
-                    <li class="list-item"> <strong>Rating:</strong> {{ $review->rating}}</li>
+                    <li class="list-item"> <strong>Rating:</strong> {{ $review->rating}}/5</li>
                     <li>
-                        <a class="btn btn-danger" href="#" role="button">Elimina</a>
+                        <form action="{{ route('admin.reviews.destroy', $review) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" class="btn btn-danger" href="#" role="button" value="Elimina">
+                        </form>
                     </li>
                 </ul>
             </div>

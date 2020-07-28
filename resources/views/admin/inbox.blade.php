@@ -33,17 +33,6 @@
                 @endforeach
             </tbody>
           </table>
-          
-            <div class="mb-4 col-12 col-lg-6 mb-4">
-                <h5>Ricevuta da: <a href="mailto://">mail@mail</a></h5>
-                <small class="d-block mb-2">Creato il</small>
-                <h6><strong>Titolo messaggio</strong></h6>
-                <a href="#" class="btn btn-sm btn-primary">Archivia</a>
-            </div>
-
-            <div class="mb-4 col-12 col-lg-6 mb-4">
-                <p>Non ci sono messaggi!</p>
-            </div>
 
     </div>
 </div>

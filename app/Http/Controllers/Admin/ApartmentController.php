@@ -32,10 +32,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->paginate(9);
-        $now = Carbon::now();
-
-        return view('admin.apartments.index', compact('apartments', 'now'));
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -94,7 +91,7 @@ class ApartmentController extends Controller
                 }
             }
 
-            return redirect()->route('admin.apartments.show', $newApartment);
+            return redirect()->route('apartments.show', $newApartment);
         }
     }
 
@@ -109,25 +106,7 @@ class ApartmentController extends Controller
         // Policy check
         $this->authorize('view', $apartment);
 
-        $now = Carbon::now();
-        // Reviews Avarage
-        $numreviews = 0;
-        $rating = 0;
-        $numvotes = 0;
-        foreach ($apartment->reviews as $review) {
-            $numreviews++;  
-            $numvotes++;
-            $rating += $review->rating;
-        }
-        if ($numvotes > 0) {
-            $fullaverage = $rating / $numvotes;
-            $average = round($fullaverage, 2);
-        } else {
-            $fullaverage = 0;
-            $average = 0;
-        }
-
-        return view('admin.apartments.show', compact('apartment', 'now', 'average', 'numvotes'));
+        return redirect()->route('apartments.show', $apartment->id);
     }
 
     /**
@@ -230,9 +209,26 @@ class ApartmentController extends Controller
                     }
                 }
             }
+
+            if(!empty($data['new_media'])) {
+                $counter = 0;
+                foreach($data['new_media'] as $path) {
+                    if($counter < $this->maxPathImg) {
+                        $path = Storage::disk('public')->put('images', $path);
+                        $newMedia = new Media();
+                        $newMedia->apartment_id = $apartment->id;
+                        $newMedia->path = $path;
+                        $newMedia->type = 'img';
+                        $newMedia->save();
+                        $counter++;
+                    } else {
+                        break;
+                    }
+                }
+            }
         }
 
-        return redirect()->route('admin.apartments.show', $apartment->id);
+        return redirect()->route('apartments.show', $apartment->id);
     }
 
     /**
@@ -267,7 +263,7 @@ class ApartmentController extends Controller
         $deleted = $apartment->delete();
 
         if($deleted) {
-            return redirect()->route('admin.apartments.index')->with('deleted_apartment', $deleted_apartment);
+            return redirect()->route('admin.index')->with('deleted_apartment', $deleted_apartment);
         }
     }
 
@@ -282,7 +278,7 @@ class ApartmentController extends Controller
         $updated = $apartment->update();
 
         if($updated) {
-            return redirect()->route('admin.apartments.index');
+            return redirect()->route('apartments.show', compact('apartment'));
         }
     }
 
@@ -310,7 +306,8 @@ class ApartmentController extends Controller
             'geo_lat'          => 'required|numeric|between:-90,90',
             'geo_lng'          => 'required|numeric|between:-180,180',
             'services'         => 'exists:services,id',
-            'featured_img'     => 'file|image'
+            'featured_img'     => 'file|image|mimes:jpeg,bmp,png|max:2048',
+            'media.*'          => 'file|image|mimes:jpeg,bmp,png|max:2048'
         ];
     }
 }

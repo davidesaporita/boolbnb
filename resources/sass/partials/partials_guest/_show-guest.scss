@@ -30,16 +30,31 @@
                     justify-content: flex-start;
                     align-items: center;
                     flex-basis: 14%;
-                    background-color: $white;
+                    height: 45px;
                     margin-right: 6px;
                     padding: 10px 10px;
-                    height: 45px;
                     border-radius: 7px;
+                    background-color: $white;
                     justify-content: center;
-                    align-items: center;
                     font-weight: 500;
                     font-size: 0.85rem;
                     color: $primary_pink;
+                    text-decoration: none;
+                }
+
+                #toggle-annuncio {
+                    display: flex;
+                    
+                }
+
+                a.sponsored-button {
+                    background-color: $green;
+                    color: white;
+                }
+
+                a.sponsored-button:hover {
+                    transition: .3s;
+                    opacity: .9;
                 }
 
                 a:first-child,
@@ -54,11 +69,16 @@
                 
                 a:hover {
                     transition: .3s;
-                    opacity: .7;
+                    opacity: .9;
                 }
             }
         }
     }
+}
+
+
+.dashboard-show-container.deactivated {
+    background-color: #777;
 }
 
 .wrap-content {
@@ -280,6 +300,10 @@
                                     background-color: $primary_pink;
                                     color: $primary_white;
                                     border: none;
+                                    width: 100%;
+                                    margin-bottom: 5px;
+                                    font-weight: bold;
+                                    font-size: 13px;
                                 }
                             }
                         }
@@ -341,6 +365,10 @@
                             background-color: $primary_pink;
                             color: $primary_white;
                             border: none;
+                            width: 100%;
+                            margin-bottom: 5px;
+                            font-weight: bold;
+                            font-size: 13px;
                         }
                     }
                 }
@@ -552,8 +580,6 @@
                         flex-basis: 15%;
                         margin-right: 10px;
                     }
-
-
                 }
             }
         }
@@ -713,6 +739,7 @@
 
                 .col-data-apartment {
                     margin-right: 10px;
+                    width: 100%;
                     .wrap-card-info {
                         @include flex($just-content: space-between);
 
@@ -736,6 +763,7 @@
                                 background-color: $primary_pink;
                                 color: $primary_white;
                                 border: none;
+                                outline: none;
                             }
                         }
             
@@ -780,12 +808,16 @@
                                 }
 
                                 .submit-magenta {
-                                    text-decoration: none;
+                                    width: 100%;
                                     padding: 10px;
-                                    border-radius: 10px;
                                     background-color: $primary_pink;
-                                    color: $primary_white;
                                     border: none;
+                                    border-radius: 10px;
+                                    color: $primary_white;
+                                    text-decoration: none;
+                                    margin-bottom: 5px;
+                                    font-weight: bold;
+                                    font-size: 13px;
                                 }
                             }
                         }
@@ -809,7 +841,7 @@
                             }
                         }
                         .wrap-box-info {
-                            padding: 10px;
+                            padding-top: 10px;
 
                             form {
                                 input,
@@ -833,12 +865,16 @@
                                 }
                                 
                                 .submit-magenta {
-                                    text-decoration: none;
+                                    width: 100%;
                                     padding: 10px;
-                                    border-radius: 10px;
                                     background-color: $primary_pink;
-                                    color: $primary_white;
                                     border: none;
+                                    border-radius: 10px;
+                                    color: $primary_white;
+                                    text-decoration: none;
+                                    margin-bottom: 5px;
+                                    font-weight: bold;
+                                    font-size: 13px;
                                 }
                             }
                         }

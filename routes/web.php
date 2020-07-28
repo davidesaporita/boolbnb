@@ -48,11 +48,14 @@ Route::prefix('admin')
         Route::get('/index', 'HomeController@index')->name('index');
 
         // Inbox
-        Route::get('/inbox', 'HomeController@inbox')->name('inbox');
+        Route::get('/inbox', 'MessageController@inbox')->name('inbox');
+        Route::delete('/inbox/{message}', 'MessageController@destroy')->name('inbox.destroy');
+        Route::patch('/inbox/{message}/toggle', 'MessageController@toggle')->name('inbox.toggle');
 
-        // Inbox
-        Route::get('/reviews', 'HomeController@reviews')->name('reviews');
-
+        // Reviews
+        Route::get('/reviews', 'ReviewController@reviews')->name('reviews');
+        Route::delete('/reviews/{review}', 'ReviewController@destroy')->name('reviews.destroy');
+        
         // Apartments CRUD 
         Route::resource('/apartments', 'ApartmentController');
         Route::patch('/apartments/{apartment}/toggle', 'ApartmentController@toggle')->name('apartments.toggle');
@@ -68,8 +71,7 @@ Route::prefix('admin')
             ->name('apartments.sponsorship.checkout');
 
         Route::get('/apartments/{apartment}/sponsorship/transaction/{transaction_id}', 'SponsorshipController@transaction')
-            ->name('apartments.sponsorship.transaction'); 
-             
+            ->name('apartments.sponsorship.transaction');             
     });
 
 Route::get('gandalf', function() {

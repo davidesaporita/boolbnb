@@ -11,17 +11,12 @@
         .nav-action-guest {
             
             a { 
-            
                 color: $text_color;
-            
             }
 
             & a:nth-child(2) {
-
                 display: none;
-
             }
-
         }
 
         .nav-action-admin {
@@ -103,9 +98,7 @@
                     display: inline;
                 }
             }
-
         }
-    
     }
 }
 
@@ -145,21 +138,20 @@
 
                         }
 
+                        
                         .desktop-user {
-
                             color: #ffffff;
                             font-weight: bold;
                             border-radius: 25px;
                             background: $primary_pink;
-
                         }
 
+                        #desktop-user-custom.desktop-user {
+                            display: inline;
+                        }
                     }
-
                 }
-    
             }
         }
-    
     }
 }

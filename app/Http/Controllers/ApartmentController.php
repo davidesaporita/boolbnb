@@ -27,12 +27,14 @@ class ApartmentController extends Controller
         // Add new "view" stat to stats table
         Stat::addNewStat($apartment, 'view');
         
+        // Default value
         $sponsored = false;
 
         // Check if sponsored
         foreach($apartment->sponsor_plans as $plan) {
             $sponsored = $plan->sponsorships->deadline > $now ? true : false;
         }
+
 
         return view('guest.apartments.show', compact('apartment', 'sponsored'));
 
@@ -139,7 +141,7 @@ class ApartmentController extends Controller
         return [
             'email' => 'required|string|email|max:255',
             'title' => 'required|string|max:255',
-            'body'  => 'required|string|max:600',
+            'body'  => 'required|string|max:1000',
         ];
     }
 
@@ -149,7 +151,7 @@ class ApartmentController extends Controller
             'first_name' => 'required|string|max:40',
             'last_name'  => 'required|string|max:40',
             'title'      => 'required|string|max:255',
-            'body'       => 'required|string|max:600',
+            'body'       => 'required|string|max:1000',
             'rating'     => 'required|numeric|between:1,5'
         ];
     }
