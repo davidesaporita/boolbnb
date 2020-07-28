@@ -31,7 +31,7 @@ class HomeController extends Controller
         $apartments_id = $apartments->pluck('id'); 
 
         // Messages
-        $messages               = Message::whereIn('apartment_id', $apartments_id)->get();
+        $messages               = Message::whereIn('apartment_id', $apartments_id)->orderBy('created_at', 'desc')->get();
         $unread_messages_number = $messages->where('read', 0)->count();
 
         // Metrics | Visite totali agli annunci
@@ -42,7 +42,7 @@ class HomeController extends Controller
                                     ->count();
 
         // Numero totale recensioni
-        $reviews = Review::whereIn('apartment_id', $apartments_id)->get();
+        $reviews = Review::whereIn('apartment_id', $apartments_id)->orderBy('created_at', 'desc')->get();
         $total_reviews_number = $reviews->count();
 
         // Media voti ricevuti
