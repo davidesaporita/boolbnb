@@ -155,6 +155,24 @@
             }
         }
     }
+    .button-message {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 45px;
+        a {
+            padding: 6px 15px;
+            background: $primary_pink;
+            border-radius: 20px;
+            span {
+                font-weight: 500;
+                color: $primary_white;
+            }
+        }
+        a:hover {
+            opacity: .8;
+            text-decoration: none;
+        }
+    }
     .box-requests.read { 
         background-color: #cacaca;
     }
@@ -181,6 +199,24 @@
             li {
                 margin-bottom: 10px;
             }
+        }
+    }
+    .button-message {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 45px;
+        a {
+            padding: 6px 15px;
+            background: $primary_pink;
+            border-radius: 20px;
+            span {
+                font-weight: 500;
+                color: $primary_white;
+            }
+        }
+        a:hover {
+            opacity: .8;
+            text-decoration: none;
         }
     }
 }
@@ -299,6 +335,25 @@
     .reviews-box {
         display: block;
         margin-top: 60px;
+        .button-message {
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 0px;
+            a {
+                padding: 6px 15px;
+                background: $primary_pink;
+                border-radius: 20px;
+                span {
+                    font-weight: 500;
+                    color: $primary_white;
+                }
+            }
+            a:hover {
+                opacity: .8;
+                text-decoration: none;
+            }
+        }    
     }
 
     .reviews-box-mobile {
@@ -309,7 +364,25 @@
     .info-requests {
         display: block;
         margin-top: 60px;
-        
+        .button-message {
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 0px;
+            a {
+                padding: 6px 15px;
+                background: $primary_pink;
+                border-radius: 20px;
+                span {
+                    font-weight: 500;
+                    color: $primary_white;
+                }
+            }
+            a:hover {
+                opacity: .8;
+                text-decoration: none;
+            }
+        }
     }
 
     .table {
