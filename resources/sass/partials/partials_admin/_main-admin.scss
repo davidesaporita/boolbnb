@@ -147,7 +147,6 @@
     .box-requests {
         padding: 15px;
         border-radius: 10px;
-        background-color: $primary_white;
         filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
         margin-bottom: 20px;
         ul {
@@ -155,6 +154,13 @@
                 margin-bottom: 10px;
             }
         }
+    }
+    .box-requests.read { 
+        background-color: #cacaca;
+    }
+
+    .box-requests.unread { 
+        background-color: $primary_white;
     }
 }
 
@@ -317,16 +323,22 @@
             }
         }
         .tbody-container {
-            th, td {
+            .unread th, 
+            .unread td {
                 background-color: #fff;
             }
 
-            tr:nth-child(even) {
-                th,td {
-                    color: #000;
-                    background-color: #F4E1E7;
-                }
+            .read th, 
+            .read td {
+                background-color: #cacaca;
             }
+
+            // tr:nth-child(even) {
+            //     th,td {
+            //         color: #000;
+            //         background-color: #F4E1E7;
+            //     }
+            // }
         }
     }
 

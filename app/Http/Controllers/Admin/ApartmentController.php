@@ -32,10 +32,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->paginate(9);
-        $now = Carbon::now();
-
-        return view('admin.apartments.index', compact('apartments', 'now'));
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -109,26 +106,7 @@ class ApartmentController extends Controller
         // Policy check
         $this->authorize('view', $apartment);
 
-        $now = Carbon::now();
-        // Reviews Avarage
-        $numreviews = 0;
-        $rating = 0;
-        $numvotes = 0;
-        foreach ($apartment->reviews as $review) {
-            $numreviews++;  
-            $numvotes++;
-            $rating += $review->rating;
-        }
-        if ($numvotes > 0) {
-            $fullaverage = $rating / $numvotes;
-            $average = round($fullaverage, 2);
-        } else {
-            $fullaverage = 0;
-            $average = 0;
-        }
-
         return redirect()->route('apartments.show', $apartment->id);
-        // return view('apartments.show', compact('apartment', 'now', 'average', 'numvotes'));
     }
 
     /**

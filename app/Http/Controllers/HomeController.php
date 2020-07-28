@@ -23,7 +23,7 @@ class HomeController extends Controller
                                     $query->where('deadline', '>', Carbon::now());
                                })
                                ->inRandomOrder()
-                               ->take(8)
+                               ->take(16)
                                ->get();
 
         $services = Service::all();
