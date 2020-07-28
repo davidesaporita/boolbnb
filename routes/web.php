@@ -71,6 +71,9 @@ Route::prefix('admin')
             ->name('apartments.sponsorship.checkout');
 
         Route::get('/apartments/{apartment}/sponsorship/transaction/{transaction_id}', 'SponsorshipController@transaction')
-            ->name('apartments.sponsorship.transaction'); 
-
+            ->name('apartments.sponsorship.transaction');             
     });
+
+Route::get('gandalf', function() {
+    return view('egg.easter');
+});
