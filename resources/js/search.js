@@ -67,33 +67,32 @@ slider.oninput = function() {
 }
 
 
-searchButton.addEventListener('click', () => {
-  console.log('paolo');
-  apartmentContainer.html('');
+// searchButton.addEventListener('click', () => {
+//   apartmentContainer.html(' ');
 
-  wifi.value           = checkedService(wifi)           ? 1 : 0;
-  posto_macchina.value = checkedService(posto_macchina) ? 1 : 0;
-  piscina.value        = checkedService(piscina)        ? 1 : 0;
-  portineria.value     = checkedService(portineria)     ? 1 : 0;
-  sauna.value          = checkedService(sauna)          ? 1 : 0;
-  vista_mare.value     = checkedService(vista_mare)     ? 1 : 0;
+//   wifi.value           = checkedService(wifi)           ? 1 : 0;
+//   posto_macchina.value = checkedService(posto_macchina) ? 1 : 0;
+//   piscina.value        = checkedService(piscina)        ? 1 : 0;
+//   portineria.value     = checkedService(portineria)     ? 1 : 0;
+//   sauna.value          = checkedService(sauna)          ? 1 : 0;
+//   vista_mare.value     = checkedService(vista_mare)     ? 1 : 0;
   
-  let dataFilter = {
-    geo_lat          : latUrl,
-    geo_lng          : lngUrl, 
-    radius           : radius,
-    wifi             : wifi.value,
-    posto_macchina   : posto_macchina.value,
-    piscina          : piscina.value,
-    portineria       : portineria.value,
-    sauna            : sauna.value,
-    vista_mare       : vista_mare.value,
-    rooms_number_min : minRooms.value,
-    beds_number_min  : minBeds.value   
-  }
+//   let dataFilter = {
+//     geo_lat          : latUrl,
+//     geo_lng          : lngUrl, 
+//     radius           : radius,
+//     wifi             : wifi.value,
+//     posto_macchina   : posto_macchina.value,
+//     piscina          : piscina.value,
+//     portineria       : portineria.value,
+//     sauna            : sauna.value,
+//     vista_mare       : vista_mare.value,
+//     rooms_number_min : minRooms.value,
+//     beds_number_min  : minBeds.value   
+//   }
 
-  ajaxCall( url, 'GET', dataFilter, template) 
-})
+//   ajaxCall( url, 'GET', dataFilter, template) 
+// })
 
 ajaxCall( url, 'GET', dataHome, template) 
 
@@ -103,7 +102,7 @@ placesAutocomplete.on('change', (e) => {
   let lat          = searchResult.latlng['lat'];
   let lng          = searchResult.latlng['lng'];
   let cityResult   = searchResult.name;
-  console.log(searchResult.name);
+  
   search.setView([ lat, lng], 14);
   searchMobile.setView([ lat, lng], 14);
   apartmentContainer.html('');
