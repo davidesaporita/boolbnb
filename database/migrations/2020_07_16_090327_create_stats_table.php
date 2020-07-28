@@ -22,7 +22,8 @@ class CreateStatsTable extends Migration
 
             $table->foreign('apartment_id')
                   ->references('id')
-                  ->on('apartments');
+                  ->on('apartments')
+                  ->onDelete('cascade');
 
             $table->foreign('stat_type_id')
                   ->references('id')

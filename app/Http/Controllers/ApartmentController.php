@@ -27,12 +27,14 @@ class ApartmentController extends Controller
         // Add new "view" stat to stats table
         Stat::addNewStat($apartment, 'view');
         
+        // Default value
         $sponsored = false;
 
         // Check if sponsored
         foreach($apartment->sponsor_plans as $plan) {
             $sponsored = $plan->sponsorships->deadline > $now ? true : false;
         }
+
 
         return view('guest.apartments.show', compact('apartment', 'sponsored'));
 

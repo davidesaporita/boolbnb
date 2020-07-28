@@ -268,7 +268,7 @@ class ApartmentController extends Controller
         $deleted = $apartment->delete();
 
         if($deleted) {
-            return redirect()->route('admin.apartments.index')->with('deleted_apartment', $deleted_apartment);
+            return redirect()->route('admin.index')->with('deleted_apartment', $deleted_apartment);
         }
     }
 
@@ -283,7 +283,7 @@ class ApartmentController extends Controller
         $updated = $apartment->update();
 
         if($updated) {
-            return redirect()->route('admin.apartments.index');
+            return redirect()->route('apartments.show', compact('apartment'));
         }
     }
 

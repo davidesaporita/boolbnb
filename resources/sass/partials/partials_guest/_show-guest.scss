@@ -42,6 +42,11 @@
                     text-decoration: none;
                 }
 
+                #toggle-annuncio {
+                    display: flex;
+                    
+                }
+
                 a.sponsored-button {
                     background-color: $green;
                     color: white;
@@ -69,6 +74,11 @@
             }
         }
     }
+}
+
+
+.dashboard-show-container.deactivated {
+    background-color: #777;
 }
 
 .wrap-content {
@@ -570,8 +580,6 @@
                         flex-basis: 15%;
                         margin-right: 10px;
                     }
-
-
                 }
             }
         }
