@@ -70,9 +70,16 @@
                 {{-- col-dx --}}
                 <div class="col-dx">
                     <div>
-                        <span>Website</span>
+                        <span>Discover</span>
                     </div>
-                    <p><a href="#">boolbnb.com</a><p>
+                    <p>
+                        <a href="{{ route('apartments.discover.country', ['country' => 'Italia']) }}">Appartamenti in Italia</a><br>
+                        <a href="{{ route('apartments.discover.region', ['country' => 'Italia', 'region' => 'Toscana']) }}">Appartamenti in Toscana</a><br>
+                        <a href="{{ route('apartments.discover.region', ['country' => 'Italia', 'region' => 'Sicilia']) }}">Appartamenti in Sicilia</a><br>
+                        <a href="{{ route('apartments.discover.region', ['country' => 'Italia', 'region' => 'Calabria']) }}">Appartamenti in Calabria</a><br>
+                        <a href="{{ route('apartments.discover.city', ['country' => 'Italia', 'region' => 'Piemonte', 'city' => 'Torino']) }}">Appartamenti a Torino</a><br>
+                        <a href="{{ route('apartments.discover.city', ['country' => 'Italia', 'region' => 'Emilia-Romagna', 'city' => 'Parma']) }}">Appartamenti a Parma</a><br>
+                    </p>
                 </div>
             </div>{{-- ./wrap-footer --}}
         </div>{{-- ./Container --}}

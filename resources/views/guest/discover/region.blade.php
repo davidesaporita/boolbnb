@@ -1,25 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="wrapper-guest">
-        <div class="layover"></div>
+    <div class="wrapper-guest-home">
+        <div class="layover-guest-home"></div>
         {{-- Titolo pagina + Search Bar --}}
         <div class="container">
-            <div class="title-guest">
+            <div class="title-guest-home">
                 <h1>La {{ $region }} ti aspetta</h1>
                 <h2>Una delle regioni più belle di {{ $country }}</h2>
             </div>
             {{-- Search bar --}}
-            <div class="algolia-search">
-                <form action="{{ route('search') }}" method="GET">
+            <div class="algolia-search-guest-home">
+                <form id="search-home-guest" action="{{ route('search') }}" method="GET">
                     @csrf
                     @method('GET')
                     <div class="form-group">
-                        {{-- <i class="fas fa-search"></i> --}}
+                        <i class="fas fa-search"></i>
                         <input type="search" id="search" class="form-control" placeholder="Inserisci un indirizzo" name="address" value="{{ old('address') }}" />
                         <div class="algolia-button-search">
-                            <a href="#">Cerca</a>
-                        </div>            
+                            <a href="#" onclick="document.getElementById('search-home-guest').submit()">Cerca</a>
+                        </div>
+                        {{-- <input type="hidden" id="city" name="city" value=""> --}}
+                        <input type="hidden" id="name" name="name" value="">
                         <input type="hidden" id="geo_lat" name="geo_lat" value="">
                         <input type="hidden" id="geo_lng" name="geo_lng" value="">
                     </div>
@@ -28,10 +30,12 @@
             <!--Carousel Wrapper-->
             <div id="multi-item-example" class="carousel slide carousel-multi-item" data-interval="false">
                 <!--Controls-->
-                <div class="controls-top">
-                    <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
-                    <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fas fa-chevron-right"></i></a>
-                </div>
+                @if(count($apartments) > 4)
+                    <div class="controls-top">
+                        <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
+                        <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fas fa-chevron-right"></i></a>
+                    </div>
+                @endif
                 <!--Indicators-->
                 <ol class="carousel-indicators">
                     @foreach ($apartments as $apartment)
@@ -49,7 +53,7 @@
                             @elseif ((($loop->iteration - 1) % 4) == 0)
                                 <div class="carousel-item carousel-custom">
                             @endif
-                                <div class="col-md-3">
+                                <div class="col-lg-3">
                                     <a href="{{ route('apartments.show', $apartment)}}">
                                         <div class="box-guest">
                                             @foreach ($apartment->sponsor_plans as $plan)
@@ -107,9 +111,11 @@
                     </div>
                 </div>
             </div>
-            <div class="button-guest">
-                <a href="{{ route('register') }}">Diventa Host</a>
-            </div>
+            @guest                
+                <div class="button-guest">
+                    <a href="{{ route('register') }}">Diventa Host</a>
+                </div>
+            @endguest
         </div>
     </div>
 
