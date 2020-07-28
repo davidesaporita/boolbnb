@@ -48,11 +48,13 @@ Route::prefix('admin')
         Route::get('/index', 'HomeController@index')->name('index');
 
         // Inbox
-        Route::get('/inbox', 'HomeController@inbox')->name('inbox');
+        Route::get('/inbox', 'MessageController@inbox')->name('inbox');
+        Route::delete('/inbox/{message}', 'MessageController@destroy')->name('inbox.destroy');
 
-        // Inbox
-        Route::get('/reviews', 'HomeController@reviews')->name('reviews');
-
+        // Reviews
+        Route::get('/reviews', 'ReviewController@reviews')->name('reviews');
+        Route::delete('/reviews/{review}', 'ReviewController@destroy')->name('reviews.destroy');
+        
         // Apartments CRUD 
         Route::resource('/apartments', 'ApartmentController');
         Route::patch('/apartments/{apartment}/toggle', 'ApartmentController@toggle')->name('apartments.toggle');
@@ -69,5 +71,5 @@ Route::prefix('admin')
 
         Route::get('/apartments/{apartment}/sponsorship/transaction/{transaction_id}', 'SponsorshipController@transaction')
             ->name('apartments.sponsorship.transaction'); 
-             
+
     });
