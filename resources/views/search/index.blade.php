@@ -64,10 +64,10 @@
                                 <div class="input-number">
                                     <div class="container">
                                         <div class="form-group">
-                                            <input id="rooms_number_min" class="form-control" placeholder="n° minimo di stanze" type="number"  name="rooms_number_min">
+                                            <input id="rooms_number_min" class="form-control" placeholder="n° minimo di stanze" type="number" min="1" name="rooms_number_min">
                                         </div>
                                         <div class="form-group">
-                                            <input id="beds_number_min" placeholder="n° minimo di letti" class="form-control" type="number"  name="beds_number_min">
+                                            <input id="beds_number_min" placeholder="n° minimo di letti" class="form-control" type="number" min="1" name="beds_number_min">
                                         </div>
                                     </div>
                                 </div>
