@@ -73,7 +73,6 @@
                         <span>Discover</span>
                     </div>
                     <p>
-                        <a href="{{ route('apartments.discover.country', ['country' => 'Italia']) }}">Appartamenti in Italia</a><br>
                         <a href="{{ route('apartments.discover.region', ['country' => 'Italia', 'region' => 'Toscana']) }}">Appartamenti in Toscana</a><br>
                         <a href="{{ route('apartments.discover.region', ['country' => 'Italia', 'region' => 'Sicilia']) }}">Appartamenti in Sicilia</a><br>
                         <a href="{{ route('apartments.discover.region', ['country' => 'Italia', 'region' => 'Calabria']) }}">Appartamenti in Calabria</a><br>
