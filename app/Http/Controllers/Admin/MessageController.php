@@ -17,9 +17,14 @@ class MessageController extends Controller
 {
     public function inbox() 
     {
+
         $user_id    = Auth::user()->id;
         $apartments = Apartment::where('user_id', $user_id)->get();
-        $messages   = Message::whereIn('apartment_id', $apartments)->get();
+
+        // Apartments ids array
+        $apartments_id = $apartments->pluck('id'); 
+
+        $messages   = Message::whereIn('apartment_id', $apartments_id)->orderBy('created_at', 'desc')->get();
         $now        = Carbon::now();
 
         return view('admin.inbox', compact('apartments', 'messages', 'now'));
@@ -35,7 +40,7 @@ class MessageController extends Controller
         $deleted = $message->delete();
 
         if($deleted) {
-            return redirect()->route('admin.index')->with('deleted_message', $deleted_message);
+            return redirect()->back()->with('message', 'Messaggio eliminato');
         }
     }
 
@@ -46,11 +51,12 @@ class MessageController extends Controller
         } else {
             $message->read = 0;
         }
-        
+
         $updated = $message->update();
 
         if($updated) {
-            return redirect()->route('admin.index', compact('message'));
+            if($message->read == 1) return redirect()->back()->with('message', "Messaggio archiviato");                
+            else                    return redirect()->back()->with('message', "Messaggio segnato come da leggere");                
         }
     }
 }

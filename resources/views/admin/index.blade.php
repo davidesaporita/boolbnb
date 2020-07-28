@@ -2,6 +2,23 @@
 
 @section('content')
 
+@if ($errors->all())
+    <div class="alert alert-danger alerts-show">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if(session()->get('message'))
+    <div class="alert alert-success alerts-show">
+        {{ session()->get('message') }}
+        {{ session()->forget('message') }}
+    </div>
+@endif
+
 <div class="container">
     <div class="dashboard-admin">
         {{-- JUMBOTRON --}}
@@ -13,14 +30,14 @@
             <div class="message-info">
                 <div class="new-message">
                     @if ($unread_messages_number > 0)
-                        <p> Hai {{ $unread_messages_number }} messaggi non letti!</p>            
+                        <p> Hai {{ $unread_messages_number }} messaggi non letti</p>            
                     @else
                         <p>Non hai nuovi messaggi!</p>
                     @endif
                 </div>
                 <div class="button-message">
                     <a href="{{ route('admin.inbox') }}">
-                        <span>Leggi Messaggi</span>
+                        <span>Vai alla inbox</span>
                     </a>
                 </div>
             </div>
@@ -30,10 +47,10 @@
                         <i class="fas fa-globe-europe"></i> {{ $total_views_number }} visite
                     </li>
                     <li>
-                        <i class="fas fa-inbox"></i> {{ $unread_messages_number }} messaggi
+                        <i class="fas fa-inbox"></i> {{ $unread_messages_number . '/' . $messages_number }} messaggi non letti
                     </li>
                     <li>
-                        <i class="fas fa-pen"></i></i> {{ $total_reviews_number }} recensioni
+                        <i class="fas fa-pen"></i> {{ $total_reviews_number }} recensioni
                     </li>
                     <li>
                         <i class="fas fa-star"></i> {{ $average_rating }}/5 (voto medio)
@@ -106,36 +123,36 @@
                                                 <h5 class="box-guest-title">{{ substr($apartment->title, 0, 25) }}{{(strlen($apartment->title) >= 25) ? '...' : ''}}</h5>
                                                 <h6 class="box-guest-text">{{ $apartment->city . ', ' . $apartment->region}}</h6>
                                                 <?php
-                                                // Reviews average
-                                                $numreviews = 0;
-                                                $rating = 0;
-                                                $numvotes = 0;
-                                                foreach ($apartment->reviews as $review) {
-                                                    $numreviews++;  
-                                                    $numvotes++;
-                                                    $rating += $review->rating;
-                                                }
-                                                if ($numvotes != 0) {
-                                                    $fullaverage = $rating / $numvotes;
-                                                    $average = round($fullaverage, 2);
-                                                    echo '<h6 class="box-guest-text"><i class="fas fa-star"></i> ';
-                                                    echo $average;
-                                                    echo '/5';
-                                                    echo " ($numreviews";
-                                                    if ($numreviews == 1) {
-                                                        echo ' recensione)';
-                                                    }
-                                                    else {
-                                                        echo ' recensioni)';
-                                                    }
-                                                    echo '</h6>';
-                                                }
-                                                elseif ($numvotes == 0) {
-                                                    $fullaverage = 0;
-                                                    $average = 0;
-                                                    echo '<h6 class="box-guest-text">';
-                                                    echo "($numreviews recensioni)</h6>";
-                                                }
+                                                // // Reviews average
+                                                // $numreviews = 0;
+                                                // $rating = 0;
+                                                // $numvotes = 0;
+                                                // foreach ($apartment->reviews as $review) {
+                                                //     $numreviews++;  
+                                                //     $numvotes++;
+                                                //     $rating += $review->rating;
+                                                // }
+                                                // if ($numvotes != 0) {
+                                                //     $fullaverage = $rating / $numvotes;
+                                                //     $average = round($fullaverage, 2);
+                                                //     echo '<h6 class="box-guest-text"><i class="fas fa-star"></i> ';
+                                                //     echo $average;
+                                                //     echo '/5';
+                                                //     echo " ($numreviews";
+                                                //     if ($numreviews == 1) {
+                                                //         echo ' recensione)';
+                                                //     }
+                                                //     else {
+                                                //         echo ' recensioni)';
+                                                //     }
+                                                //     echo '</h6>';
+                                                // }
+                                                // elseif ($numvotes == 0) {
+                                                //     $fullaverage = 0;
+                                                //     $average = 0;
+                                                //     echo '<h6 class="box-guest-text">';
+                                                //     echo "($numreviews recensioni)</h6>";
+                                                // }
                                                 ?>
                                             </div>
                                         </div>
@@ -154,7 +171,7 @@
         {{-- inbox desktop --}}
         <div class="info-requests">
             <a class="your-apartments" name="inbox">
-                <h2>Richieste di informazioni</h2>
+                <h2>Ultime richieste ricevute</h2>
             </a>
             <div class="row">
                 <table class="table">
@@ -171,7 +188,7 @@
                         @foreach ($messages as $message)
                             <tr class="@if($message->read) read @else unread @endif">
                                 <th scope="row">{{ $message->apartment->title }}</th>
-                                <td>{{ $message->email}} <br>{{ $message->created_at}}</td>
+                                <td>{{ $message->email}} <br>{{ $message->created_at->diffForHumans() }}</td>
                                 <td>{{ $message->title }}</td>
                                 <td>{{ $message->body }}</td>
                                 <td class="table-button-align" width="150">
@@ -214,7 +231,7 @@
 
         <div class="info-requests-mobile">
             <a class="your-apartments" name="inbox">
-                <h2>Richieste di informazioni</h2>
+                <h2>Ultime richieste ricevute</h2>
             </a>
             @foreach ($messages as $message)
                 <div class="box-requests @if($message->read) read @else unread @endif">
@@ -274,7 +291,7 @@
 
         <div class="reviews-box">
             <a class="your-apartments" name="inbox">
-                <h2>Recensioni</h2>
+                <h2>Ultime recensioni</h2>
             </a>
             <div class="row">
                 <table class="table">
@@ -315,7 +332,7 @@
 
         <div class="reviews-box-mobile">
             <a class="your-apartments" name="inbox">
-                <h2>Recensioni</h2>
+                <h2>Ultime recensioni</h2>
             </a>
             @foreach ($reviews as $review)
             <div class="box-reviews">

@@ -2,23 +2,6 @@
 
 @section('content')
 
-@if ($errors->all())
-    <div class="alert alert-danger alerts-show">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-@if(session()->get('message'))
-    <div class="alert alert-success alerts-show">
-        {{ session()->get('message') }}
-        {{ session()->forget('message') }}
-    </div>
-@endif
-
 @auth
     @if(Auth::id() == $apartment->user_id)
         <div class="dashboard-show-container @if(!$apartment->active) deactivated @endif">
@@ -80,6 +63,23 @@
 
     @endif
 @endauth 
+
+@if ($errors->all())
+    <div class="alert alert-danger alerts-show">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if(session()->get('message'))
+    <div class="alert alert-success alerts-show">
+        {{ session()->get('message') }}
+        {{ session()->forget('message') }}
+    </div>
+@endif
 
 
 <div class="wrap-content">
