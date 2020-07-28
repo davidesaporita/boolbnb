@@ -209,6 +209,23 @@ class ApartmentController extends Controller
                     }
                 }
             }
+
+            if(!empty($data['new_media'])) {
+                $counter = 0;
+                foreach($data['new_media'] as $path) {
+                    if($counter < $this->maxPathImg) {
+                        $path = Storage::disk('public')->put('images', $path);
+                        $newMedia = new Media();
+                        $newMedia->apartment_id = $apartment->id;
+                        $newMedia->path = $path;
+                        $newMedia->type = 'img';
+                        $newMedia->save();
+                        $counter++;
+                    } else {
+                        break;
+                    }
+                }
+            }
         }
 
         return redirect()->route('apartments.show', $apartment->id);
