@@ -19,7 +19,11 @@ class ReviewController extends Controller
     {
         $user_id    = Auth::user()->id;
         $apartments = Apartment::where('user_id', $user_id)->get();
-        $reviews    = Review::whereIn('apartment_id', $apartments)->get();
+        
+        // Apartments ids array
+        $apartments_id = $apartments->pluck('id'); 
+
+        $reviews    = Review::whereIn('apartment_id', $apartments_id)->orderBy('created_at', 'desc')->get();
         $now        = Carbon::now();
 
         return view('admin.reviews', compact('apartments', 'reviews', 'now'));
@@ -35,7 +39,7 @@ class ReviewController extends Controller
         $deleted = $review->delete();
 
         if($deleted) {
-            return redirect()->route('admin.index')->with('deleted_review', $deleted_review);
+            return redirect()->back()->with('message', 'Recensione eliminata');
         }
     }
 }
