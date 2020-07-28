@@ -45,7 +45,7 @@ class ApartmentController extends Controller
         $now = Carbon::now();
 
         if(isset($country) && $region === null && $city === null) {
-            $apartments = Apartment::where('country', $country)->get();
+            $apartments = Apartment::where('country', $country)->get();            
             return view('guest.discover.country', compact('apartments', 'country', 'now'));
         }
         

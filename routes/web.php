@@ -77,3 +77,7 @@ Route::prefix('admin')
 Route::get('gandalf', function() {
     return view('egg.easter');
 });
+
+Route::get('it/was/epic', function() {
+    return view('egg.easter');
+});
