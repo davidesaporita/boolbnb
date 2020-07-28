@@ -105,6 +105,10 @@
                                         </div>
                                     </div>
                                  @endforeach
+                                 <div class="mt-5">
+                                    <h3 class="subtitle-size">Aggiungi immagini secondarie</h3>
+                                    <input id="secondary_img" type="file" name="new_media[]" accept="image/*" multiple>
+                                </div>
                             </div>
                         </div>
                     </section>
