@@ -114,6 +114,8 @@
                 border-radius: 15px;
                 background-color: #fff;
                 box-shadow: 0px 2px 8px rgba( 0, 0, 0, .15);
+
+               
                 .card-img-top {
                     height: 170px;
                     object-fit: cover;
@@ -124,6 +126,10 @@
                 .badge {
                     z-index: 1;
                 }
+            }
+
+            a {
+                text-decoration: none;
             }
 
             .card-search-mobile {
