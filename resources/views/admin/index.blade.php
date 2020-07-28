@@ -222,6 +222,11 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="button-message">
+                    <a href="{{ route('admin.inbox') }}">
+                        <span>Vai alla inbox</span>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -283,6 +288,11 @@
                     </ul>
                 </div>
             @endforeach
+            <div class="button-message">
+                <a href="{{ route('admin.inbox') }}">
+                    <span>Vai alla inbox</span>
+                </a>
+            </div>
         </div>
 
         {{-- end mobile inbox --}}
@@ -325,6 +335,11 @@
                     </tbody>
                 </table>
             </div>
+            <div class="button-message">
+                <a href="#">
+                    <span>Tutte le recensioni</span>
+                </a>
+            </div>
         </div>
         {{-- end reviews desktop --}}
 
@@ -354,6 +369,11 @@
                 </ul>
             </div>
             @endforeach
+            <div class="button-message">
+                <a href="#">
+                    <span>Tutte le recensioni</span>
+                </a>
+            </div>
         </div>
         
     </div>
