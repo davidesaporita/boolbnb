@@ -23,19 +23,36 @@ $admin: #5FB0B7;
 
 //////////// BOOLBNB VARIABLES
 
+
+//// OFFICIAL COLOR PALETTE
+
+    // Official general color
+    $bool_primary : #707070; 
+    $bool_pink : #B34262;
+    $bool_gold: #ffd700;
+
+    // Offical text color
+    $bool_title: #404040;
+    $bool_text: #707070;
+
+    // Official background color
+    $bool_bg_page: #F2F2F2;
+
+//---------------------------------------------------------
+
 ///// Colors
 
 // General color
-$primary : #707070;
-$primary_color : #B34262;
-$primary_pink : #B34262;
+$primary : #707070;                         //
+$primary_color : #B34262;                   //
+$primary_pink : #B34262;                    //
 $primary_white: #ffffff;
-$primary_gold: #ffd700;
-$text_color: #707070;
-$grey_bg: #F2F2F2;
+$primary_gold: #ffd700;                     //
+$text_color: #707070;                       //
+$grey_bg: #F2F2F2;                          //
 $light_grey: #e4e0e0;
 $grey_header: rgba(242, 242, 242, .7);
-$title_color: #404040;
+$title_color: #404040;                      //
 $dashbord_grey: #858585;
 $dashbord_lightgrey: #cebfbf;
 $color_paraghrap: #707070; 
@@ -45,6 +62,8 @@ $separator: #C6C6C6;
 $header_separator: #606060;
 $footer_separetor: #C6C6C6;
 $footer_icon_color: #404040;
+
+
 
 // Desktop color
 $sponsored_section_color: rgba( 165, 162, 162, .5 );  

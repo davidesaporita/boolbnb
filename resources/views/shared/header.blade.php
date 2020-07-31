@@ -18,47 +18,39 @@
         <nav class="main-navbar">
             <div class="container">
                 <div class="wrap-nav">
-                    <a href="{{ url('/') }}">
-                        <img src="{{URL::to('/')}}/img/boolbnb-logo.png" alt="">
-                    </a>
-                    @guest
-                        <div class="nav-action-guest">
-                            <a href="{{ route('login') }}">Login</a>
-                            <a href="{{ route('register') }}">Diventa Host</a>
-                        </div>
-                    @else
-                        <div class="nav-action-admin">
-                            <a class="nav-link mobile-user" {{-- data-toggle="dropdown" --}} href="{{ route('admin.index') }}">
-                                {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <span class="caret"></span>
-                            </a>
-                            <i id="menu-icon" class="menu-mobile fas fa-bars"></i>
-
-                            <div class="menu-large">
-                                <ul>
-                                    <li><a href="{{ route('admin.index') }}">La tua dashboard</a></li>
-                                    <li><a href=""><a href="{{ route('admin.apartments.create') }}">Aggiungi un alloggio</a></a></li>
-                                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >Logout</a></li>
-                                    <li>
-                                        <a id="desktop-user-custom" class="nav-link desktop-user" {{-- data-toggle="dropdown" --}} href="{{ route('admin.index') }}">
-                                            {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <span class="caret"></span>
-                                        </a>
-                                    </li>
-                                </ul>
+                    <div class="nav-user">
+                        <a href="{{ url('/') }}">
+                            <img src="{{URL::to('/')}}/img/boolbnb-logo.png" alt="">
+                        </a>
+                        @guest
+                            <div class="nav-action-guest">
+                                <a href="{{ route('login') }}">Accedi</a>
+                                <a href="{{ route('register') }}">Diventa Host</a>
                             </div>
+                        @else
+                            <div class="nav-action-admin">
+                                <a class="nav-link mobile-user" href="{{ route('admin.index') }}">
+                                    {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <span class="caret"></span>
+                                </a>
+                                <i id="menu-icon" class="menu-icon fas fa-bars"></i>
+                            </div>
+                        @endguest 
+                    </div>
+                    @auth
+                        <div id="sub-menu" class="menu-large mobile-options">
+                            <ul>
+                                <li>
+                                    <a href="{{ route('admin.index') }}">La tua dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.apartments.create') }}">Aggiungi un alloggio</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >Logout</a>
+                                </li>
+                            </ul>
                         </div>
-                    @endguest
-                </div>
-
-                <div id="sub-menu" class="sub-menu hidden">
-                    <div>
-                        <a href="{{ route('admin.index') }}">La tua dashboard</a>
-                    </div>
-                    <div>
-                        <a href="{{ route('admin.apartments.create') }}">Aggiungi un alloggio</a>
-                    </div>
-                    <div>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >Logout</a>
-                    </div>
+                    @endauth
                 </div>
             </div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
