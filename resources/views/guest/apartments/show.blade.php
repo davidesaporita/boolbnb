@@ -161,7 +161,7 @@
                                         echo ' recensione)';
                                     }
                                     else {
-                                        echo ' recensioni';
+                                        echo ' recensioni)';
                                     }
                                     echo '</h6>';
                                 }
