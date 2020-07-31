@@ -16,13 +16,15 @@ BoolBnB è un’applicazione web che mette in contatto persone in cerca di un al
 [![GitHub stars](https://img.shields.io/github/stars/davidesaporita/boolbnb?style=social&label=Star&maxAge=2592000)](https://GitHub.com/davidesaporita/boolbnb/stargazers/)
 [![GitHub watchers](https://img.shields.io/github/watchers/Naereen/StrapDown.js.svg?style=social&label=Watch&maxAge=2592000)](https://GitHub.com/Naereen/StrapDown.js/watchers/)
 
-
 ## Main features
 L’applicazione è sviluppata in Laravel e fornisce le seguenti funzionalità principali:
 - registrazione di utenti, 
 - l’inserimento di alloggi geo-localizzati (Algolia Places API), 
 - piattaforma di pagamenti per annunci sponsorizzati (Braintree SDK) 
 - visualizzazione grafica delle statistiche (Chart.js)
+
+## Mobile preview (iPhoneX)
+![BoolBnB](https://i.imgur.com/fSsB6Gm.png)
 
 ## Client needs
 La richiesta prevedeva lo sviluppo di un’app per trovare e gestire l’affitto di alloggi. Gli utenti interessati devono avere la possibilità di visualizzare una lista di possibili alloggi filtrabili mediante un’apposita pagina di ricerca, e di accedere ad una pagina di dettaglio. Trovato l’alloggio desiderato, l’utente avere la possibilità di contattare il proprietario per richiedere informazioni. I proprietari devono avere la possibilità di sponsorizzare i propri alloggi, mettendoli in evidenza in home page e nella pagina di ricerca.
@@ -57,9 +59,6 @@ App/Software:
 * Trello
 * Adobe Illustrator
 * Adobe XD
-
-## Mobile mockup (iPhoneX)
-![BoolBnB](https://i.imgur.com/fSsB6Gm.png)
 
 ## License
 
