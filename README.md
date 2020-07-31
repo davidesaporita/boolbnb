@@ -1,4 +1,4 @@
-# BoolBnB | Summary
+## Summary
 
 > BoolBnB è un’applicazione web che mette in contatto persone in cerca di un alloggio o di una camera per brevi periodi. Attraverso BoolBnB i proprietari possono inserire le informazioni dei loro alloggi che desiderano affittare per cercare utenti interessati.
 
