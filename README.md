@@ -1,4 +1,3 @@
-
 # BoolBnB | Web Application
 
 > Laravel based Airbnb replica
@@ -69,5 +68,33 @@ App/Software:
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
 - Copyright 2020 © <a href="http://fvcproductions.com" target="_blank"></a>
 
+## Design Process
+Il team ha strutturato il lavoro partendo dall’identificazione delle entità fondamentali del progetto per la costruzione del database. Parallelamente sono state sintetizzate in modo visuale le funzionalità base richieste dal cliente e realizzato un flow-chart per descrivere il flusso degli utenti nell’app. Su tali basi si è predisposto il lavoro di sviluppo dell’applicazione lato backend, al fine di implementare le funzionalità richieste ed aggiuntive. La seconda metà del lavoro è stata dedicata in gran parte al design visuale dell’applicazione, prima mediante la realizzazione dei layout in Adobe XD e poi implementando gli stili.
 
+## Tools and Technologies
+Linguaggi:
+* HTML5
+* CSS3 (SCSS)
+* JavaScript ES6
+* Php | Framework: Laravel 7
+* MySQL
 
+JavaScript Libraries:
+* places.js 
+* chart.js
+* handlebars
+* leaflet
+* fortawesome/fontawesome-free
+
+Php Libraries:
+* braintree/braintree_php
+* nesbot/carbon
+
+App/Software:
+* Visual Studio Code
+* dbdiagram.io
+* Google Meet
+* Lark
+* Trello
+* Adobe Illustrator
+* Adobe XD
