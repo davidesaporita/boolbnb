@@ -37355,21 +37355,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     } else {
       filterShowButtonIcon.removeClass('fa-minus-circle').addClass('fa-plus-circle');
     }
-  }); // dropDownSearchButton.click(() => {
-  //      wdropDownFilter.slideUp();
-  //      filterShowButtonIcon.removeClass('fa-minus-circle').addClass('fa-plus-circle');
-  // });
-  // $(window).resize(function() {
-  //     console.log(document.body.clientWidth + ' wide by ' + document.body.clientHeight+' high');
-  //     if ( document.body.clientWidth < 992 ) {
-  //          dropDownSearchButton.click(() => {
-  //              dropDownFilter.slideUp();
-  //              filterShowButtonIcon.removeClass('fa-minus-circle').addClass('fa-plus-circle');
-  //         });
-  //     } 
-  // });
-  ////////////////// Search functionality  [ END ]
-  ///// SUBMIT BUTTON
+  }); ////////////////// Search functionality  [ END ]
 });
 
 /***/ }),
@@ -37437,8 +37423,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\PFM\Desktop\boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\PFM\Desktop\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\david\OneDrive\Desktop\boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\david\OneDrive\Desktop\boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -34,7 +34,7 @@ class ApartmentPolicy
         return $user->id === $apartment->user_id
             ? Response::allow()
             : Response::deny('Non puoi accedere a questo contenuto.');
-    }
+    } 
 
     /**
      * Determine whether the user can create models.
